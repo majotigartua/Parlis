@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ParlisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="IdMatch" />
+          </Key>
+          <Property Name="IdMatch" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="PlayerProfileUsername" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="IdPlayer" />
+          </Key>
+          <Property Name="IdPlayer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PaternalSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaternalSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PlayerProfileUsername" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="PlayerProfile">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsVerified" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Match_PlayerProfile">
+          <End Role="PlayerProfile" Type="Self.PlayerProfile" Multiplicity="1" />
+          <End Role="Match" Type="Self.Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerProfile">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="PlayerProfileUsername" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_PlayerProfile">
+          <End Role="PlayerProfile" Type="Self.PlayerProfile" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerProfile">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="PlayerProfileUsername" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ParlisModelStoreContainer">
+          <EntitySet Name="Match" EntityType="Self.Match" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlayerProfile" EntityType="Self.PlayerProfile" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Match_PlayerProfile" Association="Self.FK_Match_PlayerProfile">
+            <End Role="PlayerProfile" EntitySet="PlayerProfile" />
+            <End Role="Match" EntitySet="Match" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_PlayerProfile" Association="Self.FK_Player_PlayerProfile">
+            <End Role="PlayerProfile" EntitySet="PlayerProfile" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ParlisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="IdMatch" />
+          </Key>
+          <Property Name="IdMatch" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PlayerProfileUsername" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PlayerProfile" Relationship="Self.FK_Match_PlayerProfile" FromRole="Match" ToRole="PlayerProfile" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="IdPlayer" />
+          </Key>
+          <Property Name="IdPlayer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PaternalSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaternalSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PlayerProfileUsername" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PlayerProfile" Relationship="Self.FK_Player_PlayerProfile" FromRole="Player" ToRole="PlayerProfile" />
+        </EntityType>
+        <EntityType Name="PlayerProfile">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Matches" Relationship="Self.FK_Match_PlayerProfile" FromRole="PlayerProfile" ToRole="Match" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Player_PlayerProfile" FromRole="PlayerProfile" ToRole="Player" />
+        </EntityType>
+        <Association Name="FK_Match_PlayerProfile">
+          <End Role="PlayerProfile" Type="Self.PlayerProfile" Multiplicity="1" />
+          <End Role="Match" Type="Self.Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerProfile">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="PlayerProfileUsername" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_PlayerProfile">
+          <End Role="PlayerProfile" Type="Self.PlayerProfile" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerProfile">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="PlayerProfileUsername" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ParlisContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Matches" EntityType="Self.Match" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="PlayerProfiles" EntityType="Self.PlayerProfile" />
+          <AssociationSet Name="FK_Match_PlayerProfile" Association="Self.FK_Match_PlayerProfile">
+            <End Role="PlayerProfile" EntitySet="PlayerProfiles" />
+            <End Role="Match" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_PlayerProfile" Association="Self.FK_Player_PlayerProfile">
+            <End Role="PlayerProfile" EntitySet="PlayerProfiles" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ParlisModelStoreContainer" CdmEntityContainer="ParlisContext">
+          <EntitySetMapping Name="Matches">
+            <EntityTypeMapping TypeName="ParlisModel.Match">
+              <MappingFragment StoreEntitySet="Match">
+                <ScalarProperty Name="IdMatch" ColumnName="IdMatch" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PlayerProfileUsername" ColumnName="PlayerProfileUsername" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="ParlisModel.Player">
+              <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="IdPlayer" ColumnName="IdPlayer" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PaternalSurname" ColumnName="PaternalSurname" />
+                <ScalarProperty Name="MaternalSurname" ColumnName="MaternalSurname" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="PlayerProfileUsername" ColumnName="PlayerProfileUsername" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlayerProfiles">
+            <EntityTypeMapping TypeName="ParlisModel.PlayerProfile">
+              <MappingFragment StoreEntitySet="PlayerProfile">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
