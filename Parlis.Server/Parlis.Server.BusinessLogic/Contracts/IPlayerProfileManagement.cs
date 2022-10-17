@@ -17,8 +17,5 @@ namespace Parlis.Server.BusinessLogic
 
         [OperationContract]
         bool RegisterPlayer(Player player);
-
-        [OperationContract]
-        bool RegisterPlayerProfile(PlayerProfile playerProfile);
     }
 }

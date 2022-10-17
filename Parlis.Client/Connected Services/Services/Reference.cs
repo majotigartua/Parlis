@@ -383,12 +383,6 @@ namespace Parlis.Client.Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerResponse")]
         System.Threading.Tasks.Task<bool> RegisterPlayerAsync(Parlis.Client.Services.Player player);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfileResponse")]
-        bool RegisterPlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfileResponse")]
-        System.Threading.Tasks.Task<bool> RegisterPlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -448,14 +442,6 @@ namespace Parlis.Client.Services {
         
         public System.Threading.Tasks.Task<bool> RegisterPlayerAsync(Parlis.Client.Services.Player player) {
             return base.Channel.RegisterPlayerAsync(player);
-        }
-        
-        public bool RegisterPlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.RegisterPlayerProfile(playerProfile);
-        }
-        
-        public System.Threading.Tasks.Task<bool> RegisterPlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.RegisterPlayerProfileAsync(playerProfile);
         }
     }
 }

@@ -102,10 +102,10 @@ namespace Parlis.Client
                         PaternalSurname = PaternalSurnameTextBox.Text,
                         MaternalSurname = MaternalSurnameTextBox.Text,
                         EmailAddress = emailAddress,
-                        PlayerProfileUsername = playerProfile.Username
+                        PlayerProfileUsername = playerProfile.Username,
+                        PlayerProfile = playerProfile
                     };
-                    if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile) &&
-                        playerProfileManagementClient.RegisterPlayer(player))
+                    if (playerProfileManagementClient.RegisterPlayer(player))
                     {
                         playerProfileManagementClient.Close();
                         MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);

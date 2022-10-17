@@ -1,4 +1,5 @@
 ﻿using Parlis.Server.DataAccess;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace Parlis.Server.BusinessLogic
@@ -42,19 +43,16 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
-                context.Players.Add(player);
-                context.SaveChanges();
-                return CheckPlayerExistence(player.EmailAddress);
-            }
-        }
-
-        public bool RegisterPlayerProfile(PlayerProfile playerProfile)
-        {
-            using (ParlisContext context = new ParlisContext())
-            {
-                context.PlayerProfiles.Add(playerProfile);
-                context.SaveChanges();
-                return CheckPlayerProfileExistence(playerProfile.Username);
+                try
+                {
+                    context.Players.Add(player);
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (DbUpdateException)
+                {
+                    return false;
+                }
             }
         }
     }
