@@ -60,12 +60,6 @@
   <wsdl:message name="IPlayerProfileManagement_RegisterPlayer_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterPlayerResponse" />
   </wsdl:message>
-  <wsdl:message name="IPlayerProfileManagement_RegisterPlayerProfile_InputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterPlayerProfile" />
-  </wsdl:message>
-  <wsdl:message name="IPlayerProfileManagement_RegisterPlayerProfile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterPlayerProfileResponse" />
-  </wsdl:message>
   <wsdl:portType name="IPlayerProfileManagement">
     <wsdl:operation name="CheckPlayerExistence">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerExistence" message="tns:IPlayerProfileManagement_CheckPlayerExistence_InputMessage" />
@@ -82,10 +76,6 @@
     <wsdl:operation name="RegisterPlayer">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayer" message="tns:IPlayerProfileManagement_RegisterPlayer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerResponse" message="tns:IPlayerProfileManagement_RegisterPlayer_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="RegisterPlayerProfile">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfile" message="tns:IPlayerProfileManagement_RegisterPlayerProfile_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfileResponse" message="tns:IPlayerProfileManagement_RegisterPlayerProfile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPlayerProfileManagement" type="tns:IPlayerProfileManagement">
@@ -120,15 +110,6 @@
     </wsdl:operation>
     <wsdl:operation name="RegisterPlayer">
       <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayer" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RegisterPlayerProfile">
-      <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
