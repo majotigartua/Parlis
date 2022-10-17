@@ -147,6 +147,9 @@
   <data name="REGISTER_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Register player profile</value>
   </data>
+  <data name="REGISTER_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
+    <value>Register player profile.</value>
+  </data>
   <data name="TRY_AGAIN_LATER_LABEL" xml:space="preserve">
     <value>Please, try again later.</value>
   </data>

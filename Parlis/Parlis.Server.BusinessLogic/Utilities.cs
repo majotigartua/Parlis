@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace Parlis.Server.BusinessLogic
 {
-    public class Utilities : IUtilities
+    public class Utilities
     {
-        public string ComputeSHA256Hash(string password)
+        public static string ComputeSHA256Hash(string password)
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
@@ -20,7 +20,7 @@ namespace Parlis.Server.BusinessLogic
             }
         }
 
-        public bool ValidatePasswordFormat(string password)
+        public static bool ValidatePasswordFormat(string password)
         {
             var hasUpperLetter = new Regex(@"[A-Z]+");
             var hasNumber = new Regex(@"[0-9]+");
