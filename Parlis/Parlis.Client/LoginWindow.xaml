@@ -1,0 +1,21 @@
+﻿<Window x:Class="Parlis.Client.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:Parlis.Client.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.LOGIN_WINDOW_TITLE}" Height="400" Width="700">
+    <Viewbox Margin="20" Stretch="Fill">
+        <Grid>
+            <Label Content="Parlis" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" FontSize="36"/>
+            <Label Content="{x:Static p:Resources.USERNAME_LABEL}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="235,165,0,0"/>
+            <Label Content="{x:Static p:Resources.PASSWORD_LABEL}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="235,215,0,0"/>
+            <Button x:Name="LoginButton" Content="{x:Static p:Resources.LOGIN_BUTTON}" HorizontalAlignment="Left" Margin="0,310,0,0" VerticalAlignment="Top" Width="45" Click="LoginButtonClick"/>
+            <Button x:Name="EnterAsGuestButton" Content="{x:Static p:Resources.ENTER_AS_GUEST_BUTTON}" HorizontalAlignment="Left" Margin="160,310,0,0" VerticalAlignment="Top" Click="EnterAsGuestButtonClick" Width="100"/>
+            <Button x:Name="RegisterPlayerProfileButton" Content="{x:Static p:Resources.REGISTER_PLAYER_PROFILE_BUTTON}" HorizontalAlignment="Left" Margin="550,310,0,0" VerticalAlignment="Top" Click="RegisterPlayerProfileButtonClick"/>
+            <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="350,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="350,219,0,0" VerticalAlignment="Top" Width="120"/>
+        </Grid>
+    </Viewbox>
+</Window>
