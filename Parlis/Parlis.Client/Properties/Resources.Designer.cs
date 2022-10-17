@@ -151,6 +151,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Register player profile..
+        /// </summary>
+        public static string REGISTER_PLAYER_PROFILE_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("REGISTER_PLAYER_PROFILE_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Please, try again later..
         /// </summary>
         public static string TRY_AGAIN_LATER_LABEL {

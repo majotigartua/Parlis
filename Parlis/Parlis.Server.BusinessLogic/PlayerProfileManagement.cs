@@ -5,8 +5,6 @@ namespace Parlis.Server.BusinessLogic
 {
     public class PlayerProfileManagement : IPlayerProfileManagement
     {
-        private readonly Utilities _utilities = new Utilities();
-
         public bool CheckPlayerExistence(Player player)
         {
             string emailAddress = player.EmailAddress;
@@ -35,7 +33,7 @@ namespace Parlis.Server.BusinessLogic
 
         public bool Login(string username, string password)
         {
-            string hashedPassword = _utilities.ComputeSHA256Hash(password);
+            string hashedPassword = Utilities.ComputeSHA256Hash(password);
             using (ParlisContext context = new ParlisContext())
             {
                 int playerProfileCounter = (from playerProfiles in context.PlayerProfiles

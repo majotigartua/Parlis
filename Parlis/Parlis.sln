@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parlis.Server.BusinessLogic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parlis.Server", "Parlis.Server\Parlis.Server.csproj", "{422ABCC1-FC1D-44F4-AF53-A7FCDD2DA606}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parlis.Server.UnitTests", "Parlis.Server.UnitTests\Parlis.Server.UnitTests.csproj", "{AFF74103-3AE6-42D4-B4E1-8170096FE43E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{422ABCC1-FC1D-44F4-AF53-A7FCDD2DA606}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{422ABCC1-FC1D-44F4-AF53-A7FCDD2DA606}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{422ABCC1-FC1D-44F4-AF53-A7FCDD2DA606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF74103-3AE6-42D4-B4E1-8170096FE43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF74103-3AE6-42D4-B4E1-8170096FE43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF74103-3AE6-42D4-B4E1-8170096FE43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF74103-3AE6-42D4-B4E1-8170096FE43E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

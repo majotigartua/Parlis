@@ -1,6 +1,3 @@
-C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\obj\Debug\Parlis.Server.csproj.AssemblyReference.cache
-C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\obj\Debug\Parlis.Server.csproj.SuggestedBindingRedirects.cache
-C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\obj\Debug\Parlis.Server.csproj.CoreCompileInputs.cache
 C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\bin\Debug\Parlis.Server.exe.config
 C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\bin\Debug\Parlis.Server.exe
 C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\bin\Debug\Parlis.Server.pdb
@@ -14,6 +11,9 @@ C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\bin\Debug\Parlis.Server.DataA
 C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\bin\Debug\Parlis.Server.DataAccess.dll.config
 C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\bin\Debug\EntityFramework.xml
 C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\obj\Debug\Parlis.Server.csproj.AssemblyReference.cache
+C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\obj\Debug\Parlis.Server.csproj.SuggestedBindingRedirects.cache
+C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\obj\Debug\Parlis.Server.csproj.CoreCompileInputs.cache
 C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\obj\Debug\Parlis.Server.csproj.CopyComplete
 C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\obj\Debug\Parlis.Server.exe
 C:\Users\majot\Desktop\Parlis\Parlis\Parlis.Server\obj\Debug\Parlis.Server.pdb

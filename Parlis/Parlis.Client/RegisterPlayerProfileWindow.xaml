@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:Parlis.Client.Properties"
         mc:Ignorable="d"
-        Title="RegisterPlayerProfileWindow" Height="400" Width="700">
+        Title="{x:Static p:Resources.REGISTER_PLAYER_PROFILE_WINDOW_TITLE}" Height="400" Width="700">
     <Grid>
     </Grid>
 </Window>
