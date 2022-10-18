@@ -10,13 +10,12 @@
   </EntityType>
   <EntityType Name="Player">
     <Key>
-      <PropertyRef Name="IdPlayer" />
+      <PropertyRef Name="EmailAddress" />
     </Key>
-    <Property Name="IdPlayer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="PaternalSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="MaternalSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="PlayerProfileUsername" Type="nvarchar" MaxLength="15" />
   </EntityType>
   <EntityType Name="PlayerProfile">

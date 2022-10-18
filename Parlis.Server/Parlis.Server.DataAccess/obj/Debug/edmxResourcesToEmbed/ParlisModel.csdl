@@ -11,13 +11,12 @@
   </EntityType>
   <EntityType Name="Player">
     <Key>
-      <PropertyRef Name="IdPlayer" />
+      <PropertyRef Name="EmailAddress" />
     </Key>
-    <Property Name="IdPlayer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="PaternalSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="MaternalSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="PlayerProfileUsername" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="PlayerProfile" Relationship="Self.FK_Player_PlayerProfile" FromRole="Player" ToRole="PlayerProfile" />
   </EntityType>

@@ -13,11 +13,10 @@
     <EntitySetMapping Name="Players">
       <EntityTypeMapping TypeName="ParlisModel.Player">
         <MappingFragment StoreEntitySet="Player">
-          <ScalarProperty Name="IdPlayer" ColumnName="IdPlayer" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="PaternalSurname" ColumnName="PaternalSurname" />
           <ScalarProperty Name="MaternalSurname" ColumnName="MaternalSurname" />
-          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
           <ScalarProperty Name="PlayerProfileUsername" ColumnName="PlayerProfileUsername" />
         </MappingFragment>
       </EntityTypeMapping>

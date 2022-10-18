@@ -1,4 +1,5 @@
-﻿using Parlis.Client.Services;
+﻿using Parlis.Client.Resources;
+using Parlis.Client.Services;
 using System.ServiceModel;
 using System.Windows;
 
@@ -27,6 +28,7 @@ namespace Parlis.Client
             }
             else
             {
+                password = Utilities.ComputeSHA256Hash(password);
                 Login(username, password);
             }
         }

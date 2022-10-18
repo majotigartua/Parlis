@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7b946e5c494e4e809d53a1e9b01bf4b0" Name="Diagram1">
-        <EntityTypeShape EntityType="ParlisModel.Match" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="e3662cbe46d942ad95554d6da289130e" Name="Diagram1">
+        <EntityTypeShape EntityType="ParlisModel.Match" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ParlisModel.Player" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParlisModel.PlayerProfile" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParlisModel.PlayerProfile" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
         <AssociationConnector Association="ParlisModel.FK_Match_PlayerProfile" ManuallyRouted="false" />
         <AssociationConnector Association="ParlisModel.FK_Player_PlayerProfile" ManuallyRouted="false" />
       </Diagram>
