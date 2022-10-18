@@ -7,8 +7,10 @@ namespace Parlis.Server.DataAccess
     {
         [DataMember]
         public int IdMatch { get; set; }
+
         [DataMember]
         public System.DateTime Date { get; set; }
+
         [DataMember]
         public string PlayerProfileUsername { get; set; }
 
