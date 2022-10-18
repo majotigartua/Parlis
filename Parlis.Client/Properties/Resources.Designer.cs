@@ -223,6 +223,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select the profile picture of the player..
+        /// </summary>
+        public static string PROFILE_PICTURE_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("PROFILE_PICTURE_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Register player profile.
         /// </summary>
         public static string REGISTER_PLAYER_PROFILE_BUTTON {

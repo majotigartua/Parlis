@@ -6,8 +6,9 @@ namespace Parlis.Server.BusinessLogic
 {
     public class PlayerProfileManagement : IPlayerProfileManagement
     {
-        public bool CheckPlayerExistence(string emailAddress)
+        public bool CheckPlayerExistence(Player player)
         {
+            string emailAddress = player.EmailAddress;
             using (ParlisContext context = new ParlisContext())
             {
                 int playerCounter = (from players in context.Players
@@ -17,8 +18,10 @@ namespace Parlis.Server.BusinessLogic
             }
         }
 
-        public bool CheckPlayerProfileExistence(string username)
+        public bool CheckPlayerProfileExistence(PlayerProfile playerProfile)
         {
+            string username = playerProfile.Username;
+            string password = playerProfile.Password;
             using (ParlisContext context = new ParlisContext())
             {
                 int playerProfileCounter = (from playerProfiles in context.PlayerProfiles
@@ -28,8 +31,10 @@ namespace Parlis.Server.BusinessLogic
             }
         }
 
-        public bool Login(string username, string password)
+        public bool Login(PlayerProfile playerProfile)
         {
+            string username = playerProfile.Username;
+            string password = playerProfile.Password;
             using (ParlisContext context = new ParlisContext())
             {
                 int playerProfileCounter = (from playerProfiles in context.PlayerProfiles

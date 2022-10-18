@@ -1,4 +1,5 @@
-﻿using Parlis.Client.Resources;
+﻿using Microsoft.Win32;
+using Parlis.Client.Resources;
 using Parlis.Client.Services;
 using System.ServiceModel;
 using System.Windows;
@@ -16,11 +17,18 @@ namespace Parlis.Client
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void ProfilePictureMouseDown(object sender, MouseButtonEventArgs e)
         {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = Properties.Resources.PROFILE_PICTURE_WINDOW_TITLE;
+            openFileDialog.Filter = "Joint Photographic Experts Group (JPEG)|*.jpeg;*.jpg";
+            openFileDialog.ShowDialog();
+            if (!openFileDialog.FileName.Equals(null))
+            {
+            }
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
@@ -31,7 +39,7 @@ namespace Parlis.Client
             {
                 if (Utilities.ValidatePasswordFormat(password) && Utilities.ValidateEmailAddressFormat(emailAddress))
                 {
-                    RegisterPlayerProfile(password);
+                    RegisterPlayerProfile();
                 }
                 else
                 {
@@ -56,23 +64,23 @@ namespace Parlis.Client
                 string.IsNullOrEmpty(PasswordBox.Password.ToString());
         }
 
-        private void RegisterPlayerProfile(string password)
+        private void RegisterPlayerProfile()
         {
-            var username = UsernameTextBox.Text.Replace(" ", "").ToLower();
-            password = Utilities.ComputeSHA256Hash(password);
-            var playerProfileManagementClient = new PlayerProfileManagementClient();
+            string username = UsernameTextBox.Text.Replace(" ", "").ToLower();
+            string password = Utilities.ComputeSHA256Hash(PasswordBox.Password.ToString());
+            var playerProfile = new PlayerProfile
+            {
+                Username = username,
+                Password = password,
+                IsVerified = false
+            };
             try
             {
-                if (!playerProfileManagementClient.CheckPlayerProfileExistence(username))
+                var playerProfileManagementClient = new PlayerProfileManagementClient();
+                if (!playerProfileManagementClient.CheckPlayerProfileExistence(playerProfile))
                 {
                     playerProfileManagementClient.Close();
                     UsernameTextBox.IsEnabled = false;
-                    var playerProfile = new PlayerProfile
-                    {
-                        Username = username,
-                        Password = password,
-                        IsVerified = false
-                    };
                     RegisterPlayer(playerProfile);
                 }
                 else
@@ -91,25 +99,24 @@ namespace Parlis.Client
 
         private void RegisterPlayer(PlayerProfile playerProfile)
         {
-            var emailAddress = EmailAddressTextBox.Text;
-            var playerProfileManagementClient = new PlayerProfileManagementClient();
+            var player = new Player
+            {
+                Name = NameTextBox.Text,
+                PaternalSurname = PaternalSurnameTextBox.Text,
+                MaternalSurname = MaternalSurnameTextBox.Text,
+                EmailAddress = EmailAddressTextBox.Text,
+                PlayerProfile = playerProfile
+            };
             try
             {
-                if (!playerProfileManagementClient.CheckPlayerExistence(emailAddress))
+                var playerProfileManagementClient = new PlayerProfileManagementClient();
+                if (!playerProfileManagementClient.CheckPlayerExistence(player))
                 {
-                    var player = new Player
-                    {
-                        Name = NameTextBox.Text,
-                        PaternalSurname = PaternalSurnameTextBox.Text,
-                        MaternalSurname = MaternalSurnameTextBox.Text,
-                        EmailAddress = emailAddress,
-                        PlayerProfile = playerProfile
-                    };
                     if (playerProfileManagementClient.RegisterPlayer(player))
                     {
                         playerProfileManagementClient.Close();
                         MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
-                        this.Close();
+                        Close();
                     }
                     else
                     {

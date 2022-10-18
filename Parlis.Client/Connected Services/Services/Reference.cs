@@ -26,9 +26,6 @@ namespace Parlis.Client.Services {
         private string EmailAddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdPlayerField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MaternalSurnameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -62,19 +59,6 @@ namespace Parlis.Client.Services {
                 if ((object.ReferenceEquals(this.EmailAddressField, value) != true)) {
                     this.EmailAddressField = value;
                     this.RaisePropertyChanged("EmailAddress");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdPlayer {
-            get {
-                return this.IdPlayerField;
-            }
-            set {
-                if ((this.IdPlayerField.Equals(value) != true)) {
-                    this.IdPlayerField = value;
-                    this.RaisePropertyChanged("IdPlayer");
                 }
             }
         }
@@ -361,22 +345,22 @@ namespace Parlis.Client.Services {
     public interface IPlayerProfileManagement {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerExistence", ReplyAction="http://tempuri.org/IPlayerProfileManagement/CheckPlayerExistenceResponse")]
-        bool CheckPlayerExistence(string emailAddress);
+        bool CheckPlayerExistence(Parlis.Client.Services.Player player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerExistence", ReplyAction="http://tempuri.org/IPlayerProfileManagement/CheckPlayerExistenceResponse")]
-        System.Threading.Tasks.Task<bool> CheckPlayerExistenceAsync(string emailAddress);
+        System.Threading.Tasks.Task<bool> CheckPlayerExistenceAsync(Parlis.Client.Services.Player player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistence", ReplyAction="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistenceResponse")]
-        bool CheckPlayerProfileExistence(string username);
+        bool CheckPlayerProfileExistence(Parlis.Client.Services.PlayerProfile playerProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistence", ReplyAction="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistenceResponse")]
-        System.Threading.Tasks.Task<bool> CheckPlayerProfileExistenceAsync(string username);
+        System.Threading.Tasks.Task<bool> CheckPlayerProfileExistenceAsync(Parlis.Client.Services.PlayerProfile playerProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/Login", ReplyAction="http://tempuri.org/IPlayerProfileManagement/LoginResponse")]
-        bool Login(string username, string password);
+        bool Login(Parlis.Client.Services.PlayerProfile playerProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/Login", ReplyAction="http://tempuri.org/IPlayerProfileManagement/LoginResponse")]
-        System.Threading.Tasks.Task<bool> LoginAsync(string username, string password);
+        System.Threading.Tasks.Task<bool> LoginAsync(Parlis.Client.Services.PlayerProfile playerProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerResponse")]
         bool RegisterPlayer(Parlis.Client.Services.Player player);
@@ -412,28 +396,28 @@ namespace Parlis.Client.Services {
                 base(binding, remoteAddress) {
         }
         
-        public bool CheckPlayerExistence(string emailAddress) {
-            return base.Channel.CheckPlayerExistence(emailAddress);
+        public bool CheckPlayerExistence(Parlis.Client.Services.Player player) {
+            return base.Channel.CheckPlayerExistence(player);
         }
         
-        public System.Threading.Tasks.Task<bool> CheckPlayerExistenceAsync(string emailAddress) {
-            return base.Channel.CheckPlayerExistenceAsync(emailAddress);
+        public System.Threading.Tasks.Task<bool> CheckPlayerExistenceAsync(Parlis.Client.Services.Player player) {
+            return base.Channel.CheckPlayerExistenceAsync(player);
         }
         
-        public bool CheckPlayerProfileExistence(string username) {
-            return base.Channel.CheckPlayerProfileExistence(username);
+        public bool CheckPlayerProfileExistence(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.CheckPlayerProfileExistence(playerProfile);
         }
         
-        public System.Threading.Tasks.Task<bool> CheckPlayerProfileExistenceAsync(string username) {
-            return base.Channel.CheckPlayerProfileExistenceAsync(username);
+        public System.Threading.Tasks.Task<bool> CheckPlayerProfileExistenceAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.CheckPlayerProfileExistenceAsync(playerProfile);
         }
         
-        public bool Login(string username, string password) {
-            return base.Channel.Login(username, password);
+        public bool Login(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.Login(playerProfile);
         }
         
-        public System.Threading.Tasks.Task<bool> LoginAsync(string username, string password) {
-            return base.Channel.LoginAsync(username, password);
+        public System.Threading.Tasks.Task<bool> LoginAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.LoginAsync(playerProfile);
         }
         
         public bool RegisterPlayer(Parlis.Client.Services.Player player) {

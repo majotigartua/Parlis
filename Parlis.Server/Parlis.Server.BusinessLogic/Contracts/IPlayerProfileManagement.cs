@@ -7,13 +7,13 @@ namespace Parlis.Server.BusinessLogic
     public interface IPlayerProfileManagement
     {
         [OperationContract]
-        bool CheckPlayerExistence(string emailAddress);
+        bool CheckPlayerExistence(Player player);
 
         [OperationContract]
-        bool CheckPlayerProfileExistence(string username);
+        bool CheckPlayerProfileExistence(PlayerProfile playerProfile);
 
         [OperationContract]
-        bool Login(string username, string password);
+        bool Login(PlayerProfile playerProfile);
 
         [OperationContract]
         bool RegisterPlayer(Player player);

@@ -14,7 +14,6 @@ namespace Parlis.Client
 
         private void ForgottenPasswordLabel_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.Close();
         }
 
         private void LoginButtonClick(object sender, RoutedEventArgs e)
@@ -35,6 +34,7 @@ namespace Parlis.Client
 
         private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
         {
+            Close();
         }
 
         private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
@@ -45,13 +45,18 @@ namespace Parlis.Client
 
         private void Login(string username, string password)
         {
-            var playerProfileManagementClient = new PlayerProfileManagementClient();
+            var playerProfile = new PlayerProfile
+            {
+                Username = username,
+                Password = password,
+            };
             try
             {
-                if (playerProfileManagementClient.Login(username, password))
+                var playerProfileManagementClient = new PlayerProfileManagementClient();
+                if (playerProfileManagementClient.Login(playerProfile))
                 {
                     playerProfileManagementClient.Close();
-                    this.Close();
+                    Close();
                 }
                 else
                 {
