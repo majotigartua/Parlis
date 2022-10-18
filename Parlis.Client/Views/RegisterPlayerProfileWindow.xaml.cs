@@ -13,6 +13,7 @@ namespace Parlis.Client
         {
             InitializeComponent();
         }
+
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -57,7 +58,7 @@ namespace Parlis.Client
 
         private void RegisterPlayerProfile(string password)
         {
-            var username = UsernameTextBox.Text;
+            var username = UsernameTextBox.Text.Replace(" ", "").ToLower();
             password = Utilities.ComputeSHA256Hash(password);
             var playerProfileManagementClient = new PlayerProfileManagementClient();
             try
@@ -102,7 +103,6 @@ namespace Parlis.Client
                         PaternalSurname = PaternalSurnameTextBox.Text,
                         MaternalSurname = MaternalSurnameTextBox.Text,
                         EmailAddress = emailAddress,
-                        PlayerProfileUsername = playerProfile.Username,
                         PlayerProfile = playerProfile
                     };
                     if (playerProfileManagementClient.RegisterPlayer(player))

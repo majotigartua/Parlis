@@ -15,13 +15,12 @@
         </EntityType>
         <EntityType Name="Player">
           <Key>
-            <PropertyRef Name="IdPlayer" />
+            <PropertyRef Name="EmailAddress" />
           </Key>
-          <Property Name="IdPlayer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PaternalSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MaternalSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PlayerProfileUsername" Type="nvarchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="PlayerProfile">
@@ -85,13 +84,12 @@
         </EntityType>
         <EntityType Name="Player">
           <Key>
-            <PropertyRef Name="IdPlayer" />
+            <PropertyRef Name="EmailAddress" />
           </Key>
-          <Property Name="IdPlayer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PaternalSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MaternalSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PlayerProfileUsername" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PlayerProfile" Relationship="Self.FK_Player_PlayerProfile" FromRole="Player" ToRole="PlayerProfile" />
         </EntityType>
@@ -160,11 +158,10 @@
           <EntitySetMapping Name="Players">
             <EntityTypeMapping TypeName="ParlisModel.Player">
               <MappingFragment StoreEntitySet="Player">
-                <ScalarProperty Name="IdPlayer" ColumnName="IdPlayer" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PaternalSurname" ColumnName="PaternalSurname" />
                 <ScalarProperty Name="MaternalSurname" ColumnName="MaternalSurname" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="PlayerProfileUsername" ColumnName="PlayerProfileUsername" />
               </MappingFragment>
             </EntityTypeMapping>
