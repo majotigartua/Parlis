@@ -1,4 +1,5 @@
 ﻿using Parlis.Server.DataAccess;
+using Parlis.Server.Service;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 

@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IPlayerProfileManagement.cs" />
     <Compile Include="PlayerProfileManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,6 +63,10 @@
     <ProjectReference Include="..\Parlis.Server.DataAccess\Parlis.Server.DataAccess.csproj">
       <Project>{58205547-0ed0-4807-9e16-cd31d541644c}</Project>
       <Name>Parlis.Server.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Parlis.Server.Service\Parlis.Server.Service.csproj">
+      <Project>{2A39A539-4FFD-4528-80B8-31D3145105C1}</Project>
+      <Name>Parlis.Server.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
