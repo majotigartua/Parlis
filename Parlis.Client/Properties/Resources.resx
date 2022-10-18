@@ -171,6 +171,9 @@
   <data name="PLAYER_PROFILE_ALREADY_REGISTERED_WINDOW_TITLE" xml:space="preserve">
     <value>The information entered corresponds to a player profile that is already registered in the system.</value>
   </data>
+  <data name="PROFILE_PICTURE_WINDOW_TITLE" xml:space="preserve">
+    <value>Select the profile picture of the player.</value>
+  </data>
   <data name="REGISTERED_INFORMATION_WINDOW_TITLE" xml:space="preserve">
     <value>The information was correctly recorded in the system.</value>
   </data>
