@@ -18,3 +18,23 @@ C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\LoginWindow.baml
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\RegisterPlayerProfileWindow.baml
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\ConfirmPlayerProfileWindow.g.cs
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\ConfirmPlayerProfileWindow.baml
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\bin\Debug\Parlis.Client.exe.config
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\bin\Debug\Parlis.Client.exe
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\bin\Debug\Parlis.Client.pdb
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client.csproj.AssemblyReference.cache
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client.csproj.SuggestedBindingRedirects.cache
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Views\ConfirmPlayerProfileWindow.g.cs
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Views\LoginWindow.g.cs
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Views\RegisterPlayerProfileWindow.g.cs
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\App.g.cs
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client_MarkupCompile.cache
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client_MarkupCompile.lref
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Views\ConfirmPlayerProfileWindow.baml
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Views\LoginWindow.baml
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Views\RegisterPlayerProfileWindow.baml
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client.g.resources
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client.Properties.Resources.resources
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client.csproj.GenerateResource.cache
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client.csproj.CoreCompileInputs.cache
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client.exe
+C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client.pdb
