@@ -22,9 +22,11 @@ namespace Parlis.Client.Views
 
         private void ProfilePictureMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = Properties.Resources.PROFILE_PICTURE_WINDOW_TITLE;
-            openFileDialog.Filter = "Joint Photographic Experts Group (JPEG)|*.jpeg;*.jpg";
+            var openFileDialog = new OpenFileDialog
+            {
+                Title = Properties.Resources.PROFILE_PICTURE_WINDOW_TITLE,
+                Filter = "Joint Photographic Experts Group (JPEG)|*.jpeg;*.jpg"
+            };
             openFileDialog.ShowDialog();
             if (!openFileDialog.FileName.Equals(null))
             {
@@ -92,8 +94,8 @@ namespace Parlis.Client.Views
             }
             catch (EndpointNotFoundException)
             {
-                MessageBox.Show(Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE,
-                    Properties.Resources.TRY_AGAIN_LATER_LABEL);
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
         }
 
@@ -140,8 +142,8 @@ namespace Parlis.Client.Views
             }
             catch (EndpointNotFoundException)
             {
-                MessageBox.Show(Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE,
-                    Properties.Resources.TRY_AGAIN_LATER_LABEL);
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
         }
 
