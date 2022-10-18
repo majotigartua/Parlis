@@ -1,7 +1,7 @@
 ﻿using Parlis.Server.DataAccess;
 using System.ServiceModel;
 
-namespace Parlis.Server.BusinessLogic
+namespace Parlis.Server.Service
 {
     [ServiceContract]
     public interface IPlayerProfileManagement

@@ -1,0 +1,12 @@
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\Parlis.Server.DataAccess.dll.config
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\Parlis.Server.DataAccess.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\Parlis.Server.DataAccess.pdb
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\EntityFramework.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\EntityFramework.xml
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Release\Parlis.Server.DataAccess.csproj.AssemblyReference.cache
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Release\Parlis.Server.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Release\Parlis.Server.DataAccess.csproj.CopyComplete
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Release\Parlis.Server.DataAccess.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Release\Parlis.Server.DataAccess.pdb
