@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Parlis.Client
+namespace Parlis.Client.Views
 {
     public partial class RegisterPlayerProfileWindow : Window
     {

@@ -62,10 +62,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Views\ConfirmPlayerProfileWindow.xaml.cs">
+      <DependentUpon>ConfirmPlayerProfileWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegisterPlayerProfileWindow.xaml.cs">
       <DependentUpon>RegisterPlayerProfileWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Utilities.cs" />
+    <Page Include="Views\ConfirmPlayerProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -3,7 +3,7 @@ using Parlis.Client.Services;
 using System.ServiceModel;
 using System.Windows;
 
-namespace Parlis.Client
+namespace Parlis.Client.Views
 {
     public partial class LoginWindow : Window
     {
@@ -12,7 +12,7 @@ namespace Parlis.Client
             InitializeComponent();
         }
 
-        private void ForgottenPasswordLabel_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void ForgottenPasswordLabelMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
         }
 
@@ -39,8 +39,8 @@ namespace Parlis.Client
 
         private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
         {
-            var RegisterPlayerProfileWindow = new RegisterPlayerProfileWindow();
-            RegisterPlayerProfileWindow.Show();
+            var registerPlayerProfileWindow = new RegisterPlayerProfileWindow();
+            registerPlayerProfileWindow.ShowDialog();
         }
 
         private void Login(string username, string password)

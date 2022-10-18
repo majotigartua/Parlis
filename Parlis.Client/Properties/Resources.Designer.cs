@@ -88,7 +88,34 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Email address:.
+        ///   Busca una cadena traducida similar a Enter the 6-digit code sent to your e-mail address..
+        /// </summary>
+        public static string CODE_INSTRUCTION_LABEL {
+            get {
+                return ResourceManager.GetString("CODE_INSTRUCTION_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Code:.
+        /// </summary>
+        public static string CODE_LABEL {
+            get {
+                return ResourceManager.GetString("CODE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirm player profile..
+        /// </summary>
+        public static string CONFIRM_PLAYER_PROFILE_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("CONFIRM_PLAYER_PROFILE_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a E-mail address:.
         /// </summary>
         public static string EMAIL_ADDRESS_LABEL {
             get {
