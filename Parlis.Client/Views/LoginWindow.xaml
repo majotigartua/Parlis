@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<Window x:Class="Parlis.Client.Views.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -19,4 +20,27 @@
             <Button Content="{x:Static p:Resources.REGISTER_PLAYER_PROFILE_BUTTON}" HorizontalAlignment="Left" Margin="400,310,0,0" VerticalAlignment="Top" Width="150" Click="RegisterPlayerProfileButtonClick" RenderTransformOrigin="0.248,0.624"/>
         </Grid>
     </Viewbox>
+=======
+﻿<Window x:Class="Parlis.Client.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:Parlis.Client.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.LOGIN_WINDOW_TITLE}" Height="500" Width="750">
+    <Viewbox Margin="20" Stretch="Fill">
+        <Grid>
+            <Label Content="Parlis." HorizontalAlignment="Center" Margin="0,71,0,0" VerticalAlignment="Top" FontSize="36" Width="100"/>
+            <Label Content="{x:Static p:Resources.FORGOTTEN_PASSWORD_LABEL}" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Foreground="#FF000CFF" MouseDown="ForgottenPasswordLabelMouseDown"/>
+            <Label Content="{x:Static p:Resources.USERNAME_LABEL}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="165,165,0,0"/>
+            <Label Content="{x:Static p:Resources.PASSWORD_LABEL}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="165,215,0,0"/>
+            <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="255,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.004,0.525"/>
+            <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="255,220,0,0" VerticalAlignment="Top" Width="120"/>
+            <Button Content="{x:Static p:Resources.LOGIN_BUTTON}" HorizontalAlignment="Left" Margin="0,310,0,0" VerticalAlignment="Top" Width="80" Click="LoginButtonClick"/>
+            <Button Content="{x:Static p:Resources.ENTER_AS_GUEST_BUTTON}" HorizontalAlignment="Left" Margin="96,310,0,0" VerticalAlignment="Top" Width="120" Click="EnterAsGuestButtonClick"/>
+            <Button Content="{x:Static p:Resources.REGISTER_PLAYER_PROFILE_BUTTON}" HorizontalAlignment="Left" Margin="400,310,0,0" VerticalAlignment="Top" Width="150" Click="RegisterPlayerProfileButtonClick" RenderTransformOrigin="0.248,0.624"/>
+        </Grid>
+    </Viewbox>
+>>>>>>> b67b4c9e509410d99d01bc7767f7401f03ac6be5
 </Window>
