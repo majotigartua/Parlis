@@ -15,11 +15,6 @@ namespace Parlis.Client.Views
             InitializeComponent();
         }
 
-        private void CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
         private void ProfilePictureMouseDown(object sender, MouseButtonEventArgs e)
         {
             var openFileDialog = new OpenFileDialog
@@ -54,6 +49,11 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
                     Properties.Resources.EMPTY_FIELDS_WINDOW_TITLE);
             }
+        }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
         private bool ValidateEmptyFields()

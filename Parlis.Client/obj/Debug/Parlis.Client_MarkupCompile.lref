@@ -1,9 +1,24 @@
 ﻿
 
+<<<<<<< HEAD
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\ConfirmPlayerProfileWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\LoginWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\MainWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\RecoverPasswordWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\RecoverPlayerProfilePasswordEmailAddressWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\RegisterPlayerProfileWindow.xaml;;
+=======
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\ConfirmPlayerProfileWindow.xaml;;
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\EditPlayerProfileWindow.xaml;;
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\LoginWindow.xaml;;
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\RecoverPasswordWindow.xaml;;
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\RecoverPasswordEmailAddressWindow.xaml;;
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\RegisterPlayerProfileWindow.xaml;;
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\JoinMatchWindow.xaml;;
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\ExpelPlayerWindow.xaml;;
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\MainMenuWindow.xaml;;
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\CreateMatchWindow.xaml;;
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\GameConfigurationWindow.xaml;;
+FC:\Users\majot\Desktop\Parlis\Parlis.Client\Views\ChatWindow.xaml;;
+>>>>>>> main
 

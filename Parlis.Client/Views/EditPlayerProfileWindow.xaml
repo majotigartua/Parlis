@@ -1,14 +1,14 @@
-﻿<Window x:Class="Parlis.Client.Views.RegisterPlayerProfileWindow"
+﻿<Window x:Class="Parlis.Client.Views.EditPlayerProfileWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:p="clr-namespace:Parlis.Client.Properties"
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.REGISTER_PLAYER_PROFILE_WINDOW_TITLE}" Height="600" Width="750">
+        Title="{x:Static p:Resources.EDIT_PLAYER_PROFILE_WINDOW_TITLE}" Height="600" Width="750">
     <Viewbox Margin="20" Stretch="Fill">
         <Grid>
-            <Label Content="{x:Static p:Resources.REGISTER_PLAYER_PROFILE_WINDOW_TITLE}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36"/>
+            <Label Content="{x:Static p:Resources.EDIT_PLAYER_PROFILE_WINDOW_TITLE}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36"/>
             <Label Content="{x:Static p:Resources.NAME_LABEL}" HorizontalAlignment="Left" Margin="40,140,0,0" VerticalAlignment="Top"/>
             <Label Content="{x:Static p:Resources.PATERNAL_SURNAME_LABEL}" HorizontalAlignment="Left" Margin="40,190,0,0" VerticalAlignment="Top"/>
             <Label Content="{x:Static p:Resources.MATERNAL_SURNAME_LABEL}" HorizontalAlignment="Left" Margin="40,245,0,0" VerticalAlignment="Top"/>
@@ -21,9 +21,11 @@
             <TextBox x:Name="MaternalSurnameTextBox" HorizontalAlignment="Left" Margin="180,250,0,0" VerticalAlignment="Top" Width="150"/>
             <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="145,300,0,0" VerticalAlignment="Top" Width="150"/>
             <TextBox x:Name="EmailAddressTextBox" HorizontalAlignment="Left" Margin="172,348,0,0" VerticalAlignment="Top" Width="200"/>
-            <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="390,300,0,0" VerticalAlignment="Top" Width="150"/>
-            <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="115" Margin="402,145,0,0" VerticalAlignment="Top" Width="116" Source="/Resources/Images/DefaultProfilePicture.png" MouseDown="ProfilePictureMouseDown"/>
+            <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="385,300,0,0" VerticalAlignment="Top" Width="150"/>
+            <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="115" Margin="407,129,0,0" VerticalAlignment="Top" Width="115" Source="/Resources/Images/DefaultProfilePicture.png" MouseDown="ProfilePictureMouseDown"/>
             <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" Width="80" Click="AcceptButtonClick"/>
+            <Button Content="{x:Static p:Resources.CONFIRM_PLAYER_PROFILE_BUTTON}" HorizontalAlignment="Left" Margin="100,400,0,0" VerticalAlignment="Top" Width="150" Click="ConfirmPlayerProfileButtonClick"/>
+            <Button Content="{x:Static p:Resources.DELETE_PLAYER_PROFILE_BUTTON}" HorizontalAlignment="Left" Margin="270,400,0,0" VerticalAlignment="Top" Width="150" Click="DeletePlayerProfileClick"/>
             <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="480,400,0,0" VerticalAlignment="Top" Width="80" Click="CancelButtonClick"/>
         </Grid>
     </Viewbox>

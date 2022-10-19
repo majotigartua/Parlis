@@ -4,17 +4,30 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\
+=======
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\
+>>>>>>> main
 Parlis.Client
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\App.xaml
 61053139753
 
 13-750516116
 151069376965
 Views\ConfirmPlayerProfileWindow.xaml;Views\LoginWindow.xaml;Views\MainWindow.xaml;Views\RecoverPasswordWindow.xaml;Views\RecoverPlayerProfilePasswordEmailAddressWindow.xaml;Views\RegisterPlayerProfileWindow.xaml;
+=======
+C:\Users\majot\Desktop\Parlis\Parlis.Client\App.xaml
+13-1997938627
 
-True
+2088557132
+151069376965
+Views\ChatWindow.xaml;Views\ConfirmPlayerProfileWindow.xaml;Views\CreateMatchWindow.xaml;Views\EditPlayerProfileWindow.xaml;Views\ExpelPlayerWindow.xaml;Views\GameConfigurationWindow.xaml;Views\GameWindow.xaml;Views\JoinMatchWindow.xaml;Views\LoginWindow.xaml;Views\MainMenuWindow.xaml;Views\RecoverPasswordWindow.xaml;Views\RecoverPasswordEmailAddressWindow.xaml;Views\RegisterPlayerProfileWindow.xaml;
+>>>>>>> main
+
+False
 

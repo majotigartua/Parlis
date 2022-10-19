@@ -106,6 +106,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Confirm player profile.
+        /// </summary>
+        public static string CONFIRM_PLAYER_PROFILE_BUTTON {
+            get {
+                return ResourceManager.GetString("CONFIRM_PLAYER_PROFILE_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Do you want to confirm the player profile?.
         /// </summary>
         public static string CONFIRM_PLAYER_PROFILE_LABEL {
@@ -124,11 +133,37 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+<<<<<<< HEAD
         ///   Busca una cadena traducida similar a Create match.
         /// </summary>
         public static string CREATE_MATCH_BUTTON {
             get {
                 return ResourceManager.GetString("CREATE_MATCH_BUTTON", resourceCulture);
+=======
+        ///   Busca una cadena traducida similar a Create match..
+        /// </summary>
+        public static string CREATE_MATCH_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("CREATE_MATCH_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Delete player profile.
+        /// </summary>
+        public static string DELETE_PLAYER_PROFILE_BUTTON {
+            get {
+                return ResourceManager.GetString("DELETE_PLAYER_PROFILE_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Edit player profile..
+        /// </summary>
+        public static string EDIT_PLAYER_PROFILE_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("EDIT_PLAYER_PROFILE_WINDOW_TITLE", resourceCulture);
+>>>>>>> main
             }
         }
         
@@ -160,11 +195,29 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Expel player from match..
+        /// </summary>
+        public static string EXPEL_PLAYER_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("EXPEL_PLAYER_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Did you forget your password?.
         /// </summary>
         public static string FORGOTTEN_PASSWORD_LABEL {
             get {
                 return ResourceManager.GetString("FORGOTTEN_PASSWORD_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Game configuration..
+        /// </summary>
+        public static string GAME_CONFIGURATION_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("GAME_CONFIGURATION_WINDOW_TITLE", resourceCulture);
             }
         }
         
@@ -178,11 +231,19 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+<<<<<<< HEAD
         ///   Busca una cadena traducida similar a Join match.
         /// </summary>
         public static string JOIN_MATCH_BUTTON {
             get {
                 return ResourceManager.GetString("JOIN_MATCH_BUTTON", resourceCulture);
+=======
+        ///   Busca una cadena traducida similar a Join match..
+        /// </summary>
+        public static string JOIN_MATCH_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("JOIN_MATCH_WINDOW_TITLE", resourceCulture);
+>>>>>>> main
             }
         }
         
@@ -345,6 +406,15 @@ namespace Parlis.Client.Properties {
         public static string REGISTERED_INFORMATION_WINDOW_TITLE {
             get {
                 return ResourceManager.GetString("REGISTERED_INFORMATION_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Send real time message..
+        /// </summary>
+        public static string SEND_REAL_TIME_MESSAGE_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("SEND_REAL_TIME_MESSAGE_WINDOW_TITLE", resourceCulture);
             }
         }
         

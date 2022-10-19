@@ -16,7 +16,6 @@ namespace Parlis.Client.Views
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }
