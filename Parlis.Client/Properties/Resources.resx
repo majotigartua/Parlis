@@ -141,6 +141,10 @@
   <data name="CONFIRM_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Confirm player profile.</value>
   </data>
+<<<<<<< HEAD
+  <data name="CREATE_MATCH_BUTTON" xml:space="preserve">
+    <value>Create match</value>
+=======
   <data name="CREATE_MATCH_WINDOW_TITLE" xml:space="preserve">
     <value>Create match.</value>
   </data>
@@ -149,6 +153,7 @@
   </data>
   <data name="EDIT_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Edit player profile.</value>
+>>>>>>> main
   </data>
   <data name="EMAIL_ADDRESS_LABEL" xml:space="preserve">
     <value>E-mail address:</value>
@@ -171,8 +176,13 @@
   <data name="INVALID_DATA_WINDOW_TITLE" xml:space="preserve">
     <value>The information entered is invalid.</value>
   </data>
+<<<<<<< HEAD
+  <data name="JOIN_MATCH_BUTTON" xml:space="preserve">
+    <value>Join match</value>
+=======
   <data name="JOIN_MATCH_WINDOW_TITLE" xml:space="preserve">
     <value>Join match.</value>
+>>>>>>> main
   </data>
   <data name="LOGIN_BUTTON" xml:space="preserve">
     <value>Login</value>
