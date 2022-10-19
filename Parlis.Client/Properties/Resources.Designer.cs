@@ -241,6 +241,24 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Enter your e-mail address to search your player profile and send to you the password recovery code..
+        /// </summary>
+        public static string PASSWORD_RECOVERY_INSTRUCTION_LABEL {
+            get {
+                return ResourceManager.GetString("PASSWORD_RECOVERY_INSTRUCTION_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Recover player profile password..
+        /// </summary>
+        public static string PASSWORD_RECOVERY_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("PASSWORD_RECOVERY_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Paternal surname:.
         /// </summary>
         public static string PATERNAL_SURNAME_LABEL {
@@ -264,6 +282,15 @@ namespace Parlis.Client.Properties {
         public static string PROFILE_PICTURE_WINDOW_TITLE {
             get {
                 return ResourceManager.GetString("PROFILE_PICTURE_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter the 6-digit code sent to your e-mail address and new password..
+        /// </summary>
+        public static string REGISTER_PASSWORD_INSTRUCTION_LABEL {
+            get {
+                return ResourceManager.GetString("REGISTER_PASSWORD_INSTRUCTION_LABEL", resourceCulture);
             }
         }
         
