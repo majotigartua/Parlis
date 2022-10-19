@@ -62,11 +62,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Views\ChatWindow.xaml.cs">
+      <DependentUpon>ChatWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConfirmPlayerProfileWindow.xaml.cs">
       <DependentUpon>ConfirmPlayerProfileWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CreateMatchWindow.xaml.cs">
+      <DependentUpon>CreateMatchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditPlayerProfileWindow.xaml.cs">
       <DependentUpon>EditPlayerProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExpelPlayerWindow.xaml.cs">
+      <DependentUpon>ExpelPlayerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameConfigurationWindow.xaml.cs">
+      <DependentUpon>GameConfigurationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameWindow.xaml.cs">
+      <DependentUpon>GameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JoinMatchWindow.xaml.cs">
+      <DependentUpon>JoinMatchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainMenuWindow.xaml.cs">
+      <DependentUpon>MainMenuWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecoverPasswordWindow.xaml.cs">
       <DependentUpon>RecoverPasswordWindow.xaml</DependentUpon>
@@ -78,11 +99,35 @@
       <DependentUpon>RegisterPlayerProfileWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Utilities.cs" />
+    <Page Include="Views\ChatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ConfirmPlayerProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CreateMatchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EditPlayerProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExpelPlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GameConfigurationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\JoinMatchWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,6 +143,10 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MainMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RecoverPasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

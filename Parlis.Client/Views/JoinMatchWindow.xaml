@@ -1,18 +1,18 @@
-﻿<Window x:Class="Parlis.Client.Views.ConfirmPlayerProfileWindow"
+﻿<Window x:Class="Parlis.Client.Views.JoinMatchWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:p="clr-namespace:Parlis.Client.Properties"
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.CONFIRM_PLAYER_PROFILE_WINDOW_TITLE}" Height="400" Width="750">
+        Title="{x:Static p:Resources.JOIN_MATCH_WINDOW_TITLE}" Height="400" Width="750">
     <Viewbox Margin="20" Stretch="Fill">
         <Grid>
-            <Label Content="{x:Static p:Resources.CONFIRM_PLAYER_PROFILE_WINDOW_TITLE}" HorizontalAlignment="Center" Margin="0,16,0,0" VerticalAlignment="Top" FontSize="24"/>
+            <Label Content="{x:Static p:Resources.JOIN_MATCH_WINDOW_TITLE}" HorizontalAlignment="Center" Margin="0,16,0,0" VerticalAlignment="Top" FontSize="24"/>
+            <Label Content="{x:Static p:Resources.CODE_INSTRUCTION_LABEL}" HorizontalAlignment="Center" Margin="0,75,0,0" VerticalAlignment="Top"/>
             <Label Content="{x:Static p:Resources.CODE_LABEL}" HorizontalAlignment="Left" Margin="155,126,0,0" VerticalAlignment="Top"/>
-            <TextBlock Text="{x:Static p:Resources.CODE_INSTRUCTION_LABEL}" HorizontalAlignment="Center" Margin="0,75,0,0" VerticalAlignment="Top" TextWrapping="Wrap" TextAlignment="Center"/>
             <TextBox x:Name="CodeTextBox" HorizontalAlignment="Left" Margin="215,130,0,0" VerticalAlignment="Top" Width="120"/>
-            <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Width="80" Click="AcceptButtonClick" />
+            <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Width="80" Click="AcceptButtonClick"/>
             <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="400,200,0,0" VerticalAlignment="Top" Width="80" Click="CancelButtonClick" />
         </Grid>
     </Viewbox>

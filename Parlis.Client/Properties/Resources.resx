@@ -141,6 +141,9 @@
   <data name="CONFIRM_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Confirm player profile.</value>
   </data>
+  <data name="CREATE_MATCH_WINDOW_TITLE" xml:space="preserve">
+    <value>Create match.</value>
+  </data>
   <data name="DELETE_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Delete player profile</value>
   </data>
@@ -156,17 +159,29 @@
   <data name="ENTER_AS_GUEST_BUTTON" xml:space="preserve">
     <value>Enter as a guest</value>
   </data>
+  <data name="EXPEL_PLAYER_WINDOW_TITLE" xml:space="preserve">
+    <value>Expel player from match.</value>
+  </data>
   <data name="FORGOTTEN_PASSWORD_LABEL" xml:space="preserve">
     <value>Did you forget your password?</value>
   </data>
+  <data name="GAME_CONFIGURATION_WINDOW_TITLE" xml:space="preserve">
+    <value>Game configuration.</value>
+  </data>
   <data name="INVALID_DATA_WINDOW_TITLE" xml:space="preserve">
     <value>The information entered is invalid.</value>
+  </data>
+  <data name="JOIN_MATCH_WINDOW_TITLE" xml:space="preserve">
+    <value>Join match.</value>
   </data>
   <data name="LOGIN_BUTTON" xml:space="preserve">
     <value>Login</value>
   </data>
   <data name="LOGIN_WINDOW_TITLE" xml:space="preserve">
     <value>Login.</value>
+  </data>
+  <data name="MAIN_MENU_WINDOW_TITLE" xml:space="preserve">
+    <value>Main menu.</value>
   </data>
   <data name="MATERNAL_SURNAME_LABEL" xml:space="preserve">
     <value>Maternal surname:</value>
@@ -212,6 +227,9 @@
   </data>
   <data name="REGISTER_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Register player profile.</value>
+  </data>
+  <data name="SEND_REAL_TIME_MESSAGE_WINDOW_TITLE" xml:space="preserve">
+    <value>Send real time message.</value>
   </data>
   <data name="TRY_AGAIN_LATER_LABEL" xml:space="preserve">
     <value>Please try again later.</value>

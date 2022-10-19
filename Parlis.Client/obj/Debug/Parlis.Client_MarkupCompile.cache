@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\majot\Desktop\Parlis\Parlis.Client\App.xaml
-6-749033716
+13-1997938627
 
-12-1010699565
+19-2124321546
 151069376965
-Views\ConfirmPlayerProfileWindow.xaml;Views\EditPlayerProfileWindow.xaml;Views\LoginWindow.xaml;Views\RecoverPasswordWindow.xaml;Views\RecoverPasswordEmailAddressWindow.xaml;Views\RegisterPlayerProfileWindow.xaml;
+Views\ChatWindow.xaml;Views\ConfirmPlayerProfileWindow.xaml;Views\CreateMatchWindow.xaml;Views\EditPlayerProfileWindow.xaml;Views\ExpelPlayerWindow.xaml;Views\GameConfigurationWindow.xaml;Views\GameWindow.xaml;Views\JoinMatchWindow.xaml;Views\LoginWindow.xaml;Views\MainMenuWindow.xaml;Views\RecoverPasswordWindow.xaml;Views\RecoverPasswordEmailAddressWindow.xaml;Views\RegisterPlayerProfileWindow.xaml;
 
 False
 
