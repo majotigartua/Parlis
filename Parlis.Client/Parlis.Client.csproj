@@ -68,10 +68,6 @@
     <Compile Include="Views\ConfirmPlayerProfileWindow.xaml.cs">
       <DependentUpon>ConfirmPlayerProfileWindow.xaml</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-=======
     <Compile Include="Views\CreateMatchWindow.xaml.cs">
       <DependentUpon>CreateMatchWindow.xaml</DependentUpon>
     </Compile>
@@ -92,7 +88,6 @@
     </Compile>
     <Compile Include="Views\MainMenuWindow.xaml.cs">
       <DependentUpon>MainMenuWindow.xaml</DependentUpon>
->>>>>>> main
     </Compile>
     <Compile Include="Views\RecoverPasswordWindow.xaml.cs">
       <DependentUpon>RecoverPasswordWindow.xaml</DependentUpon>
@@ -148,11 +143,7 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-<<<<<<< HEAD
-    <Page Include="Views\MainWindow.xaml">
-=======
     <Page Include="Views\MainMenuWindow.xaml">
->>>>>>> main
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,8 +224,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\SettingsPicture.png" />
     <Resource Include="Resources\Images\GoBackPicture.png" />
+    <Resource Include="Resources\Images\SettingsPicture.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

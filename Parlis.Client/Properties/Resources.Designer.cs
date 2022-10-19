@@ -133,13 +133,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-<<<<<<< HEAD
         ///   Busca una cadena traducida similar a Create match.
         /// </summary>
         public static string CREATE_MATCH_BUTTON {
             get {
                 return ResourceManager.GetString("CREATE_MATCH_BUTTON", resourceCulture);
-=======
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Create match..
         /// </summary>
         public static string CREATE_MATCH_WINDOW_TITLE {
@@ -163,7 +165,6 @@ namespace Parlis.Client.Properties {
         public static string EDIT_PLAYER_PROFILE_WINDOW_TITLE {
             get {
                 return ResourceManager.GetString("EDIT_PLAYER_PROFILE_WINDOW_TITLE", resourceCulture);
->>>>>>> main
             }
         }
         
@@ -231,19 +232,20 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-<<<<<<< HEAD
         ///   Busca una cadena traducida similar a Join match.
         /// </summary>
         public static string JOIN_MATCH_BUTTON {
             get {
                 return ResourceManager.GetString("JOIN_MATCH_BUTTON", resourceCulture);
-=======
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Join match..
         /// </summary>
         public static string JOIN_MATCH_WINDOW_TITLE {
             get {
                 return ResourceManager.GetString("JOIN_MATCH_WINDOW_TITLE", resourceCulture);
->>>>>>> main
             }
         }
         
@@ -266,7 +268,7 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Main menu..
+        ///   Busca una cadena traducida similar a Main menu.
         /// </summary>
         public static string MAIN_MENU_WINDOW_TITLE {
             get {
