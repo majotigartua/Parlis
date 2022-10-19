@@ -34,9 +34,7 @@ namespace Parlis.Client.Views
 
         private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
         {
-            var mainWindow = new MainWindow();
             Close();
-            mainWindow.Show();
         }
 
         private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
@@ -57,10 +55,8 @@ namespace Parlis.Client.Views
                 var playerProfileManagementClient = new PlayerProfileManagementClient();
                 if (playerProfileManagementClient.Login(playerProfile))
                 {
-                    var mainWindow = new MainWindow();
                     playerProfileManagementClient.Close();
                     Close();
-                    mainWindow.Show();
                 }
                 else
                 {
