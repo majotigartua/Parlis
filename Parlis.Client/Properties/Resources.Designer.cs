@@ -133,6 +133,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Create match..
+        /// </summary>
+        public static string CREATE_MATCH_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("CREATE_MATCH_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Delete player profile.
         /// </summary>
         public static string DELETE_PLAYER_PROFILE_BUTTON {
@@ -178,6 +187,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Expel player from match..
+        /// </summary>
+        public static string EXPEL_PLAYER_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("EXPEL_PLAYER_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Did you forget your password?.
         /// </summary>
         public static string FORGOTTEN_PASSWORD_LABEL {
@@ -187,11 +205,29 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Game configuration..
+        /// </summary>
+        public static string GAME_CONFIGURATION_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("GAME_CONFIGURATION_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The information entered is invalid..
         /// </summary>
         public static string INVALID_DATA_WINDOW_TITLE {
             get {
                 return ResourceManager.GetString("INVALID_DATA_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Join match..
+        /// </summary>
+        public static string JOIN_MATCH_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("JOIN_MATCH_WINDOW_TITLE", resourceCulture);
             }
         }
         
@@ -210,6 +246,15 @@ namespace Parlis.Client.Properties {
         public static string LOGIN_WINDOW_TITLE {
             get {
                 return ResourceManager.GetString("LOGIN_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Main menu..
+        /// </summary>
+        public static string MAIN_MENU_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("MAIN_MENU_WINDOW_TITLE", resourceCulture);
             }
         }
         
@@ -345,6 +390,15 @@ namespace Parlis.Client.Properties {
         public static string REGISTERED_INFORMATION_WINDOW_TITLE {
             get {
                 return ResourceManager.GetString("REGISTERED_INFORMATION_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Send real time message..
+        /// </summary>
+        public static string SEND_REAL_TIME_MESSAGE_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("SEND_REAL_TIME_MESSAGE_WINDOW_TITLE", resourceCulture);
             }
         }
         

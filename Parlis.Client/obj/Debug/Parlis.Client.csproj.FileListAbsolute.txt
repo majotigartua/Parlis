@@ -44,3 +44,17 @@ C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.csproj.Gener
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.csproj.CoreCompileInputs.cache
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.exe
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.pdb
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\JoinMatchWindow.g.cs
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\JoinMatchWindow.baml
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\ExpelPlayerWindow.g.cs
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\ExpelPlayerWindow.baml
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\MainMenuWindow.g.cs
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\MainMenuWindow.baml
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\CreateMatchWindow.g.cs
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\CreateMatchWindow.baml
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\GameConfigurationWindow.g.cs
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\GameConfigurationWindow.baml
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\GameWindow.baml
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\ChatWindow.g.cs
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\GameWindow.g.cs
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Views\ChatWindow.baml
