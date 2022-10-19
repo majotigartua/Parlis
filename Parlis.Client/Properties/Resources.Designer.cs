@@ -124,6 +124,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Create match.
+        /// </summary>
+        public static string CREATE_MATCH_BUTTON {
+            get {
+                return ResourceManager.GetString("CREATE_MATCH_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a E-mail address:.
         /// </summary>
         public static string EMAIL_ADDRESS_LABEL {
@@ -169,6 +178,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Join match.
+        /// </summary>
+        public static string JOIN_MATCH_BUTTON {
+            get {
+                return ResourceManager.GetString("JOIN_MATCH_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Login.
         /// </summary>
         public static string LOGIN_BUTTON {
@@ -183,6 +201,15 @@ namespace Parlis.Client.Properties {
         public static string LOGIN_WINDOW_TITLE {
             get {
                 return ResourceManager.GetString("LOGIN_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Main menu..
+        /// </summary>
+        public static string MAIN_MENU_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("MAIN_MENU_WINDOW_TITLE", resourceCulture);
             }
         }
         

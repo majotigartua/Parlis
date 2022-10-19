@@ -38,3 +38,29 @@ C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Clie
 C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client.csproj.CoreCompileInputs.cache
 C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client.exe
 C:\Users\majot\Downloads\Parlis-majotigartua (2)\Parlis-majotigartua\Parlis.Client\obj\Debug\Parlis.Client.pdb
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.csproj.AssemblyReference.cache
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.csproj.SuggestedBindingRedirects.cache
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\ConfirmPlayerProfileWindow.g.cs
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\LoginWindow.g.cs
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\MainWindow.g.cs
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\RecoverPasswordWindow.g.cs
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\RecoverPlayerProfilePasswordEmailAddressWindow.g.cs
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\RegisterPlayerProfileWindow.g.cs
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\App.g.cs
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client_MarkupCompile.cache
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client_MarkupCompile.lref
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\bin\Debug\Parlis.Client.exe.config
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\bin\Debug\Parlis.Client.exe
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\bin\Debug\Parlis.Client.pdb
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\ConfirmPlayerProfileWindow.baml
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\LoginWindow.baml
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\MainWindow.baml
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\RecoverPasswordWindow.baml
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\RecoverPlayerProfilePasswordEmailAddressWindow.baml
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\RegisterPlayerProfileWindow.baml
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.g.resources
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.Properties.Resources.resources
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.csproj.GenerateResource.cache
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.csproj.CoreCompileInputs.cache
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.exe
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.pdb
