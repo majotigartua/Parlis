@@ -11,9 +11,9 @@
             <Label Content="{x:Static p:Resources.CONFIRM_PLAYER_PROFILE_WINDOW_TITLE}" HorizontalAlignment="Center" Margin="0,16,0,0" VerticalAlignment="Top" FontSize="24"/>
             <Label Content="{x:Static p:Resources.CODE_INSTRUCTION_LABEL}" HorizontalAlignment="Center" Margin="0,75,0,0" VerticalAlignment="Top"/>
             <Label Content="{x:Static p:Resources.CODE_LABEL}" HorizontalAlignment="Left" Margin="155,126,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="CodeTextBox" HorizontalAlignment="Left" Margin="215,130,0,0" VerticalAlignment="Top" Width="120"/>
             <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Width="80" Click="AcceptButtonClick" />
             <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="400,200,0,0" VerticalAlignment="Top" Width="80" Click="CancelButtonClick" />
-            <TextBox x:Name="CodeTextBox" HorizontalAlignment="Left" Margin="215,130,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         </Grid>
     </Viewbox>
 </Window>

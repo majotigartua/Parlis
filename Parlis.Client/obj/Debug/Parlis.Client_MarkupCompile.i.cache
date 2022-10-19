@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Client\obj\Debug\
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\
 Parlis.Client
 none
 false
 DEBUG;TRACE
-C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Client\App.xaml
-4929717915
+C:\Users\majot\Desktop\Parlis\Parlis.Client\App.xaml
+6-749033716
 
-11-1544315774
+131202179113
 151069376965
-Views\ConfirmPlayerProfileWindow.xaml;Views\LoginWindow.xaml;Views\RecoverPasswordWindow.xaml;Views\RegisterPlayerProfileWindow.xaml;
+Views\ConfirmPlayerProfileWindow.xaml;Views\EditPlayerProfileWindow.xaml;Views\LoginWindow.xaml;Views\RecoverPasswordWindow.xaml;Views\RecoverPasswordEmailAddressWindow.xaml;Views\RegisterPlayerProfileWindow.xaml;
 
 True
 
