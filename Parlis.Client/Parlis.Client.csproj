@@ -65,6 +65,12 @@
     <Compile Include="Views\ConfirmPlayerProfileWindow.xaml.cs">
       <DependentUpon>ConfirmPlayerProfileWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RecoverPasswordWindow.xaml.cs">
+      <DependentUpon>RecoverPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecoverPlayerProfilePasswordEmailAddressWindow.xaml.cs">
+      <DependentUpon>RecoverPlayerProfilePasswordEmailAddressWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegisterPlayerProfileWindow.xaml.cs">
       <DependentUpon>RegisterPlayerProfileWindow.xaml</DependentUpon>
     </Compile>
@@ -85,6 +91,14 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\RecoverPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecoverPlayerProfilePasswordEmailAddressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RegisterPlayerProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
