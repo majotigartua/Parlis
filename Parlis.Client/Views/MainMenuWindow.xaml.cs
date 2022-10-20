@@ -8,8 +8,7 @@ namespace Parlis.Client.Views
         {
             InitializeComponent();
         }
-
-        private void CreateMAtchButtonClick(object sender, RoutedEventArgs e)
+        private void CreateMatchButtonClick(object sender, RoutedEventArgs e)
         {
             var createMatchWindow = new CreateMatchWindow();
             Close();
@@ -43,5 +42,6 @@ namespace Parlis.Client.Views
             Close();
             gameConfigurationWindow.Show();
         }
+
     }
 }

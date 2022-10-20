@@ -21,7 +21,7 @@
                 </Image.RenderTransform>
             </Image>
             <Image x:Name="SettingsPicture" HorizontalAlignment="Left" Height="50" Margin="10,202,0,0" VerticalAlignment="Top" Width="66" Source="/Resources/Images/SettingsPicture.png" RenderTransformOrigin="0.609,-0.869" MouseDown="SettingsPictureMouseDown"/>
-            <Button Content="{x:Static p:Resources.CREATE_MATCH_BUTTON}" HorizontalAlignment="Center" Margin="0,93,0,0" VerticalAlignment="Top" Width="167" Click="CreateMAtchButtonClick" FontSize="22" Height="35"/>
+            <Button Content="{x:Static p:Resources.CREATE_MATCH_BUTTON}" HorizontalAlignment="Center" Margin="0,93,0,0" VerticalAlignment="Top" Width="167" Click="CreateMatchButtonClick" FontSize="22" Height="35"/>
             <Button Content="{x:Static p:Resources.JOIN_MATCH_BUTTON}" HorizontalAlignment="Center" Margin="0,153,0,0" VerticalAlignment="Top" Width="168" FontSize="24" Height="35" Click="JoinMatchButtonClick"/>
         </Grid>
     </Viewbox>
