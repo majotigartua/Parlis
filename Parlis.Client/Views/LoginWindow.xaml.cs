@@ -36,9 +36,7 @@ namespace Parlis.Client.Views
 
         private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
         {
-            var mainMenuWindow = new MainMenuWindow();
-            Close();
-            mainMenuWindow.Show();
+            GoToMainMenu();
         }
 
         private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
@@ -60,9 +58,7 @@ namespace Parlis.Client.Views
                 if (playerProfileManagementClient.Login(playerProfile))
                 {
                     playerProfileManagementClient.Close();
-                    var mainMenuWindow = new MainMenuWindow();
-                    Close();
-                    mainMenuWindow.Show();
+                    GoToMainMenu();
                 }
                 else
                 {
@@ -76,6 +72,13 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
+        }
+
+        private void GoToMainMenu()
+        {
+            var mainMenuWindow = new MainMenuWindow();
+            Close();
+            mainMenuWindow.Show();
         }
     }
 }

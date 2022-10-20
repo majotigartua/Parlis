@@ -1,13 +1,22 @@
-﻿using System.Windows;
+﻿using Parlis.Client.Services;
+using System.Windows;
 
 namespace Parlis.Client.Views
 {
     public partial class MainMenuWindow : Window
     {
+        private static Player _player;
+
         public MainMenuWindow()
         {
             InitializeComponent();
         }
+
+        public void ConfigureView(Player player)
+        {
+            _player = player;
+        }
+
         private void CreateMatchButtonClick(object sender, RoutedEventArgs e)
         {
             var createMatchWindow = new CreateMatchWindow();
@@ -25,11 +34,10 @@ namespace Parlis.Client.Views
         private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var editPlayerProfileWindow = new EditPlayerProfileWindow();
-            Close();
-            editPlayerProfileWindow.Show();
+            editPlayerProfileWindow.ShowDialog();
         }
 
-        private void GoBackPictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void ExitPictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var loginWindow = new LoginWindow();
             Close();

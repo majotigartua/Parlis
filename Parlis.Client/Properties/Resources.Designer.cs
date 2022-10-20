@@ -277,7 +277,7 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Main menu.
+        ///   Busca una cadena traducida similar a Main menu..
         /// </summary>
         public static string MAIN_MENU_WINDOW_TITLE {
             get {

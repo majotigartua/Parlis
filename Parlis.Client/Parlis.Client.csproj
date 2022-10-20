@@ -225,7 +225,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\GoBackPicture.png" />
+    <Resource Include="Resources\Images\ExitPicture.png" />
     <Resource Include="Resources\Images\SettingsPicture.png" />
   </ItemGroup>
   <ItemGroup>
