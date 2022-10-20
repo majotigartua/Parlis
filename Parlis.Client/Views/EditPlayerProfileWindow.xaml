@@ -22,7 +22,7 @@
             <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="145,300,0,0" VerticalAlignment="Top" Width="150"/>
             <TextBox x:Name="EmailAddressTextBox" HorizontalAlignment="Left" Margin="172,348,0,0" VerticalAlignment="Top" Width="200"/>
             <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="385,300,0,0" VerticalAlignment="Top" Width="150"/>
-            <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="115" Margin="407,129,0,0" VerticalAlignment="Top" Width="115" Source="/Resources/Images/DefaultProfilePicture.png" MouseDown="ProfilePictureMouseDown"/>
+            <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="123" Margin="390,145,0,0" VerticalAlignment="Top" Width="150" MouseDown="ProfilePictureMouseDown" Stretch="Fill"/>
             <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" Width="80" Click="AcceptButtonClick"/>
             <Button Content="{x:Static p:Resources.CONFIRM_PLAYER_PROFILE_BUTTON}" HorizontalAlignment="Left" Margin="100,400,0,0" VerticalAlignment="Top" Width="150" Click="ConfirmPlayerProfileButtonClick"/>
             <Button Content="{x:Static p:Resources.DELETE_PLAYER_PROFILE_BUTTON}" HorizontalAlignment="Left" Margin="270,400,0,0" VerticalAlignment="Top" Width="150" Click="DeletePlayerProfileClick"/>
