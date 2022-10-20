@@ -177,6 +177,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Connected Services\Services\item.xsd">
       <SubType>Designer</SubType>
@@ -222,6 +223,17 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\GoBackPicture.png" />
+    <Resource Include="Resources\Images\SettingsPicture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\En-USFlagPicture.png" />
+    <Resource Include="Resources\Images\Es-MXFlagPicture.png" />
+    <Resource Include="Resources\Images\MusicPicture.png" />
+    <Resource Include="Resources\Images\Pt-BRFlagPicture.png" />
+    <Resource Include="Resources\Images\SoundPicture.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
