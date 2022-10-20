@@ -428,4 +428,51 @@ namespace Parlis.Client.Services {
             return base.Channel.RegisterPlayerAsync(player);
         }
     }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Services.IMatchManagement")]
+    public interface IMatchManagement {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/Connect", ReplyAction="http://tempuri.org/IMatchManagement/ConnectResponse")]
+        void Connect(Parlis.Client.Services.PlayerProfile playerProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/Connect", ReplyAction="http://tempuri.org/IMatchManagement/ConnectResponse")]
+        System.Threading.Tasks.Task ConnectAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IMatchManagementChannel : Parlis.Client.Services.IMatchManagement, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class MatchManagementClient : System.ServiceModel.ClientBase<Parlis.Client.Services.IMatchManagement>, Parlis.Client.Services.IMatchManagement {
+        
+        public MatchManagementClient() {
+        }
+        
+        public MatchManagementClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public MatchManagementClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public MatchManagementClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public MatchManagementClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void Connect(Parlis.Client.Services.PlayerProfile playerProfile) {
+            base.Channel.Connect(playerProfile);
+        }
+        
+        public System.Threading.Tasks.Task ConnectAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.ConnectAsync(playerProfile);
+        }
+    }
 }

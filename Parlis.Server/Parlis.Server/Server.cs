@@ -8,7 +8,7 @@ namespace Parlis.Server
     {
         public static void Main()
         {
-            using (ServiceHost host = new ServiceHost(typeof(PlayerProfileManagement)))
+            using (ServiceHost host = new ServiceHost(typeof(Service)))
             {
                 host.Open();
                 Console.WriteLine("Server is running...");
