@@ -27,7 +27,9 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            var mainMenuWindow = new MainMenuWindow();
             Close();
+            mainMenuWindow.Show();
         }
     }
 }

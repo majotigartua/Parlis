@@ -133,6 +133,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Create match.
+        /// </summary>
+        public static string CREATE_MATCH_BUTTON {
+            get {
+                return ResourceManager.GetString("CREATE_MATCH_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Create match..
         /// </summary>
         public static string CREATE_MATCH_WINDOW_TITLE {
@@ -223,11 +232,29 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Join match.
+        /// </summary>
+        public static string JOIN_MATCH_BUTTON {
+            get {
+                return ResourceManager.GetString("JOIN_MATCH_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Join match..
         /// </summary>
         public static string JOIN_MATCH_WINDOW_TITLE {
             get {
                 return ResourceManager.GetString("JOIN_MATCH_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Language:.
+        /// </summary>
+        public static string LANGUAGE_LABEL {
+            get {
+                return ResourceManager.GetString("LANGUAGE_LABEL", resourceCulture);
             }
         }
         

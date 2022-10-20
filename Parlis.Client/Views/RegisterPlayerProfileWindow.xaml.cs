@@ -1,12 +1,10 @@
 ﻿using Microsoft.Win32;
 using Parlis.Client.Resources;
 using Parlis.Client.Services;
-using System;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace Parlis.Client.Views
 {
@@ -25,9 +23,8 @@ namespace Parlis.Client.Views
                 Filter = "Joint Photographic Experts Group (JPEG)|*.jpeg;*.jpg"
             };
             openFileDialog.ShowDialog();
-            if (!string.IsNullOrEmpty(openFileDialog.FileName))
+            if (!openFileDialog.FileName.Equals(null))
             {
-                ProfilePicture.Source = new BitmapImage(new Uri(openFileDialog.FileName));
             }
         }
 

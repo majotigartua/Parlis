@@ -14,6 +14,8 @@ namespace Parlis.Client.Views
 
         private void ForgottenPasswordLabelMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            var recoverPasswordEmailAddressWindow = new RecoverPasswordEmailAddressWindow();
+            recoverPasswordEmailAddressWindow.ShowDialog();
         }
 
         private void LoginButtonClick(object sender, RoutedEventArgs e)
@@ -23,7 +25,7 @@ namespace Parlis.Client.Views
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
-                            Properties.Resources.EMPTY_FIELDS_WINDOW_TITLE);
+                    Properties.Resources.EMPTY_FIELDS_WINDOW_TITLE);
             }
             else
             {
@@ -34,7 +36,9 @@ namespace Parlis.Client.Views
 
         private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
         {
+            var mainMenuWindow = new MainMenuWindow();
             Close();
+            mainMenuWindow.Show();
         }
 
         private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
@@ -56,7 +60,9 @@ namespace Parlis.Client.Views
                 if (playerProfileManagementClient.Login(playerProfile))
                 {
                     playerProfileManagementClient.Close();
+                    var mainMenuWindow = new MainMenuWindow();
                     Close();
+                    mainMenuWindow.Show();
                 }
                 else
                 {

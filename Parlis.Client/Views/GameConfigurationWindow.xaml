@@ -5,9 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:p="clr-namespace:Parlis.Client.Properties"
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.GAME_CONFIGURATION_WINDOW_TITLE}" Height="400" Width="750">
+        Title="{x:Static p:Resources.GAME_CONFIGURATION_WINDOW_TITLE}" Height="500" Width="750">
     <Viewbox Margin="20" Stretch="Fill">
         <Grid>
+            <Label Content="{x:Static p:Resources.GAME_CONFIGURATION_WINDOW_TITLE}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="8" Height="22" Width="81" Margin="0,-4,0,0"/>
+            <Label Content="{x:Static p:Resources.LANGUAGE_LABEL}" HorizontalAlignment="Left" Margin="8,18,0,0" VerticalAlignment="Top" Height="16" Width="28" FontSize="3" RenderTransformOrigin="0.286,0.511"/>
+            <ToggleButton x:Name="SoundSettings" Height="5" Margin="38,40,67,14" >
+                <ToggleButton.Template>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="B1" Background="LightGray" CornerRadius="3" Padding=".3">
+                            <Border x:Name="B2" Background="White" Width="{TemplateBinding Height}" CornerRadius="15" HorizontalAlignment="Left">
+                                <ContentPresenter/>
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="B2" Property="HorizontalAlignment" Value="Right"/>
+                                <Setter TargetName="B1" Property="Background" Value="lightGreen"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+            <ToggleButton x:Name="MusicSettings" Height="5" Margin="80,40,25,14" >
+                <ToggleButton.Template>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="B1" Background="LightGray" CornerRadius="3" Padding=".3">
+                            <Border x:Name="B2" Background="White" Width="{TemplateBinding Height}" CornerRadius="15" HorizontalAlignment="Left">
+                                <ContentPresenter/>
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="B2" Property="HorizontalAlignment" Value="Right"/>
+                                <Setter TargetName="B1" Property="Background" Value="lightGreen"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+            <Image x:Name="EsMXFlagPicture" HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="18" Source="/Resources/Images/Es-MXFlagPicture.png" Margin="34,18,0,0" MouseDown="EsMXFlagPictureMouseDown"/>
+            <Image x:Name="EnUSFlagPicture" HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="18" Source="/Resources/Images/En-USFlagPicture.png" Margin="60,18,0,0" MouseDown="EnUSFlagPictureMouseDown"/>
+            <Image x:Name="PtBRFlagPicture" HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="18" Source="/Resources/Images/Pt-BRFlagPicture.png" Margin="87,18,0,0" MouseDown="PtBRFlagPictureMouseDown"/>
+            <Image x:Name="MusicPicture" HorizontalAlignment="Left" Height="8" VerticalAlignment="Top" Width="9" Source="/Resources/Images/MusicPicture.png" Margin="28,40,0,0"/>
+            <Image x:Name="SoundPicture" HorizontalAlignment="Left" Height="8" VerticalAlignment="Top" Width="9" Source="/Resources/Images/SoundPicture.png" Margin="71,40,0,0"/>
+            <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" Width="20" Height="7" FontSize="2.5" Click="AcceptButtonClick"/>
+            <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="111,52,0,0" VerticalAlignment="Top" Width="20" FontSize="2.5" Height="7" Click="CancelButtonClick"/>
         </Grid>
     </Viewbox>
 </Window>

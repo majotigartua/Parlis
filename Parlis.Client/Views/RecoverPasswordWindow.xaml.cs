@@ -8,5 +8,10 @@ namespace Parlis.Client.Views
         {
             InitializeComponent();
         }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
