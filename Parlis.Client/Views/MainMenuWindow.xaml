@@ -6,7 +6,7 @@
         xmlns:p="clr-namespace:Parlis.Client.Properties"
         mc:Ignorable="d"
         Title="{x:Static p:Resources.MAIN_MENU_WINDOW_TITLE}" Height="500" Width="750">
-    <Viewbox Margin="20" Stretch="Fill">
+    <Viewbox Margin="20" Stretch="Fill" StretchDirection="Both">
         <Grid>
             <Label Content="{x:Static p:Resources.MAIN_MENU_WINDOW_TITLE}" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="20" Width="200" HorizontalContentAlignment="Center"/>
             <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="58" Margin="408,0,0,0" VerticalAlignment="Top" Width="46" Source="/Resources/Images/DefaultProfilePicture.png" MouseDown="ProfilePictureMouseDown"/>
