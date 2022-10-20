@@ -188,7 +188,7 @@
     <None Include="Connected Services\Services\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\Services\PlayerProfileManagement.wsdl" />
+    <None Include="Connected Services\Services\Service.wsdl" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -207,6 +207,17 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\ExitPicture.png" />
+    <Resource Include="Resources\Images\SettingsPicture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\En-USFlagPicture.png" />
+    <Resource Include="Resources\Images\Es-MXFlagPicture.png" />
+    <Resource Include="Resources\Images\MusicPicture.png" />
+    <Resource Include="Resources\Images\Pt-BRFlagPicture.png" />
+    <Resource Include="Resources\Images\SoundPicture.png" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\Services\" />
   </ItemGroup>
   <ItemGroup>
@@ -223,17 +234,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\ExitPicture.png" />
-    <Resource Include="Resources\Images\SettingsPicture.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\En-USFlagPicture.png" />
-    <Resource Include="Resources\Images\Es-MXFlagPicture.png" />
-    <Resource Include="Resources\Images\MusicPicture.png" />
-    <Resource Include="Resources\Images\Pt-BRFlagPicture.png" />
-    <Resource Include="Resources\Images\SoundPicture.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

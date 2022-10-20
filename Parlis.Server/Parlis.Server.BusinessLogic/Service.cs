@@ -65,6 +65,8 @@ namespace Parlis.Server.BusinessLogic
             }
         }
     }
+
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public partial class Service : IMatchManagement
     {
         public static Dictionary<IMatchManagementCallback, Player> players = new Dictionary<IMatchManagementCallback, Player>();

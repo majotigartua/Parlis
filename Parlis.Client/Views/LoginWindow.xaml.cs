@@ -7,9 +7,15 @@ namespace Parlis.Client.Views
 {
     public partial class LoginWindow : Window
     {
+        private InstanceContext _context;
+        private PlayerProfileManagementClient _playerProfileManagementClient;
+        private MatchManagementClient _matchManagementClient;
+
         public LoginWindow()
         {
             InitializeComponent();
+            _context = new InstanceContext(this);
+            _playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
         private void ForgottenPasswordLabelMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -54,10 +60,9 @@ namespace Parlis.Client.Views
             };
             try
             {
-                var playerProfileManagementClient = new PlayerProfileManagementClient();
-                if (playerProfileManagementClient.Login(playerProfile))
+                if (_playerProfileManagementClient.Login(playerProfile))
                 {
-                    playerProfileManagementClient.Close();
+                    _playerProfileManagementClient.Close();
                     GoToMainMenu();
                 }
                 else

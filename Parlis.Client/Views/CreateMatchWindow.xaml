@@ -6,7 +6,7 @@
         xmlns:p="clr-namespace:Parlis.Client.Properties"
         mc:Ignorable="d"
         Title="{x:Static p:Resources.CREATE_MATCH_WINDOW_TITLE}" Height="500" Width="750">
-    <Viewbox Margin="20" Stretch="Fill">
+    <Viewbox Margin="20" Stretch="Fill" StretchDirection="Both">
         <Grid>
         </Grid>
     </Viewbox>
