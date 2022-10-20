@@ -133,6 +133,7 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+<<<<<<< HEAD
         ///   Busca una cadena traducida similar a Create match.
         /// </summary>
         public static string CREATE_MATCH_BUTTON {
@@ -142,6 +143,8 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+=======
+>>>>>>> main
         ///   Busca una cadena traducida similar a Create match..
         /// </summary>
         public static string CREATE_MATCH_WINDOW_TITLE {
@@ -232,6 +235,7 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+<<<<<<< HEAD
         ///   Busca una cadena traducida similar a Join match.
         /// </summary>
         public static string JOIN_MATCH_BUTTON {
@@ -241,6 +245,8 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+=======
+>>>>>>> main
         ///   Busca una cadena traducida similar a Join match..
         /// </summary>
         public static string JOIN_MATCH_WINDOW_TITLE {

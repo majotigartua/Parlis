@@ -223,9 +223,12 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <Resource Include="Resources\Images\GoBackPicture.png" />
     <Resource Include="Resources\Images\SettingsPicture.png" />
   </ItemGroup>
+=======
+>>>>>>> main
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
