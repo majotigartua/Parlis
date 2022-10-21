@@ -5,6 +5,7 @@ using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace Parlis.Client.Views
 {
@@ -29,6 +30,7 @@ namespace Parlis.Client.Views
             openFileDialog.ShowDialog();
             if (!openFileDialog.FileName.Equals(null))
             {
+                ProfilePicture.Source = new BitmapImage(new System.Uri(openFileDialog.FileName));
             }
         }
 
