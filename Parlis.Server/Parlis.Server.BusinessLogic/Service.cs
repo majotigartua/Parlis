@@ -64,23 +64,34 @@ namespace Parlis.Server.BusinessLogic
                 }
             }
         }
+
+        public bool RegisterPlayerProfile(PlayerProfile playerProfile)
+        {
+            using (ParlisContext context = new ParlisContext())
+            {
+                try
+                {
+                    context.PlayerProfiles.Add(playerProfile);
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (DbUpdateException)
+                {
+                    return false;
+                }
+            }
+        }
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public partial class Service : IMatchManagement
     {
-        public static Dictionary<IMatchManagementCallback, Player> players = new Dictionary<IMatchManagementCallback, Player>();
+        public static Dictionary<PlayerProfile, IMatchManagementCallback> players = new Dictionary<PlayerProfile, IMatchManagementCallback>();
 
         public void Connect(PlayerProfile playerProfile)
         {
-            using (ParlisContext context = new ParlisContext())
-            {
-                Player player = (from players in context.Players
-                                 where players.PlayerProfileUsername.Equals(playerProfile.Username)
-                                 select players).First();
-                var connection = OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>();
-                players.Add(connection, player);
-            }
+            var connection = OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>();
+            players.Add(playerProfile, connection);
         }
     }
 }

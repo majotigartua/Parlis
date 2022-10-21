@@ -196,6 +196,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Enter as a guest..
+        /// </summary>
+        public static string ENTER_AS_GUEST_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("ENTER_AS_GUEST_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Expel player from match..
         /// </summary>
         public static string EXPEL_PLAYER_WINDOW_TITLE {

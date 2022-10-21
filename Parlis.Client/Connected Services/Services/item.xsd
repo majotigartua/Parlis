@@ -13,7 +13,7 @@
   <xs:element name="Player" nillable="true" type="tns:Player" />
   <xs:complexType name="PlayerProfile">
     <xs:sequence>
-      <xs:element minOccurs="0" name="IsVerified" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsVerified" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="Matches" nillable="true" type="tns:ArrayOfMatch" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Players" nillable="true" type="tns:ArrayOfPlayer" />

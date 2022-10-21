@@ -7,16 +7,12 @@ namespace Parlis.Server.DataAccess
     {
         [DataMember]
         public string EmailAddress { get; set; }
-
         [DataMember]
         public string Name { get; set; }
-
         [DataMember]
         public string PaternalSurname { get; set; }
-
         [DataMember]
         public string MaternalSurname { get; set; }
-
         [DataMember]
         public string PlayerProfileUsername { get; set; }
 

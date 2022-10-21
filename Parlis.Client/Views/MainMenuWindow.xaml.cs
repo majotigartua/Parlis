@@ -1,25 +1,27 @@
 ﻿using Parlis.Client.Services;
+using System;
 using System.Windows;
 
 namespace Parlis.Client.Views
 {
     public partial class MainMenuWindow : Window
     {
-        private static Player _player;
+        private PlayerProfile playerProfile;
 
         public MainMenuWindow()
         {
             InitializeComponent();
         }
 
-        public void ConfigureView(Player player)
+        public void ConfigureWindow(PlayerProfile playerProfile)
         {
-            _player = player;
+            this.playerProfile = playerProfile;
         }
 
         private void CreateMatchButtonClick(object sender, RoutedEventArgs e)
         {
             var createMatchWindow = new CreateMatchWindow();
+            createMatchWindow.ConfigureView(playerProfile);
             Close();
             createMatchWindow.Show();
         }
@@ -27,6 +29,7 @@ namespace Parlis.Client.Views
         private void JoinMatchButtonClick(object sender, RoutedEventArgs e)
         {
             var joinMatchWindow = new JoinMatchWindow();
+            joinMatchWindow.ConfigureWindow(playerProfile);
             Close();
             joinMatchWindow.Show();
         }
@@ -34,6 +37,7 @@ namespace Parlis.Client.Views
         private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var editPlayerProfileWindow = new EditPlayerProfileWindow();
+            editPlayerProfileWindow.ConfigureWindow(playerProfile);
             editPlayerProfileWindow.ShowDialog();
         }
 
@@ -47,6 +51,7 @@ namespace Parlis.Client.Views
         private void SettingsPictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var gameConfigurationWindow = new GameConfigurationWindow();
+            gameConfigurationWindow.ConfigureView(playerProfile);
             Close();
             gameConfigurationWindow.Show();
         }
