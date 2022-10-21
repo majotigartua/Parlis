@@ -5,24 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:p="clr-namespace:Parlis.Client.Properties"
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.MAIN_MENU_WINDOW_TITLE}" Height="500" Width="562">
-    <Viewbox Margin="20" Stretch="Fill">
+        Title="{x:Static p:Resources.MAIN_MENU_WINDOW_TITLE}" Height="500" Width="750">
+    <Viewbox Margin="20" Stretch="Fill" StretchDirection="Both">
         <Grid>
-            <Label Content="{x:Static p:Resources.MAIN_MENU_WINDOW_TITLE}" HorizontalAlignment="Center" Margin="0,6,0,0" VerticalAlignment="Top" FontSize="36" Width="198"/>
-            <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="58" Margin="403,0,0,0" VerticalAlignment="Top" Width="46" Source="/Resources/Images/DefaultProfilePicture.png" MouseDown="ProfilePictureMouseDown"/>
-            <Image x:Name="GoBackPicture" Height="44" Margin="411,205,-4,0" VerticalAlignment="Top" Source="/Resources/Images/GoBackPicture.png" RenderTransformOrigin="0.5,0.5" MouseDown="GoBackPictureMouseDown">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="180"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
-            <Image x:Name="SettingsPicture" HorizontalAlignment="Left" Height="50" Margin="10,202,0,0" VerticalAlignment="Top" Width="66" Source="/Resources/Images/SettingsPicture.png" RenderTransformOrigin="0.609,-0.869" MouseDown="SettingsPictureMouseDown"/>
-            <Button Content="{x:Static p:Resources.CREATE_MATCH_BUTTON}" HorizontalAlignment="Center" Margin="0,93,0,0" VerticalAlignment="Top" Width="167" Click="CreateMatchButtonClick" FontSize="22" Height="35"/>
-            <Button Content="{x:Static p:Resources.JOIN_MATCH_BUTTON}" HorizontalAlignment="Center" Margin="0,153,0,0" VerticalAlignment="Top" Width="168" FontSize="24" Height="35" Click="JoinMatchButtonClick"/>
+            <Label Content="{x:Static p:Resources.MAIN_MENU_WINDOW_TITLE}" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="20" Width="200" HorizontalContentAlignment="Center"/>
+            <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="58" Margin="408,0,0,0" VerticalAlignment="Top" Width="46" Source="/Resources/Images/DefaultProfilePicture.png" MouseDown="ProfilePictureMouseDown"/>
+            <Image x:Name="ExitPicture" Height="44" Margin="410,206,0,0" VerticalAlignment="Top" Source="/Resources/Images/ExitPicture.png" MouseDown="ExitPictureMouseDown"/>
+            <Image x:Name="SettingsPicture" HorizontalAlignment="Left" Height="50" Margin="0,200,0,0" VerticalAlignment="Top" Width="50" Source="/Resources/Images/SettingsPicture.png" MouseDown="SettingsPictureMouseDown"/>
+            <Button Content="{x:Static p:Resources.CREATE_MATCH_BUTTON}" HorizontalAlignment="Center" Margin="0,85,0,0" VerticalAlignment="Top" Width="168" Click="CreateMatchButtonClick" FontSize="10" Height="35"/>
+            <Button Content="{x:Static p:Resources.JOIN_MATCH_BUTTON}" HorizontalAlignment="Center" Margin="0,145,0,0" VerticalAlignment="Top" Width="168" FontSize="10" Height="35" Click="JoinMatchButtonClick"/>
         </Grid>
     </Viewbox>
 </Window>

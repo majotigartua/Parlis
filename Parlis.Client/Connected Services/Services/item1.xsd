@@ -57,4 +57,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Connect">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="playerProfile" nillable="true" type="q5:PlayerProfile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

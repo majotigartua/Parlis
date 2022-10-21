@@ -7,9 +7,15 @@ namespace Parlis.Client.Views
 {
     public partial class LoginWindow : Window
     {
+        private InstanceContext _context;
+        private PlayerProfileManagementClient _playerProfileManagementClient;
+        private MatchManagementClient _matchManagementClient;
+
         public LoginWindow()
         {
             InitializeComponent();
+            _context = new InstanceContext(this);
+            _playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
         private void ForgottenPasswordLabelMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -36,9 +42,7 @@ namespace Parlis.Client.Views
 
         private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
         {
-            var mainMenuWindow = new MainMenuWindow();
-            Close();
-            mainMenuWindow.Show();
+            GoToMainMenu();
         }
 
         private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
@@ -56,13 +60,10 @@ namespace Parlis.Client.Views
             };
             try
             {
-                var playerProfileManagementClient = new PlayerProfileManagementClient();
-                if (playerProfileManagementClient.Login(playerProfile))
+                if (_playerProfileManagementClient.Login(playerProfile))
                 {
-                    playerProfileManagementClient.Close();
-                    var mainMenuWindow = new MainMenuWindow();
-                    Close();
-                    mainMenuWindow.Show();
+                    _playerProfileManagementClient.Close();
+                    GoToMainMenu();
                 }
                 else
                 {
@@ -76,6 +77,13 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
+        }
+
+        private void GoToMainMenu()
+        {
+            var mainMenuWindow = new MainMenuWindow();
+            Close();
+            mainMenuWindow.Show();
         }
     }
 }

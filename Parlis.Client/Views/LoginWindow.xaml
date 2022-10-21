@@ -6,7 +6,7 @@
         xmlns:p="clr-namespace:Parlis.Client.Properties"
         mc:Ignorable="d"
         Title="{x:Static p:Resources.LOGIN_WINDOW_TITLE}" Height="500" Width="750">
-    <Viewbox Margin="20" Stretch="Fill">
+    <Viewbox Margin="20" Stretch="Fill" StretchDirection="Both">
         <Grid>
             <Label Content="Parlis." HorizontalAlignment="Center" Margin="0,71,0,0" VerticalAlignment="Top" FontSize="36" Width="100"/>
             <Label Content="{x:Static p:Resources.FORGOTTEN_PASSWORD_LABEL}" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Foreground="#FF000CFF" MouseDown="ForgottenPasswordLabelMouseDown"/>

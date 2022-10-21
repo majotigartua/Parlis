@@ -1,11 +1,14 @@
 ﻿using Parlis.Server.DataAccess;
 using Parlis.Server.Service;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.ServiceModel;
 
 namespace Parlis.Server.BusinessLogic
-{
-    public class PlayerProfileManagement : IPlayerProfileManagement
+{ 
+    public partial class Service : IPlayerProfileManagement
     {
         public bool CheckPlayerExistence(Player player)
         {
@@ -39,7 +42,7 @@ namespace Parlis.Server.BusinessLogic
             using (ParlisContext context = new ParlisContext())
             {
                 int playerProfileCounter = (from playerProfiles in context.PlayerProfiles
-                                            where playerProfiles.Username == username && playerProfiles.Password == password
+                                            where playerProfiles.Username.Equals(username) && playerProfiles.Password.Equals(password)
                                             select playerProfiles).Count();
                 return playerProfileCounter > 0;
             }
@@ -59,6 +62,24 @@ namespace Parlis.Server.BusinessLogic
                 {
                     return false;
                 }
+            }
+        }
+    }
+
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
+    public partial class Service : IMatchManagement
+    {
+        public static Dictionary<IMatchManagementCallback, Player> players = new Dictionary<IMatchManagementCallback, Player>();
+
+        public void Connect(PlayerProfile playerProfile)
+        {
+            using (ParlisContext context = new ParlisContext())
+            {
+                Player player = (from players in context.Players
+                                 where players.PlayerProfileUsername.Equals(playerProfile.Username)
+                                 select players).First();
+                var connection = OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>();
+                players.Add(connection, player);
             }
         }
     }
