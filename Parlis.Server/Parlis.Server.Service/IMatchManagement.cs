@@ -6,7 +6,7 @@ namespace Parlis.Server.Service
     [ServiceContract(CallbackContract = typeof(IMatchManagementCallback))]
     public interface IMatchManagement
     {
-        [OperationContract(IsOneWay = false)]
+        [OperationContract(IsOneWay = true)]
         void Connect(PlayerProfile playerProfile);
     }
 
