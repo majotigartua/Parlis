@@ -5,17 +5,21 @@ using System.Windows;
 
 namespace Parlis.Client.Views
 {
-    public partial class LoginWindow : Window 
+    public partial class LoginWindow : Window
     {
-        private InstanceContext context;
         private PlayerProfileManagementClient playerProfileManagementClient;
-        private MatchManagementClient matchManagementClient;
+        private PlayerProfile playerProfile;
 
         public LoginWindow()
         {
             InitializeComponent();
-            context = new InstanceContext(this);
             playerProfileManagementClient = new PlayerProfileManagementClient();
+        }
+
+        public void ConfigureWindow(PlayerProfile playerProfile)
+        {
+            this.playerProfile = playerProfile;
+            GoToMainMenu();
         }
 
         private void ForgottenPasswordLabelMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -40,20 +44,9 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
-        {
-            GoToMainMenu();
-        }
-
-        private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
-        {
-            var registerPlayerProfileWindow = new RegisterPlayerProfileWindow();
-            registerPlayerProfileWindow.ShowDialog();
-        }
-
         private void Login(string username, string password)
         {
-            var playerProfile = new PlayerProfile
+            playerProfile = new PlayerProfile
             {
                 Username = username,
                 Password = password,
@@ -62,7 +55,6 @@ namespace Parlis.Client.Views
             {
                 if (playerProfileManagementClient.Login(playerProfile))
                 {
-                    playerProfileManagementClient.Close();
                     GoToMainMenu();
                 }
                 else
@@ -81,9 +73,25 @@ namespace Parlis.Client.Views
 
         private void GoToMainMenu()
         {
+            playerProfileManagementClient.Close();
             var mainMenuWindow = new MainMenuWindow();
+            mainMenuWindow.ConfigureWindow(playerProfile);
             Close();
             mainMenuWindow.Show();
+        }
+
+        private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
+        {
+            var enterAsGuestWindow =  new EnterAsGuestWindow();
+            enterAsGuestWindow.ConfigureWindow(this);
+            enterAsGuestWindow.ShowDialog();
+
+        }
+
+        private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
+        {
+            var registerPlayerProfileWindow = new RegisterPlayerProfileWindow();
+            registerPlayerProfileWindow.ShowDialog();
         }
     }
 }

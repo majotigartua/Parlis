@@ -162,6 +162,9 @@
   <data name="ENTER_AS_GUEST_BUTTON" xml:space="preserve">
     <value>Enter as a guest</value>
   </data>
+  <data name="ENTER_AS_GUEST_WINDOW_TITLE" xml:space="preserve">
+    <value>Enter as a guest.</value>
+  </data>
   <data name="EXPEL_PLAYER_WINDOW_TITLE" xml:space="preserve">
     <value>Expel player from match.</value>
   </data>

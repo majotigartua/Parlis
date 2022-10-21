@@ -17,5 +17,8 @@ namespace Parlis.Server.Service
 
         [OperationContract]
         bool RegisterPlayer(Player player);
+
+        [OperationContract]
+        bool RegisterPlayerProfile(PlayerProfile playerProfile);
     }
 }

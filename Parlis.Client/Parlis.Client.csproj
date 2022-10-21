@@ -74,6 +74,9 @@
     <Compile Include="Views\EditPlayerProfileWindow.xaml.cs">
       <DependentUpon>EditPlayerProfileWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EnterAsGuestWindow.xaml.cs">
+      <DependentUpon>EnterAsGuestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ExpelPlayerWindow.xaml.cs">
       <DependentUpon>ExpelPlayerWindow.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditPlayerProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EnterAsGuestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -25,8 +25,8 @@
       <PropertyRef Name="Username" />
     </Key>
     <Property Name="Username" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsVerified" Type="Boolean" />
     <NavigationProperty Name="Matches" Relationship="Self.FK_Match_PlayerProfile" FromRole="PlayerProfile" ToRole="Match" />
     <NavigationProperty Name="Players" Relationship="Self.FK_Player_PlayerProfile" FromRole="PlayerProfile" ToRole="Player" />
   </EntityType>

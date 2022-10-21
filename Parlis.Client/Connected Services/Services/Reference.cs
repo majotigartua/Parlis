@@ -148,7 +148,7 @@ namespace Parlis.Client.Services {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsVerifiedField;
+        private System.Nullable<bool> IsVerifiedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Parlis.Client.Services.Match[] MatchesField;
@@ -173,7 +173,7 @@ namespace Parlis.Client.Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsVerified {
+        public System.Nullable<bool> IsVerified {
             get {
                 return this.IsVerifiedField;
             }
@@ -367,6 +367,12 @@ namespace Parlis.Client.Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerResponse")]
         System.Threading.Tasks.Task<bool> RegisterPlayerAsync(Parlis.Client.Services.Player player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfileResponse")]
+        bool RegisterPlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfileResponse")]
+        System.Threading.Tasks.Task<bool> RegisterPlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -427,16 +433,24 @@ namespace Parlis.Client.Services {
         public System.Threading.Tasks.Task<bool> RegisterPlayerAsync(Parlis.Client.Services.Player player) {
             return base.Channel.RegisterPlayerAsync(player);
         }
+        
+        public bool RegisterPlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.RegisterPlayerProfile(playerProfile);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RegisterPlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.RegisterPlayerProfileAsync(playerProfile);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Services.IMatchManagement")]
     public interface IMatchManagement {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/Connect", ReplyAction="http://tempuri.org/IMatchManagement/ConnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/Connect")]
         void Connect(Parlis.Client.Services.PlayerProfile playerProfile);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/Connect", ReplyAction="http://tempuri.org/IMatchManagement/ConnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/Connect")]
         System.Threading.Tasks.Task ConnectAsync(Parlis.Client.Services.PlayerProfile playerProfile);
     }
     

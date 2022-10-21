@@ -23,8 +23,8 @@
       <PropertyRef Name="Username" />
     </Key>
     <Property Name="Username" Type="nvarchar" MaxLength="15" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IsVerified" Type="bit" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="IsVerified" Type="bit" />
   </EntityType>
   <Association Name="FK_Match_PlayerProfile">
     <End Role="PlayerProfile" Type="Self.PlayerProfile" Multiplicity="1" />
