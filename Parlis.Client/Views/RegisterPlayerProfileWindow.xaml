@@ -22,7 +22,7 @@
             <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="145,300,0,0" VerticalAlignment="Top" Width="150"/>
             <TextBox x:Name="EmailAddressTextBox" HorizontalAlignment="Left" Margin="172,348,0,0" VerticalAlignment="Top" Width="200"/>
             <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="390,300,0,0" VerticalAlignment="Top" Width="150"/>
-            <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="115" Margin="402,145,0,0" VerticalAlignment="Top" Width="116" Source="/Resources/Images/DefaultProfilePicture.png" MouseDown="ProfilePictureMouseDown"/>
+            <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="115" Margin="402,145,0,0" VerticalAlignment="Top" Width="116" Source="/Resources/Images/DefaultProfilePicture.png" MouseDown="ProfilePictureMouseDown" Stretch="UniformToFill"/>
             <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" Width="80" Click="AcceptButtonClick"/>
             <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="480,400,0,0" VerticalAlignment="Top" Width="80" Click="CancelButtonClick"/>
         </Grid>
