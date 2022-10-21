@@ -16,8 +16,8 @@ namespace Parlis.Client.Views
 
         public RegisterPlayerProfileWindow()
         {
-            playerProfileManagementClient = new PlayerProfileManagementClient();
             InitializeComponent();
+            playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
         private void ProfilePictureMouseDown(object sender, MouseButtonEventArgs e)
