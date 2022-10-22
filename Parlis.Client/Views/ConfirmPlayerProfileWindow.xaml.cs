@@ -1,6 +1,5 @@
 ﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
-using System;
 using System.ServiceModel;
 using System.Windows;
 
@@ -52,7 +51,7 @@ namespace Parlis.Client.Views
         {
             if (!string.IsNullOrEmpty(CodeTextBox.Text))
             {
-                if (Int32.Parse(CodeTextBox.Text).Equals(code))
+                if (int.Parse(CodeTextBox.Text).Equals(code))
                 {
                     VerifyPlayerProfile();
                 }
