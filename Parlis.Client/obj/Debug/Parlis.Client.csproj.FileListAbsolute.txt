@@ -80,3 +80,6 @@ C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.csproj.Gener
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.csproj.CoreCompileInputs.cache
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.exe
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.pdb
+C:\Users\majot\Desktop\Parlis\Parlis.Client\bin\Debug\es-Mx\Parlis.Client.resources.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\es-Mx\Parlis.Client.resources.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.Properties.Resources.es-Mx.resources

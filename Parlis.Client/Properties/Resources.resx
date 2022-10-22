@@ -232,7 +232,7 @@
     <value>The information was correctly recorded in the system.</value>
   </data>
   <data name="REGISTER_PASSWORD_INSTRUCTION_LABEL" xml:space="preserve">
-    <value>Enter the 6-digit code sent to your e-mail address and new password.</value>
+    <value>Enter the 6-digit code sent to your e-mail address and a new password.</value>
   </data>
   <data name="REGISTER_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Register player profile</value>

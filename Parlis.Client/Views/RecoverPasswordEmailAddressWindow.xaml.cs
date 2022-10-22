@@ -13,12 +13,12 @@ namespace Parlis.Client.Views
         private void RecoverPasswordButtonClick(object sender, RoutedEventArgs e)
         {
             var emailAddress = EmailAddressTextBox.Text;
-            if(!string.IsNullOrEmpty(emailAddress))
+            if (!string.IsNullOrEmpty(emailAddress))
             {
-                if(Utilities.ValidateEmailAddressFormat(emailAddress))
+                if (Utilities.ValidateEmailAddressFormat(emailAddress))
                 {
                     var recoverPasswordWindow = new RecoverPasswordWindow();
-                    this.Visibility = Visibility.Hidden;
+                    Close();
                     recoverPasswordWindow.Show();
                 }
                 else
