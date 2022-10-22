@@ -73,7 +73,6 @@ namespace Parlis.Client.Views
 
         private void GoToMainMenu()
         {
-            playerProfileManagementClient.Close();
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.ConfigureWindow(playerProfile);
             Close();

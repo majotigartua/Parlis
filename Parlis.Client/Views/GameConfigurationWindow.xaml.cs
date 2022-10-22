@@ -29,17 +29,17 @@ namespace Parlis.Client.Views
 
         private void EsMXFlagPictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-MX");
         }
 
         private void EnUSFlagPictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("");
         }
 
         private void PtBRFlagPictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pt-BR");
         }
 
         private void GoToMainMenu()

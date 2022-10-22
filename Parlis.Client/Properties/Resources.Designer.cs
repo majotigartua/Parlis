@@ -394,7 +394,7 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Enter the 6-digit code sent to your e-mail address and new password..
+        ///   Busca una cadena traducida similar a Enter the 6-digit code sent to your e-mail address and a new password..
         /// </summary>
         public static string REGISTER_PASSWORD_INSTRUCTION_LABEL {
             get {
