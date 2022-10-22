@@ -356,6 +356,12 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistence", ReplyAction="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistenceResponse")]
         System.Threading.Tasks.Task<bool> CheckPlayerProfileExistenceAsync(Parlis.Client.Services.PlayerProfile playerProfile);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/GetPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/GetPlayerResponse")]
+        Parlis.Client.Services.Player GetPlayer(Parlis.Client.Services.PlayerProfile playerProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/GetPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/GetPlayerResponse")]
+        System.Threading.Tasks.Task<Parlis.Client.Services.Player> GetPlayerAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/Login", ReplyAction="http://tempuri.org/IPlayerProfileManagement/LoginResponse")]
         bool Login(Parlis.Client.Services.PlayerProfile playerProfile);
         
@@ -373,6 +379,24 @@ namespace Parlis.Client.Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfileResponse")]
         System.Threading.Tasks.Task<bool> RegisterPlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/SendMail", ReplyAction="http://tempuri.org/IPlayerProfileManagement/SendMailResponse")]
+        bool SendMail(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/SendMail", ReplyAction="http://tempuri.org/IPlayerProfileManagement/SendMailResponse")]
+        System.Threading.Tasks.Task<bool> SendMailAsync(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerResponse")]
+        bool UpdatePlayer(Parlis.Client.Services.Player player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerResponse")]
+        System.Threading.Tasks.Task<bool> UpdatePlayerAsync(Parlis.Client.Services.Player player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfileResponse")]
+        bool UpdatePlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfileResponse")]
+        System.Threading.Tasks.Task<bool> UpdatePlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -418,6 +442,14 @@ namespace Parlis.Client.Services {
             return base.Channel.CheckPlayerProfileExistenceAsync(playerProfile);
         }
         
+        public Parlis.Client.Services.Player GetPlayer(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.GetPlayer(playerProfile);
+        }
+        
+        public System.Threading.Tasks.Task<Parlis.Client.Services.Player> GetPlayerAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.GetPlayerAsync(playerProfile);
+        }
+        
         public bool Login(Parlis.Client.Services.PlayerProfile playerProfile) {
             return base.Channel.Login(playerProfile);
         }
@@ -440,6 +472,30 @@ namespace Parlis.Client.Services {
         
         public System.Threading.Tasks.Task<bool> RegisterPlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
             return base.Channel.RegisterPlayerProfileAsync(playerProfile);
+        }
+        
+        public bool SendMail(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code) {
+            return base.Channel.SendMail(playerProfile, title, message, code);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SendMailAsync(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code) {
+            return base.Channel.SendMailAsync(playerProfile, title, message, code);
+        }
+        
+        public bool UpdatePlayer(Parlis.Client.Services.Player player) {
+            return base.Channel.UpdatePlayer(player);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdatePlayerAsync(Parlis.Client.Services.Player player) {
+            return base.Channel.UpdatePlayerAsync(player);
+        }
+        
+        public bool UpdatePlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.UpdatePlayerProfile(playerProfile);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdatePlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.UpdatePlayerProfileAsync(playerProfile);
         }
     }
     

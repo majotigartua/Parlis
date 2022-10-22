@@ -88,6 +88,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a This is your 6-digit code:.
+        /// </summary>
+        public static string CODE_EMAIL_ADDRESS_LABEL {
+            get {
+                return ResourceManager.GetString("CODE_EMAIL_ADDRESS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Enter the 6-digit code sent to your e-mail address..
         /// </summary>
         public static string CODE_INSTRUCTION_LABEL {

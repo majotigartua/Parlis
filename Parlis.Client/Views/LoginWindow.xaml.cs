@@ -55,6 +55,7 @@ namespace Parlis.Client.Views
             {
                 if (playerProfileManagementClient.Login(playerProfile))
                 {
+                    playerProfileManagementClient.Close();
                     GoToMainMenu();
                 }
                 else

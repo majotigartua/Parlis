@@ -205,6 +205,9 @@
     <None Include="Connected Services\Services\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\Services\Parlis.Client.Services.Player.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\Services\Service.wsdl" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

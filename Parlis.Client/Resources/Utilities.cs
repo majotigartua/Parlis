@@ -22,6 +22,12 @@ namespace Parlis.Client.Resources
             }
         }
 
+        public static int GenerateRandomCode()
+        {
+            Random random = new Random();
+            return random.Next(100000, 999999);
+        }
+
         public static bool ValidateEmailAddressFormat(string emailAddress)
         {
             try
