@@ -77,6 +77,12 @@
   <wsdl:message name="IPlayerProfileManagement_CheckPlayerProfileExistence_OutputMessage">
     <wsdl:part name="parameters" element="tns:CheckPlayerProfileExistenceResponse" />
   </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_GetPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_GetPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerResponse" />
+  </wsdl:message>
   <wsdl:message name="IPlayerProfileManagement_Login_InputMessage">
     <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
@@ -95,6 +101,24 @@
   <wsdl:message name="IPlayerProfileManagement_RegisterPlayerProfile_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterPlayerProfileResponse" />
   </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_SendMail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMail" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_SendMail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_UpdatePlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlayer" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_UpdatePlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_UpdatePlayerProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlayerProfile" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_UpdatePlayerProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlayerProfileResponse" />
+  </wsdl:message>
   <wsdl:message name="IMatchManagement_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
   </wsdl:message>
@@ -107,6 +131,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistence" message="tns:IPlayerProfileManagement_CheckPlayerProfileExistence_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistenceResponse" message="tns:IPlayerProfileManagement_CheckPlayerProfileExistence_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetPlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/GetPlayer" message="tns:IPlayerProfileManagement_GetPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/GetPlayerResponse" message="tns:IPlayerProfileManagement_GetPlayer_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/Login" message="tns:IPlayerProfileManagement_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/LoginResponse" message="tns:IPlayerProfileManagement_Login_OutputMessage" />
@@ -118,6 +146,18 @@
     <wsdl:operation name="RegisterPlayerProfile">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfile" message="tns:IPlayerProfileManagement_RegisterPlayerProfile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfileResponse" message="tns:IPlayerProfileManagement_RegisterPlayerProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/SendMail" message="tns:IPlayerProfileManagement_SendMail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/SendMailResponse" message="tns:IPlayerProfileManagement_SendMail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayer" message="tns:IPlayerProfileManagement_UpdatePlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerResponse" message="tns:IPlayerProfileManagement_UpdatePlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlayerProfile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfile" message="tns:IPlayerProfileManagement_UpdatePlayerProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfileResponse" message="tns:IPlayerProfileManagement_UpdatePlayerProfile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IMatchManagement">
@@ -146,6 +186,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetPlayer">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/GetPlayer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Login">
       <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/Login" style="document" />
       <wsdl:input>
@@ -166,6 +215,33 @@
     </wsdl:operation>
     <wsdl:operation name="RegisterPlayerProfile">
       <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/SendMail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlayer">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlayerProfile">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

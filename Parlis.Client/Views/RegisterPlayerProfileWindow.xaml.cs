@@ -86,7 +86,6 @@ namespace Parlis.Client.Views
                 }
                 else
                 {
-                    playerProfileManagementClient.Close();
                     MessageBox.Show(Properties.Resources.PLAYER_PROFILE_ALREADY_REGISTERED_WINDOW_TITLE
                     + " "
                     + Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL);
@@ -96,6 +95,7 @@ namespace Parlis.Client.Views
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                Close();
             }
         }
 
@@ -115,16 +115,13 @@ namespace Parlis.Client.Views
                 {
                     if (playerProfileManagementClient.RegisterPlayer(player))
                     {
-                        playerProfileManagementClient.Close();
                         MessageBoxResult messageBoxResult = MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE
-                            + " "
-                            + Properties.Resources.CONFIRM_PLAYER_PROFILE_LABEL, "",
-                            MessageBoxButton.OKCancel);
+                            + " " + Properties.Resources.CONFIRM_PLAYER_PROFILE_LABEL, "", MessageBoxButton.OKCancel);
                         if (messageBoxResult == MessageBoxResult.OK)
                         {
+                            playerProfileManagementClient.Close();
                             GoToConfirmPlayerProfileWindow();
                         }
-                        Close();
                     }
                     else
                     {
@@ -144,6 +141,7 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
+            Close();
         }
 
         private void GoToConfirmPlayerProfileWindow()

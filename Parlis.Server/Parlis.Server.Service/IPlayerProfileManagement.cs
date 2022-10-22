@@ -13,6 +13,9 @@ namespace Parlis.Server.Service
         bool CheckPlayerProfileExistence(PlayerProfile playerProfile);
 
         [OperationContract]
+        Player GetPlayer(PlayerProfile playerProfile);
+
+        [OperationContract]
         bool Login(PlayerProfile playerProfile);
 
         [OperationContract]
@@ -20,5 +23,14 @@ namespace Parlis.Server.Service
 
         [OperationContract]
         bool RegisterPlayerProfile(PlayerProfile playerProfile);
+
+        [OperationContract]
+        bool SendMail(PlayerProfile playerProfile, string title, string message, int code);
+
+        [OperationContract]
+        bool UpdatePlayer(Player player);
+
+        [OperationContract]
+        bool UpdatePlayerProfile(PlayerProfile playerProfile);
     }
 }

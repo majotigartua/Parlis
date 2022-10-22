@@ -29,10 +29,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Login">
+  <xs:element name="GetPlayer">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="playerProfile" nillable="true" type="q3:PlayerProfile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPlayerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="GetPlayerResult" nillable="true" type="q4:Player" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Login">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="playerProfile" nillable="true" type="q5:PlayerProfile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -46,7 +60,7 @@
   <xs:element name="RegisterPlayer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="player" nillable="true" type="q4:Player" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="player" nillable="true" type="q6:Player" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -60,7 +74,7 @@
   <xs:element name="RegisterPlayerProfile">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="playerProfile" nillable="true" type="q5:PlayerProfile" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="playerProfile" nillable="true" type="q7:PlayerProfile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -71,10 +85,55 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SendMail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="playerProfile" nillable="true" type="q8:PlayerProfile" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="code" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SendMailResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePlayer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="player" nillable="true" type="q9:Player" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePlayerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdatePlayerResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePlayerProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="playerProfile" nillable="true" type="q10:PlayerProfile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePlayerProfileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdatePlayerProfileResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Connect">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="playerProfile" nillable="true" type="q6:PlayerProfile" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" minOccurs="0" name="playerProfile" nillable="true" type="q11:PlayerProfile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
