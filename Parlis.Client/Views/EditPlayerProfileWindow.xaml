@@ -24,7 +24,7 @@
             <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="385,300,0,0" VerticalAlignment="Top" Width="150"/>
             <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="115" Margin="407,129,0,0" VerticalAlignment="Top" Width="115" Source="/Resources/Images/DefaultProfilePicture.png" MouseDown="ProfilePictureMouseDown"/>
             <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" Width="80" Click="AcceptButtonClick"/>
-            <Button Content="{x:Static p:Resources.CONFIRM_PLAYER_PROFILE_BUTTON}" HorizontalAlignment="Left" Margin="100,400,0,0" VerticalAlignment="Top" Width="150" Click="ConfirmPlayerProfileButtonClick"/>
+            <Button x:Name="ConfirmPlayerProfileButton" Content="{x:Static p:Resources.CONFIRM_PLAYER_PROFILE_BUTTON}" HorizontalAlignment="Left" Margin="100,400,0,0" VerticalAlignment="Top" Width="150" Click="ConfirmPlayerProfileButtonClick"/>
             <Button Content="{x:Static p:Resources.DELETE_PLAYER_PROFILE_BUTTON}" HorizontalAlignment="Left" Margin="270,400,0,0" VerticalAlignment="Top" Width="150" Click="DeletePlayerProfileClick"/>
             <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="480,400,0,0" VerticalAlignment="Top" Width="80" Click="CancelButtonClick"/>
         </Grid>

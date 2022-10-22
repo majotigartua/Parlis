@@ -108,26 +108,26 @@ namespace Parlis.Server.BusinessLogic
                 string addressee = (from player in context.Players
                                        where player.PlayerProfileUsername.Equals(playerProfile.Username)
                                        select player).First().EmailAddress;
+                Console.WriteLine(addressee);
                 try
-                {
-                    var smtpClient = new SmtpClient(smtpServer, port)
+                { 
+                    var mailMessage = new MailMessage(emailAddress, addressee, title, (message + code + "."))
                     {
+                        IsBodyHtml = true
+                    };
+                    var smtpClient = new SmtpClient(smtpServer)
+                    {
+                        Port = port,
+                        UseDefaultCredentials = false,
                         Credentials = new NetworkCredential(emailAddress, password),
                         EnableSsl = true,
                     };
-                    var mailMessage = new MailMessage()
-                    {
-                        From = new MailAddress(emailAddress, "Parlis."),
-                        Subject = title,
-                        Body = message + code,
-                        IsBodyHtml = true,
-                    };
-                    mailMessage.To.Add(addressee);
                     smtpClient.Send(mailMessage);
                     return true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     return false;
                 }
             }
