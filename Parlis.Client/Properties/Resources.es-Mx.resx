@@ -142,7 +142,7 @@
     <value>¿Deseas confirmar el perfil de jugador?</value>
   </data>
   <data name="CONFIRM_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
-    <value>Confirmar perfil de jugador</value>
+    <value>Confirmar perfil de jugador.</value>
   </data>
   <data name="CREATE_MATCH_BUTTON" xml:space="preserve">
     <value>Crear partida de juego</value>
@@ -211,7 +211,7 @@
     <value>No hay conexión con el servidor.</value>
   </data>
   <data name="PASSWORD_INSTRUCTION_LABEL" xml:space="preserve">
-    <value>Tu contraseña debe tener letras minúsculas, una letra mayúscula, un número y una longitud mínima de 8 dígitos</value>
+    <value>Tu contraseña debe tener letras minúsculas, una letra mayúscula, un número y una longitud mínima de 8 dígitos.</value>
   </data>
   <data name="PASSWORD_LABEL" xml:space="preserve">
     <value>Contraseña:</value>
