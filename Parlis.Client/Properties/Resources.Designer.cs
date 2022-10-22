@@ -88,7 +88,7 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a This is your 6-digit code:.
+        ///   Busca una cadena traducida similar a This is your 6-digit code: .
         /// </summary>
         public static string CODE_EMAIL_ADDRESS_LABEL {
             get {

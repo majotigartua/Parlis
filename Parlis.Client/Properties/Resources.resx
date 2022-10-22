@@ -127,7 +127,7 @@
     <value>Please check the information entered and try again.</value>
   </data>
   <data name="CODE_EMAIL_ADDRESS_LABEL" xml:space="preserve">
-    <value>This is your 6-digit code:</value>
+    <value>This is your 6-digit code: </value>
   </data>
   <data name="CODE_INSTRUCTION_LABEL" xml:space="preserve">
     <value>Enter the 6-digit code sent to your e-mail address.</value>
