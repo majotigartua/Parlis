@@ -108,10 +108,9 @@ namespace Parlis.Server.BusinessLogic
                 string addressee = (from player in context.Players
                                        where player.PlayerProfileUsername.Equals(playerProfile.Username)
                                        select player).First().EmailAddress;
-                Console.WriteLine(addressee);
                 try
                 { 
-                    var mailMessage = new MailMessage(emailAddress, addressee, title, (message + code + "."))
+                    var mailMessage = new MailMessage(emailAddress, addressee, title, (message + " " + code + "."))
                     {
                         IsBodyHtml = true
                     };
