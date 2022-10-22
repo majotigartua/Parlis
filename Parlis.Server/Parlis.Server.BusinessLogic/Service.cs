@@ -100,7 +100,7 @@ namespace Parlis.Server.BusinessLogic
         public bool SendMail(PlayerProfile playerProfile, string title, string message, int code)
         {
             string smtpServer = ConfigurationManager.AppSettings["SmtpServer"];
-            int port = Int32.Parse(ConfigurationManager.AppSettings["Port"]);
+            int port = int.Parse(ConfigurationManager.AppSettings["Port"]);
             string emailAddress = ConfigurationManager.AppSettings["EmailAddress"];
             string password = ConfigurationManager.AppSettings["Password"];
             using (ParlisContext context = new ParlisContext())
