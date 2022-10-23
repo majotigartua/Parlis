@@ -15,7 +15,6 @@ namespace Parlis.Server.Service.Data
 
         public Match()
         {
-        }
-        
+        }   
     }
 }
