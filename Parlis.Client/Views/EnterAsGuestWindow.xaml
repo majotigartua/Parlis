@@ -9,8 +9,8 @@
     <Viewbox Margin="20" Stretch="Fill" StretchDirection="Both">
         <Grid>
             <Label Content="{x:Static p:Resources.ENTER_AS_GUEST_WINDOW_TITLE}" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" FontSize="24"/>
-            <Label Content="{x:Static p:Resources.USERNAME_LABEL}" HorizontalAlignment="Left" Margin="106,112,0,0" VerticalAlignment="Top" Height="26"/>
-            <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="226,116,0,0" VerticalAlignment="Top" Width="150"/>
+            <Label Content="{x:Static p:Resources.USERNAME_LABEL}" HorizontalAlignment="Left" Margin="100,110,0,0" VerticalAlignment="Top" Height="26"/>
+            <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="226,115,0,0" VerticalAlignment="Top" Width="150"/>
             <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Width="80" Click="AcceptButtonClick" RenderTransformOrigin="1.207,0.653"/>
             <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="400,200,0,0" VerticalAlignment="Top" Width="80" Click="CancelButtonClick"/>
         </Grid>

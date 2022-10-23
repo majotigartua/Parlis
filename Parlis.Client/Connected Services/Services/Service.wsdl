@@ -62,7 +62,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess" />
+      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IPlayerProfileManagement_CheckPlayerExistence_InputMessage">
@@ -76,6 +76,18 @@
   </wsdl:message>
   <wsdl:message name="IPlayerProfileManagement_CheckPlayerProfileExistence_OutputMessage">
     <wsdl:part name="parameters" element="tns:CheckPlayerProfileExistenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_DeletePlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePlayer" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_DeletePlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_DeletePlayerProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePlayerProfile" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_DeletePlayerProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePlayerProfileResponse" />
   </wsdl:message>
   <wsdl:message name="IPlayerProfileManagement_GetPlayer_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayer" />
@@ -131,6 +143,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistence" message="tns:IPlayerProfileManagement_CheckPlayerProfileExistence_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistenceResponse" message="tns:IPlayerProfileManagement_CheckPlayerProfileExistence_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DeletePlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayer" message="tns:IPlayerProfileManagement_DeletePlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayerResponse" message="tns:IPlayerProfileManagement_DeletePlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePlayerProfile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayerProfile" message="tns:IPlayerProfileManagement_DeletePlayerProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayerProfileResponse" message="tns:IPlayerProfileManagement_DeletePlayerProfile_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetPlayer">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/GetPlayer" message="tns:IPlayerProfileManagement_GetPlayer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/GetPlayerResponse" message="tns:IPlayerProfileManagement_GetPlayer_OutputMessage" />
@@ -179,6 +199,24 @@
     </wsdl:operation>
     <wsdl:operation name="CheckPlayerProfileExistence">
       <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistence" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePlayer">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/DeletePlayer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePlayerProfile">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/DeletePlayerProfile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -271,9 +309,9 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IMatchManagement" binding="tns:NetTcpBinding_IMatchManagement">
-      <soap12:address location="net.tcp://localhost:8081/PlayerProfileManagement" />
+      <soap12:address location="net.tcp://localhost:8081/MatchManagement" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8081/PlayerProfileManagement</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8081/MatchManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>

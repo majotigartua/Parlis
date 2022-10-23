@@ -62,10 +62,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.es-Mx.Designer.cs">
+    <Compile Include="Properties\Resources.es-MX1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.es-Mx.resx</DependentUpon>
+      <DependentUpon>Resources.es-MX.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.pt-BR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.pt-BR.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\ChatWindow.xaml.cs">
       <DependentUpon>ChatWindow.xaml</DependentUpon>
@@ -186,10 +191,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.es-Mx.resx">
+    <EmbeddedResource Include="Properties\Resources.pt-BR.resx">
       <SubType>Designer</SubType>
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.es-Mx.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.pt-BR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.es-MX.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.es-MX1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -224,21 +234,21 @@
     <Resource Include="Resources\Images\DefaultProfilePicture.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\Images\ProfilePictures\" />
+    <Resource Include="Resources\Images\PlayerProfile.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\ExitPicture.png" />
-    <Resource Include="Resources\Images\SettingsPicture.png" />
+    <Resource Include="Resources\Images\Exit.png" />
+    <Resource Include="Resources\Images\Settings.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\En-USFlagPicture.png" />
-    <Resource Include="Resources\Images\Es-MXFlagPicture.png" />
-    <Resource Include="Resources\Images\MusicPicture.png" />
-    <Resource Include="Resources\Images\Pt-BRFlagPicture.png" />
-    <Resource Include="Resources\Images\SoundPicture.png" />
+    <Resource Include="Resources\Images\En-USFlag.png" />
+    <Resource Include="Resources\Images\Es-MXFlag.png" />
+    <Resource Include="Resources\Images\Music.png" />
+    <Resource Include="Resources\Images\Pt-BRFlag.png" />
+    <Resource Include="Resources\Images\Sounds.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\Services\" />
@@ -257,6 +267,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ProfilePictures\majotigartua.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

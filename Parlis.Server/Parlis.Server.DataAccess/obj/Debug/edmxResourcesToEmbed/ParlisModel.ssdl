@@ -6,7 +6,7 @@
     </Key>
     <Property Name="IdMatch" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="PlayerProfileUsername" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="PlayerProfileUsername" Type="nvarchar" MaxLength="15" />
   </EntityType>
   <EntityType Name="Player">
     <Key>
@@ -27,7 +27,7 @@
     <Property Name="IsVerified" Type="bit" />
   </EntityType>
   <Association Name="FK_Match_PlayerProfile">
-    <End Role="PlayerProfile" Type="Self.PlayerProfile" Multiplicity="1" />
+    <End Role="PlayerProfile" Type="Self.PlayerProfile" Multiplicity="0..1" />
     <End Role="Match" Type="Self.Match" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PlayerProfile">

@@ -13,6 +13,7 @@ namespace Parlis.Client.Views
         public LoginWindow()
         {
             InitializeComponent();
+            UsernameTextBox.Focus();
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
@@ -46,14 +47,10 @@ namespace Parlis.Client.Views
 
         private void Login(string username, string password)
         {
-            playerProfile = new PlayerProfile
-            {
-                Username = username,
-                Password = password,
-            };
             try
             {
-                if (playerProfileManagementClient.Login(playerProfile))
+                playerProfile = playerProfileManagementClient.Login(username, password);
+                if (playerProfile != null)
                 {
                     playerProfileManagementClient.Close();
                     GoToMainMenu();

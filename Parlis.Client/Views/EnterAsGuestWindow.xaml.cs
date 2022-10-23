@@ -11,6 +11,7 @@ namespace Parlis.Client.Views
         public EnterAsGuestWindow()
         {
             InitializeComponent();
+            UsernameTextBox.Focus();
         }
 
         public void ConfigureWindow(LoginWindow loginWindow)
