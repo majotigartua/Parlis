@@ -363,10 +363,10 @@ namespace Parlis.Client.Services {
         System.Threading.Tasks.Task<Parlis.Client.Services.Player> GetPlayerAsync(Parlis.Client.Services.PlayerProfile playerProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/Login", ReplyAction="http://tempuri.org/IPlayerProfileManagement/LoginResponse")]
-        bool Login(Parlis.Client.Services.PlayerProfile playerProfile);
+        Parlis.Client.Services.PlayerProfile Login(Parlis.Client.Services.PlayerProfile playerProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/Login", ReplyAction="http://tempuri.org/IPlayerProfileManagement/LoginResponse")]
-        System.Threading.Tasks.Task<bool> LoginAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+        System.Threading.Tasks.Task<Parlis.Client.Services.PlayerProfile> LoginAsync(Parlis.Client.Services.PlayerProfile playerProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerResponse")]
         bool RegisterPlayer(Parlis.Client.Services.Player player);
@@ -450,11 +450,11 @@ namespace Parlis.Client.Services {
             return base.Channel.GetPlayerAsync(playerProfile);
         }
         
-        public bool Login(Parlis.Client.Services.PlayerProfile playerProfile) {
+        public Parlis.Client.Services.PlayerProfile Login(Parlis.Client.Services.PlayerProfile playerProfile) {
             return base.Channel.Login(playerProfile);
         }
         
-        public System.Threading.Tasks.Task<bool> LoginAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+        public System.Threading.Tasks.Task<Parlis.Client.Services.PlayerProfile> LoginAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
             return base.Channel.LoginAsync(playerProfile);
         }
         
