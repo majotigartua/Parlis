@@ -14,13 +14,13 @@ namespace Parlis.Client.Views
         public ConfirmPlayerProfileWindow()
         {
             InitializeComponent();
+            CodeTextBox.Focus();
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
         public void ConfigureWindow(PlayerProfile playerProfile)
         {
             this.playerProfile = playerProfile;
-            code = Utilities.GenerateRandomCode();
             SendMail();
         }
 
@@ -28,6 +28,7 @@ namespace Parlis.Client.Views
         {
             string title = Properties.Resources.CONFIRM_PLAYER_PROFILE_WINDOW_TITLE;
             string message = Properties.Resources.CODE_EMAIL_ADDRESS_LABEL;
+            code = Utilities.GenerateRandomCode();
             try
             {
                 if (!playerProfileManagementClient.SendMail(playerProfile, title, message, code))
@@ -44,6 +45,7 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            playerProfileManagementClient.Close();
             Close();
         }
 
@@ -71,12 +73,21 @@ namespace Parlis.Client.Views
         private void VerifyPlayerProfile()
         {
             playerProfile.IsVerified = true;
-            if (playerProfileManagementClient.UpdatePlayerProfile(playerProfile))
+            try
             {
-                MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
-                playerProfileManagementClient.Close();
+                if (playerProfileManagementClient.UpdatePlayerProfile(playerProfile))
+                {
+                    playerProfileManagementClient.Close();
+                    MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
 
-            } else
+                }
+                else
+                {
+                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                        Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
+                }
+            }
+            catch (EndpointNotFoundException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);

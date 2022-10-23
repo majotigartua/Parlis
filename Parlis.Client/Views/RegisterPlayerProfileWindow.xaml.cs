@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using Parlis.Client.Resources;
 using Parlis.Client.Services;
+using System;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +18,7 @@ namespace Parlis.Client.Views
         public RegisterPlayerProfileWindow()
         {
             InitializeComponent();
+            NameTextBox.Focus();
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
@@ -30,7 +32,7 @@ namespace Parlis.Client.Views
             openFileDialog.ShowDialog();
             if (!openFileDialog.FileName.Equals(null))
             {
-                ProfilePicture.Source = new BitmapImage(new System.Uri(openFileDialog.FileName));
+                ProfilePicture.Source = new BitmapImage(new Uri(openFileDialog.FileName));
             }
         }
 
@@ -95,7 +97,6 @@ namespace Parlis.Client.Views
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
-                Close();
             }
         }
 
@@ -107,13 +108,13 @@ namespace Parlis.Client.Views
                 PaternalSurname = PaternalSurnameTextBox.Text,
                 MaternalSurname = MaternalSurnameTextBox.Text,
                 EmailAddress = EmailAddressTextBox.Text,
-                PlayerProfile = playerProfile
+                PlayerProfileUsername = playerProfile.Username,
             };
             try
             {
                 if (!playerProfileManagementClient.CheckPlayerExistence(player))
                 {
-                    if (playerProfileManagementClient.RegisterPlayer(player))
+                    if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile) && playerProfileManagementClient.RegisterPlayer(player))
                     {
                         MessageBoxResult messageBoxResult = MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE
                             + " " + Properties.Resources.CONFIRM_PLAYER_PROFILE_LABEL, "", MessageBoxButton.OKCancel);

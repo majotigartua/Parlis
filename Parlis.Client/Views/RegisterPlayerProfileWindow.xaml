@@ -9,20 +9,20 @@
     <Viewbox Margin="20" Stretch="Fill" StretchDirection="Both">
         <Grid>
             <Label Content="{x:Static p:Resources.REGISTER_PLAYER_PROFILE_WINDOW_TITLE}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36"/>
-            <Label Content="{x:Static p:Resources.NAME_LABEL}" HorizontalAlignment="Left" Margin="40,140,0,0" VerticalAlignment="Top"/>
-            <Label Content="{x:Static p:Resources.PATERNAL_SURNAME_LABEL}" HorizontalAlignment="Left" Margin="40,190,0,0" VerticalAlignment="Top"/>
-            <Label Content="{x:Static p:Resources.MATERNAL_SURNAME_LABEL}" HorizontalAlignment="Left" Margin="40,245,0,0" VerticalAlignment="Top"/>
-            <Label Content="{x:Static p:Resources.USERNAME_LABEL}" HorizontalAlignment="Left" Margin="40,295,0,0" VerticalAlignment="Top"/>
-            <Label Content="{x:Static p:Resources.PASSWORD_LABEL}" HorizontalAlignment="Left" Margin="310,295,0,0" VerticalAlignment="Top"/>
-            <Label Content="{x:Static p:Resources.EMAIL_ADDRESS_LABEL}" HorizontalAlignment="Left" Margin="40,344,0,0" VerticalAlignment="Top"/>
+            <Label Content="{x:Static p:Resources.NAME_LABEL}" HorizontalAlignment="Left" Margin="30,140,0,0" VerticalAlignment="Top"/>
+            <Label Content="{x:Static p:Resources.PATERNAL_SURNAME_LABEL}" HorizontalAlignment="Left" Margin="30,190,0,0" VerticalAlignment="Top"/>
+            <Label Content="{x:Static p:Resources.MATERNAL_SURNAME_LABEL}" HorizontalAlignment="Left" Margin="30,245,0,0" VerticalAlignment="Top"/>
+            <Label Content="{x:Static p:Resources.USERNAME_LABEL}" HorizontalAlignment="Left" Margin="30,295,0,0" VerticalAlignment="Top"/>
+            <Label Content="{x:Static p:Resources.PASSWORD_LABEL}" HorizontalAlignment="Left" Margin="320,295,0,0" VerticalAlignment="Top"/>
+            <Label Content="{x:Static p:Resources.EMAIL_ADDRESS_LABEL}" HorizontalAlignment="Left" Margin="30,344,0,0" VerticalAlignment="Top"/>
             <TextBlock Text="{x:Static p:Resources.PASSWORD_INSTRUCTION_LABEL}" HorizontalAlignment="Center" Margin="0,75,0,0" VerticalAlignment="Top" Width="336" Height="35" TextWrapping="Wrap" TextAlignment="Center"/>
             <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="115,145,0,0" VerticalAlignment="Top" Width="150"/>
-            <TextBox x:Name="PaternalSurnameTextBox" HorizontalAlignment="Left" Margin="180,194,0,0" VerticalAlignment="Top" Width="150"/>
-            <TextBox x:Name="MaternalSurnameTextBox" HorizontalAlignment="Left" Margin="180,250,0,0" VerticalAlignment="Top" Width="150"/>
-            <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="145,300,0,0" VerticalAlignment="Top" Width="150"/>
-            <TextBox x:Name="EmailAddressTextBox" HorizontalAlignment="Left" Margin="172,348,0,0" VerticalAlignment="Top" Width="200"/>
-            <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="390,300,0,0" VerticalAlignment="Top" Width="150"/>
-            <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="115" Margin="402,145,0,0" VerticalAlignment="Top" Width="116" Source="/Resources/Images/DefaultProfilePicture.png" MouseDown="ProfilePictureMouseDown" Stretch="UniformToFill"/>
+            <TextBox x:Name="PaternalSurnameTextBox" HorizontalAlignment="Left" Margin="160,194,0,0" VerticalAlignment="Top" Width="150"/>
+            <TextBox x:Name="MaternalSurnameTextBox" HorizontalAlignment="Left" Margin="160,250,0,0" VerticalAlignment="Top" Width="150"/>
+            <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="160,300,0,0" VerticalAlignment="Top" Width="150"/>
+            <TextBox x:Name="EmailAddressTextBox" HorizontalAlignment="Left" Margin="160,348,0,0" VerticalAlignment="Top" Width="200"/>
+            <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="400,300,0,0" VerticalAlignment="Top" Width="150"/>
+            <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="115" Margin="410,145,0,0" VerticalAlignment="Top" Width="116" Source="/Resources/Images/DefaultProfilePicture.png" MouseDown="ProfilePictureMouseDown" Stretch="UniformToFill"/>
             <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" Width="80" Click="AcceptButtonClick"/>
             <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="480,400,0,0" VerticalAlignment="Top" Width="80" Click="CancelButtonClick"/>
         </Grid>

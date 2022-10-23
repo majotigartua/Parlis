@@ -153,6 +153,9 @@
   <data name="DELETE_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Eliminar perfil de jugador</value>
   </data>
+  <data name="DELETE_PLAYER_PROFILE_LABEL" xml:space="preserve">
+    <value>¿Deseas eliminar el perfil de jugador?</value>
+  </data>
   <data name="EDIT_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Editar perfil de jugador.</value>
   </data>

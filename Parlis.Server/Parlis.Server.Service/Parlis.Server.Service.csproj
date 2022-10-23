@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,15 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMatchManagement.cs" />
-    <Compile Include="IPlayerProfileManagement.cs" />
+    <Compile Include="Data\Match.cs" />
+    <Compile Include="Data\Player.cs" />
+    <Compile Include="Data\PlayerProfile.cs" />
+    <Compile Include="Services\IMatchManagement.cs" />
+    <Compile Include="Services\IPlayerProfileManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Parlis.Server.DataAccess\Parlis.Server.DataAccess.csproj">
-      <Project>{58205547-0ed0-4807-9e16-cd31d541644c}</Project>
-      <Name>Parlis.Server.DataAccess</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

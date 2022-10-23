@@ -1,5 +1,4 @@
 ﻿using Parlis.Client.Services;
-using System;
 using System.Windows;
 
 namespace Parlis.Client.Views
@@ -34,21 +33,22 @@ namespace Parlis.Client.Views
             joinMatchWindow.Show();
         }
 
-        private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void PlayerProfileMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var editPlayerProfileWindow = new EditPlayerProfileWindow();
             editPlayerProfileWindow.ConfigureWindow(playerProfile);
-            editPlayerProfileWindow.ShowDialog();
+            Close();
+            editPlayerProfileWindow.Show();
         }
 
-        private void ExitPictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var loginWindow = new LoginWindow();
             Close();
             loginWindow.Show();
         }
 
-        private void SettingsPictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void SettingsMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var gameConfigurationWindow = new GameConfigurationWindow();
             gameConfigurationWindow.ConfigureView(playerProfile);

@@ -169,6 +169,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Do you want to delete the player profile?.
+        /// </summary>
+        public static string DELETE_PLAYER_PROFILE_LABEL {
+            get {
+                return ResourceManager.GetString("DELETE_PLAYER_PROFILE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Edit player profile..
         /// </summary>
         public static string EDIT_PLAYER_PROFILE_WINDOW_TITLE {

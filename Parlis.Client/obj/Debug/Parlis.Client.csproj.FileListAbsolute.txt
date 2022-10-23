@@ -83,3 +83,6 @@ C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.pdb
 C:\Users\majot\Desktop\Parlis\Parlis.Client\bin\Debug\es-Mx\Parlis.Client.resources.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\es-Mx\Parlis.Client.resources.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.Properties.Resources.es-Mx.resources
+C:\Users\majot\Desktop\Parlis\Parlis.Client\bin\Debug\pt-BR\Parlis.Client.resources.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.Properties.Resources.pt-BR.resources
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\pt-BR\Parlis.Client.resources.dll
