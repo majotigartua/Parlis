@@ -10,7 +10,7 @@ namespace Parlis.Server.Service.Data
         [DataMember]
         public string Password { get; set; }
         [DataMember]
-        public bool? IsVerified { get; set; }
+        public bool IsVerified { get; set; }
 
         public PlayerProfile()
         {
