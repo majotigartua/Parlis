@@ -132,7 +132,7 @@ namespace Parlis.Client.Services {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<bool> IsVerifiedField;
+        private bool IsVerifiedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
@@ -151,7 +151,7 @@ namespace Parlis.Client.Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<bool> IsVerified {
+        public bool IsVerified {
             get {
                 return this.IsVerifiedField;
             }
