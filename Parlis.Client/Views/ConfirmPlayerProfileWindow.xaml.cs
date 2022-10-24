@@ -1,5 +1,6 @@
 ﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
+using System;
 using System.ServiceModel;
 using System.Windows;
 
@@ -53,11 +54,20 @@ namespace Parlis.Client.Views
         {
             if (!string.IsNullOrEmpty(CodeTextBox.Text))
             {
-                if (int.Parse(CodeTextBox.Text).Equals(code))
+                try
                 {
-                    VerifyPlayerProfile();
+                    if (int.Parse(CodeTextBox.Text).Equals(code))
+                    {
+                        VerifyPlayerProfile();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
+                            Properties.Resources.INVALID_DATA_WINDOW_TITLE);
+                        CodeTextBox.Clear();
+                    }
                 }
-                else
+                catch (FormatException)
                 {
                     MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
                         Properties.Resources.INVALID_DATA_WINDOW_TITLE);
