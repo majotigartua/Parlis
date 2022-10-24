@@ -13,7 +13,7 @@ namespace Parlis.Client.Resources
             using (SHA256 sha256Hash = SHA256.Create())
             {
                 byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder hashedPassword = new StringBuilder();
+                var hashedPassword = new StringBuilder();
                 for (int i = 0; i < (bytes.Length); i++)
                 {
                     hashedPassword.Append(bytes[i].ToString("x2"));
@@ -24,7 +24,7 @@ namespace Parlis.Client.Resources
 
         public static int GenerateRandomCode()
         {
-            Random random = new Random();
+            var random = new Random();
             return random.Next(100000, 999999);
         }
 

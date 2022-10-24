@@ -5,7 +5,6 @@ using System;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace Parlis.Client.Views
@@ -14,6 +13,7 @@ namespace Parlis.Client.Views
     {
         private PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
+        private string profilePicturePath;
 
         public RegisterPlayerProfileWindow()
         {
@@ -22,17 +22,18 @@ namespace Parlis.Client.Views
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
-        private void ProfilePictureMouseDown(object sender, MouseButtonEventArgs e)
+        private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var openFileDialog = new OpenFileDialog
             {
                 Title = Properties.Resources.PROFILE_PICTURE_WINDOW_TITLE,
-                Filter = "Joint Photographic Experts Group (JPEG)|*.jpeg;*.jpg"
+                Filter = "Joint Photographic Experts Group (JPEG)|*.jpg"
             };
             openFileDialog.ShowDialog();
-            if (!openFileDialog.FileName.Equals(null))
+            profilePicturePath = openFileDialog.FileName;
+            if (!string.IsNullOrEmpty(profilePicturePath))
             {
-                ProfilePicture.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+                ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
             }
         }
 

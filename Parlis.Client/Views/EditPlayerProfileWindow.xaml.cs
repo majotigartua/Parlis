@@ -13,6 +13,7 @@ namespace Parlis.Client.Views
         private PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
         private Player player;
+        private string profilePicturePath;
 
         public EditPlayerProfileWindow()
         {
@@ -44,7 +45,6 @@ namespace Parlis.Client.Views
                 PaternalSurnameTextBox.Text = player.PaternalSurname;
                 MaternalSurnameTextBox.Text = player.MaternalSurname;
                 UsernameTextBox.Text = playerProfile.Username;
-                PasswordBox.Password = playerProfile.Password.Substring(0, 8);
             }
             catch (EndpointNotFoundException)
             {
@@ -58,12 +58,13 @@ namespace Parlis.Client.Views
             var openFileDialog = new OpenFileDialog
             {
                 Title = Properties.Resources.PROFILE_PICTURE_WINDOW_TITLE,
-                Filter = "Joint Photographic Experts Group (JPEG)|*.jpeg;*.jpg"
+                Filter = "Joint Photographic Experts Group (JPEG)|*.jpg"
             };
             openFileDialog.ShowDialog();
-            if (!openFileDialog.FileName.Equals(null))
+            profilePicturePath = openFileDialog.FileName;
+            if (!string.IsNullOrEmpty(profilePicturePath))
             {
-                ProfilePicture.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+                ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
             }
         }
 
@@ -74,7 +75,7 @@ namespace Parlis.Client.Views
                 try
                 {
                     string password = PasswordBox.Password.ToString();
-                    if (password.Equals(playerProfile.Password.Substring(0, 8)))
+                    if (string.IsNullOrEmpty(password))
                     {
                         UpdatePlayer();
                     }
@@ -112,8 +113,7 @@ namespace Parlis.Client.Views
         {
             return string.IsNullOrEmpty(NameTextBox.Text) ||
                 string.IsNullOrEmpty(PaternalSurnameTextBox.Text) ||
-                string.IsNullOrEmpty(MaternalSurnameTextBox.Text) ||
-                string.IsNullOrEmpty(PasswordBox.Password.ToString());
+                string.IsNullOrEmpty(MaternalSurnameTextBox.Text);
         }
 
         private void UpdatePlayer()
