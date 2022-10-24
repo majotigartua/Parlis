@@ -24,17 +24,8 @@ namespace Parlis.Client.Views
 
         private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog
-            {
-                Title = Properties.Resources.PROFILE_PICTURE_WINDOW_TITLE,
-                Filter = "Joint Photographic Experts Group (JPEG)|*.jpg"
-            };
-            openFileDialog.ShowDialog();
-            profilePicturePath = openFileDialog.FileName;
-            if (!string.IsNullOrEmpty(profilePicturePath))
-            {
-                ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
-            }
+            profilePicturePath = Utilities.SelectProfilePicture();
+            ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
@@ -82,7 +73,7 @@ namespace Parlis.Client.Views
             };
             try
             {
-                if (!playerProfileManagementClient.CheckPlayerProfileExistence(playerProfile))
+                if (!playerProfileManagementClient.CheckPlayerProfileExistence(username))
                 {
                     UsernameTextBox.IsEnabled = false;
                     RegisterPlayer();
@@ -113,7 +104,7 @@ namespace Parlis.Client.Views
             };
             try
             {
-                if (!playerProfileManagementClient.CheckPlayerExistence(player))
+                if (!playerProfileManagementClient.CheckPlayerExistence(player.EmailAddress))
                 {
                     if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile) && playerProfileManagementClient.RegisterPlayer(player))
                     {

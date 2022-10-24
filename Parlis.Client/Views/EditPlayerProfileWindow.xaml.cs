@@ -36,10 +36,9 @@ namespace Parlis.Client.Views
 
         public void ConfigureData()
         {
-            ProfilePicture.Source = new BitmapImage(new Uri("/Resources/Images/ProfilePictures/" + playerProfile.Username + ".jpg", UriKind.Relative));
             try
             {
-                player = playerProfileManagementClient.GetPlayer(playerProfile);
+                player = playerProfileManagementClient.GetPlayer(playerProfile.Username);
                 EmailAddressTextBox.Text = player.EmailAddress;
                 NameTextBox.Text = player.Name;
                 PaternalSurnameTextBox.Text = player.PaternalSurname;
@@ -55,17 +54,8 @@ namespace Parlis.Client.Views
 
         private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog
-            {
-                Title = Properties.Resources.PROFILE_PICTURE_WINDOW_TITLE,
-                Filter = "Joint Photographic Experts Group (JPEG)|*.jpg"
-            };
-            openFileDialog.ShowDialog();
-            profilePicturePath = openFileDialog.FileName;
-            if (!string.IsNullOrEmpty(profilePicturePath))
-            {
-                ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
-            }
+            profilePicturePath = Utilities.SelectProfilePicture();
+            ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
@@ -74,25 +64,20 @@ namespace Parlis.Client.Views
             {
                 try
                 {
-                    string password = PasswordBox.Password.ToString();
-                    if (string.IsNullOrEmpty(password))
-                    {
-                        UpdatePlayer();
-                    }
-                    else
+                    var password = PasswordBox.Password.ToString();
+                    if (!string.IsNullOrEmpty(password))
                     {
                         if (Utilities.ValidatePasswordFormat(password))
                         {
                             password = Utilities.ComputeSHA256Hash(password);
                             UpdatePlayerProfile(password);
-                            UpdatePlayer();
-                        }
-                        else
+                        } else
                         {
                             MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
                                 Properties.Resources.INVALID_DATA_WINDOW_TITLE);
                         }
                     }
+                    UpdatePlayer();
                     playerProfileManagementClient.Close();
                     GoToMainMenu();
                 }
@@ -116,6 +101,16 @@ namespace Parlis.Client.Views
                 string.IsNullOrEmpty(MaternalSurnameTextBox.Text);
         }
 
+        private void UpdatePlayerProfile(string password)
+        {
+            playerProfile.Password = password;
+            if (!playerProfileManagementClient.UpdatePlayerProfile(playerProfile))
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
+            }
+        }
+
         private void UpdatePlayer()
         {
             player.Name = NameTextBox.Text;
@@ -129,16 +124,6 @@ namespace Parlis.Client.Views
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                    Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
-            }
-        }
-
-        private void UpdatePlayerProfile(string password)
-        {
-            playerProfile.Password = password;
-            if (!playerProfileManagementClient.UpdatePlayerProfile(playerProfile))
-            {
-                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                    Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
             }
         }
 
@@ -157,7 +142,7 @@ namespace Parlis.Client.Views
             {
                 try
                 {
-                    if (playerProfileManagementClient.DeletePlayer(player) && playerProfileManagementClient.DeletePlayerProfile(playerProfile))
+                    if (playerProfileManagementClient.DeletePlayer(player.EmailAddress) && playerProfileManagementClient.DeletePlayerProfile(playerProfile.Username))
                     {
                         playerProfileManagementClient.Close();
                         GoToLogin();

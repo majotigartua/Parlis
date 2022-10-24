@@ -1,5 +1,7 @@
 ﻿using Parlis.Server.DataAccess;
 using Parlis.Server.Service.Services;
+using Player = Parlis.Server.Service.Data.Player;
+using PlayerProfile = Parlis.Server.Service.Data.PlayerProfile;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,48 +10,43 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.ServiceModel;
-using Player = Parlis.Server.Service.Data.Player;
-using PlayerProfile = Parlis.Server.Service.Data.PlayerProfile;
 
 namespace Parlis.Server.BusinessLogic
 { 
     public partial class Service : IPlayerProfileManagement
     {
-        public bool CheckPlayerExistence(Player player)
+        public bool CheckPlayerExistence(string emailAddress)
         {
-            string emailAddress = player.EmailAddress;
             using (ParlisContext context = new ParlisContext())
             {
-                int numberOfPlayers = (from players in context.Players
-                                     where players.EmailAddress.Equals(emailAddress)
-                                     select players).Count();
+                int numberOfPlayers = (from player in context.Players
+                                     where player.EmailAddress.Equals(emailAddress)
+                                     select player).Count();
                 return numberOfPlayers > 0;
             }
         }
 
-        public bool CheckPlayerProfileExistence(PlayerProfile playerProfile)
+        public bool CheckPlayerProfileExistence(string username)
         {
-            string username = playerProfile.Username;
             using (ParlisContext context = new ParlisContext())
             {
-                int numberOfPlayerProfiles = (from playerProfiles in context.PlayerProfiles
-                                            where playerProfiles.Username.Equals(username)
-                                            select playerProfiles).Count();
+                int numberOfPlayerProfiles = (from playerProfile in context.PlayerProfiles
+                                            where playerProfile.Username.Equals(username)
+                                            select playerProfile).Count();
                 return numberOfPlayerProfiles > 0;
             }
         }
 
-        public bool DeletePlayer(Player player)
+        public bool DeletePlayer(string emailAddress)
         {
-            string emailAddress = player.EmailAddress;
             using (ParlisContext context = new ParlisContext())
             {
                 try
                 {
-                    var players = (from gamer in context.Players
-                                                 where gamer.EmailAddress.Equals(emailAddress)
-                                                 select gamer).First();
-                    context.Players.Remove(players);
+                    var player = (from players in context.Players
+                                   where players.EmailAddress.Equals(emailAddress)
+                                   select players).First();
+                    context.Players.Remove(player);
                     context.SaveChanges();
                     return true;
                 }
@@ -60,17 +57,16 @@ namespace Parlis.Server.BusinessLogic
             }
         }
 
-        public bool DeletePlayerProfile(PlayerProfile playerProfile)
+        public bool DeletePlayerProfile(string username)
         {
-            string username = playerProfile.Username;
             using (ParlisContext context = new ParlisContext())
             {
                 try
                 {
-                    var playerProfiles = (from gamer in context.PlayerProfiles
-                                                               where gamer.Username.Equals(username)
-                                                               select gamer).First();
-                    context.PlayerProfiles.Remove(playerProfiles);
+                    var playerProfile = (from playerProfiles in context.PlayerProfiles
+                                          where playerProfiles.Username.Equals(username)
+                                          select playerProfiles).First();
+                    context.PlayerProfiles.Remove(playerProfile);
                     context.SaveChanges();
                     return true;
                 }
@@ -81,14 +77,13 @@ namespace Parlis.Server.BusinessLogic
             }
         }
 
-        public Player GetPlayer(PlayerProfile playerProfile)
+        public Player GetPlayer(string username)
         {
-            string username = playerProfile.Username;
             using (ParlisContext context = new ParlisContext())
             {
                 var players = (from gamer in context.Players
-                                            where gamer.PlayerProfileUsername.Equals(username)
-                                            select gamer).First();
+                               where gamer.PlayerProfileUsername.Equals(username)
+                               select gamer).First();
                 var player = new Player()
                 {
                     EmailAddress = players.EmailAddress,
@@ -171,7 +166,7 @@ namespace Parlis.Server.BusinessLogic
                 }
             }
         }
-        public bool SendMail(PlayerProfile playerProfile, string title, string message, int code)
+        public bool SendMail(string username, string title, string message, int code)
         {
             string smtpServer = ConfigurationManager.AppSettings["SmtpServer"];
             int port = int.Parse(ConfigurationManager.AppSettings["Port"]);
@@ -180,7 +175,7 @@ namespace Parlis.Server.BusinessLogic
             using (ParlisContext context = new ParlisContext())
             {
                 string addressee = (from player in context.Players
-                                       where player.PlayerProfileUsername.Equals(playerProfile.Username)
+                                       where player.PlayerProfileUsername.Equals(username)
                                        select player).First().EmailAddress;
                 try
                 {
@@ -236,8 +231,8 @@ namespace Parlis.Server.BusinessLogic
                 try
                 {
                     var playerProfiles = (from gamer in context.PlayerProfiles
-                                                    where gamer.Username.Equals(username)
-                                                    select gamer).First();
+                                          where gamer.Username.Equals(username)
+                                          select gamer).First();
                     playerProfiles.Password = playerProfile.Password;
                     playerProfiles.IsVerified = playerProfile.IsVerified;
                     context.SaveChanges();
