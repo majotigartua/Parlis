@@ -15,7 +15,7 @@ namespace Parlis.Client.Services {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Player", Namespace="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Player", Namespace="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data")]
     [System.SerializableAttribute()]
     public partial class Player : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -33,9 +33,6 @@ namespace Parlis.Client.Services {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PaternalSurnameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Parlis.Client.Services.PlayerProfile PlayerProfileField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PlayerProfileUsernameField;
@@ -103,19 +100,6 @@ namespace Parlis.Client.Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Parlis.Client.Services.PlayerProfile PlayerProfile {
-            get {
-                return this.PlayerProfileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PlayerProfileField, value) != true)) {
-                    this.PlayerProfileField = value;
-                    this.RaisePropertyChanged("PlayerProfile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string PlayerProfileUsername {
             get {
                 return this.PlayerProfileUsernameField;
@@ -140,7 +124,7 @@ namespace Parlis.Client.Services {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerProfile", Namespace="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerProfile", Namespace="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data")]
     [System.SerializableAttribute()]
     public partial class PlayerProfile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -151,13 +135,7 @@ namespace Parlis.Client.Services {
         private bool IsVerifiedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Parlis.Client.Services.Match[] MatchesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Parlis.Client.Services.Player[] PlayersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
@@ -186,19 +164,6 @@ namespace Parlis.Client.Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Parlis.Client.Services.Match[] Matches {
-            get {
-                return this.MatchesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MatchesField, value) != true)) {
-                    this.MatchesField = value;
-                    this.RaisePropertyChanged("Matches");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Password {
             get {
                 return this.PasswordField;
@@ -212,19 +177,6 @@ namespace Parlis.Client.Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Parlis.Client.Services.Player[] Players {
-            get {
-                return this.PlayersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PlayersField, value) != true)) {
-                    this.PlayersField = value;
-                    this.RaisePropertyChanged("Players");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Username {
             get {
                 return this.UsernameField;
@@ -233,99 +185,6 @@ namespace Parlis.Client.Services {
                 if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
                     this.UsernameField = value;
                     this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Match", Namespace="http://schemas.datacontract.org/2004/07/Parlis.Server.DataAccess")]
-    [System.SerializableAttribute()]
-    public partial class Match : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime DateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdMatchField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Parlis.Client.Services.PlayerProfile PlayerProfileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PlayerProfileUsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Date {
-            get {
-                return this.DateField;
-            }
-            set {
-                if ((this.DateField.Equals(value) != true)) {
-                    this.DateField = value;
-                    this.RaisePropertyChanged("Date");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdMatch {
-            get {
-                return this.IdMatchField;
-            }
-            set {
-                if ((this.IdMatchField.Equals(value) != true)) {
-                    this.IdMatchField = value;
-                    this.RaisePropertyChanged("IdMatch");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Parlis.Client.Services.PlayerProfile PlayerProfile {
-            get {
-                return this.PlayerProfileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PlayerProfileField, value) != true)) {
-                    this.PlayerProfileField = value;
-                    this.RaisePropertyChanged("PlayerProfile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PlayerProfileUsername {
-            get {
-                return this.PlayerProfileUsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PlayerProfileUsernameField, value) != true)) {
-                    this.PlayerProfileUsernameField = value;
-                    this.RaisePropertyChanged("PlayerProfileUsername");
                 }
             }
         }
@@ -356,17 +215,59 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistence", ReplyAction="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistenceResponse")]
         System.Threading.Tasks.Task<bool> CheckPlayerProfileExistenceAsync(Parlis.Client.Services.PlayerProfile playerProfile);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/Login", ReplyAction="http://tempuri.org/IPlayerProfileManagement/LoginResponse")]
-        bool Login(Parlis.Client.Services.PlayerProfile playerProfile);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/DeletePlayerResponse")]
+        bool DeletePlayer(Parlis.Client.Services.Player player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/DeletePlayerResponse")]
+        System.Threading.Tasks.Task<bool> DeletePlayerAsync(Parlis.Client.Services.Player player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/DeletePlayerProfileResponse")]
+        bool DeletePlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/DeletePlayerProfileResponse")]
+        System.Threading.Tasks.Task<bool> DeletePlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/GetPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/GetPlayerResponse")]
+        Parlis.Client.Services.Player GetPlayer(Parlis.Client.Services.PlayerProfile playerProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/GetPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/GetPlayerResponse")]
+        System.Threading.Tasks.Task<Parlis.Client.Services.Player> GetPlayerAsync(Parlis.Client.Services.PlayerProfile playerProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/Login", ReplyAction="http://tempuri.org/IPlayerProfileManagement/LoginResponse")]
-        System.Threading.Tasks.Task<bool> LoginAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+        Parlis.Client.Services.PlayerProfile Login(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/Login", ReplyAction="http://tempuri.org/IPlayerProfileManagement/LoginResponse")]
+        System.Threading.Tasks.Task<Parlis.Client.Services.PlayerProfile> LoginAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerResponse")]
         bool RegisterPlayer(Parlis.Client.Services.Player player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerResponse")]
         System.Threading.Tasks.Task<bool> RegisterPlayerAsync(Parlis.Client.Services.Player player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfileResponse")]
+        bool RegisterPlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/RegisterPlayerProfileResponse")]
+        System.Threading.Tasks.Task<bool> RegisterPlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/SendMail", ReplyAction="http://tempuri.org/IPlayerProfileManagement/SendMailResponse")]
+        bool SendMail(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/SendMail", ReplyAction="http://tempuri.org/IPlayerProfileManagement/SendMailResponse")]
+        System.Threading.Tasks.Task<bool> SendMailAsync(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerResponse")]
+        bool UpdatePlayer(Parlis.Client.Services.Player player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerResponse")]
+        System.Threading.Tasks.Task<bool> UpdatePlayerAsync(Parlis.Client.Services.Player player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfileResponse")]
+        bool UpdatePlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfileResponse")]
+        System.Threading.Tasks.Task<bool> UpdatePlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -412,12 +313,36 @@ namespace Parlis.Client.Services {
             return base.Channel.CheckPlayerProfileExistenceAsync(playerProfile);
         }
         
-        public bool Login(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.Login(playerProfile);
+        public bool DeletePlayer(Parlis.Client.Services.Player player) {
+            return base.Channel.DeletePlayer(player);
         }
         
-        public System.Threading.Tasks.Task<bool> LoginAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.LoginAsync(playerProfile);
+        public System.Threading.Tasks.Task<bool> DeletePlayerAsync(Parlis.Client.Services.Player player) {
+            return base.Channel.DeletePlayerAsync(player);
+        }
+        
+        public bool DeletePlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.DeletePlayerProfile(playerProfile);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeletePlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.DeletePlayerProfileAsync(playerProfile);
+        }
+        
+        public Parlis.Client.Services.Player GetPlayer(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.GetPlayer(playerProfile);
+        }
+        
+        public System.Threading.Tasks.Task<Parlis.Client.Services.Player> GetPlayerAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.GetPlayerAsync(playerProfile);
+        }
+        
+        public Parlis.Client.Services.PlayerProfile Login(string username, string password) {
+            return base.Channel.Login(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<Parlis.Client.Services.PlayerProfile> LoginAsync(string username, string password) {
+            return base.Channel.LoginAsync(username, password);
         }
         
         public bool RegisterPlayer(Parlis.Client.Services.Player player) {
@@ -427,16 +352,48 @@ namespace Parlis.Client.Services {
         public System.Threading.Tasks.Task<bool> RegisterPlayerAsync(Parlis.Client.Services.Player player) {
             return base.Channel.RegisterPlayerAsync(player);
         }
+        
+        public bool RegisterPlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.RegisterPlayerProfile(playerProfile);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RegisterPlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.RegisterPlayerProfileAsync(playerProfile);
+        }
+        
+        public bool SendMail(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code) {
+            return base.Channel.SendMail(playerProfile, title, message, code);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SendMailAsync(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code) {
+            return base.Channel.SendMailAsync(playerProfile, title, message, code);
+        }
+        
+        public bool UpdatePlayer(Parlis.Client.Services.Player player) {
+            return base.Channel.UpdatePlayer(player);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdatePlayerAsync(Parlis.Client.Services.Player player) {
+            return base.Channel.UpdatePlayerAsync(player);
+        }
+        
+        public bool UpdatePlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.UpdatePlayerProfile(playerProfile);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdatePlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.UpdatePlayerProfileAsync(playerProfile);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Services.IMatchManagement")]
     public interface IMatchManagement {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/Connect", ReplyAction="http://tempuri.org/IMatchManagement/ConnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/Connect")]
         void Connect(Parlis.Client.Services.PlayerProfile playerProfile);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/Connect", ReplyAction="http://tempuri.org/IMatchManagement/ConnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/Connect")]
         System.Threading.Tasks.Task ConnectAsync(Parlis.Client.Services.PlayerProfile playerProfile);
     }
     

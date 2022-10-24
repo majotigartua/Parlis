@@ -5,21 +5,22 @@ namespace Parlis.Client.Views
 {
     public partial class MainMenuWindow : Window
     {
-        private static Player _player;
+        private PlayerProfile playerProfile;
 
         public MainMenuWindow()
         {
             InitializeComponent();
         }
 
-        public void ConfigureView(Player player)
+        public void ConfigureWindow(PlayerProfile playerProfile)
         {
-            _player = player;
+            this.playerProfile = playerProfile;
         }
 
         private void CreateMatchButtonClick(object sender, RoutedEventArgs e)
         {
             var createMatchWindow = new CreateMatchWindow();
+            createMatchWindow.ConfigureView(playerProfile);
             Close();
             createMatchWindow.Show();
         }
@@ -27,26 +28,30 @@ namespace Parlis.Client.Views
         private void JoinMatchButtonClick(object sender, RoutedEventArgs e)
         {
             var joinMatchWindow = new JoinMatchWindow();
+            joinMatchWindow.ConfigureWindow(playerProfile);
             Close();
             joinMatchWindow.Show();
         }
 
-        private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void PlayerProfileMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var editPlayerProfileWindow = new EditPlayerProfileWindow();
-            editPlayerProfileWindow.ShowDialog();
+            editPlayerProfileWindow.ConfigureWindow(playerProfile);
+            Close();
+            editPlayerProfileWindow.Show();
         }
 
-        private void ExitPictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var loginWindow = new LoginWindow();
             Close();
             loginWindow.Show();
         }
 
-        private void SettingsPictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void SettingsMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var gameConfigurationWindow = new GameConfigurationWindow();
+            gameConfigurationWindow.ConfigureView(playerProfile);
             Close();
             gameConfigurationWindow.Show();
         }

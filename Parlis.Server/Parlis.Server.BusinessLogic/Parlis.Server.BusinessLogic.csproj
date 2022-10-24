@@ -42,7 +42,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -61,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Parlis.Server.DataAccess\Parlis.Server.DataAccess.csproj">
-      <Project>{58205547-0ed0-4807-9e16-cd31d541644c}</Project>
+      <Project>{03211153-ad38-42fa-97cb-b4c8f837af95}</Project>
       <Name>Parlis.Server.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Parlis.Server.Service\Parlis.Server.Service.csproj">

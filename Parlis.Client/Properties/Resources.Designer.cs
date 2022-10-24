@@ -88,6 +88,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a This is your 6-digit code: .
+        /// </summary>
+        public static string CODE_EMAIL_ADDRESS_LABEL {
+            get {
+                return ResourceManager.GetString("CODE_EMAIL_ADDRESS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Enter the 6-digit code sent to your e-mail address..
         /// </summary>
         public static string CODE_INSTRUCTION_LABEL {
@@ -160,6 +169,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Do you want to delete the player profile?.
+        /// </summary>
+        public static string DELETE_PLAYER_PROFILE_LABEL {
+            get {
+                return ResourceManager.GetString("DELETE_PLAYER_PROFILE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Edit player profile..
         /// </summary>
         public static string EDIT_PLAYER_PROFILE_WINDOW_TITLE {
@@ -192,6 +210,15 @@ namespace Parlis.Client.Properties {
         public static string ENTER_AS_GUEST_BUTTON {
             get {
                 return ResourceManager.GetString("ENTER_AS_GUEST_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter as a guest..
+        /// </summary>
+        public static string ENTER_AS_GUEST_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("ENTER_AS_GUEST_WINDOW_TITLE", resourceCulture);
             }
         }
         
@@ -385,7 +412,7 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Enter the 6-digit code sent to your e-mail address and new password..
+        ///   Busca una cadena traducida similar a Enter the 6-digit code sent to your e-mail address and a new password..
         /// </summary>
         public static string REGISTER_PASSWORD_INSTRUCTION_LABEL {
             get {

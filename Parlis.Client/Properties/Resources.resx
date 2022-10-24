@@ -126,6 +126,9 @@
   <data name="CHECK_ENTERED_INFORMATION_LABEL" xml:space="preserve">
     <value>Please check the information entered and try again.</value>
   </data>
+  <data name="CODE_EMAIL_ADDRESS_LABEL" xml:space="preserve">
+    <value>This is your 6-digit code: </value>
+  </data>
   <data name="CODE_INSTRUCTION_LABEL" xml:space="preserve">
     <value>Enter the 6-digit code sent to your e-mail address.</value>
   </data>
@@ -150,6 +153,9 @@
   <data name="DELETE_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Delete player profile</value>
   </data>
+  <data name="DELETE_PLAYER_PROFILE_LABEL" xml:space="preserve">
+    <value>Do you want to delete the player profile?</value>
+  </data>
   <data name="EDIT_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Edit player profile.</value>
   </data>
@@ -161,6 +167,9 @@
   </data>
   <data name="ENTER_AS_GUEST_BUTTON" xml:space="preserve">
     <value>Enter as a guest</value>
+  </data>
+  <data name="ENTER_AS_GUEST_WINDOW_TITLE" xml:space="preserve">
+    <value>Enter as a guest.</value>
   </data>
   <data name="EXPEL_PLAYER_WINDOW_TITLE" xml:space="preserve">
     <value>Expel player from match.</value>
@@ -229,7 +238,7 @@
     <value>The information was correctly recorded in the system.</value>
   </data>
   <data name="REGISTER_PASSWORD_INSTRUCTION_LABEL" xml:space="preserve">
-    <value>Enter the 6-digit code sent to your e-mail address and new password.</value>
+    <value>Enter the 6-digit code sent to your e-mail address and a new password.</value>
   </data>
   <data name="REGISTER_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Register player profile</value>

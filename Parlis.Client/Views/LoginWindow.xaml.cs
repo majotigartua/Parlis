@@ -7,15 +7,20 @@ namespace Parlis.Client.Views
 {
     public partial class LoginWindow : Window
     {
-        private InstanceContext _context;
-        private PlayerProfileManagementClient _playerProfileManagementClient;
-        private MatchManagementClient _matchManagementClient;
+        private PlayerProfileManagementClient playerProfileManagementClient;
+        private PlayerProfile playerProfile;
 
         public LoginWindow()
         {
             InitializeComponent();
-            _context = new InstanceContext(this);
-            _playerProfileManagementClient = new PlayerProfileManagementClient();
+            UsernameTextBox.Focus();
+            playerProfileManagementClient = new PlayerProfileManagementClient();
+        }
+
+        public void ConfigureWindow(PlayerProfile playerProfile)
+        {
+            this.playerProfile = playerProfile;
+            GoToMainMenu();
         }
 
         private void ForgottenPasswordLabelMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -40,29 +45,14 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
-        {
-            GoToMainMenu();
-        }
-
-        private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
-        {
-            var registerPlayerProfileWindow = new RegisterPlayerProfileWindow();
-            registerPlayerProfileWindow.ShowDialog();
-        }
-
         private void Login(string username, string password)
         {
-            var playerProfile = new PlayerProfile
-            {
-                Username = username,
-                Password = password,
-            };
             try
             {
-                if (_playerProfileManagementClient.Login(playerProfile))
+                playerProfile = playerProfileManagementClient.Login(username, password);
+                if (playerProfile != null)
                 {
-                    _playerProfileManagementClient.Close();
+                    playerProfileManagementClient.Close();
                     GoToMainMenu();
                 }
                 else
@@ -82,8 +72,23 @@ namespace Parlis.Client.Views
         private void GoToMainMenu()
         {
             var mainMenuWindow = new MainMenuWindow();
+            mainMenuWindow.ConfigureWindow(playerProfile);
             Close();
             mainMenuWindow.Show();
+        }
+
+        private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
+        {
+            var enterAsGuestWindow =  new EnterAsGuestWindow();
+            enterAsGuestWindow.ConfigureWindow(this);
+            enterAsGuestWindow.ShowDialog();
+
+        }
+
+        private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
+        {
+            var registerPlayerProfileWindow = new RegisterPlayerProfileWindow();
+            registerPlayerProfileWindow.ShowDialog();
         }
     }
 }

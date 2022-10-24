@@ -1,18 +1,25 @@
 ﻿using Microsoft.Win32;
 using Parlis.Client.Resources;
 using Parlis.Client.Services;
+using System;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace Parlis.Client.Views
 {
     public partial class RegisterPlayerProfileWindow : Window
     {
+        private PlayerProfileManagementClient playerProfileManagementClient;
+        private PlayerProfile playerProfile;
+
         public RegisterPlayerProfileWindow()
         {
             InitializeComponent();
+            NameTextBox.Focus();
+            playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
         private void ProfilePictureMouseDown(object sender, MouseButtonEventArgs e)
@@ -25,6 +32,7 @@ namespace Parlis.Client.Views
             openFileDialog.ShowDialog();
             if (!openFileDialog.FileName.Equals(null))
             {
+                ProfilePicture.Source = new BitmapImage(new Uri(openFileDialog.FileName));
             }
         }
 
@@ -51,11 +59,6 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
         private bool ValidateEmptyFields()
         {
             return string.IsNullOrEmpty(NameTextBox.Text) ||
@@ -70,7 +73,7 @@ namespace Parlis.Client.Views
         {
             string username = UsernameTextBox.Text.Replace(" ", "").ToLower();
             string password = Utilities.ComputeSHA256Hash(PasswordBox.Password.ToString());
-            var playerProfile = new PlayerProfile
+            playerProfile = new PlayerProfile
             {
                 Username = username,
                 Password = password,
@@ -78,12 +81,10 @@ namespace Parlis.Client.Views
             };
             try
             {
-                var playerProfileManagementClient = new PlayerProfileManagementClient();
                 if (!playerProfileManagementClient.CheckPlayerProfileExistence(playerProfile))
                 {
-                    playerProfileManagementClient.Close();
                     UsernameTextBox.IsEnabled = false;
-                    RegisterPlayer(playerProfile);
+                    RegisterPlayer();
                 }
                 else
                 {
@@ -99,7 +100,7 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void RegisterPlayer(PlayerProfile playerProfile)
+        private void RegisterPlayer()
         {
             var player = new Player
             {
@@ -107,25 +108,21 @@ namespace Parlis.Client.Views
                 PaternalSurname = PaternalSurnameTextBox.Text,
                 MaternalSurname = MaternalSurnameTextBox.Text,
                 EmailAddress = EmailAddressTextBox.Text,
-                PlayerProfile = playerProfile
+                PlayerProfileUsername = playerProfile.Username,
             };
             try
             {
-                var playerProfileManagementClient = new PlayerProfileManagementClient();
                 if (!playerProfileManagementClient.CheckPlayerExistence(player))
                 {
-                    if (playerProfileManagementClient.RegisterPlayer(player))
+                    if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile) && playerProfileManagementClient.RegisterPlayer(player))
                     {
-                        playerProfileManagementClient.Close();
                         MessageBoxResult messageBoxResult = MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE
-                            + " "
-                            + Properties.Resources.CONFIRM_PLAYER_PROFILE_LABEL, "",
-                            MessageBoxButton.OKCancel);
+                            + " " + Properties.Resources.CONFIRM_PLAYER_PROFILE_LABEL, "", MessageBoxButton.OKCancel);
                         if (messageBoxResult == MessageBoxResult.OK)
                         {
+                            playerProfileManagementClient.Close();
                             GoToConfirmPlayerProfileWindow();
                         }
-                        Close();
                     }
                     else
                     {
@@ -145,12 +142,19 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
+            Close();
         }
 
         private void GoToConfirmPlayerProfileWindow()
         {
             var confirmPlayerProfileWindow = new ConfirmPlayerProfileWindow();
+            confirmPlayerProfileWindow.ConfigureWindow(playerProfile);
             confirmPlayerProfileWindow.Show();
+        }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
