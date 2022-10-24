@@ -1,4 +1,5 @@
 ﻿using Parlis.Client.Services;
+using System;
 using System.ServiceModel;
 using System.Windows;
 
@@ -6,17 +7,13 @@ namespace Parlis.Client.Views
 {
     public partial class EnterAsGuestWindow : Window
     {
-        private LoginWindow loginWindow;
+        private PlayerProfileManagementClient playerProfileManagementClient;
 
         public EnterAsGuestWindow()
         {
             InitializeComponent();
             UsernameTextBox.Focus();
-        }
-
-        public void ConfigureWindow(LoginWindow loginWindow)
-        {
-            this.loginWindow = loginWindow;
+            playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
@@ -42,13 +39,10 @@ namespace Parlis.Client.Views
             };
             try
             {
-                var playerProfileManagementClient = new PlayerProfileManagementClient();
-                if (!playerProfileManagementClient.CheckPlayerProfileExistence(playerProfile))
+                if (!playerProfileManagementClient.CheckPlayerProfileExistence(playerProfile.Username))
                 {
                     if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile)) {
-                        playerProfileManagementClient.Close();
-                        loginWindow.ConfigureWindow(playerProfile);
-                        Close();
+                        GoToMainMenu(playerProfile);
                     } else
                     {
                         MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
@@ -67,6 +61,14 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
+        }
+
+        private void GoToMainMenu(PlayerProfile playerProfile)
+        {
+            var mainMenuWindow = new MainMenuWindow();
+            mainMenuWindow.ConfigureWindow(playerProfile);
+            Close();
+            mainMenuWindow.Show();
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)

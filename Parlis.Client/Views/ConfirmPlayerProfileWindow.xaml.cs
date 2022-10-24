@@ -32,7 +32,7 @@ namespace Parlis.Client.Views
             code = Utilities.GenerateRandomCode();
             try
             {
-                if (!playerProfileManagementClient.SendMail(playerProfile, title, message, code))
+                if (!playerProfileManagementClient.SendMail(playerProfile.Username, title, message, code))
                 {
                     MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                         Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
@@ -58,7 +58,7 @@ namespace Parlis.Client.Views
                 {
                     if (int.Parse(CodeTextBox.Text).Equals(code))
                     {
-                        VerifyPlayerProfile();
+                        UpdatePlayerProfile();
                     }
                     else
                     {
@@ -80,7 +80,7 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void VerifyPlayerProfile()
+        private void UpdatePlayerProfile()
         {
             playerProfile.IsVerified = true;
             try
@@ -89,7 +89,6 @@ namespace Parlis.Client.Views
                 {
                     playerProfileManagementClient.Close();
                     MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
-
                 }
                 else
                 {

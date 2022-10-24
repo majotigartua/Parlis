@@ -204,34 +204,34 @@ namespace Parlis.Client.Services {
     public interface IPlayerProfileManagement {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerExistence", ReplyAction="http://tempuri.org/IPlayerProfileManagement/CheckPlayerExistenceResponse")]
-        bool CheckPlayerExistence(Parlis.Client.Services.Player player);
+        bool CheckPlayerExistence(string emailAddress);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerExistence", ReplyAction="http://tempuri.org/IPlayerProfileManagement/CheckPlayerExistenceResponse")]
-        System.Threading.Tasks.Task<bool> CheckPlayerExistenceAsync(Parlis.Client.Services.Player player);
+        System.Threading.Tasks.Task<bool> CheckPlayerExistenceAsync(string emailAddress);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistence", ReplyAction="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistenceResponse")]
-        bool CheckPlayerProfileExistence(Parlis.Client.Services.PlayerProfile playerProfile);
+        bool CheckPlayerProfileExistence(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistence", ReplyAction="http://tempuri.org/IPlayerProfileManagement/CheckPlayerProfileExistenceResponse")]
-        System.Threading.Tasks.Task<bool> CheckPlayerProfileExistenceAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+        System.Threading.Tasks.Task<bool> CheckPlayerProfileExistenceAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/DeletePlayerResponse")]
-        bool DeletePlayer(Parlis.Client.Services.Player player);
+        bool DeletePlayer(string emailAddress);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/DeletePlayerResponse")]
-        System.Threading.Tasks.Task<bool> DeletePlayerAsync(Parlis.Client.Services.Player player);
+        System.Threading.Tasks.Task<bool> DeletePlayerAsync(string emailAddress);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/DeletePlayerProfileResponse")]
-        bool DeletePlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile);
+        bool DeletePlayerProfile(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/DeletePlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/DeletePlayerProfileResponse")]
-        System.Threading.Tasks.Task<bool> DeletePlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+        System.Threading.Tasks.Task<bool> DeletePlayerProfileAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/GetPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/GetPlayerResponse")]
-        Parlis.Client.Services.Player GetPlayer(Parlis.Client.Services.PlayerProfile playerProfile);
+        Parlis.Client.Services.Player GetPlayer(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/GetPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/GetPlayerResponse")]
-        System.Threading.Tasks.Task<Parlis.Client.Services.Player> GetPlayerAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+        System.Threading.Tasks.Task<Parlis.Client.Services.Player> GetPlayerAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/Login", ReplyAction="http://tempuri.org/IPlayerProfileManagement/LoginResponse")]
         Parlis.Client.Services.PlayerProfile Login(string username, string password);
@@ -252,10 +252,10 @@ namespace Parlis.Client.Services {
         System.Threading.Tasks.Task<bool> RegisterPlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/SendMail", ReplyAction="http://tempuri.org/IPlayerProfileManagement/SendMailResponse")]
-        bool SendMail(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code);
+        bool SendMail(string username, string title, string message, int code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/SendMail", ReplyAction="http://tempuri.org/IPlayerProfileManagement/SendMailResponse")]
-        System.Threading.Tasks.Task<bool> SendMailAsync(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code);
+        System.Threading.Tasks.Task<bool> SendMailAsync(string username, string title, string message, int code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerResponse")]
         bool UpdatePlayer(Parlis.Client.Services.Player player);
@@ -297,44 +297,44 @@ namespace Parlis.Client.Services {
                 base(binding, remoteAddress) {
         }
         
-        public bool CheckPlayerExistence(Parlis.Client.Services.Player player) {
-            return base.Channel.CheckPlayerExistence(player);
+        public bool CheckPlayerExistence(string emailAddress) {
+            return base.Channel.CheckPlayerExistence(emailAddress);
         }
         
-        public System.Threading.Tasks.Task<bool> CheckPlayerExistenceAsync(Parlis.Client.Services.Player player) {
-            return base.Channel.CheckPlayerExistenceAsync(player);
+        public System.Threading.Tasks.Task<bool> CheckPlayerExistenceAsync(string emailAddress) {
+            return base.Channel.CheckPlayerExistenceAsync(emailAddress);
         }
         
-        public bool CheckPlayerProfileExistence(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.CheckPlayerProfileExistence(playerProfile);
+        public bool CheckPlayerProfileExistence(string username) {
+            return base.Channel.CheckPlayerProfileExistence(username);
         }
         
-        public System.Threading.Tasks.Task<bool> CheckPlayerProfileExistenceAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.CheckPlayerProfileExistenceAsync(playerProfile);
+        public System.Threading.Tasks.Task<bool> CheckPlayerProfileExistenceAsync(string username) {
+            return base.Channel.CheckPlayerProfileExistenceAsync(username);
         }
         
-        public bool DeletePlayer(Parlis.Client.Services.Player player) {
-            return base.Channel.DeletePlayer(player);
+        public bool DeletePlayer(string emailAddress) {
+            return base.Channel.DeletePlayer(emailAddress);
         }
         
-        public System.Threading.Tasks.Task<bool> DeletePlayerAsync(Parlis.Client.Services.Player player) {
-            return base.Channel.DeletePlayerAsync(player);
+        public System.Threading.Tasks.Task<bool> DeletePlayerAsync(string emailAddress) {
+            return base.Channel.DeletePlayerAsync(emailAddress);
         }
         
-        public bool DeletePlayerProfile(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.DeletePlayerProfile(playerProfile);
+        public bool DeletePlayerProfile(string username) {
+            return base.Channel.DeletePlayerProfile(username);
         }
         
-        public System.Threading.Tasks.Task<bool> DeletePlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.DeletePlayerProfileAsync(playerProfile);
+        public System.Threading.Tasks.Task<bool> DeletePlayerProfileAsync(string username) {
+            return base.Channel.DeletePlayerProfileAsync(username);
         }
         
-        public Parlis.Client.Services.Player GetPlayer(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.GetPlayer(playerProfile);
+        public Parlis.Client.Services.Player GetPlayer(string username) {
+            return base.Channel.GetPlayer(username);
         }
         
-        public System.Threading.Tasks.Task<Parlis.Client.Services.Player> GetPlayerAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.GetPlayerAsync(playerProfile);
+        public System.Threading.Tasks.Task<Parlis.Client.Services.Player> GetPlayerAsync(string username) {
+            return base.Channel.GetPlayerAsync(username);
         }
         
         public Parlis.Client.Services.PlayerProfile Login(string username, string password) {
@@ -361,12 +361,12 @@ namespace Parlis.Client.Services {
             return base.Channel.RegisterPlayerProfileAsync(playerProfile);
         }
         
-        public bool SendMail(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code) {
-            return base.Channel.SendMail(playerProfile, title, message, code);
+        public bool SendMail(string username, string title, string message, int code) {
+            return base.Channel.SendMail(username, title, message, code);
         }
         
-        public System.Threading.Tasks.Task<bool> SendMailAsync(Parlis.Client.Services.PlayerProfile playerProfile, string title, string message, int code) {
-            return base.Channel.SendMailAsync(playerProfile, title, message, code);
+        public System.Threading.Tasks.Task<bool> SendMailAsync(string username, string title, string message, int code) {
+            return base.Channel.SendMailAsync(username, title, message, code);
         }
         
         public bool UpdatePlayer(Parlis.Client.Services.Player player) {

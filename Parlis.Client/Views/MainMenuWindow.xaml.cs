@@ -41,13 +41,6 @@ namespace Parlis.Client.Views
             editPlayerProfileWindow.Show();
         }
 
-        private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            var loginWindow = new LoginWindow();
-            Close();
-            loginWindow.Show();
-        }
-
         private void SettingsMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var gameConfigurationWindow = new GameConfigurationWindow();
@@ -56,5 +49,11 @@ namespace Parlis.Client.Views
             gameConfigurationWindow.Show();
         }
 
+        private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var loginWindow = new LoginWindow();
+            Close();
+            loginWindow.Show();
+        }
     }
 }

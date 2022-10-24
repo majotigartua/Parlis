@@ -7,19 +7,19 @@ namespace Parlis.Server.Service.Services
     public interface IPlayerProfileManagement
     {
         [OperationContract]
-        bool CheckPlayerExistence(Player player);
+        bool CheckPlayerExistence(string emailAddress);
 
         [OperationContract]
-        bool CheckPlayerProfileExistence(PlayerProfile playerProfile);
+        bool CheckPlayerProfileExistence(string username);
 
         [OperationContract]
-        bool DeletePlayer(Player player);
+        bool DeletePlayer(string emailAddress);
 
         [OperationContract]
-        bool DeletePlayerProfile(PlayerProfile playerProfile);
+        bool DeletePlayerProfile(string username);
 
         [OperationContract]
-        Player GetPlayer(PlayerProfile playerProfile);
+        Player GetPlayer(string username);
 
         [OperationContract]
         PlayerProfile Login(string username, string password);
@@ -31,7 +31,7 @@ namespace Parlis.Server.Service.Services
         bool RegisterPlayerProfile(PlayerProfile playerProfile);
 
         [OperationContract]
-        bool SendMail(PlayerProfile playerProfile, string title, string message, int code);
+        bool SendMail(string username, string title, string message, int code);
 
         [OperationContract]
         bool UpdatePlayer(Player player);
