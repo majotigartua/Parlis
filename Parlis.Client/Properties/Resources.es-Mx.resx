@@ -219,12 +219,6 @@
   <data name="PASSWORD_LABEL" xml:space="preserve">
     <value>Contraseña:</value>
   </data>
-  <data name="PASSWORD_RECOVERY_INSTRUCTION_LABEL" xml:space="preserve">
-    <value>Ingresa tu correo electrónico para buscar tu perfil de jugador y enviarte un código de recuperación de la contraseña.</value>
-  </data>
-  <data name="PASSWORD_RECOVERY_WINDOW_TITLE" xml:space="preserve">
-    <value>Recuperar contraseña del perfil de jugador.</value>
-  </data>
   <data name="PATERNAL_SURNAME_LABEL" xml:space="preserve">
     <value>Apellido paterno:</value>
   </data>
@@ -234,11 +228,14 @@
   <data name="PROFILE_PICTURE_WINDOW_TITLE" xml:space="preserve">
     <value>Selecciona la foto de perfil del jugador.</value>
   </data>
+  <data name="RECOVER_PASSWORD_INSTRUCTION_LABEL" xml:space="preserve">
+    <value>Ingresa tu correo electrónico para buscar tu perfil de jugador y enviarte un código de recuperación de la contraseña.</value>
+  </data>
+  <data name="RECOVER_PASSWORD_WINDOW_TITLE" xml:space="preserve">
+    <value>Recuperar contraseña del perfil de jugador.</value>
+  </data>
   <data name="REGISTERED_INFORMATION_WINDOW_TITLE" xml:space="preserve">
     <value>La información se registró correctamente en el sistema.</value>
-  </data>
-  <data name="REGISTER_PASSWORD_INSTRUCTION_LABEL" xml:space="preserve">
-    <value>Ingresa el código de 6 dígitos enviado a tu correo electrónico y una nueva contraseña.</value>
   </data>
   <data name="REGISTER_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Registrar perfil de jugador</value>
@@ -251,6 +248,9 @@
   </data>
   <data name="TRY_AGAIN_LATER_LABEL" xml:space="preserve">
     <value>Por favor, inténtalo más tarde.</value>
+  </data>
+  <data name="UPDATE_PASSWORD_INSTRUCTION_LABEL" xml:space="preserve">
+    <value>Ingresa el código de 6 dígitos enviado a tu correo electrónico y una nueva contraseña.</value>
   </data>
   <data name="USERNAME_LABEL" xml:space="preserve">
     <value>Nombre de usuario:</value>

@@ -196,15 +196,6 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a The e-mail address does not match any player profile..
-        /// </summary>
-        public static string EMAIL_ADDRESS_NOT_FOUND_LABEL {
-            get {
-                return ResourceManager.GetString("EMAIL_ADDRESS_NOT_FOUND_LABEL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a No field can be left empty..
         /// </summary>
         public static string EMPTY_FIELDS_WINDOW_TITLE {
@@ -376,24 +367,6 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Enter your e-mail address to search your player profile and send to you the password recovery code..
-        /// </summary>
-        public static string PASSWORD_RECOVERY_INSTRUCTION_LABEL {
-            get {
-                return ResourceManager.GetString("PASSWORD_RECOVERY_INSTRUCTION_LABEL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Recover player profile password..
-        /// </summary>
-        public static string PASSWORD_RECOVERY_WINDOW_TITLE {
-            get {
-                return ResourceManager.GetString("PASSWORD_RECOVERY_WINDOW_TITLE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Paternal surname:.
         /// </summary>
         public static string PATERNAL_SURNAME_LABEL {
@@ -421,11 +394,20 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Enter the 6-digit code sent to your e-mail address and a new password..
+        ///   Busca una cadena traducida similar a Enter your e-mail address to search your player profile and send to you the password recovery code..
         /// </summary>
-        public static string REGISTER_PASSWORD_INSTRUCTION_LABEL {
+        public static string RECOVER_PASSWORD_INSTRUCTION_LABEL {
             get {
-                return ResourceManager.GetString("REGISTER_PASSWORD_INSTRUCTION_LABEL", resourceCulture);
+                return ResourceManager.GetString("RECOVER_PASSWORD_INSTRUCTION_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Recover player profile password..
+        /// </summary>
+        public static string RECOVER_PASSWORD_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("RECOVER_PASSWORD_WINDOW_TITLE", resourceCulture);
             }
         }
         
@@ -471,6 +453,15 @@ namespace Parlis.Client.Properties {
         public static string TRY_AGAIN_LATER_LABEL {
             get {
                 return ResourceManager.GetString("TRY_AGAIN_LATER_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter the 6-digit code sent to your e-mail address and a new password..
+        /// </summary>
+        public static string UPDATE_PASSWORD_INSTRUCTION_LABEL {
+            get {
+                return ResourceManager.GetString("UPDATE_PASSWORD_INSTRUCTION_LABEL", resourceCulture);
             }
         }
         

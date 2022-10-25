@@ -162,9 +162,6 @@
   <data name="EMAIL_ADDRESS_LABEL" xml:space="preserve">
     <value>E-mail address:</value>
   </data>
-  <data name="EMAIL_ADDRESS_NOT_FOUND_LABEL" xml:space="preserve">
-    <value>The e-mail address does not match any player profile.</value>
-  </data>
   <data name="EMPTY_FIELDS_WINDOW_TITLE" xml:space="preserve">
     <value>No field can be left empty.</value>
   </data>
@@ -222,12 +219,6 @@
   <data name="PASSWORD_LABEL" xml:space="preserve">
     <value>Password:</value>
   </data>
-  <data name="PASSWORD_RECOVERY_INSTRUCTION_LABEL" xml:space="preserve">
-    <value>Enter your e-mail address to search your player profile and send to you the password recovery code.</value>
-  </data>
-  <data name="PASSWORD_RECOVERY_WINDOW_TITLE" xml:space="preserve">
-    <value>Recover player profile password.</value>
-  </data>
   <data name="PATERNAL_SURNAME_LABEL" xml:space="preserve">
     <value>Paternal surname:</value>
   </data>
@@ -237,11 +228,14 @@
   <data name="PROFILE_PICTURE_WINDOW_TITLE" xml:space="preserve">
     <value>Select the profile picture of the player.</value>
   </data>
+  <data name="RECOVER_PASSWORD_INSTRUCTION_LABEL" xml:space="preserve">
+    <value>Enter your e-mail address to search your player profile and send to you the password recovery code.</value>
+  </data>
+  <data name="RECOVER_PASSWORD_WINDOW_TITLE" xml:space="preserve">
+    <value>Recover player profile password.</value>
+  </data>
   <data name="REGISTERED_INFORMATION_WINDOW_TITLE" xml:space="preserve">
     <value>The information was correctly recorded in the system.</value>
-  </data>
-  <data name="REGISTER_PASSWORD_INSTRUCTION_LABEL" xml:space="preserve">
-    <value>Enter the 6-digit code sent to your e-mail address and a new password.</value>
   </data>
   <data name="REGISTER_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Register player profile</value>
@@ -254,6 +248,9 @@
   </data>
   <data name="TRY_AGAIN_LATER_LABEL" xml:space="preserve">
     <value>Please try again later.</value>
+  </data>
+  <data name="UPDATE_PASSWORD_INSTRUCTION_LABEL" xml:space="preserve">
+    <value>Enter the 6-digit code sent to your e-mail address and a new password.</value>
   </data>
   <data name="USERNAME_LABEL" xml:space="preserve">
     <value>Username:</value>
