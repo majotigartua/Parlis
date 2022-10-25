@@ -22,6 +22,9 @@ namespace Parlis.Server.Service.Services
         Player GetPlayer(string username);
 
         [OperationContract]
+        PlayerProfile GetPlayerProfile(string emailAddress);
+
+        [OperationContract]
         PlayerProfile Login(string username, string password);
 
         [OperationContract]

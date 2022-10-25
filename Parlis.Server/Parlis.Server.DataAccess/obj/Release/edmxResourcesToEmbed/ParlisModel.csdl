@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ParlisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Match">
+    <Key>
+      <PropertyRef Name="IdMatch" />
+    </Key>
+    <Property Name="IdMatch" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PlayerProfileUsername" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PlayerProfile" Relationship="Self.FK_Match_PlayerProfile" FromRole="Match" ToRole="PlayerProfile" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="EmailAddress" />
+    </Key>
+    <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PaternalSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaternalSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PlayerProfileUsername" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PlayerProfile" Relationship="Self.FK_Player_PlayerProfile" FromRole="Player" ToRole="PlayerProfile" />
+  </EntityType>
+  <EntityType Name="PlayerProfile">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsVerified" Type="Boolean" />
+    <NavigationProperty Name="Matches" Relationship="Self.FK_Match_PlayerProfile" FromRole="PlayerProfile" ToRole="Match" />
+    <NavigationProperty Name="Players" Relationship="Self.FK_Player_PlayerProfile" FromRole="PlayerProfile" ToRole="Player" />
+  </EntityType>
+  <Association Name="FK_Match_PlayerProfile">
+    <End Role="PlayerProfile" Type="ParlisModel.PlayerProfile" Multiplicity="0..1" />
+    <End Role="Match" Type="ParlisModel.Match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlayerProfile">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="Match">
+        <PropertyRef Name="PlayerProfileUsername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Player_PlayerProfile">
+    <End Role="PlayerProfile" Type="ParlisModel.PlayerProfile" Multiplicity="0..1" />
+    <End Role="Player" Type="ParlisModel.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlayerProfile">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="PlayerProfileUsername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ParlisContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Matches" EntityType="ParlisModel.Match" />
+    <EntitySet Name="Players" EntityType="ParlisModel.Player" />
+    <EntitySet Name="PlayerProfiles" EntityType="ParlisModel.PlayerProfile" />
+    <AssociationSet Name="FK_Match_PlayerProfile" Association="Self.FK_Match_PlayerProfile">
+      <End Role="PlayerProfile" EntitySet="PlayerProfiles" />
+      <End Role="Match" EntitySet="Matches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Player_PlayerProfile" Association="Self.FK_Player_PlayerProfile">
+      <End Role="PlayerProfile" EntitySet="PlayerProfiles" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

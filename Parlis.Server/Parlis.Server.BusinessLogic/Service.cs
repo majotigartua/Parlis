@@ -95,6 +95,28 @@ namespace Parlis.Server.BusinessLogic
             }
         }
 
+        public PlayerProfile GetPlayerProfile(string emailAddress)
+        {
+            using (ParlisContext context = new ParlisContext())
+            {
+                var players = (from gamer in context.Players
+                               where gamer.EmailAddress.Equals(emailAddress)
+                               select gamer).First();
+
+                var playerProfiles = (from gamer in context.PlayerProfiles
+                               where gamer.Username.Equals(players.PlayerProfileUsername)
+                               select gamer).First();
+
+                var playerProfile = new PlayerProfile()
+                {
+                    Username = playerProfiles.Username,
+                    Password = playerProfiles.Password,
+                };
+
+                return playerProfile;
+            }
+        }
+
         public PlayerProfile Login(string username, string password)
         {
             using (ParlisContext context = new ParlisContext())
