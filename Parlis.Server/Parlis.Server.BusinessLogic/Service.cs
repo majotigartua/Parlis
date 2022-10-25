@@ -166,7 +166,7 @@ namespace Parlis.Server.BusinessLogic
                 }
             }
         }
-        public bool SendMail(string username, string title, string message, int code)
+        public void SendMail(string username, string title, string message, int code)
         {
             string smtpServer = ConfigurationManager.AppSettings["SmtpServer"];
             int port = int.Parse(ConfigurationManager.AppSettings["Port"]);
@@ -175,30 +175,23 @@ namespace Parlis.Server.BusinessLogic
             using (ParlisContext context = new ParlisContext())
             {
                 string addressee = (from player in context.Players
-                                       where player.PlayerProfileUsername.Equals(username)
-                                       select player).First().EmailAddress;
-                try
+                                    where player.PlayerProfileUsername.Equals(username)
+                                    select player).First().EmailAddress;
+                var mailMessage = new MailMessage(emailAddress, addressee, title, (message + " " + code + "."))
                 {
-                    var mailMessage = new MailMessage(emailAddress, addressee, title, (message + " " + code + "."))
-                    {
-                        IsBodyHtml = true
-                    };
-                    var smtpClient = new SmtpClient(smtpServer)
-                    {
-                        Port = port,
-                        UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential(emailAddress, password),
-                        EnableSsl = true,
-                    };
-                    smtpClient.Send(mailMessage);
-                    return true;
-                }
-                catch (Exception)
+                    IsBodyHtml = true
+                };
+                var smtpClient = new SmtpClient(smtpServer)
                 {
-                    return false;
-                }
+                    Port = port,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(emailAddress, password),
+                    EnableSsl = true,
+                };
+                smtpClient.Send(mailMessage);
             }
         }
+        
 
         public bool UpdatePlayer(Player player)
         {

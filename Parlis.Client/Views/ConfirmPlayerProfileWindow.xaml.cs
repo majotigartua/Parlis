@@ -8,7 +8,7 @@ namespace Parlis.Client.Views
 {
     public partial class ConfirmPlayerProfileWindow : Window
     {
-        private PlayerProfileManagementClient playerProfileManagementClient;
+        private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
         private int code;
 
@@ -32,11 +32,7 @@ namespace Parlis.Client.Views
             code = Utilities.GenerateRandomCode();
             try
             {
-                if (!playerProfileManagementClient.SendMail(playerProfile.Username, title, message, code))
-                {
-                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                        Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
-                }
+                playerProfileManagementClient.SendMail(playerProfile.Username, title, message, code);
             } catch (EndpointNotFoundException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,

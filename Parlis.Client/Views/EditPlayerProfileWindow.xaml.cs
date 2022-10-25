@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using Parlis.Client.Resources;
+﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
 using System;
 using System.ServiceModel;
@@ -10,7 +9,7 @@ namespace Parlis.Client.Views
 {
     public partial class EditPlayerProfileWindow : Window
     {
-        private PlayerProfileManagementClient playerProfileManagementClient;
+        private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
         private Player player;
         private string profilePicturePath;
@@ -55,7 +54,10 @@ namespace Parlis.Client.Views
         private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             profilePicturePath = Utilities.SelectProfilePicture();
-            ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
+            if (!string.IsNullOrEmpty(profilePicturePath))
+            {
+                ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
+            }
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
@@ -65,21 +67,24 @@ namespace Parlis.Client.Views
                 try
                 {
                     var password = PasswordBox.Password.ToString();
-                    if (!string.IsNullOrEmpty(password))
+                    if (string.IsNullOrEmpty(password))
+                    {
+                        UpdatePlayer();
+                    }
+                    else
                     {
                         if (Utilities.ValidatePasswordFormat(password))
                         {
                             password = Utilities.ComputeSHA256Hash(password);
                             UpdatePlayerProfile(password);
-                        } else
+                            UpdatePlayer();
+                        }
+                        else
                         {
                             MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
                                 Properties.Resources.INVALID_DATA_WINDOW_TITLE);
                         }
                     }
-                    UpdatePlayer();
-                    playerProfileManagementClient.Close();
-                    GoToMainMenu();
                 }
                 catch (EndpointNotFoundException)
                 {
@@ -119,6 +124,8 @@ namespace Parlis.Client.Views
             if (playerProfileManagementClient.UpdatePlayer(player))
             {
                 MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
+                playerProfileManagementClient.Close();
+                GoToMainMenu();
             }
             else
             {
@@ -178,6 +185,7 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            playerProfileManagementClient.Close();
             GoToMainMenu();
         }
     }

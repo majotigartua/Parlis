@@ -7,7 +7,7 @@ namespace Parlis.Client.Views
 {
     public partial class EnterAsGuestWindow : Window
     {
-        private PlayerProfileManagementClient playerProfileManagementClient;
+        private readonly PlayerProfileManagementClient playerProfileManagementClient;
 
         public EnterAsGuestWindow()
         {
@@ -21,7 +21,7 @@ namespace Parlis.Client.Views
             var username = UsernameTextBox.Text;
             if (!string.IsNullOrEmpty(username))
             {
-                RegisterPlayerProfile();
+                RegisterPlayerProfile(username);
             }
             else
             {
@@ -30,9 +30,9 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void RegisterPlayerProfile()
+        private void RegisterPlayerProfile(string username)
         {
-            string username = UsernameTextBox.Text.Replace(" ", "").ToLower();
+            username = username.Replace(" ", "").ToLower();
             var playerProfile = new PlayerProfile
             {
                 Username = username,
@@ -41,9 +41,12 @@ namespace Parlis.Client.Views
             {
                 if (!playerProfileManagementClient.CheckPlayerProfileExistence(playerProfile.Username))
                 {
-                    if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile)) {
+                    if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile))
+                    {
+                        playerProfileManagementClient.Close();
                         GoToMainMenu(playerProfile);
-                    } else
+                    }
+                    else
                     {
                         MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                             Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
@@ -73,6 +76,7 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            playerProfileManagementClient.Close();
             Close();
         }
     }

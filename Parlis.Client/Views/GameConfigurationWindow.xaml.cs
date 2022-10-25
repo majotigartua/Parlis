@@ -6,6 +6,7 @@ namespace Parlis.Client.Views
     public partial class GameConfigurationWindow : Window
     {
         private PlayerProfile playerProfile;
+        private string language;
 
         public GameConfigurationWindow()
         {
@@ -24,22 +25,23 @@ namespace Parlis.Client.Views
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(language);
             GoToMainMenu();
         }
 
         private void EsMXFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-MX");
+            language = "es-MX";
         }
 
         private void EnUSFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("");
+            language = "";
         }
 
         private void PtBRFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pt-BR");
+            language = "pt-BR";
         }
 
         private void GoToMainMenu()
