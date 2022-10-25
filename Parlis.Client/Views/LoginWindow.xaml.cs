@@ -7,7 +7,7 @@ namespace Parlis.Client.Views
 {
     public partial class LoginWindow : Window
     {
-        private PlayerProfileManagementClient playerProfileManagementClient;
+        private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
 
         public LoginWindow()
@@ -75,7 +75,6 @@ namespace Parlis.Client.Views
         {
             var enterAsGuestWindow =  new EnterAsGuestWindow();
             enterAsGuestWindow.ShowDialog();
-
         }
 
         private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)

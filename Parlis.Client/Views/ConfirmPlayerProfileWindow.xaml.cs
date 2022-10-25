@@ -8,7 +8,7 @@ namespace Parlis.Client.Views
 {
     public partial class ConfirmPlayerProfileWindow : Window
     {
-        private PlayerProfileManagementClient playerProfileManagementClient;
+        private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
         private int code;
 

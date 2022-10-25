@@ -175,8 +175,8 @@ namespace Parlis.Server.BusinessLogic
             using (ParlisContext context = new ParlisContext())
             {
                 string addressee = (from player in context.Players
-                                       where player.PlayerProfileUsername.Equals(username)
-                                       select player).First().EmailAddress;
+                                    where player.PlayerProfileUsername.Equals(username)
+                                    select player).First().EmailAddress;
                 try
                 {
                     var mailMessage = new MailMessage(emailAddress, addressee, title, (message + " " + code + "."))
@@ -199,6 +199,7 @@ namespace Parlis.Server.BusinessLogic
                 }
             }
         }
+        
 
         public bool UpdatePlayer(Player player)
         {
