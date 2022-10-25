@@ -35,7 +35,7 @@ namespace Parlis.Client.Views
             username = username.Replace(" ", "").ToLower();
             try
             {
-                if (!playerProfileManagementClient.CheckPlayerProfileExistence(playerProfile.Username))
+                if (!playerProfileManagementClient.CheckPlayerProfileExistence(username))
                 {
                     var playerProfile = new PlayerProfile {
                         Username = username,
