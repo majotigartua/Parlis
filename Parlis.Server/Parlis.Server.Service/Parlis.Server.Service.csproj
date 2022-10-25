@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Match.cs" />
+    <Compile Include="Data\Message.cs" />
     <Compile Include="Data\Player.cs" />
     <Compile Include="Data\PlayerProfile.cs" />
     <Compile Include="Services\IMatchManagement.cs" />
