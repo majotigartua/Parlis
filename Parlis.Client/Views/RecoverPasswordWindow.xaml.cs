@@ -21,6 +21,7 @@ namespace Parlis.Client.Views
         public void ConfigureWindow(PlayerProfile playerProfile)
         {
             this.playerProfile = playerProfile;
+            code = Utilities.GenerateRandomCode();
             SendMail();
         }
 
@@ -28,7 +29,6 @@ namespace Parlis.Client.Views
         {
             string title = Properties.Resources.RECOVER_PASSWORD_WINDOW_TITLE;
             string message = Properties.Resources.CODE_EMAIL_ADDRESS_LABEL;
-            code = Utilities.GenerateRandomCode();
             try
             {
                 if (!playerProfileManagementClient.SendMail(playerProfile.Username, title, message, code))
@@ -93,6 +93,7 @@ namespace Parlis.Client.Views
                 {
                     playerProfileManagementClient.Close();
                     MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
+                    Close();
                 }
                 else
                 {
@@ -105,7 +106,6 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
-            Close();
         }
     }
 }

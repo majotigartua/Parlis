@@ -18,8 +18,6 @@ namespace Parlis.Client.Views
         {
             InitializeComponent();
             NameTextBox.Focus();
-            UsernameTextBox.IsEnabled = false;
-            EmailAddressTextBox.IsEnabled = false;
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
@@ -64,9 +62,9 @@ namespace Parlis.Client.Views
         {
             if (!ValidateEmptyFields())
             {
+                var password = PasswordBox.Password.ToString();
                 try
                 {
-                    var password = PasswordBox.Password.ToString();
                     if (string.IsNullOrEmpty(password))
                     {
                         UpdatePlayer();
@@ -179,8 +177,17 @@ namespace Parlis.Client.Views
         {
             ConfirmPlayerProfileButton.IsEnabled = false;
             var confirmPlayerProfileWindow = new ConfirmPlayerProfileWindow();
-            confirmPlayerProfileWindow.ConfigureWindow(playerProfile);
-            confirmPlayerProfileWindow.ShowDialog();
+            try
+            {
+                confirmPlayerProfileWindow.ConfigureWindow(playerProfile);
+                confirmPlayerProfileWindow.ShowDialog();
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
+
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)

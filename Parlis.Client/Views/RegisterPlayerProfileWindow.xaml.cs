@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using Parlis.Client.Resources;
+﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
 using System;
 using System.ServiceModel;
@@ -33,10 +32,10 @@ namespace Parlis.Client.Views
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
-            var password = PasswordBox.Password.ToString();
-            var emailAddress = EmailAddressTextBox.Text;
             if (!ValidateEmptyFields())
             {
+                var password = PasswordBox.Password.ToString();
+                var emailAddress = EmailAddressTextBox.Text;
                 if (Utilities.ValidatePasswordFormat(password) && Utilities.ValidateEmailAddressFormat(emailAddress))
                 {
                     try
@@ -116,6 +115,10 @@ namespace Parlis.Client.Views
                         playerProfileManagementClient.Close();
                         GoToConfirmPlayerProfileWindow();
                     }
+                    else
+                    {
+                        Close();
+                    }
                 }
                 else
                 {
@@ -134,8 +137,16 @@ namespace Parlis.Client.Views
         private void GoToConfirmPlayerProfileWindow()
         {
             var confirmPlayerProfileWindow = new ConfirmPlayerProfileWindow();
-            confirmPlayerProfileWindow.ConfigureWindow(playerProfile);
-            confirmPlayerProfileWindow.Show();
+            try { 
+            
+                confirmPlayerProfileWindow.ConfigureWindow(playerProfile);
+                confirmPlayerProfileWindow.Show();
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)

@@ -1,5 +1,4 @@
 ﻿using Parlis.Client.Services;
-using System;
 using System.ServiceModel;
 using System.Windows;
 

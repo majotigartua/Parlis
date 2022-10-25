@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Parlis.Server.Service.Data
 {
@@ -11,15 +6,12 @@ namespace Parlis.Server.Service.Data
     public class Message
     {
         [DataMember]
-        public int IdMessage { get; set; }
-
-        [DataMember]
         public string Body { get; set; }
-
         [DataMember]
-        public PlayerProfile Sender { get; set; }
+        public string PlayerProfileUsername { get; set; }
 
-        [DataMember]
-        public PlayerProfile Receiver { get; set; }
+        public Message()
+        {
+        }
     }
 }
