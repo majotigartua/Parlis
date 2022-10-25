@@ -196,6 +196,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The e-mail address does not match any player profile..
+        /// </summary>
+        public static string EMAIL_ADDRESS_NOT_FOUND_LABEL {
+            get {
+                return ResourceManager.GetString("EMAIL_ADDRESS_NOT_FOUND_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a No field can be left empty..
         /// </summary>
         public static string EMPTY_FIELDS_WINDOW_TITLE {

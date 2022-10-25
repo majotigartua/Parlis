@@ -95,6 +95,12 @@
   <wsdl:message name="IPlayerProfileManagement_GetPlayer_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerResponse" />
   </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_GetPlayerProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerProfile" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerProfileManagement_GetPlayerProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerProfileResponse" />
+  </wsdl:message>
   <wsdl:message name="IPlayerProfileManagement_Login_InputMessage">
     <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
@@ -154,6 +160,10 @@
     <wsdl:operation name="GetPlayer">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/GetPlayer" message="tns:IPlayerProfileManagement_GetPlayer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/GetPlayerResponse" message="tns:IPlayerProfileManagement_GetPlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerProfile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/GetPlayerProfile" message="tns:IPlayerProfileManagement_GetPlayerProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/GetPlayerProfileResponse" message="tns:IPlayerProfileManagement_GetPlayerProfile_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/Login" message="tns:IPlayerProfileManagement_Login_InputMessage" />
@@ -233,6 +243,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetPlayerProfile">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/GetPlayerProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Login">
       <soap12:operation soapAction="http://tempuri.org/IPlayerProfileManagement/Login" style="document" />
       <wsdl:input>
@@ -304,7 +323,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/PlayerProfileManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
+          <Upn>HUAWEID14\sebtr</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -313,7 +332,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/MatchManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
+          <Upn>HUAWEID14\sebtr</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

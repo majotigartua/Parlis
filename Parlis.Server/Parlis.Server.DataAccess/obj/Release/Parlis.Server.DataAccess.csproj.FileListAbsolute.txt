@@ -1,0 +1,12 @@
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\Parlis.Server.DataAccess.dll.config
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\Parlis.Server.DataAccess.dll
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\Parlis.Server.DataAccess.pdb
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\EntityFramework.dll
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\EntityFramework.xml
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Release\Parlis.Server.DataAccess.csproj.AssemblyReference.cache
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Release\Parlis.Server.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Release\Parlis.Server.DataAccess.csproj.CopyComplete
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Release\Parlis.Server.DataAccess.dll
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Release\Parlis.Server.DataAccess.pdb

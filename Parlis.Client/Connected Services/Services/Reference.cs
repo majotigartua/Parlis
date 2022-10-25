@@ -233,6 +233,12 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/GetPlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/GetPlayerResponse")]
         System.Threading.Tasks.Task<Parlis.Client.Services.Player> GetPlayerAsync(string username);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/GetPlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/GetPlayerProfileResponse")]
+        Parlis.Client.Services.PlayerProfile GetPlayerProfile(string emailAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/GetPlayerProfile", ReplyAction="http://tempuri.org/IPlayerProfileManagement/GetPlayerProfileResponse")]
+        System.Threading.Tasks.Task<Parlis.Client.Services.PlayerProfile> GetPlayerProfileAsync(string emailAddress);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/Login", ReplyAction="http://tempuri.org/IPlayerProfileManagement/LoginResponse")]
         Parlis.Client.Services.PlayerProfile Login(string username, string password);
         
@@ -335,6 +341,14 @@ namespace Parlis.Client.Services {
         
         public System.Threading.Tasks.Task<Parlis.Client.Services.Player> GetPlayerAsync(string username) {
             return base.Channel.GetPlayerAsync(username);
+        }
+        
+        public Parlis.Client.Services.PlayerProfile GetPlayerProfile(string emailAddress) {
+            return base.Channel.GetPlayerProfile(emailAddress);
+        }
+        
+        public System.Threading.Tasks.Task<Parlis.Client.Services.PlayerProfile> GetPlayerProfileAsync(string emailAddress) {
+            return base.Channel.GetPlayerProfileAsync(emailAddress);
         }
         
         public Parlis.Client.Services.PlayerProfile Login(string username, string password) {
