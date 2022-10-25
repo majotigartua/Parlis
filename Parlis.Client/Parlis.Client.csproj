@@ -73,9 +73,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.pt-BR.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ChatWindow.xaml.cs">
-      <DependentUpon>ChatWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ConfirmPlayerProfileWindow.xaml.cs">
       <DependentUpon>ConfirmPlayerProfileWindow.xaml</DependentUpon>
     </Compile>
@@ -113,10 +110,9 @@
       <DependentUpon>RegisterPlayerProfileWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Utilities.cs" />
-    <Page Include="Views\ChatWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="Views\SendRealTimeMessageWindow.xaml.cs">
+      <DependentUpon>SendRealTimeMessageWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\ConfirmPlayerProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RegisterPlayerProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SendRealTimeMessageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -269,6 +269,11 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\MessageBalloon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ExpelPlayer.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -243,8 +243,14 @@
   <data name="REGISTER_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Register player profile.</value>
   </data>
+  <data name="SEND_INVITATION_BUTTON" xml:space="preserve">
+    <value>Send invitation</value>
+  </data>
   <data name="SEND_REAL_TIME_MESSAGE_WINDOW_TITLE" xml:space="preserve">
     <value>Send real time message.</value>
+  </data>
+  <data name="START_MATCH_BUTTON" xml:space="preserve">
+    <value>Start match.</value>
   </data>
   <data name="TRY_AGAIN_LATER_LABEL" xml:space="preserve">
     <value>Please try again later.</value>
@@ -254,5 +260,8 @@
   </data>
   <data name="USERNAME_LABEL" xml:space="preserve">
     <value>Username:</value>
+  </data>
+  <data name="WAITING_ROOM_LABEL" xml:space="preserve">
+    <value>Waiting room.</value>
   </data>
 </root>
