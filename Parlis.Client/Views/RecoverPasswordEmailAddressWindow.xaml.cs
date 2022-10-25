@@ -1,5 +1,6 @@
 ﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
+using System;
 using System.ServiceModel;
 using System.Windows;
 
@@ -51,9 +52,19 @@ namespace Parlis.Client.Views
         private void GoToRecoverPassword()
         {
             var recoverPasswordWindow = new RecoverPasswordWindow();
-            recoverPasswordWindow.ConfigureWindow(playerProfile);
-            Close();
-            recoverPasswordWindow.Show();
+            try
+            {
+                recoverPasswordWindow.ConfigureWindow(playerProfile);
+                Close();
+                recoverPasswordWindow.Show();
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+
+                recoverPasswordWindow.Close();
+            }
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
