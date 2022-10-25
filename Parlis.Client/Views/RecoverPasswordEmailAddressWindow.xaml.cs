@@ -1,5 +1,6 @@
 ﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
+using System.ServiceModel;
 using System.Windows;
 
 namespace Parlis.Client.Views
@@ -7,6 +8,7 @@ namespace Parlis.Client.Views
     public partial class RecoverPasswordEmailAddressWindow : Window
     {
         private PlayerProfileManagementClient playerProfileManagementClient;
+        private PlayerProfile playerProfile;
 
         public RecoverPasswordEmailAddressWindow()
         {
@@ -19,23 +21,24 @@ namespace Parlis.Client.Views
             var emailAddress = EmailAddressTextBox.Text;
             if (!string.IsNullOrEmpty(emailAddress))
             {
-                if (!Utilities.ValidateEmailAddressFormat(emailAddress))
+                try
                 {
-                    MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
-                        Properties.Resources.INVALID_DATA_WINDOW_TITLE);
-                }
-                else if(!playerProfileManagementClient.CheckPlayerExistence(emailAddress))
+                    if (Utilities.ValidateEmailAddressFormat(emailAddress) && playerProfileManagementClient.CheckPlayerExistence(emailAddress))
+                    {
+                        playerProfile = playerProfileManagementClient.GetPlayerProfile(emailAddress);
+                        playerProfileManagementClient.Close();
+                        GoToRecoverPassword();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
+                            Properties.Resources.INVALID_DATA_WINDOW_TITLE);
+                    }
+                } 
+                catch (EndpointNotFoundException)
                 {
-                    MessageBox.Show(Properties.Resources.EMAIL_ADDRESS_NOT_FOUND_LABEL,
-                        Properties.Resources.INVALID_DATA_WINDOW_TITLE);
-                }
-                else
-                {
-                    var recoverPasswordWindow = new RecoverPasswordWindow();
-                    Close();
-                    var playerProfile = playerProfileManagementClient.GetPlayerProfile(emailAddress);
-                    recoverPasswordWindow.ConfigureWindow(playerProfile);
-                    recoverPasswordWindow.Show();
+                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                        Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
                 }
             } 
             else
@@ -45,8 +48,17 @@ namespace Parlis.Client.Views
             }
         }
 
+        private void GoToRecoverPassword()
+        {
+            var recoverPasswordWindow = new RecoverPasswordWindow();
+            Close();
+            recoverPasswordWindow.ConfigureWindow(playerProfile);
+            recoverPasswordWindow.Show();
+        }
+
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            playerProfileManagementClient.Close();
             Close();
         }
     }
