@@ -26,7 +26,7 @@ namespace Parlis.Client.Views
 
         private void SendMail()
         {
-            string title = Properties.Resources.CONFIRM_PLAYER_PROFILE_WINDOW_TITLE;
+            string title = Properties.Resources.RECOVER_PASSWORD_WINDOW_TITLE;
             string message = Properties.Resources.CODE_EMAIL_ADDRESS_LABEL;
             code = Utilities.GenerateRandomCode();
             try
