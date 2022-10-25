@@ -99,14 +99,11 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
-                var players = (from gamer in context.Players
-                               where gamer.EmailAddress.Equals(emailAddress)
-                               select gamer).First();
-
                 var playerProfiles = (from gamer in context.PlayerProfiles
-                               where gamer.Username.Equals(players.PlayerProfileUsername)
-                               select gamer).First();
-
+                                      join player in context.Players
+                                      on gamer.Username equals player.PlayerProfileUsername
+                                      where player.EmailAddress.Equals(emailAddress)
+                                      select gamer).First();
                 var playerProfile = new PlayerProfile()
                 {
                     Username = playerProfiles.Username,
@@ -188,6 +185,7 @@ namespace Parlis.Server.BusinessLogic
                 }
             }
         }
+
         public bool SendMail(string username, string title, string message, int code)
         {
             string smtpServer = ConfigurationManager.AppSettings["SmtpServer"];

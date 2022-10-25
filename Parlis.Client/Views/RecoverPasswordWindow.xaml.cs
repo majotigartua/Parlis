@@ -21,7 +21,7 @@ namespace Parlis.Client.Views
         public void ConfigureWindow(PlayerProfile playerProfile)
         {
             this.playerProfile = playerProfile;
-            //SendMail();
+            SendMail();
         }
 
         private void SendMail()
@@ -46,24 +46,28 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            playerProfileManagementClient.Close();
             Close();
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(CodeTextBox.Text))
+            var password = PasswordBox.Password.ToString();
+            if (!string.IsNullOrEmpty(CodeTextBox.Text) && !string.IsNullOrEmpty(password))
             {
                 try
                 {
-                    if (int.Parse(CodeTextBox.Text).Equals(code))
+                    if (int.Parse(CodeTextBox.Text).Equals(code) && Utilities.ValidatePasswordFormat(password))
                     {
-                        UpdatePlayerProfile();
+                        password = Utilities.ComputeSHA256Hash(password);
+                        UpdatePlayerProfile(password);
                     }
                     else
                     {
                         MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
                             Properties.Resources.INVALID_DATA_WINDOW_TITLE);
                         CodeTextBox.Clear();
+                        PasswordBox.Clear();
                     }
                 }
                 catch (FormatException)
@@ -80,8 +84,9 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void UpdatePlayerProfile()
+        private void UpdatePlayerProfile(string password)
         {
+            playerProfile.Password = password;
             try
             {
                 if (playerProfileManagementClient.UpdatePlayerProfile(playerProfile))
