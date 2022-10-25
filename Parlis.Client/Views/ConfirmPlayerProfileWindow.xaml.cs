@@ -73,7 +73,8 @@ namespace Parlis.Client.Views
                         Properties.Resources.INVALID_DATA_WINDOW_TITLE);
                     CodeTextBox.Clear();
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
                     Properties.Resources.EMPTY_FIELDS_WINDOW_TITLE);
