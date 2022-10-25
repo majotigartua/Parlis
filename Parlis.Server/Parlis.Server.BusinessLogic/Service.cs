@@ -1,4 +1,5 @@
-﻿using Parlis.Server.DataAccess;
+﻿using Match = Parlis.Server.Service.Data.Match;
+using Parlis.Server.DataAccess;
 using Parlis.Server.Service.Services;
 using Player = Parlis.Server.Service.Data.Player;
 using PlayerProfile = Parlis.Server.Service.Data.PlayerProfile;
@@ -84,7 +85,7 @@ namespace Parlis.Server.BusinessLogic
                 var players = (from gamer in context.Players
                                where gamer.PlayerProfileUsername.Equals(username)
                                select gamer).First();
-                var player = new Player()
+                var player = new Player
                 {
                     EmailAddress = players.EmailAddress,
                     Name = players.Name,
@@ -104,7 +105,7 @@ namespace Parlis.Server.BusinessLogic
                                       on gamer.Username equals player.PlayerProfileUsername
                                       where player.EmailAddress.Equals(emailAddress)
                                       select gamer).First();
-                var playerProfile = new PlayerProfile()
+                var playerProfile = new PlayerProfile
                 {
                     Username = playerProfiles.Username,
                     Password = playerProfiles.Password,
@@ -123,7 +124,7 @@ namespace Parlis.Server.BusinessLogic
                                       select gamer).FirstOrDefault();
                 if (playerProfiles != null)
                 {
-                    var playerProfile = new PlayerProfile()
+                    var playerProfile = new PlayerProfile
                     {
                         Username = playerProfiles.Username,
                         Password = playerProfiles.Password,
@@ -142,7 +143,7 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
-                var players = new DataAccess.Player()
+                var players = new DataAccess.Player
                 {
                     EmailAddress = player.EmailAddress,
                     Name = player.Name,
@@ -167,7 +168,7 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
-                var playerProfiles = new DataAccess.PlayerProfile()
+                var playerProfiles = new DataAccess.PlayerProfile
                 {
                     Username = playerProfile.Username,
                     Password = playerProfile.Password,
@@ -267,15 +268,32 @@ namespace Parlis.Server.BusinessLogic
         }
     }
 
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public partial class Service : IMatchManagement
     {
-        public static Dictionary<PlayerProfile, IMatchManagementCallback> players = new Dictionary<PlayerProfile, IMatchManagementCallback>();
+        public static List<Match> matches = new List<Match>();
+        public static Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
+        public static Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
 
-        public void Connect(PlayerProfile playerProfile)
+        public bool CheckMatchExistence(int code)
         {
-            var connection = OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>();
-            players.Add(playerProfile, connection);
+            return (matches.Where(match => match.Code == code).Count() > 0);
+        }
+
+        public void CreateMatch(int code)
+        {
+            var match = new Match
+            {
+                Code = code,
+            };
+            matches.Add(match);
+        }
+
+        public void JoinMatch(string username, int code)
+        {
+            playerProfilesByMatch.Add(username, code);
+            var matchManagementCallback = OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>();
+            playerProfiles.Add(username, matchManagementCallback);
         }
     }
 }

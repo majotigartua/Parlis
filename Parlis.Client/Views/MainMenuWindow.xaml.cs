@@ -20,7 +20,7 @@ namespace Parlis.Client.Views
         private void CreateMatchButtonClick(object sender, RoutedEventArgs e)
         {
             var createMatchWindow = new CreateMatchWindow();
-            createMatchWindow.ConfigureView(playerProfile);
+            createMatchWindow.ConfigureWindow(playerProfile, false, 0);
             Close();
             createMatchWindow.Show();
         }

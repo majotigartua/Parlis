@@ -137,8 +137,23 @@
   <wsdl:message name="IPlayerProfileManagement_UpdatePlayerProfile_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdatePlayerProfileResponse" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_Connect_InputMessage">
-    <wsdl:part name="parameters" element="tns:Connect" />
+  <wsdl:message name="IMatchManagement_CheckMatchExistence_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMatchExistence" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManagement_CheckMatchExistence_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMatchExistenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManagement_CreateMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMatch" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManagement_CreateMatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManagement_JoinMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:JoinMatch" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManagement_JoinMatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:JoinMatchResponse" />
   </wsdl:message>
   <wsdl:portType name="IPlayerProfileManagement">
     <wsdl:operation name="CheckPlayerExistence">
@@ -191,8 +206,17 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IMatchManagement">
-    <wsdl:operation name="Connect">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/Connect" message="tns:IMatchManagement_Connect_InputMessage" />
+    <wsdl:operation name="CheckMatchExistence">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/CheckMatchExistence" message="tns:IMatchManagement_CheckMatchExistence_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/CheckMatchExistenceResponse" message="tns:IMatchManagement_CheckMatchExistence_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/CreateMatch" message="tns:IMatchManagement_CreateMatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/CreateMatchResponse" message="tns:IMatchManagement_CreateMatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="JoinMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/JoinMatch" message="tns:IMatchManagement_JoinMatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/JoinMatchResponse" message="tns:IMatchManagement_JoinMatch_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPlayerProfileManagement" type="tns:IPlayerProfileManagement">
@@ -310,11 +334,32 @@
   <wsdl:binding name="NetTcpBinding_IMatchManagement" type="tns:IMatchManagement">
     <wsp:PolicyReference URI="#NetTcpBinding_IMatchManagement_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="Connect">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/Connect" style="document" />
+    <wsdl:operation name="CheckMatchExistence">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/CheckMatchExistence" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMatch">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/CreateMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JoinMatch">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/JoinMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="Service">
@@ -323,7 +368,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/PlayerProfileManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>HUAWEID14\sebtr</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -332,7 +377,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/MatchManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>HUAWEID14\sebtr</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

@@ -7,11 +7,11 @@ namespace Parlis.Server.Service.Data
     public class Match
     {
         [DataMember]
-        public int IdMatch { get; set; }
-        [DataMember]
         public DateTime Date { get; set; }
         [DataMember]
         public string PlayerProfileUsername { get; set; }
+        [DataMember]
+        public int Code { get; set; }
 
         public Match()
         {

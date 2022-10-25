@@ -22,6 +22,7 @@ namespace Parlis.Client.Views
         public void ConfigureWindow(PlayerProfile playerProfile)
         {
             this.playerProfile = playerProfile;
+            code = Utilities.GenerateRandomCode();
             SendMail();
         }
 
@@ -29,7 +30,6 @@ namespace Parlis.Client.Views
         {
             string title = Properties.Resources.CONFIRM_PLAYER_PROFILE_WINDOW_TITLE;
             string message = Properties.Resources.CODE_EMAIL_ADDRESS_LABEL;
-            code = Utilities.GenerateRandomCode();
             try
             {
                 if (!playerProfileManagementClient.SendMail(playerProfile.Username, title, message, code))

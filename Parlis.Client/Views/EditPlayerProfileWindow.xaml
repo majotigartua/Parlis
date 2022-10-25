@@ -19,8 +19,8 @@
             <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="115,145,0,0" VerticalAlignment="Top" Width="150"/>
             <TextBox x:Name="PaternalSurnameTextBox" HorizontalAlignment="Left" Margin="160,194,0,0" VerticalAlignment="Top" Width="150"/>
             <TextBox x:Name="MaternalSurnameTextBox" HorizontalAlignment="Left" Margin="160,250,0,0" VerticalAlignment="Top" Width="150"/>
-            <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="160,300,0,0" VerticalAlignment="Top" Width="150"/>
-            <TextBox x:Name="EmailAddressTextBox" HorizontalAlignment="Left" Margin="160,348,0,0" VerticalAlignment="Top" Width="200"/>
+            <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="160,300,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+            <TextBox x:Name="EmailAddressTextBox" HorizontalAlignment="Left" Margin="160,348,0,0" VerticalAlignment="Top" Width="200" IsEnabled="False"/>
             <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="400,300,0,0" VerticalAlignment="Top" Width="150"/>
             <Image x:Name="ProfilePicture" HorizontalAlignment="Left" Height="115" Margin="410,145,0,0" VerticalAlignment="Top" Width="115" MouseDown="ProfilePictureMouseDown" Stretch="UniformToFill"/>
             <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" Width="80" Click="AcceptButtonClick"/>

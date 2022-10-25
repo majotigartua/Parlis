@@ -404,11 +404,23 @@ namespace Parlis.Client.Services {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Services.IMatchManagement")]
     public interface IMatchManagement {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/Connect")]
-        void Connect(Parlis.Client.Services.PlayerProfile playerProfile);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/CheckMatchExistence", ReplyAction="http://tempuri.org/IMatchManagement/CheckMatchExistenceResponse")]
+        bool CheckMatchExistence(int code);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/Connect")]
-        System.Threading.Tasks.Task ConnectAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/CheckMatchExistence", ReplyAction="http://tempuri.org/IMatchManagement/CheckMatchExistenceResponse")]
+        System.Threading.Tasks.Task<bool> CheckMatchExistenceAsync(int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/CreateMatch", ReplyAction="http://tempuri.org/IMatchManagement/CreateMatchResponse")]
+        void CreateMatch(int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/CreateMatch", ReplyAction="http://tempuri.org/IMatchManagement/CreateMatchResponse")]
+        System.Threading.Tasks.Task CreateMatchAsync(int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/JoinMatch", ReplyAction="http://tempuri.org/IMatchManagement/JoinMatchResponse")]
+        void JoinMatch(string username, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/JoinMatch", ReplyAction="http://tempuri.org/IMatchManagement/JoinMatchResponse")]
+        System.Threading.Tasks.Task JoinMatchAsync(string username, int code);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -438,12 +450,28 @@ namespace Parlis.Client.Services {
                 base(binding, remoteAddress) {
         }
         
-        public void Connect(Parlis.Client.Services.PlayerProfile playerProfile) {
-            base.Channel.Connect(playerProfile);
+        public bool CheckMatchExistence(int code) {
+            return base.Channel.CheckMatchExistence(code);
         }
         
-        public System.Threading.Tasks.Task ConnectAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.ConnectAsync(playerProfile);
+        public System.Threading.Tasks.Task<bool> CheckMatchExistenceAsync(int code) {
+            return base.Channel.CheckMatchExistenceAsync(code);
+        }
+        
+        public void CreateMatch(int code) {
+            base.Channel.CreateMatch(code);
+        }
+        
+        public System.Threading.Tasks.Task CreateMatchAsync(int code) {
+            return base.Channel.CreateMatchAsync(code);
+        }
+        
+        public void JoinMatch(string username, int code) {
+            base.Channel.JoinMatch(username, code);
+        }
+        
+        public System.Threading.Tasks.Task JoinMatchAsync(string username, int code) {
+            return base.Channel.JoinMatchAsync(username, code);
         }
     }
 }
