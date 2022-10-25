@@ -33,14 +33,13 @@ namespace Parlis.Client.Views
         private void RegisterPlayerProfile(string username)
         {
             username = username.Replace(" ", "").ToLower();
-            var playerProfile = new PlayerProfile
-            {
-                Username = username,
-            };
             try
             {
                 if (!playerProfileManagementClient.CheckPlayerProfileExistence(playerProfile.Username))
                 {
+                    var playerProfile = new PlayerProfile {
+                        Username = username,
+                    };
                     if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile))
                     {
                         playerProfileManagementClient.Close();
