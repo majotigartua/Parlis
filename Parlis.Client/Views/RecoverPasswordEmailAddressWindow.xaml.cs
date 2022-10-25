@@ -51,8 +51,8 @@ namespace Parlis.Client.Views
         private void GoToRecoverPassword()
         {
             var recoverPasswordWindow = new RecoverPasswordWindow();
-            Close();
             recoverPasswordWindow.ConfigureWindow(playerProfile);
+            Close();
             recoverPasswordWindow.Show();
         }
 
