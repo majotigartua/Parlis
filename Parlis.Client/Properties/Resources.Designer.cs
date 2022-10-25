@@ -439,11 +439,29 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Send invitation.
+        /// </summary>
+        public static string SEND_INVITATION_BUTTON {
+            get {
+                return ResourceManager.GetString("SEND_INVITATION_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Send real time message..
         /// </summary>
         public static string SEND_REAL_TIME_MESSAGE_WINDOW_TITLE {
             get {
                 return ResourceManager.GetString("SEND_REAL_TIME_MESSAGE_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Start match..
+        /// </summary>
+        public static string START_MATCH_BUTTON {
+            get {
+                return ResourceManager.GetString("START_MATCH_BUTTON", resourceCulture);
             }
         }
         
@@ -471,6 +489,15 @@ namespace Parlis.Client.Properties {
         public static string USERNAME_LABEL {
             get {
                 return ResourceManager.GetString("USERNAME_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Waiting room..
+        /// </summary>
+        public static string WAITING_ROOM_LABEL {
+            get {
+                return ResourceManager.GetString("WAITING_ROOM_LABEL", resourceCulture);
             }
         }
     }

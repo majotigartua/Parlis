@@ -243,8 +243,14 @@
   <data name="REGISTER_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Registrar perfil de jugador.</value>
   </data>
+  <data name="SEND_INVITATION_BUTTON" xml:space="preserve">
+    <value>Enviar invitación.</value>
+  </data>
   <data name="SEND_REAL_TIME_MESSAGE_WINDOW_TITLE" xml:space="preserve">
     <value>Enviar mensaje en tiempo real.</value>
+  </data>
+  <data name="START_MATCH_BUTTON" xml:space="preserve">
+    <value>Iniciar partida de juego.</value>
   </data>
   <data name="TRY_AGAIN_LATER_LABEL" xml:space="preserve">
     <value>Por favor, inténtalo más tarde.</value>
@@ -254,5 +260,8 @@
   </data>
   <data name="USERNAME_LABEL" xml:space="preserve">
     <value>Nombre de usuario:</value>
+  </data>
+  <data name="WAITING_ROOM_LABEL" xml:space="preserve">
+    <value>Sala de espera.</value>
   </data>
 </root>
