@@ -166,7 +166,7 @@ namespace Parlis.Server.BusinessLogic
                 }
             }
         }
-        public void SendMail(string username, string title, string message, int code)
+        public bool SendMail(string username, string title, string message, int code)
         {
             string smtpServer = ConfigurationManager.AppSettings["SmtpServer"];
             int port = int.Parse(ConfigurationManager.AppSettings["Port"]);
@@ -177,18 +177,26 @@ namespace Parlis.Server.BusinessLogic
                 string addressee = (from player in context.Players
                                     where player.PlayerProfileUsername.Equals(username)
                                     select player).First().EmailAddress;
-                var mailMessage = new MailMessage(emailAddress, addressee, title, (message + " " + code + "."))
+                try
                 {
-                    IsBodyHtml = true
-                };
-                var smtpClient = new SmtpClient(smtpServer)
+                    var mailMessage = new MailMessage(emailAddress, addressee, title, (message + " " + code + "."))
+                    {
+                        IsBodyHtml = true
+                    };
+                    var smtpClient = new SmtpClient(smtpServer)
+                    {
+                        Port = port,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(emailAddress, password),
+                        EnableSsl = true,
+                    };
+                    smtpClient.Send(mailMessage);
+                    return true;
+                }
+                catch (Exception)
                 {
-                    Port = port,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(emailAddress, password),
-                    EnableSsl = true,
-                };
-                smtpClient.Send(mailMessage);
+                    return false;
+                }
             }
         }
         

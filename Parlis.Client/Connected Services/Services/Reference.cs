@@ -252,10 +252,10 @@ namespace Parlis.Client.Services {
         System.Threading.Tasks.Task<bool> RegisterPlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/SendMail", ReplyAction="http://tempuri.org/IPlayerProfileManagement/SendMailResponse")]
-        void SendMail(string username, string title, string message, int code);
+        bool SendMail(string username, string title, string message, int code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/SendMail", ReplyAction="http://tempuri.org/IPlayerProfileManagement/SendMailResponse")]
-        System.Threading.Tasks.Task SendMailAsync(string username, string title, string message, int code);
+        System.Threading.Tasks.Task<bool> SendMailAsync(string username, string title, string message, int code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayer", ReplyAction="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerResponse")]
         bool UpdatePlayer(Parlis.Client.Services.Player player);
@@ -361,11 +361,11 @@ namespace Parlis.Client.Services {
             return base.Channel.RegisterPlayerProfileAsync(playerProfile);
         }
         
-        public void SendMail(string username, string title, string message, int code) {
-            base.Channel.SendMail(username, title, message, code);
+        public bool SendMail(string username, string title, string message, int code) {
+            return base.Channel.SendMail(username, title, message, code);
         }
         
-        public System.Threading.Tasks.Task SendMailAsync(string username, string title, string message, int code) {
+        public System.Threading.Tasks.Task<bool> SendMailAsync(string username, string title, string message, int code) {
             return base.Channel.SendMailAsync(username, title, message, code);
         }
         

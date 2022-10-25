@@ -31,7 +31,7 @@ namespace Parlis.Server.Service.Services
         bool RegisterPlayerProfile(PlayerProfile playerProfile);
 
         [OperationContract]
-        void SendMail(string username, string title, string message, int code);
+        bool SendMail(string username, string title, string message, int code);
 
         [OperationContract]
         bool UpdatePlayer(Player player);

@@ -32,7 +32,11 @@ namespace Parlis.Client.Views
             code = Utilities.GenerateRandomCode();
             try
             {
-                playerProfileManagementClient.SendMail(playerProfile.Username, title, message, code);
+                if (!playerProfileManagementClient.SendMail(playerProfile.Username, title, message, code))
+                {
+                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                        Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                }
             } catch (EndpointNotFoundException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
