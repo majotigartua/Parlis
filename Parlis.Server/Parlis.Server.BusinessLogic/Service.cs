@@ -41,11 +41,11 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
+                var player = (from players in context.Players
+                              where players.EmailAddress.Equals(emailAddress)
+                              select players).First();
                 try
                 {
-                    var player = (from players in context.Players
-                                   where players.EmailAddress.Equals(emailAddress)
-                                   select players).First();
                     context.Players.Remove(player);
                     context.SaveChanges();
                     return true;
@@ -61,11 +61,11 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
+                var playerProfile = (from playerProfiles in context.PlayerProfiles
+                                     where playerProfiles.Username.Equals(username)
+                                     select playerProfiles).First();
                 try
                 {
-                    var playerProfile = (from playerProfiles in context.PlayerProfiles
-                                          where playerProfiles.Username.Equals(username)
-                                          select playerProfiles).First();
                     context.PlayerProfiles.Remove(playerProfile);
                     context.SaveChanges();
                     return true;
@@ -206,14 +206,14 @@ namespace Parlis.Server.BusinessLogic
             var emailAddress = player.EmailAddress;
             using (ParlisContext context = new ParlisContext())
             {
+                var players = (from gamer in context.Players
+                               where gamer.EmailAddress.Equals(emailAddress)
+                               select gamer).First();
+                players.Name = player.Name;
+                players.PaternalSurname = player.PaternalSurname;
+                players.MaternalSurname = player.MaternalSurname;
                 try
                 {
-                    var players = (from gamer in context.Players
-                                      where gamer.EmailAddress.Equals(emailAddress)
-                                      select gamer).First();
-                    players.Name = player.Name;
-                    players.PaternalSurname = player.PaternalSurname;
-                    players.MaternalSurname = player.MaternalSurname;
                     context.SaveChanges();
                     return true;
                 }
@@ -229,13 +229,13 @@ namespace Parlis.Server.BusinessLogic
             var username = playerProfile.Username;
             using (ParlisContext context = new ParlisContext())
             {
+                var playerProfiles = (from gamer in context.PlayerProfiles
+                                      where gamer.Username.Equals(username)
+                                      select gamer).First();
+                playerProfiles.Password = playerProfile.Password;
+                playerProfiles.IsVerified = playerProfile.IsVerified;
                 try
                 {
-                    var playerProfiles = (from gamer in context.PlayerProfiles
-                                          where gamer.Username.Equals(username)
-                                          select gamer).First();
-                    playerProfiles.Password = playerProfile.Password;
-                    playerProfiles.IsVerified = playerProfile.IsVerified;
                     context.SaveChanges();
                     return true;
                 }
