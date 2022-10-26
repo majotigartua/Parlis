@@ -9,20 +9,20 @@
     <Viewbox Margin="20" Stretch="Fill" StretchDirection="Both">
         <Grid>
             <Label Content="{x:Static p:Resources.WAITING_ROOM_LABEL}" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="36"/>
-            <Label Content="{x:Static p:Resources.CODE_LABEL}" HorizontalAlignment="Left" Margin="180,80,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="FirstUsernameLabel" HorizontalAlignment="Left" Margin="40,220,0,0" VerticalAlignment="Top" Width="80" FontSize="10"/>
-            <Label x:Name="SecondUsernameLabel" HorizontalAlignment="Left" Margin="150,220,0,0" VerticalAlignment="Top" Width="80" FontSize="10"/>
-            <Label x:Name="ThirdUsernameLabel" HorizontalAlignment="Left" Margin="260,220,0,0" VerticalAlignment="Top" Width="80" FontSize="10"/>
-            <Label x:Name="FourthUsernameLabel" HorizontalAlignment="Left" Margin="365,220,0,0" VerticalAlignment="Top" Width="80" FontSize="10"/>
+            <Label Content="{x:Static p:Resources.CODE_LABEL}" HorizontalAlignment="Left" Margin="175,70,0,0" VerticalAlignment="Top" FontSize="18"/>
+            <Label x:Name="CodeLabel" HorizontalAlignment="Left" Margin="245,70,0,0" VerticalAlignment="Top" FontSize="18"/>
             <Label Content="{x:Static p:Resources.USERNAME_LABEL}" HorizontalAlignment="Left" Margin="50,245,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="CodeTextBox" HorizontalAlignment="Left" Margin="245,85,0,0" VerticalAlignment="Top" Width="50" IsEnabled="False" TextAlignment="Center"/>
             <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBlock x:Name="FirstUsernameTextBox" HorizontalAlignment="Left" Margin="25,220,0,0" VerticalAlignment="Top" Width="80" FontSize="10" TextAlignment="Center"/>
+            <TextBlock x:Name="SecondUsernameTextBox" HorizontalAlignment="Left" Margin="140,220,0,0" VerticalAlignment="Top" Width="80" FontSize="10" TextAlignment="Center"/>
+            <TextBlock x:Name="ThirdUsernameTextBox" HorizontalAlignment="Left" Margin="255,220,0,0" VerticalAlignment="Top" Width="80" FontSize="10" TextAlignment="Center"/>
+            <TextBlock x:Name="FourthUsernameTextBox" HorizontalAlignment="Left" Margin="370,220,0,0" VerticalAlignment="Top" Width="80" FontSize="10" TextAlignment="Center"/>
             <Image HorizontalAlignment="Left" Height="50" Margin="15,15,0,0" VerticalAlignment="Top" Width="50" Stretch="UniformToFill" Source="/Resources/Images/MessageBalloon.png" MouseDown="MessageBalloonMouseDown"/>
             <Image HorizontalAlignment="Left" Height="50" Margin="415,15,0,0" VerticalAlignment="Top" Width="50" Stretch="UniformToFill" Source="/Resources/Images/ExpelPlayer.png" MouseDown="ExpelPlayerMouseDown"/>
-            <Image x:Name="FirstProfilePicture" HorizontalAlignment="Left" Height="80" Margin="40,130,0,0" VerticalAlignment="Top" Width="80" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
-            <Image x:Name="SecondProfilePicture" HorizontalAlignment="Left" Height="80" Margin="150,130,0,0" VerticalAlignment="Top" Width="80" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
-            <Image x:Name="ThirdProfilePicture" HorizontalAlignment="Left" Height="80" Margin="260,130,0,0" VerticalAlignment="Top" Width="80" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
-            <Image x:Name="FourthProfilePicture" HorizontalAlignment="Left" Height="80" Margin="365,130,0,0" VerticalAlignment="Top" Width="80" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
+            <Image x:Name="FirstProfilePicture" HorizontalAlignment="Left" Height="100" Margin="15,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
+            <Image x:Name="SecondProfilePicture" HorizontalAlignment="Left" Height="100" Margin="130,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
+            <Image x:Name="ThirdProfilePicture" HorizontalAlignment="Left" Height="100" Margin="245,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
+            <Image x:Name="FourthProfilePicture" HorizontalAlignment="Left" Height="100" Margin="360,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
             <Button Content="{x:Static p:Resources.SEND_INVITATION_BUTTON}" HorizontalAlignment="Left" Margin="325,249,0,0" VerticalAlignment="Top" Width="120" Click="SendInvitationButtonClick"/>
             <Button Content="{x:Static p:Resources.START_MATCH_BUTTON}" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Width="150" Click="StartMatchButtonClick"/>
             <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="400,310,0,0" VerticalAlignment="Top" Width="80" Click="CancelButtonClick"/>

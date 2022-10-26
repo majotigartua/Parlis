@@ -401,7 +401,7 @@ namespace Parlis.Client.Services {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Services.IMatchManagement")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Services.IMatchManagement", CallbackContract=typeof(Parlis.Client.Services.IMatchManagementCallback))]
     public interface IMatchManagement {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/CheckMatchExistence", ReplyAction="http://tempuri.org/IMatchManagement/CheckMatchExistenceResponse")]
@@ -410,17 +410,42 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/CheckMatchExistence", ReplyAction="http://tempuri.org/IMatchManagement/CheckMatchExistenceResponse")]
         System.Threading.Tasks.Task<bool> CheckMatchExistenceAsync(int code);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/CheckPlayerProfile", ReplyAction="http://tempuri.org/IMatchManagement/CheckPlayerProfileResponse")]
+        bool CheckPlayerProfile(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/CheckPlayerProfile", ReplyAction="http://tempuri.org/IMatchManagement/CheckPlayerProfileResponse")]
+        System.Threading.Tasks.Task<bool> CheckPlayerProfileAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/Connect")]
+        void Connect(int code);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/Connect")]
+        System.Threading.Tasks.Task ConnectAsync(int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/Disconnect", ReplyAction="http://tempuri.org/IMatchManagement/DisconnectResponse")]
+        void Disconnect(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/Disconnect", ReplyAction="http://tempuri.org/IMatchManagement/DisconnectResponse")]
+        System.Threading.Tasks.Task DisconnectAsync(string username);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/CreateMatch", ReplyAction="http://tempuri.org/IMatchManagement/CreateMatchResponse")]
         void CreateMatch(int code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/CreateMatch", ReplyAction="http://tempuri.org/IMatchManagement/CreateMatchResponse")]
         System.Threading.Tasks.Task CreateMatchAsync(int code);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/JoinMatch", ReplyAction="http://tempuri.org/IMatchManagement/JoinMatchResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/JoinMatch")]
         void JoinMatch(string username, int code);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/JoinMatch", ReplyAction="http://tempuri.org/IMatchManagement/JoinMatchResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/JoinMatch")]
         System.Threading.Tasks.Task JoinMatchAsync(string username, int code);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IMatchManagementCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles", ReplyAction="http://tempuri.org/IMatchManagement/GetPlayerProfilesResponse")]
+        void GetPlayerProfiles(string[] playerProfiles);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -429,25 +454,26 @@ namespace Parlis.Client.Services {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class MatchManagementClient : System.ServiceModel.ClientBase<Parlis.Client.Services.IMatchManagement>, Parlis.Client.Services.IMatchManagement {
+    public partial class MatchManagementClient : System.ServiceModel.DuplexClientBase<Parlis.Client.Services.IMatchManagement>, Parlis.Client.Services.IMatchManagement {
         
-        public MatchManagementClient() {
+        public MatchManagementClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public MatchManagementClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public MatchManagementClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public MatchManagementClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public MatchManagementClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public MatchManagementClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public MatchManagementClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public MatchManagementClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public MatchManagementClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
         public bool CheckMatchExistence(int code) {
@@ -456,6 +482,30 @@ namespace Parlis.Client.Services {
         
         public System.Threading.Tasks.Task<bool> CheckMatchExistenceAsync(int code) {
             return base.Channel.CheckMatchExistenceAsync(code);
+        }
+        
+        public bool CheckPlayerProfile(string username) {
+            return base.Channel.CheckPlayerProfile(username);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckPlayerProfileAsync(string username) {
+            return base.Channel.CheckPlayerProfileAsync(username);
+        }
+        
+        public void Connect(int code) {
+            base.Channel.Connect(code);
+        }
+        
+        public System.Threading.Tasks.Task ConnectAsync(int code) {
+            return base.Channel.ConnectAsync(code);
+        }
+        
+        public void Disconnect(string username) {
+            base.Channel.Disconnect(username);
+        }
+        
+        public System.Threading.Tasks.Task DisconnectAsync(string username) {
+            return base.Channel.DisconnectAsync(username);
         }
         
         public void CreateMatch(int code) {

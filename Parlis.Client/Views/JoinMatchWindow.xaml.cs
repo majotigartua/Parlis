@@ -1,17 +1,22 @@
 ﻿using Parlis.Client.Services;
+using System;
 using System.ServiceModel;
 using System.Windows;
 
 namespace Parlis.Client.Views
 {
-    public partial class JoinMatchWindow : Window
+    public partial class JoinMatchWindow : Window, IMatchManagementCallback
     {
+        private readonly MatchManagementClient matchManagementClient;
         private PlayerProfile playerProfile;
+        private string[] playerProfiles;
         private int code;
 
         public JoinMatchWindow()
         {
             InitializeComponent();
+            var instanceContext = new InstanceContext(this);
+            matchManagementClient = new MatchManagementClient(instanceContext);
         }
 
         public void ConfigureWindow(PlayerProfile playerProfile)
@@ -37,11 +42,18 @@ namespace Parlis.Client.Views
             code = int.Parse(CodeTextBox.Text);
             try
             {
-                var matchManagementClient = new MatchManagementClient();
                 if (matchManagementClient.CheckMatchExistence(code))
                 {
-                    matchManagementClient.Close();
-                    GoToCreateMatchWindow();
+                    matchManagementClient.Connect(code);
+                    if (playerProfiles == null || playerProfiles.Length < 4 )
+                    {
+                        GoToCreateMatchWindow();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                            Properties.Resources.FULL_MATCH_WINDOW_TITLE);
+                    }
                 }
                 else
                 {
@@ -70,6 +82,11 @@ namespace Parlis.Client.Views
             mainMenuWindow.ConfigureWindow(playerProfile);
             Close();
             mainMenuWindow.Show();
+        }
+
+        public void GetPlayerProfiles(string[] playerProfiles)
+        {
+            this.playerProfiles = playerProfiles;
         }
     }
 }

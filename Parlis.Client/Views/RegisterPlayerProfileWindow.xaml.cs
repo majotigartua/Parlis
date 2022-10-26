@@ -143,7 +143,7 @@ namespace Parlis.Client.Views
 
         private void SaveProfilePicture(string username)
         {
-            var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../ProfilePictures/" + username + ".jpg";
+            var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/ProfilePictures/" + username + ".jpg";
             var jpegBitmapEncoder = new JpegBitmapEncoder();
             jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)ProfilePicture.Source));
             var fileStream = new FileStream(profilePicturePath, FileMode.Create);

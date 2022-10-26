@@ -177,6 +177,9 @@
   <data name="FORGOTTEN_PASSWORD_LABEL" xml:space="preserve">
     <value>Did you forget your password?</value>
   </data>
+  <data name="FULL_MATCH_WINDOW_TITLE" xml:space="preserve">
+    <value>The match is completely full.</value>
+  </data>
   <data name="GAME_CONFIGURATION_WINDOW_TITLE" xml:space="preserve">
     <value>Game configuration.</value>
   </data>
@@ -222,6 +225,9 @@
   <data name="PATERNAL_SURNAME_LABEL" xml:space="preserve">
     <value>Paternal surname:</value>
   </data>
+  <data name="PLAYER_PROFILE_ALREADY_CONNECTED_WINDOW_TITLE" xml:space="preserve">
+    <value>The information entered corresponds to a player profile that is already connected on the server.</value>
+  </data>
   <data name="PLAYER_PROFILE_ALREADY_REGISTERED_WINDOW_TITLE" xml:space="preserve">
     <value>The information entered corresponds to a player profile that is already registered in the system.</value>
   </data>
@@ -250,7 +256,7 @@
     <value>Send real time message.</value>
   </data>
   <data name="START_MATCH_BUTTON" xml:space="preserve">
-    <value>Start match.</value>
+    <value>Start match</value>
   </data>
   <data name="TRY_AGAIN_LATER_LABEL" xml:space="preserve">
     <value>Please try again later.</value>

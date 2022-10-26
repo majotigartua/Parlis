@@ -1,4 +1,6 @@
-﻿using System.ServiceModel;
+﻿using Parlis.Server.Service.Data;
+using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace Parlis.Server.Service.Services
 {
@@ -9,14 +11,25 @@ namespace Parlis.Server.Service.Services
         bool CheckMatchExistence(int code);
 
         [OperationContract]
+        bool CheckPlayerProfile(string username);
+
+        [OperationContract(IsOneWay = true)]
+        void Connect(int code);
+
+        [OperationContract]
+        void Disconnect(string username);
+
+        [OperationContract]
         void CreateMatch(int code);
 
-        [OperationContract(IsOneWay = false)]
+        [OperationContract(IsOneWay = true)]
         void JoinMatch(string username, int code);
     }
 
     [ServiceContract]
     public interface IMatchManagementCallback
     {
+        [OperationContract]
+        void GetPlayerProfiles(List<string> playerProfiles);
     }
 }

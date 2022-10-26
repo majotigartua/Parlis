@@ -6,15 +6,14 @@ using System.Reflection;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Parlis.Client.Views
 {
     public partial class EditPlayerProfileWindow : Window
     {
+        private string profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/ProfilePictures/";
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
-        private string profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../ProfilePictures/";
         private PlayerProfile playerProfile;
         private Player player;
 

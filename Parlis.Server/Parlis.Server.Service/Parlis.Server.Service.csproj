@@ -47,6 +47,8 @@
     <Compile Include="Data\Message.cs" />
     <Compile Include="Data\Player.cs" />
     <Compile Include="Data\PlayerProfile.cs" />
+    <Compile Include="Services\IChatManagement.cs" />
+    <Compile Include="Services\IGameManagement.cs" />
     <Compile Include="Services\IMatchManagement.cs" />
     <Compile Include="Services\IPlayerProfileManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -241,6 +241,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The match is completely full..
+        /// </summary>
+        public static string FULL_MATCH_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("FULL_MATCH_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Game configuration..
         /// </summary>
         public static string GAME_CONFIGURATION_WINDOW_TITLE {
@@ -376,6 +385,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The information entered corresponds to a player profile that is already connected on the server..
+        /// </summary>
+        public static string PLAYER_PROFILE_ALREADY_CONNECTED_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("PLAYER_PROFILE_ALREADY_CONNECTED_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The information entered corresponds to a player profile that is already registered in the system..
         /// </summary>
         public static string PLAYER_PROFILE_ALREADY_REGISTERED_WINDOW_TITLE {
@@ -457,7 +475,7 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Start match..
+        ///   Busca una cadena traducida similar a Start match.
         /// </summary>
         public static string START_MATCH_BUTTON {
             get {

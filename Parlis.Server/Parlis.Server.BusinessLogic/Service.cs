@@ -268,32 +268,63 @@ namespace Parlis.Server.BusinessLogic
         }
     }
 
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public partial class Service : IMatchManagement
     {
-        public static List<Match> matches = new List<Match>();
+        public static List<int> matches = new List<int>();
         public static Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
         public static Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
 
         public bool CheckMatchExistence(int code)
         {
-            return (matches.Where(match => match.Code == code).Count() > 0);
+            return matches.Contains(code);
+        }
+
+        public bool CheckPlayerProfile(string playerProfile)
+        {
+            return playerProfilesByMatch.ContainsKey(playerProfile);
+        }
+
+        public void Connect(int code)
+        {
+            OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().GetPlayerProfiles(GetPlayerProfiles(code));
         }
 
         public void CreateMatch(int code)
         {
-            var match = new Match
+            matches.Add(code);
+        }
+
+        public void Disconnect(string username)
+        {
+            playerProfilesByMatch.Remove(username);
+            playerProfiles.Remove(username);
+        }
+
+        public List<string> GetPlayerProfiles(int code)
+        {
+            List<string> playerProfiles = new List<string>();
+            for (int playerProfile = 0; playerProfile < playerProfilesByMatch.Count(); playerProfile++)
             {
-                Code = code,
-            };
-            matches.Add(match);
+                if (playerProfilesByMatch.ElementAt(playerProfile).Value == code)
+                {
+                    playerProfiles.Add(playerProfilesByMatch.ElementAt(playerProfile).Key);
+                }
+            }
+            return playerProfiles;
         }
 
         public void JoinMatch(string username, int code)
         {
             playerProfilesByMatch.Add(username, code);
             var matchManagementCallback = OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>();
+            var usernames = GetPlayerProfiles(code);
+            matchManagementCallback.GetPlayerProfiles(usernames);
             playerProfiles.Add(username, matchManagementCallback);
+            foreach (var playerProfile in playerProfiles.Values)
+            {
+                playerProfile.GetPlayerProfiles(usernames);
+            }
         }
     }
 }
