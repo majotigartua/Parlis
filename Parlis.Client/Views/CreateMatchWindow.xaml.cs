@@ -1,45 +1,51 @@
 ﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
+using System;
+using System.IO;
+using System.Reflection;
 using System.ServiceModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Parlis.Client.Views
 {
-    public partial class CreateMatchWindow : Window
+    public partial class CreateMatchWindow : Window, IMatchManagementCallback
     {
-        private readonly PlayerProfileManagementClient playerProfileManagementClient;
+        private Image[] profilePictures;
+        private TextBlock[] usernames;
         private readonly MatchManagementClient matchManagementClient;
+        private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
         private int code;
+        private string[] playerProfiles;
 
         public CreateMatchWindow()
         {
             InitializeComponent();
+            profilePictures = new Image[] { FirstProfilePicture, SecondProfilePicture, ThirdProfilePicture, FourthProfilePicture };
+            usernames = new TextBlock[] { FirstUsernameTextBox, SecondUsernameTextBox, ThirdUsernameTextBox, FourthUsernameTextBox };
+            var instanceContext = new InstanceContext(this);
+            matchManagementClient = new MatchManagementClient(instanceContext);
             playerProfileManagementClient = new PlayerProfileManagementClient();
-            matchManagementClient = new MatchManagementClient();
         }
 
         public void ConfigureWindow(PlayerProfile playerProfile, bool isJoinMatch, int code)
         {
             this.playerProfile = playerProfile;
-            if (isJoinMatch)
-            {
-                this.code = code;
-            }
-            else
-            {
-                this.code = Utilities.GenerateRandomCode();
-                CreateMatch();
-            }
-            ConfigureData();
-        }
-
-        private void CreateMatch()
-        {
             try
             {
-                matchManagementClient.CreateMatch(code);
-            }
+                if (isJoinMatch)
+                {
+                    this.code = code;
+                }
+                else
+                {
+                    this.code = Utilities.GenerateRandomCode();
+                    matchManagementClient.CreateMatch(this.code);
+                }
+                matchManagementClient.JoinMatch(playerProfile.Username, this.code);
+            } 
             catch (EndpointNotFoundException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
@@ -49,7 +55,21 @@ namespace Parlis.Client.Views
 
         public void ConfigureData()
         {
-            CodeTextBox.Text = code.ToString();
+            CodeLabel.Content = code + ".";
+            for (int numberOfPlayerProfile = 0; numberOfPlayerProfile < playerProfiles.Length; numberOfPlayerProfile++)
+            {
+                var username = playerProfiles[numberOfPlayerProfile];
+                var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/ProfilePictures/" + username + ".jpg";
+                try
+                {
+                    profilePictures[numberOfPlayerProfile].Source = new BitmapImage(new Uri(profilePicturePath));
+                } 
+                catch (IOException)
+                {
+                    profilePictures[numberOfPlayerProfile].Source = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
+                }
+                usernames[numberOfPlayerProfile].Text = username;
+            }
         }
 
         private void ExpelPlayerMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -112,11 +132,26 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
-            matchManagementClient.Close();
+            try
+            {
+                matchManagementClient.Disconnect(playerProfile.Username);
+                matchManagementClient.Close();
+            } 
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.ConfigureWindow(playerProfile);
             Close();
             mainMenuWindow.Show();
+        }
+
+        public void GetPlayerProfiles(string[] playerProfiles)
+        {
+            this.playerProfiles = playerProfiles;
+            ConfigureData();
         }
     }
 }

@@ -177,6 +177,9 @@
   <data name="FORGOTTEN_PASSWORD_LABEL" xml:space="preserve">
     <value>Esqueceu sua senha?</value>
   </data>
+  <data name="FULL_MATCH_WINDOW_TITLE" xml:space="preserve">
+    <value>O jogo está completamente cheio.</value>
+  </data>
   <data name="GAME_CONFIGURATION_WINDOW_TITLE" xml:space="preserve">
     <value>Configuração do jogo.</value>
   </data>
@@ -221,6 +224,9 @@
   </data>
   <data name="PATERNAL_SURNAME_LABEL" xml:space="preserve">
     <value>Sobrenome paterno:</value>
+  </data>
+  <data name="PLAYER_PROFILE_ALREADY_CONNECTED_WINDOW_TITLE" xml:space="preserve">
+    <value>As informações inseridas correspondem a um perfil de jogador que já está logado no servidor.</value>
   </data>
   <data name="PLAYER_PROFILE_ALREADY_REGISTERED_WINDOW_TITLE" xml:space="preserve">
     <value>As informações inseridas correspondem a um perfil de jogador que já está registrado no sistema.</value>

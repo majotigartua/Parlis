@@ -5,8 +5,9 @@ using System.Windows;
 
 namespace Parlis.Client.Views
 {
-    public partial class LoginWindow : Window
+    public partial class LoginWindow : Window, IMatchManagementCallback
     {
+        private readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
 
@@ -14,6 +15,8 @@ namespace Parlis.Client.Views
         {
             InitializeComponent();
             UsernameTextBox.Focus();
+            var instanceContext = new InstanceContext(this);
+            matchManagementClient = new MatchManagementClient(instanceContext);
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
@@ -34,8 +37,17 @@ namespace Parlis.Client.Views
             }
             else
             {
-                password = Utilities.ComputeSHA256Hash(password);
-                Login(username, password);
+                if (!matchManagementClient.CheckPlayerProfile(username))
+                {
+                    password = Utilities.ComputeSHA256Hash(password);
+                    Login(username, password);
+                } 
+                else
+                {
+                    MessageBox.Show(Properties.Resources.PLAYER_PROFILE_ALREADY_CONNECTED_WINDOW_TITLE
+                        + " "
+                        + Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL);
+                }
             }
         }
 
@@ -81,6 +93,11 @@ namespace Parlis.Client.Views
         { 
             var registerPlayerProfileWindow = new RegisterPlayerProfileWindow();
             registerPlayerProfileWindow.ShowDialog();
+        }
+
+        public void GetPlayerProfiles(string[] playerProfiles)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
