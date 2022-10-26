@@ -1,8 +1,12 @@
 ﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
 using System;
+using System.IO;
+using System.Reflection;
 using System.ServiceModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Parlis.Client.Views
@@ -10,9 +14,9 @@ namespace Parlis.Client.Views
     public partial class EditPlayerProfileWindow : Window
     {
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
+        private string profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/../ProfilePictures/";
         private PlayerProfile playerProfile;
         private Player player;
-        private string profilePicturePath;
 
         public EditPlayerProfileWindow()
         {
@@ -33,6 +37,7 @@ namespace Parlis.Client.Views
 
         public void ConfigureData()
         {
+            profilePicturePath +=  playerProfile.Username + ".jpg";
             try
             {
                 player = playerProfileManagementClient.GetPlayer(playerProfile.Username);
@@ -41,20 +46,16 @@ namespace Parlis.Client.Views
                 PaternalSurnameTextBox.Text = player.PaternalSurname;
                 MaternalSurnameTextBox.Text = player.MaternalSurname;
                 UsernameTextBox.Text = playerProfile.Username;
+                ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
             }
             catch (EndpointNotFoundException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
-        }
-
-        private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            profilePicturePath = Utilities.SelectProfilePicture();
-            if (!string.IsNullOrEmpty(profilePicturePath))
+            catch (IOException)
             {
-                ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
+                ProfilePicture.Source = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
             }
         }
 
@@ -142,27 +143,23 @@ namespace Parlis.Client.Views
 
         private void DeletePlayerProfileClick(object sender, RoutedEventArgs e)
         {
-            var messageBoxResult = MessageBox.Show(Properties.Resources.DELETE_PLAYER_PROFILE_LABEL, "", MessageBoxButton.OKCancel);
-            if (messageBoxResult == MessageBoxResult.OK)
+            try
             {
-                try
+                if (playerProfileManagementClient.DeletePlayer(player.EmailAddress) && playerProfileManagementClient.DeletePlayerProfile(playerProfile.Username))
                 {
-                    if (playerProfileManagementClient.DeletePlayer(player.EmailAddress) && playerProfileManagementClient.DeletePlayerProfile(playerProfile.Username))
-                    {
-                        playerProfileManagementClient.Close();
-                        GoToLogin();
-                    }
-                    else
-                    {
-                        MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                            Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
-                    }
+                    playerProfileManagementClient.Close();
+                    GoToLogin();
                 }
-                catch (EndpointNotFoundException)
+                else
                 {
                     MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                        Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                        Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
                 }
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
         }
 
@@ -175,7 +172,6 @@ namespace Parlis.Client.Views
 
         private void ConfirmPlayerProfileButtonClick(object sender, RoutedEventArgs e)
         {
-            ConfirmPlayerProfileButton.IsEnabled = false;
             var confirmPlayerProfileWindow = new ConfirmPlayerProfileWindow();
             try
             {
@@ -187,7 +183,7 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
-
+            ConfirmPlayerProfileButton.IsEnabled = false;
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)

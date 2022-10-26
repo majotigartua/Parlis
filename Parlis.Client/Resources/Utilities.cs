@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
@@ -27,17 +26,6 @@ namespace Parlis.Client.Resources
         {
             var random = new Random();
             return random.Next(100000, 999999);
-        }
-
-        public static string SelectProfilePicture()
-        {
-            var openFileDialog = new OpenFileDialog
-            {
-                Title = Properties.Resources.PROFILE_PICTURE_WINDOW_TITLE,
-                Filter = "Joint Photographic Experts Group (JPEG)|*.jpg"
-            };
-            openFileDialog.ShowDialog();
-            return openFileDialog.FileName;
         }
 
         public static bool ValidateEmailAddressFormat(string emailAddress)
