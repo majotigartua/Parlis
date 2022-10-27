@@ -24,9 +24,9 @@ namespace Parlis.Client.Views
         {
             var instaceContext = new InstanceContext(this);
             var matchManagementClient = new MatchManagementClient(instaceContext);
+            code = Utilities.GenerateRandomCode();
             try
-            {
-                code = Utilities.GenerateRandomCode();
+            { 
                 matchManagementClient.CreateMatch(code);
                 GoToCreateMatch();
             }

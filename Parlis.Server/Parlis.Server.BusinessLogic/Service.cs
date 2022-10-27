@@ -1,5 +1,4 @@
-﻿using Match = Parlis.Server.Service.Data.Match;
-using Parlis.Server.DataAccess;
+﻿using Parlis.Server.DataAccess;
 using Parlis.Server.Service.Services;
 using Player = Parlis.Server.Service.Data.Player;
 using PlayerProfile = Parlis.Server.Service.Data.PlayerProfile;
@@ -298,19 +297,11 @@ namespace Parlis.Server.BusinessLogic
         {
             playerProfilesByMatch.Remove(username);
             playerProfiles.Remove(username);
-            SetPlayerProfiles(code);
         }
 
         void IMatchManagement.GetPlayerProfiles(int code)
         {
-            if (CheckMatchExistence(code)) 
-            {
-                OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().SendPlayerProfiles(GetPlayerProfiles(code));
-            }
-            else
-            {
-                OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().SendPlayerProfiles(new List<string>(playerProfiles.Keys));
-            }
+            OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().SendPlayerProfiles(GetPlayerProfiles(code));
         }
 
         public List<string> GetPlayerProfiles(int code)
@@ -329,7 +320,7 @@ namespace Parlis.Server.BusinessLogic
 
         public void SetPlayerProfiles(int code)
         {
-            foreach(var playerProfile in playerProfiles)
+            foreach (var playerProfile in playerProfiles)
             {
                 playerProfile.Value.SendPlayerProfiles(GetPlayerProfiles(code));
             }
