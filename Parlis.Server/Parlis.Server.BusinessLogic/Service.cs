@@ -271,23 +271,22 @@ namespace Parlis.Server.BusinessLogic
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public partial class Service : IMatchManagement
     {
-        public static List<int> matches = new List<int>();
-        public static Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
-        public static Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
+        private static readonly List<int> matches = new List<int>();
+        private static readonly Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
+        private static readonly Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
 
         public bool CheckMatchExistence(int code)
-        {
+        { 
             return matches.Contains(code);
         }
 
-        public bool CheckPlayerProfile(string playerProfile)
+        public void Connect(string username, int code)
         {
-            return playerProfilesByMatch.ContainsKey(playerProfile);
-        }
-
-        public void Connect(int code)
-        {
-            OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().GetPlayerProfiles(GetPlayerProfiles(code));
+            playerProfilesByMatch.Add(username, code);
+            var matchManagementCallback = OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>();
+            matchManagementCallback.SendPlayerProfiles(GetPlayerProfiles(code));
+            playerProfiles.Add(username, matchManagementCallback);
+            SetPlayerProfiles(code);
         }
 
         public void CreateMatch(int code)
@@ -295,10 +294,23 @@ namespace Parlis.Server.BusinessLogic
             matches.Add(code);
         }
 
-        public void Disconnect(string username)
+        public void Disconnect(string username, int code)
         {
             playerProfilesByMatch.Remove(username);
             playerProfiles.Remove(username);
+            SetPlayerProfiles(code);
+        }
+
+        void IMatchManagement.GetPlayerProfiles(int code)
+        {
+            if (CheckMatchExistence(code)) 
+            {
+                OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().SendPlayerProfiles(GetPlayerProfiles(code));
+            }
+            else
+            {
+                OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().SendPlayerProfiles(new List<string>(playerProfiles.Keys));
+            }
         }
 
         public List<string> GetPlayerProfiles(int code)
@@ -313,17 +325,13 @@ namespace Parlis.Server.BusinessLogic
             }
             return playerProfiles;
         }
+        
 
-        public void JoinMatch(string username, int code)
+        public void SetPlayerProfiles(int code)
         {
-            playerProfilesByMatch.Add(username, code);
-            var matchManagementCallback = OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>();
-            var usernames = GetPlayerProfiles(code);
-            matchManagementCallback.GetPlayerProfiles(usernames);
-            playerProfiles.Add(username, matchManagementCallback);
-            foreach (var playerProfile in playerProfiles.Values)
+            foreach(var playerProfile in playerProfiles)
             {
-                playerProfile.GetPlayerProfiles(usernames);
+                playerProfile.Value.SendPlayerProfiles(GetPlayerProfiles(code));
             }
         }
     }

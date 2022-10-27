@@ -144,20 +144,8 @@
   <wsdl:message name="IMatchManagement_CheckMatchExistence_OutputMessage">
     <wsdl:part name="parameters" element="tns:CheckMatchExistenceResponse" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_CheckPlayerProfile_InputMessage">
-    <wsdl:part name="parameters" element="tns:CheckPlayerProfile" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManagement_CheckPlayerProfile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CheckPlayerProfileResponse" />
-  </wsdl:message>
   <wsdl:message name="IMatchManagement_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManagement_Disconnect_InputMessage">
-    <wsdl:part name="parameters" element="tns:Disconnect" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManagement_Disconnect_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DisconnectResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchManagement_CreateMatch_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateMatch" />
@@ -165,14 +153,20 @@
   <wsdl:message name="IMatchManagement_CreateMatch_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateMatchResponse" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_JoinMatch_InputMessage">
-    <wsdl:part name="parameters" element="tns:JoinMatch" />
+  <wsdl:message name="IMatchManagement_Disconnect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Disconnect" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_GetPlayerProfiles_OutputCallbackMessage">
+  <wsdl:message name="IMatchManagement_Disconnect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManagement_GetPlayerProfiles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerProfiles" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_GetPlayerProfiles_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:GetPlayerProfilesResponse" />
+  <wsdl:message name="IMatchManagement_SendPlayerProfiles_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendPlayerProfiles" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManagement_SendPlayerProfiles_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendPlayerProfilesResponse" />
   </wsdl:message>
   <wsdl:portType name="IPlayerProfileManagement">
     <wsdl:operation name="CheckPlayerExistence">
@@ -229,27 +223,23 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/CheckMatchExistence" message="tns:IMatchManagement_CheckMatchExistence_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/CheckMatchExistenceResponse" message="tns:IMatchManagement_CheckMatchExistence_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CheckPlayerProfile">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/CheckPlayerProfile" message="tns:IMatchManagement_CheckPlayerProfile_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/CheckPlayerProfileResponse" message="tns:IMatchManagement_CheckPlayerProfile_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="Connect">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/Connect" message="tns:IMatchManagement_Connect_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Disconnect">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/Disconnect" message="tns:IMatchManagement_Disconnect_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/DisconnectResponse" message="tns:IMatchManagement_Disconnect_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreateMatch">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/CreateMatch" message="tns:IMatchManagement_CreateMatch_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/CreateMatchResponse" message="tns:IMatchManagement_CreateMatch_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="JoinMatch">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/JoinMatch" message="tns:IMatchManagement_JoinMatch_InputMessage" />
+    <wsdl:operation name="Disconnect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/Disconnect" message="tns:IMatchManagement_Disconnect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/DisconnectResponse" message="tns:IMatchManagement_Disconnect_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetPlayerProfiles">
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles" message="tns:IMatchManagement_GetPlayerProfiles_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/GetPlayerProfilesResponse" message="tns:IMatchManagement_GetPlayerProfiles_InputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles" message="tns:IMatchManagement_GetPlayerProfiles_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPlayerProfiles">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/SendPlayerProfiles" message="tns:IMatchManagement_SendPlayerProfiles_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/SendPlayerProfilesResponse" message="tns:IMatchManagement_SendPlayerProfiles_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPlayerProfileManagement" type="tns:IPlayerProfileManagement">
@@ -376,29 +366,11 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CheckPlayerProfile">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/CheckPlayerProfile" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="Connect">
       <soap12:operation soapAction="http://tempuri.org/IMatchManagement/Connect" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="Disconnect">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/Disconnect" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CreateMatch">
       <soap12:operation soapAction="http://tempuri.org/IMatchManagement/CreateMatch" style="document" />
@@ -409,14 +381,23 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="JoinMatch">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/JoinMatch" style="document" />
+    <wsdl:operation name="Disconnect">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/Disconnect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerProfiles">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/GetPlayerProfiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="GetPlayerProfiles">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/GetPlayerProfiles" style="document" />
+    <wsdl:operation name="SendPlayerProfiles">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/SendPlayerProfiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

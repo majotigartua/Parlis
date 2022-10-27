@@ -1,5 +1,5 @@
 ﻿using Parlis.Client.Services;
-using System;
+using System.Linq;
 using System.ServiceModel;
 using System.Windows;
 
@@ -9,8 +9,9 @@ namespace Parlis.Client.Views
     {
         private readonly MatchManagementClient matchManagementClient;
         private PlayerProfile playerProfile;
-        private string[] playerProfiles;
         private int code;
+        private string[] playerProfiles;
+        private int numberOfPlayerProfiles;
 
         public JoinMatchWindow()
         {
@@ -44,15 +45,30 @@ namespace Parlis.Client.Views
             {
                 if (matchManagementClient.CheckMatchExistence(code))
                 {
-                    matchManagementClient.Connect(code);
-                    if (playerProfiles == null || playerProfiles.Length < 4 )
+                    matchManagementClient.GetPlayerProfiles(code);
+                    if (playerProfiles != null)
                     {
-                        GoToCreateMatchWindow();
+                        if (!playerProfiles.Contains(playerProfile.Username))
+                        {
+                            if (numberOfPlayerProfiles < 4)
+                            {
+                                GoToCreateMatch();
+                            }
+                            else
+                            {
+                                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                                    Properties.Resources.FULL_MATCH_WINDOW_TITLE);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
+                                Properties.Resources.PLAYER_PROFILE_ALREADY_CONNECTED_WINDOW_TITLE);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                            Properties.Resources.FULL_MATCH_WINDOW_TITLE);
+                        GoToCreateMatch();
                     }
                 }
                 else
@@ -68,10 +84,10 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void GoToCreateMatchWindow()
+        private void GoToCreateMatch()
         {
             var createMatchWindow = new CreateMatchWindow();
-            createMatchWindow.ConfigureWindow(playerProfile, true, code);
+            createMatchWindow.ConfigureWindow(playerProfile, code);
             Close();
             createMatchWindow.Show();
         }
@@ -84,9 +100,10 @@ namespace Parlis.Client.Views
             mainMenuWindow.Show();
         }
 
-        public void GetPlayerProfiles(string[] playerProfiles)
+        public void SendPlayerProfiles(string[] playerProfiles)
         {
             this.playerProfiles = playerProfiles;
+            numberOfPlayerProfiles = (playerProfiles == null) ? 0 : playerProfiles.Length;
         }
     }
 }
