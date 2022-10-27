@@ -457,6 +457,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Send.
+        /// </summary>
+        public static string SEND_BUTTON {
+            get {
+                return ResourceManager.GetString("SEND_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Send invitation.
         /// </summary>
         public static string SEND_INVITATION_BUTTON {

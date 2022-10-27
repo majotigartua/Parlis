@@ -249,6 +249,9 @@
   <data name="REGISTER_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Register player profile.</value>
   </data>
+  <data name="SEND_BUTTON" xml:space="preserve">
+    <value>Send</value>
+  </data>
   <data name="SEND_INVITATION_BUTTON" xml:space="preserve">
     <value>Send invitation</value>
   </data>

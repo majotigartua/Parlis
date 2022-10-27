@@ -8,7 +8,9 @@
         Title="{x:Static p:Resources.SEND_REAL_TIME_MESSAGE_WINDOW_TITLE}" Height="400" Width="750">
     <Viewbox Margin="20" Stretch="Fill" StretchDirection="Both">
         <Grid>
-            <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="400,200,0,0" VerticalAlignment="Top" Width="80" Click="CancelButtonClick"/>
+            <TextBox x:Name="ChatTextBox" HorizontalAlignment="Center" Margin="0,-1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="688" FontSize="20" Height="314" IsReadOnly="True"/>
+            <TextBox x:Name="MessageTextBox" Margin="0,322,164,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="39" FontSize="20"/>
+            <Button Content="{x:Static p:Resources.SEND_BUTTON}" HorizontalAlignment="Left" Margin="548,322,0,0" VerticalAlignment="Top" Width="140" FontSize="20" Click="SendButtonClick" Height="38" />
         </Grid>
     </Viewbox>
 </Window>

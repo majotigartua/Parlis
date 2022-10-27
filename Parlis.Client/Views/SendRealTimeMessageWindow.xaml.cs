@@ -13,5 +13,10 @@ namespace Parlis.Client.Views
         {
             Close();
         }
+
+        private void SendButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
