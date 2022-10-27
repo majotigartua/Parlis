@@ -1,11 +1,14 @@
-﻿using Parlis.Client.Services;
+﻿using Parlis.Client.Resources;
+using Parlis.Client.Services;
+using System.ServiceModel;
 using System.Windows;
 
 namespace Parlis.Client.Views
 {
-    public partial class MainMenuWindow : Window
+    public partial class MainMenuWindow : Window, IMatchManagementCallback
     {
         private PlayerProfile playerProfile;
+        private int code;
 
         public MainMenuWindow()
         {
@@ -19,8 +22,25 @@ namespace Parlis.Client.Views
 
         private void CreateMatchButtonClick(object sender, RoutedEventArgs e)
         {
+            var instaceContext = new InstanceContext(this);
+            var matchManagementClient = new MatchManagementClient(instaceContext);
+            try
+            {
+                code = Utilities.GenerateRandomCode();
+                matchManagementClient.CreateMatch(code);
+                GoToCreateMatch();
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
+        }
+
+        private void GoToCreateMatch()
+        {
             var createMatchWindow = new CreateMatchWindow();
-            createMatchWindow.ConfigureWindow(playerProfile, false, 0);
+            createMatchWindow.ConfigureWindow(playerProfile, code);
             Close();
             createMatchWindow.Show();
         }
@@ -54,6 +74,10 @@ namespace Parlis.Client.Views
             var loginWindow = new LoginWindow();
             Close();
             loginWindow.Show();
+        }
+
+        public void SendPlayerProfiles(string[] playerProfiles)
+        {
         }
     }
 }
