@@ -1,5 +1,4 @@
-﻿using Parlis.Client.Resources;
-using Parlis.Client.Services;
+﻿using Parlis.Client.Services;
 using System;
 using System.IO;
 using System.Reflection;
@@ -12,19 +11,18 @@ namespace Parlis.Client.Views
 {
     public partial class CreateMatchWindow : Window, IMatchManagementCallback
     {
-        private readonly Image[] profilePictures;
         private readonly TextBlock[] usernames;
+        private readonly Image[] profilePictures;
         private readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
         private int code;
-        private string[] playerProfiles;
 
         public CreateMatchWindow()
         {
             InitializeComponent();
-            profilePictures = new Image[] { FirstProfilePicture, SecondProfilePicture, ThirdProfilePicture, FourthProfilePicture };
             usernames = new TextBlock[] { FirstUsernameTextBox, SecondUsernameTextBox, ThirdUsernameTextBox, FourthUsernameTextBox };
+            profilePictures = new Image[] { FirstProfilePicture, SecondProfilePicture, ThirdProfilePicture, FourthProfilePicture };
             var instanceContext = new InstanceContext(this);
             matchManagementClient = new MatchManagementClient(instanceContext);
             playerProfileManagementClient = new PlayerProfileManagementClient();
@@ -34,6 +32,7 @@ namespace Parlis.Client.Views
         {
             this.playerProfile = playerProfile;
             this.code = code;
+            CodeLabel.Content = code + ".";
             try
             { 
                 matchManagementClient.Connect(playerProfile.Username, this.code);
@@ -42,16 +41,6 @@ namespace Parlis.Client.Views
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
-            }
-        }
-
-        public void ConfigureData()
-        {
-            CodeLabel.Content = code + ".";
-            for (int playerProfile = 0; playerProfile < playerProfiles.Length; playerProfile++)
-            {
-                string username = playerProfiles[playerProfile];
-                usernames[playerProfile].Text = username;
             }
         }
 
@@ -138,8 +127,24 @@ namespace Parlis.Client.Views
 
         public void SendPlayerProfiles(string[] playerProfiles)
         {
-            this.playerProfiles = playerProfiles;
-            ConfigureData();
+            ConfigurePlayerProfiles(playerProfiles);
+        }
+
+        public void ConfigurePlayerProfiles(string[] playerProfiles)
+        {
+            for (int playerProfile = 0; playerProfile < playerProfiles.Length; playerProfile++)
+            {
+                string username = playerProfiles[playerProfile];
+                usernames[playerProfile].Text = username;
+                var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/ProfilePictures/" + username + ".jpg";
+                try
+                {
+                    profilePictures[playerProfile].Source = new BitmapImage(new Uri(profilePicturePath));
+                } catch (IOException)
+                {
+                    profilePictures[playerProfile].Source = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
+                }
+            }
         }
     }
 }

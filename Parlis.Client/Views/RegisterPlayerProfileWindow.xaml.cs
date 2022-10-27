@@ -85,11 +85,11 @@ namespace Parlis.Client.Views
                 var password = Utilities.ComputeSHA256Hash(PasswordBox.Password.ToString());
                 if (RegisterPlayerProfile(username, password) && RegisterPlayer(emailAddress))
                 {
-                    MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
                     playerProfileManagementClient.Close();
                     SaveProfilePicture(username);
-                    Close();
+                    MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
                 }
+                GoToLogin();
             }
             else
             {
@@ -97,6 +97,13 @@ namespace Parlis.Client.Views
                     + " "
                     + Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL);
             }
+        }
+
+        private void GoToLogin()
+        {
+            var loginWindow = new LoginWindow();
+            Close();
+            loginWindow.Show();
         }
 
         private bool RegisterPlayerProfile(string username, string password)
@@ -143,9 +150,9 @@ namespace Parlis.Client.Views
 
         private void SaveProfilePicture(string username)
         {
-            var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/ProfilePictures/" + username + ".jpg";
             var jpegBitmapEncoder = new JpegBitmapEncoder();
-            jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)ProfilePicture.Source));
+            jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource) ProfilePicture.Source));
+            var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/ProfilePictures/" + username + ".jpg";
             var fileStream = new FileStream(profilePicturePath, FileMode.Create);
             jpegBitmapEncoder.Save(fileStream);
         }
@@ -153,7 +160,7 @@ namespace Parlis.Client.Views
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             playerProfileManagementClient.Close();
-            Close();
+            GoToLogin();
         }
     }
 }

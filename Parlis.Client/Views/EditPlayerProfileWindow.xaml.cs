@@ -12,7 +12,6 @@ namespace Parlis.Client.Views
 {
     public partial class EditPlayerProfileWindow : Window
     {
-        private string profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/ProfilePictures/";
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
         private Player player;
@@ -36,15 +35,16 @@ namespace Parlis.Client.Views
 
         public void ConfigureData()
         {
-            profilePicturePath +=  playerProfile.Username + ".jpg";
+            string username = playerProfile.Username;
+            var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/ProfilePictures/" + username + ".jpg";
             try
             {
-                player = playerProfileManagementClient.GetPlayer(playerProfile.Username);
+                player = playerProfileManagementClient.GetPlayer(username);
                 EmailAddressTextBox.Text = player.EmailAddress;
                 NameTextBox.Text = player.Name;
                 PaternalSurnameTextBox.Text = player.PaternalSurname;
                 MaternalSurnameTextBox.Text = player.MaternalSurname;
-                UsernameTextBox.Text = playerProfile.Username;
+                UsernameTextBox.Text = username;
                 ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
             }
             catch (EndpointNotFoundException)

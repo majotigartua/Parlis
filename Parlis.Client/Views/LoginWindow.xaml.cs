@@ -60,6 +60,7 @@ namespace Parlis.Client.Views
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                Close();
             }
         }
 
@@ -80,7 +81,8 @@ namespace Parlis.Client.Views
         private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
         { 
             var registerPlayerProfileWindow = new RegisterPlayerProfileWindow();
-            registerPlayerProfileWindow.ShowDialog();
+            Close();
+            registerPlayerProfileWindow.Show();
         }
     }
 }
