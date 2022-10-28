@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Parlis.Client.Services;
 
 namespace Parlis.Client.Views
 {
