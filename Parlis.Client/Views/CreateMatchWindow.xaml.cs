@@ -156,7 +156,7 @@ namespace Parlis.Client.Views
             {
                 string username = playerProfiles[playerProfile];
                 usernames[playerProfile].Text = username;
-                var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/ProfilePictures/" + username + ".jpg";
+                var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "../../ProfilePictures/" + username + ".jpg";
                 try
                 {
                     profilePictures[playerProfile].Source = new BitmapImage(new Uri(profilePicturePath));

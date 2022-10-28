@@ -146,7 +146,7 @@ namespace Parlis.Client.Views
         {
             var jpegBitmapEncoder = new JpegBitmapEncoder();
             jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource) ProfilePicture.Source));
-            var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/ProfilePictures/" + username + ".jpg";
+            var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "../../ProfilePictures/" + username + ".jpg";
             var fileStream = new FileStream(profilePicturePath, FileMode.Create);
             jpegBitmapEncoder.Save(fileStream);
         }
