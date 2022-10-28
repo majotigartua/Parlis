@@ -11,8 +11,6 @@ namespace Parlis.Client.Views
         private readonly MatchManagementClient matchManagementClient;
         private PlayerProfile playerProfile;
         private int code;
-        private string[] playerProfiles;
-        private int numberOfPlayerProfiles;
 
         public JoinMatchWindow()
         {
@@ -61,26 +59,18 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        public void ReceivePlayerProfiles(string[] playerProfiles)
         {
-            var mainMenuWindow = new MainMenuWindow();
-            mainMenuWindow.ConfigureWindow(playerProfile);
-            Close();
-            mainMenuWindow.Show();
+            int numberOfPlayerProfiles = (playerProfiles == null) ? 0 : playerProfiles.Length;
+            JoinMatch(playerProfiles, numberOfPlayerProfiles);
         }
 
-        public void SendPlayerProfiles(string[] playerProfiles)
-        {
-            this.playerProfiles = playerProfiles;
-            numberOfPlayerProfiles = (playerProfiles == null) ? 0 : playerProfiles.Length;
-            JoinMatch();
-        }
-
-        private void JoinMatch()
+        private void JoinMatch(string[] playerProfiles, int numberOfPlayerProfiles)
         {
             if (numberOfPlayerProfiles > 0)
             {
-                if (!playerProfiles.Contains(playerProfile.Username))
+                string username = playerProfile.Username;
+                if (!playerProfiles.Contains(username))
                 {
                     if (numberOfPlayerProfiles < 4)
                     {
@@ -108,9 +98,17 @@ namespace Parlis.Client.Views
         private void GoToCreateMatch()
         {
             var createMatchWindow = new CreateMatchWindow();
-            createMatchWindow.ConfigureWindow(playerProfile, code);
+            createMatchWindow.ConfigureWindow(code, playerProfile);
             Close();
             createMatchWindow.Show();
+        }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            var mainMenuWindow = new MainMenuWindow();
+            mainMenuWindow.ConfigureWindow(playerProfile);
+            Close();
+            mainMenuWindow.Show();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
+using System.Linq;
 using System.ServiceModel;
 using System.Windows;
 
@@ -21,7 +22,6 @@ namespace Parlis.Client.Views
         public void ConfigureWindow(PlayerProfile playerProfile)
         {
             this.playerProfile = playerProfile;
-
         }
 
         private void CreateMatchButtonClick(object sender, RoutedEventArgs e)
@@ -29,8 +29,7 @@ namespace Parlis.Client.Views
             code = Utilities.GenerateRandomCode();
             try
             {
-                matchManagementClient.CreateMatch(code);
-                GoToCreateMatch();
+                matchManagementClient.GetPlayerProfiles(code);
             }
             catch (EndpointNotFoundException)
             {
@@ -39,10 +38,33 @@ namespace Parlis.Client.Views
             }
         }
 
+        public void ReceivePlayerProfiles(string[] playerProfiles)
+        {
+            string username = playerProfile.Username;
+            if (!playerProfiles.Contains(username))
+            {
+                try
+                {
+                    GoToCreateMatch();
+                }
+                catch (EndpointNotFoundException)
+                {
+                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                        Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                }
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.PLAYER_PROFILE_ALREADY_CONNECTED_WINDOW_TITLE
+                    + " "
+                    + Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL);
+            }
+        }
+
         private void GoToCreateMatch()
         {
             var createMatchWindow = new CreateMatchWindow();
-            createMatchWindow.ConfigureWindow(playerProfile, code);
+            createMatchWindow.ConfigureWindow(code, playerProfile);
             Close();
             createMatchWindow.Show();
         }
@@ -76,10 +98,6 @@ namespace Parlis.Client.Views
             var loginWindow = new LoginWindow();
             Close();
             loginWindow.Show();
-        }
-
-        public void SendPlayerProfiles(string[] playerProfiles)
-        {
         }
     }
 }

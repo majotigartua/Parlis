@@ -26,10 +26,7 @@ namespace Parlis.Client.Views
         public void ConfigureWindow(PlayerProfile playerProfile)
         {
             this.playerProfile = playerProfile;
-            if (playerProfile.IsVerified)
-            {
-                ConfirmPlayerProfileButton.IsEnabled = false;
-            }
+            ConfirmPlayerProfileButton.IsEnabled = !playerProfile.IsVerified;
             ConfigureData();
         }
 

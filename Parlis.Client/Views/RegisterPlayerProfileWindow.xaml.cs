@@ -1,9 +1,6 @@
-﻿using Microsoft.Win32;
-using Parlis.Client.Resources;
+﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
 using System;
-using System.IO;
-using System.Reflection;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,15 +22,10 @@ namespace Parlis.Client.Views
 
         private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog
+            string playerProfilePath = Utilities.SelectProfilePicture();
+            if (!string.IsNullOrEmpty(playerProfilePath))
             {
-                Title = Properties.Resources.PROFILE_PICTURE_WINDOW_TITLE,
-                Filter = "Joint Photographic Experts Group (JPEG)|*.jpg"
-            };
-            openFileDialog.ShowDialog();
-            if (!string.IsNullOrEmpty(openFileDialog.FileName))
-            {
-                ProfilePicture.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+                ProfilePicture.Source = new BitmapImage(new Uri(playerProfilePath));
             }
         }
 
@@ -87,7 +79,7 @@ namespace Parlis.Client.Views
                 if (RegisterPlayerProfile(username, password) && RegisterPlayer(emailAddress))
                 {
                     playerProfileManagementClient.Close();
-                    SaveProfilePicture(username);
+                    Utilities.SaveProfilePicture(username, ProfilePicture);
                     MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
                 }
                 Close();
@@ -140,15 +132,6 @@ namespace Parlis.Client.Views
                     Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
                 return false;
             }
-        }
-
-        private void SaveProfilePicture(string username)
-        {
-            var jpegBitmapEncoder = new JpegBitmapEncoder();
-            jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource) ProfilePicture.Source));
-            var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "../../ProfilePictures/" + username + ".jpg";
-            var fileStream = new FileStream(profilePicturePath, FileMode.Create);
-            jpegBitmapEncoder.Save(fileStream);
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)

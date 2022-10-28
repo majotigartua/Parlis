@@ -7,19 +7,19 @@ namespace Parlis.Server.Service.Data
     public class Message
     {
         [DataMember]
-        public string Body { get; set; }
+        public string Username { get; set; }
         [DataMember]
-        public string PlayerProfileUsername { get; set; }
+        public string Content { get; set; }
+
+        public Message()
+        {
+        }
 
         [OperationContract]
         override
         public string ToString()
         {
-            return $"{PlayerProfileUsername} : {Body}";
-        }
-
-        public Message()
-        {
+            return $"{Username}: {Content}";
         }
     }
 }

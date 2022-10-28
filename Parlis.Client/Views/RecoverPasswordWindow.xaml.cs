@@ -8,7 +8,7 @@ namespace Parlis.Client.Views
 {
     public partial class RecoverPasswordWindow : Window
     {
-        private PlayerProfileManagementClient playerProfileManagementClient;
+        private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
         private int code;
 
@@ -97,7 +97,6 @@ namespace Parlis.Client.Views
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
-
             }
         }
     }

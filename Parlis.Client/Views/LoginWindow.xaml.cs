@@ -8,7 +8,6 @@ namespace Parlis.Client.Views
     public partial class LoginWindow : Window
     {
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
-        private PlayerProfile playerProfile;
 
         public LoginWindow()
         {
@@ -43,11 +42,11 @@ namespace Parlis.Client.Views
         {
             try
             {
-                playerProfile = playerProfileManagementClient.Login(username, password);
+                var playerProfile = playerProfileManagementClient.Login(username, password);
                 if (playerProfile != null)
                 {
                     playerProfileManagementClient.Close();
-                    GoToMainMenu();
+                    GoToMainMenu(playerProfile);
                 }
                 else
                 {
@@ -64,7 +63,7 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void GoToMainMenu()
+        private void GoToMainMenu(PlayerProfile playerProfile)
         {
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.ConfigureWindow(playerProfile);

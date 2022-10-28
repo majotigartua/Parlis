@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
+using System.IO;
 using System.Net.Mail;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Parlis.Client.Resources
 {
@@ -26,6 +31,28 @@ namespace Parlis.Client.Resources
         {
             var random = new Random();
             return random.Next(100000, 999999);
+        }
+
+        public static void SaveProfilePicture(string username, Image profilePicture)
+        {
+            var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "../../ProfilePictures/" + username + ".jpg";
+            using (var fileStream = new FileStream(profilePicturePath, FileMode.Create))
+            {
+                var jpegBitmapEncoder = new JpegBitmapEncoder();
+                jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource) profilePicture.Source));
+                jpegBitmapEncoder.Save(fileStream);
+            }
+        }
+
+        public static string SelectProfilePicture()
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Title = Properties.Resources.PROFILE_PICTURE_WINDOW_TITLE,
+                Filter = "Joint Photographic Experts Group (JPEG)|*.jpg"
+            };
+            openFileDialog.ShowDialog();
+            return openFileDialog.FileName;
         }
 
         public static bool ValidateEmailAddressFormat(string emailAddress)
