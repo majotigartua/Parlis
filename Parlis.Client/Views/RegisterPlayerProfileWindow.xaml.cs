@@ -68,6 +68,7 @@ namespace Parlis.Client.Views
                     Properties.Resources.EMPTY_FIELDS_WINDOW_TITLE);
             }
         }
+
         private bool ValidateEmptyFields()
         {
             return string.IsNullOrEmpty(NameTextBox.Text) ||
@@ -89,7 +90,7 @@ namespace Parlis.Client.Views
                     SaveProfilePicture(username);
                     MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
                 }
-                GoToLogin();
+                Close();
             }
             else
             {
@@ -97,13 +98,6 @@ namespace Parlis.Client.Views
                     + " "
                     + Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL);
             }
-        }
-
-        private void GoToLogin()
-        {
-            var loginWindow = new LoginWindow();
-            Close();
-            loginWindow.Show();
         }
 
         private bool RegisterPlayerProfile(string username, string password)
@@ -160,7 +154,7 @@ namespace Parlis.Client.Views
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             playerProfileManagementClient.Close();
-            GoToLogin();
+            Close();
         }
     }
 }

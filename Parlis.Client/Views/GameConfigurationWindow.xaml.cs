@@ -18,14 +18,22 @@ namespace Parlis.Client.Views
             this.playerProfile = playerProfile;
         }
 
-        private void CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            GoToMainMenu();
-        }
-
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(language);
+            GoToMainMenu();
+        }
+
+        private void GoToMainMenu()
+        {
+            var mainMenuWindow = new MainMenuWindow();
+            mainMenuWindow.ConfigureWindow(playerProfile);
+            Close();
+            mainMenuWindow.Show();
+        }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
             GoToMainMenu();
         }
 
@@ -42,14 +50,6 @@ namespace Parlis.Client.Views
         private void PtBRFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             language = "pt-BR";
-        }
-
-        private void GoToMainMenu()
-        {
-            var mainMenuWindow = new MainMenuWindow();
-            mainMenuWindow.ConfigureWindow(playerProfile);
-            Close();
-            mainMenuWindow.Show();
         }
     }
 }

@@ -13,16 +13,19 @@ namespace Parlis.Client.Views
     {
         private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;
+        private readonly BitmapImage defaultProfilePicture;
         private readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
         private int code;
+        private string[] playerProfiles;
 
         public CreateMatchWindow()
         {
             InitializeComponent();
             usernames = new TextBlock[] { FirstUsernameTextBox, SecondUsernameTextBox, ThirdUsernameTextBox, FourthUsernameTextBox };
             profilePictures = new Image[] { FirstProfilePicture, SecondProfilePicture, ThirdProfilePicture, FourthProfilePicture };
+            defaultProfilePicture = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
             var instanceContext = new InstanceContext(this);
             matchManagementClient = new MatchManagementClient(instanceContext);
             playerProfileManagementClient = new PlayerProfileManagementClient();
@@ -32,15 +35,25 @@ namespace Parlis.Client.Views
         {
             this.playerProfile = playerProfile;
             this.code = code;
-            CodeLabel.Content = code + ".";
+            ConfigureData();
             try
-            { 
+            {
                 matchManagementClient.Connect(playerProfile.Username, this.code);
-            } 
+            }
             catch (EndpointNotFoundException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
+        }
+
+        public void ConfigureData()
+        {
+            CodeLabel.Content = code + ".";
+            for (int playerProfile = 0; playerProfile < 4; playerProfile++)
+            {
+                usernames[playerProfile].Text = "";
+                profilePictures[playerProfile].Source = defaultProfilePicture;
             }
         }
 
@@ -73,6 +86,7 @@ namespace Parlis.Client.Views
                         MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
                             Properties.Resources.INVALID_DATA_WINDOW_TITLE);
                     }
+                    UsernameTextBox.Clear();
                 }
                 catch (EndpointNotFoundException)
                 {
@@ -91,7 +105,11 @@ namespace Parlis.Client.Views
         {
             string title = Properties.Resources.JOIN_MATCH_WINDOW_TITLE;
             string message = Properties.Resources.CODE_EMAIL_ADDRESS_LABEL;
-            if (!playerProfileManagementClient.SendMail(username, title, message, code))
+            if (playerProfileManagementClient.SendMail(username, title, message, code))
+            {
+                MessageBox.Show(Properties.Resources.CODE_SENT_WINDOW_TITLE);
+            }
+            else
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
@@ -108,13 +126,13 @@ namespace Parlis.Client.Views
             {
                 matchManagementClient.Disconnect(playerProfile.Username, code);
                 matchManagementClient.Close();
-                GoToMainMenu();
             } 
             catch (EndpointNotFoundException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
+            GoToMainMenu();
         }
 
         private void GoToMainMenu()
@@ -127,10 +145,12 @@ namespace Parlis.Client.Views
 
         public void SendPlayerProfiles(string[] playerProfiles)
         {
-            ConfigurePlayerProfiles(playerProfiles);
+            this.playerProfiles = playerProfiles;
+            ConfigureData();
+            ConfigurePlayerProfiles();
         }
 
-        public void ConfigurePlayerProfiles(string[] playerProfiles)
+        public void ConfigurePlayerProfiles()
         {
             for (int playerProfile = 0; playerProfile < playerProfiles.Length; playerProfile++)
             {
@@ -140,9 +160,10 @@ namespace Parlis.Client.Views
                 try
                 {
                     profilePictures[playerProfile].Source = new BitmapImage(new Uri(profilePicturePath));
-                } catch (IOException)
+                } 
+                catch (IOException)
                 {
-                    profilePictures[playerProfile].Source = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
+                    profilePictures[playerProfile].Source = defaultProfilePicture;
                 }
             }
         }

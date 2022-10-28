@@ -87,24 +87,17 @@ namespace Parlis.Client.Views
         private void UpdatePlayerProfile(string password)
         {
             playerProfile.Password = password;
-            try
+            if (playerProfileManagementClient.UpdatePlayerProfile(playerProfile))
             {
-                if (playerProfileManagementClient.UpdatePlayerProfile(playerProfile))
-                {
-                    playerProfileManagementClient.Close();
-                    MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                        Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
-                }
+                playerProfileManagementClient.Close();
+                MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
+                Close();
             }
-            catch (EndpointNotFoundException)
+            else
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                    Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
+
             }
         }
     }

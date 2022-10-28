@@ -11,6 +11,8 @@ namespace Parlis.Client.Views
         private readonly MatchManagementClient matchManagementClient;
         private PlayerProfile playerProfile;
         private int code;
+        private string[] playerProfiles;
+        private int numberOfPlayerProfiles;
 
         public JoinMatchWindow()
         {
@@ -59,14 +61,6 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void GoToCreateMatch()
-        {
-            var createMatchWindow = new CreateMatchWindow();
-            createMatchWindow.ConfigureWindow(playerProfile, code);
-            Close();
-            createMatchWindow.Show();
-        }
-
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             var mainMenuWindow = new MainMenuWindow();
@@ -77,11 +71,12 @@ namespace Parlis.Client.Views
 
         public void SendPlayerProfiles(string[] playerProfiles)
         {
-            int numberOfPlayerProfiles = (playerProfiles == null) ? 0 : playerProfiles.Length;
-            JoinMatch(playerProfiles, numberOfPlayerProfiles);
+            this.playerProfiles = playerProfiles;
+            numberOfPlayerProfiles = (playerProfiles == null) ? 0 : playerProfiles.Length;
+            JoinMatch();
         }
 
-        private void JoinMatch(string[] playerProfiles, int numberOfPlayerProfiles)
+        private void JoinMatch()
         {
             if (numberOfPlayerProfiles > 0)
             {
@@ -108,6 +103,14 @@ namespace Parlis.Client.Views
             {
                 GoToCreateMatch();
             }
+        }
+
+        private void GoToCreateMatch()
+        {
+            var createMatchWindow = new CreateMatchWindow();
+            createMatchWindow.ConfigureWindow(playerProfile, code);
+            Close();
+            createMatchWindow.Show();
         }
     }
 }

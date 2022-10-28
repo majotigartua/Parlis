@@ -81,8 +81,7 @@ namespace Parlis.Client.Views
         private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
         { 
             var registerPlayerProfileWindow = new RegisterPlayerProfileWindow();
-            Close();
-            registerPlayerProfileWindow.Show();
+            registerPlayerProfileWindow.ShowDialog();
         }
     }
 }

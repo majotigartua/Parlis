@@ -135,6 +135,9 @@
   <data name="CODE_LABEL" xml:space="preserve">
     <value>Code:</value>
   </data>
+  <data name="CODE_SENT_WINDOW_TITLE" xml:space="preserve">
+    <value>The code was sent correctly.</value>
+  </data>
   <data name="CONFIRM_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Confirm player profile</value>
   </data>

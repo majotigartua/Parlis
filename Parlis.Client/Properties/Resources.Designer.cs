@@ -115,6 +115,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The code was sent correctly..
+        /// </summary>
+        public static string CODE_SENT_WINDOW_TITLE {
+            get {
+                return ResourceManager.GetString("CODE_SENT_WINDOW_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Confirm player profile.
         /// </summary>
         public static string CONFIRM_PLAYER_PROFILE_BUTTON {
