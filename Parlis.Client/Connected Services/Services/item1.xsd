@@ -2,6 +2,104 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" />
   <xs:import schemaLocation="http://localhost:8082/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="CreateChat">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="code" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="code" type="xs:int" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="message" nillable="true" type="q1:Message" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessageResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceiveMessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="messages" nillable="true" type="q2:ArrayOfMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceiveMessagesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckMatchExistence">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="code" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckMatchExistenceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckMatchExistenceResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Connect">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="code" type="xs:int" />
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateMatch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="code" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateMatchResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Disconnect">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="code" type="xs:int" />
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisconnectResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPlayerProfiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="code" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceivePlayerProfiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="playerProfiles" nillable="true" type="q3:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceivePlayerProfilesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="CheckPlayerExistence">
     <xs:complexType>
       <xs:sequence>
@@ -68,7 +166,7 @@
   <xs:element name="GetPlayerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="GetPlayerResult" nillable="true" type="q1:Player" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="GetPlayerResult" nillable="true" type="q4:Player" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -82,7 +180,7 @@
   <xs:element name="GetPlayerProfileResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="GetPlayerProfileResult" nillable="true" type="q2:PlayerProfile" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="GetPlayerProfileResult" nillable="true" type="q5:PlayerProfile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -97,14 +195,14 @@
   <xs:element name="LoginResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="LoginResult" nillable="true" type="q3:PlayerProfile" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="LoginResult" nillable="true" type="q6:PlayerProfile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RegisterPlayer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="player" nillable="true" type="q4:Player" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="player" nillable="true" type="q7:Player" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -118,7 +216,7 @@
   <xs:element name="RegisterPlayerProfile">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="playerProfile" nillable="true" type="q5:PlayerProfile" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="playerProfile" nillable="true" type="q8:PlayerProfile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -149,7 +247,7 @@
   <xs:element name="UpdatePlayer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="player" nillable="true" type="q6:Player" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="player" nillable="true" type="q9:Player" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -163,7 +261,7 @@
   <xs:element name="UpdatePlayerProfile">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="playerProfile" nillable="true" type="q7:PlayerProfile" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="playerProfile" nillable="true" type="q10:PlayerProfile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -172,72 +270,6 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="UpdatePlayerProfileResult" type="xs:boolean" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CheckMatchExistence">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="code" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CheckMatchExistenceResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CheckMatchExistenceResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Connect">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="code" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateMatch">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="code" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateMatchResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Disconnect">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="code" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DisconnectResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetPlayerProfiles">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="code" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SendPlayerProfiles">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="playerProfiles" nillable="true" type="q8:ArrayOfstring" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SendPlayerProfilesResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

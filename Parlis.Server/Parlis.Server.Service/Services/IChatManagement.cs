@@ -1,20 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using Parlis.Server.Service.Data;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace Parlis.Server.Service.Services
 {
-    [ServiceContract(CallbackContract = typeof(IChatCallback))]
+    [ServiceContract(CallbackContract = typeof(IChatManagementCallback))]
     public interface IChatManagement
     {
         [OperationContract(IsOneWay = true)]
-        void SendMessage(string message, int code);
+        void CreateChat(int code);
 
+        [OperationContract]
+        void SendMessage(int code, Message message);
     }
 
     [ServiceContract]
-    public interface IChatCallback
+    public interface IChatManagementCallback
     {
         [OperationContract]
-        void ReceiveMessage(List<string> messages);
+        void ReceiveMessages(List<Message> messages);
     }
 }

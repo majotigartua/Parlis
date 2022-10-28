@@ -7,7 +7,6 @@ namespace Parlis.Client.Views
     public partial class EnterAsGuestWindow : Window
     {
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
-        private PlayerProfile playerProfile;
 
         public EnterAsGuestWindow()
         {
@@ -37,13 +36,14 @@ namespace Parlis.Client.Views
             {
                 if (!playerProfileManagementClient.CheckPlayerProfileExistence(username))
                 {
-                    playerProfile = new PlayerProfile {
+                    var playerProfile = new PlayerProfile
+                    {
                         Username = username,
                     };
                     if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile))
                     {
                         playerProfileManagementClient.Close();
-                        GoToMainMenu();
+                        GoToMainMenu(playerProfile);
                     }
                     else
                     {
@@ -65,7 +65,7 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void GoToMainMenu()
+        private void GoToMainMenu(PlayerProfile playerProfile)
         {
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.ConfigureWindow(playerProfile);

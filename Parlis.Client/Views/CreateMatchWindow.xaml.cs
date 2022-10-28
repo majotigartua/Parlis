@@ -16,9 +16,8 @@ namespace Parlis.Client.Views
         private readonly BitmapImage defaultProfilePicture;
         private readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
-        private PlayerProfile playerProfile;
         private int code;
-        private string[] playerProfiles;
+        private PlayerProfile playerProfile;
 
         public CreateMatchWindow()
         {
@@ -31,14 +30,18 @@ namespace Parlis.Client.Views
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
-        public void ConfigureWindow(PlayerProfile playerProfile, int code)
+        public void ConfigureWindow(int code, PlayerProfile playerProfile)
         {
-            this.playerProfile = playerProfile;
             this.code = code;
+            this.playerProfile = playerProfile;
             ConfigureData();
             try
             {
-                matchManagementClient.Connect(playerProfile.Username, this.code);
+                if (!matchManagementClient.CheckMatchExistence(code))
+                {
+                    matchManagementClient.CreateMatch(code);
+                }
+                matchManagementClient.Connect(this.code, playerProfile.Username);
             }
             catch (EndpointNotFoundException)
             {
@@ -57,6 +60,30 @@ namespace Parlis.Client.Views
             }
         }
 
+        public void ReceivePlayerProfiles(string[] playerProfiles)
+        {
+            ConfigureData();
+            ConfigurePlayerProfiles(playerProfiles);
+        }
+
+        public void ConfigurePlayerProfiles(string[] playerProfiles)
+        {
+            for (int playerProfile = 0; playerProfile < playerProfiles.Length; playerProfile++)
+            {
+                string username = playerProfiles[playerProfile];
+                usernames[playerProfile].Text = username;
+                var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "../../ProfilePictures/" + username + ".jpg";
+                try
+                {
+                    profilePictures[playerProfile].Source = new BitmapImage(new Uri(profilePicturePath));
+                }
+                catch (IOException)
+                {
+                    profilePictures[playerProfile].Source = defaultProfilePicture;
+                }
+            }
+        }
+
         private void ExpelPlayerMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var expelPlayerWindow = new ExpelPlayerWindow();
@@ -66,6 +93,7 @@ namespace Parlis.Client.Views
         private void MessageBalloonMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var sendRealTimeMessageWindow = new SendRealTimeMessageWindow();
+            sendRealTimeMessageWindow.ConfigureWindow(code, playerProfile);
             sendRealTimeMessageWindow.ShowDialog();
         }
 
@@ -122,9 +150,10 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            string username = playerProfile.Username;
             try
             {
-                matchManagementClient.Disconnect(playerProfile.Username, code);
+                matchManagementClient.Disconnect(code, username);
                 matchManagementClient.Close();
             } 
             catch (EndpointNotFoundException)
@@ -141,31 +170,6 @@ namespace Parlis.Client.Views
             mainMenuWindow.ConfigureWindow(playerProfile);
             Close();
             mainMenuWindow.Show();
-        }
-
-        public void SendPlayerProfiles(string[] playerProfiles)
-        {
-            this.playerProfiles = playerProfiles;
-            ConfigureData();
-            ConfigurePlayerProfiles();
-        }
-
-        public void ConfigurePlayerProfiles()
-        {
-            for (int playerProfile = 0; playerProfile < playerProfiles.Length; playerProfile++)
-            {
-                string username = playerProfiles[playerProfile];
-                usernames[playerProfile].Text = username;
-                var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "../../ProfilePictures/" + username + ".jpg";
-                try
-                {
-                    profilePictures[playerProfile].Source = new BitmapImage(new Uri(profilePicturePath));
-                } 
-                catch (IOException)
-                {
-                    profilePictures[playerProfile].Source = defaultProfilePicture;
-                }
-            }
         }
     }
 }

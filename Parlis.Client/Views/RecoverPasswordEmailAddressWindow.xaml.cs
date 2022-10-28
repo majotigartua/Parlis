@@ -8,7 +8,6 @@ namespace Parlis.Client.Views
     public partial class RecoverPasswordEmailAddressWindow : Window
     {
         private PlayerProfileManagementClient playerProfileManagementClient;
-        private PlayerProfile playerProfile;
 
         public RecoverPasswordEmailAddressWindow()
         {
@@ -25,9 +24,9 @@ namespace Parlis.Client.Views
                 {
                     if (playerProfileManagementClient.CheckPlayerExistence(emailAddress))
                     {
-                        playerProfile = playerProfileManagementClient.GetPlayerProfile(emailAddress);
+                        var playerProfile = playerProfileManagementClient.GetPlayerProfile(emailAddress);
                         playerProfileManagementClient.Close();
-                        GoToRecoverPassword();
+                        GoToRecoverPassword(playerProfile);
                     }
                     else
                     {
@@ -48,7 +47,7 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void GoToRecoverPassword()
+        private void GoToRecoverPassword(PlayerProfile playerProfile)
         {
             var recoverPasswordWindow = new RecoverPasswordWindow();
             try
