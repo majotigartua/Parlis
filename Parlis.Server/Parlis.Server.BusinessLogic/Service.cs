@@ -268,6 +268,7 @@ namespace Parlis.Server.BusinessLogic
         private static readonly List<int> matches = new List<int>();
         private static readonly Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
         private static readonly Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
+        private static readonly Dictionary<List<string>, int> chatsByMatch = new Dictionary<List<string>, int>();
 
         public bool CheckMatchExistence(int code)
         { 
@@ -319,6 +320,49 @@ namespace Parlis.Server.BusinessLogic
             {
                 playerProfile.Value.SendPlayerProfiles(GetPlayerProfiles(code));
             }
+        }
+    }
+
+    //[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
+    public partial class Service : IChatManagement
+    {
+        public void SendMessage(string message, int code)
+        {
+            if (chatsByMatch.ContainsValue(code))
+            {
+                foreach(var chat in chatsByMatch)
+                {
+                    if(chat.Value.Equals(code))
+                    {
+                        chat.Key.Add(message);
+                    }
+                }
+            } 
+            else
+            {
+                List<string> messages = new List<string>();
+                messages.Add(message);
+
+                chatsByMatch.Add(messages, code);
+            }
+
+            OperationContext.Current.GetCallbackChannel<IChatCallback>().ReceiveMessage(GetChat(code));
+
+        }
+
+        public List<string> GetChat(int code)
+        {
+            List<string> messages = new List<string>();
+
+            foreach (var chat in chatsByMatch)
+            {
+                if (chat.Value.Equals(code))
+                {
+                    messages = chat.Key;
+                }
+            }
+
+            return messages;
         }
     }
 }
