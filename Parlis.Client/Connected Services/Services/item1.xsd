@@ -216,6 +216,11 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="DisconnectResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetPlayerProfiles">
     <xs:complexType>
       <xs:sequence>

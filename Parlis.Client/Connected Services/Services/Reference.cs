@@ -422,10 +422,10 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/CreateMatch", ReplyAction="http://tempuri.org/IMatchManagement/CreateMatchResponse")]
         System.Threading.Tasks.Task CreateMatchAsync(int code);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/Disconnect")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/Disconnect", ReplyAction="http://tempuri.org/IMatchManagement/DisconnectResponse")]
         void Disconnect(string username, int code);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/Disconnect")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/Disconnect", ReplyAction="http://tempuri.org/IMatchManagement/DisconnectResponse")]
         System.Threading.Tasks.Task DisconnectAsync(string username, int code);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles")]

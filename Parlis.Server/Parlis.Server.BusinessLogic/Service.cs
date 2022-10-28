@@ -192,31 +192,26 @@ namespace Parlis.Server.BusinessLogic
             int port = int.Parse(ConfigurationManager.AppSettings["Port"]);
             string emailAddress = ConfigurationManager.AppSettings["EmailAddress"];
             string password = ConfigurationManager.AppSettings["Password"];
-            using (ParlisContext context = new ParlisContext())
+            string addressee = GetPlayer(username).EmailAddress;
+            try
             {
-                string addressee = (from player in context.Players
-                                    where player.PlayerProfileUsername.Equals(username)
-                                    select player).First().EmailAddress;
-                try
+                var mailMessage = new MailMessage(emailAddress, addressee, title, (message + " " + code + "."))
                 {
-                    var mailMessage = new MailMessage(emailAddress, addressee, title, (message + " " + code + "."))
-                    {
-                        IsBodyHtml = true
-                    };
-                    var smtpClient = new SmtpClient(smtpServer)
-                    {
-                        Port = port,
-                        UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential(emailAddress, password),
-                        EnableSsl = true,
-                    };
-                    smtpClient.Send(mailMessage);
-                    return true;
-                }
-                catch (Exception)
+                    IsBodyHtml = true
+                };
+                var smtpClient = new SmtpClient(smtpServer)
                 {
-                    return false;
-                }
+                    Port = port,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(emailAddress, password),
+                    EnableSsl = true,
+                };
+                smtpClient.Send(mailMessage);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
         
@@ -297,6 +292,7 @@ namespace Parlis.Server.BusinessLogic
         {
             playerProfilesByMatch.Remove(username);
             playerProfiles.Remove(username);
+            SetPlayerProfiles(code);
         }
 
         void IMatchManagement.GetPlayerProfiles(int code)
@@ -316,7 +312,6 @@ namespace Parlis.Server.BusinessLogic
             }
             return playerProfiles;
         }
-        
 
         public void SetPlayerProfiles(int code)
         {
