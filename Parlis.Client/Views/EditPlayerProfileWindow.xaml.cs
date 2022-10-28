@@ -36,7 +36,7 @@ namespace Parlis.Client.Views
         public void ConfigureData()
         {
             string username = playerProfile.Username;
-            var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/ProfilePictures/" + username + ".jpg";
+            var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "../../ProfilePictures/" + username + ".jpg";
             try
             {
                 player = playerProfileManagementClient.GetPlayer(username);
