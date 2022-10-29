@@ -95,14 +95,11 @@
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IChatManagement_CreateChat_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateChat" />
+  <wsdl:message name="IChatManagement_ConnectToChat_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToChat" />
   </wsdl:message>
   <wsdl:message name="IChatManagement_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
-  </wsdl:message>
-  <wsdl:message name="IChatManagement_SendMessage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
   </wsdl:message>
   <wsdl:message name="IChatManagement_ReceiveMessages_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveMessages" />
@@ -116,8 +113,8 @@
   <wsdl:message name="IMatchManagement_CheckMatchExistence_OutputMessage">
     <wsdl:part name="parameters" element="tns:CheckMatchExistenceResponse" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_Connect_InputMessage">
-    <wsdl:part name="parameters" element="tns:Connect" />
+  <wsdl:message name="IMatchManagement_ConnectToMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToMatch" />
   </wsdl:message>
   <wsdl:message name="IMatchManagement_CreateMatch_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateMatch" />
@@ -125,11 +122,11 @@
   <wsdl:message name="IMatchManagement_CreateMatch_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateMatchResponse" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_Disconnect_InputMessage">
-    <wsdl:part name="parameters" element="tns:Disconnect" />
+  <wsdl:message name="IMatchManagement_DisconnectFromMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectFromMatch" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_Disconnect_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DisconnectResponse" />
+  <wsdl:message name="IMatchManagement_DisconnectFromMatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectFromMatchResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchManagement_GetPlayerProfiles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerProfiles" />
@@ -213,12 +210,11 @@
     <wsdl:part name="parameters" element="tns:UpdatePlayerProfileResponse" />
   </wsdl:message>
   <wsdl:portType name="IChatManagement">
-    <wsdl:operation name="CreateChat">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatManagement/CreateChat" message="tns:IChatManagement_CreateChat_InputMessage" />
+    <wsdl:operation name="ConnectToChat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatManagement/ConnectToChat" message="tns:IChatManagement_ConnectToChat_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatManagement/SendMessage" message="tns:IChatManagement_SendMessage_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatManagement/SendMessageResponse" message="tns:IChatManagement_SendMessage_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReceiveMessages">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatManagement/ReceiveMessages" message="tns:IChatManagement_ReceiveMessages_OutputCallbackMessage" />
@@ -230,16 +226,16 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/CheckMatchExistence" message="tns:IMatchManagement_CheckMatchExistence_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/CheckMatchExistenceResponse" message="tns:IMatchManagement_CheckMatchExistence_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Connect">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/Connect" message="tns:IMatchManagement_Connect_InputMessage" />
+    <wsdl:operation name="ConnectToMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/ConnectToMatch" message="tns:IMatchManagement_ConnectToMatch_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreateMatch">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/CreateMatch" message="tns:IMatchManagement_CreateMatch_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/CreateMatchResponse" message="tns:IMatchManagement_CreateMatch_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Disconnect">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/Disconnect" message="tns:IMatchManagement_Disconnect_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/DisconnectResponse" message="tns:IMatchManagement_Disconnect_OutputMessage" />
+    <wsdl:operation name="DisconnectFromMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/DisconnectFromMatch" message="tns:IMatchManagement_DisconnectFromMatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/DisconnectFromMatchResponse" message="tns:IMatchManagement_DisconnectFromMatch_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetPlayerProfiles">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles" message="tns:IMatchManagement_GetPlayerProfiles_InputMessage" />
@@ -302,8 +298,8 @@
   <wsdl:binding name="NetTcpBinding_IChatManagement" type="tns:IChatManagement">
     <wsp:PolicyReference URI="#NetTcpBinding_IChatManagement_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="CreateChat">
-      <soap12:operation soapAction="http://tempuri.org/IChatManagement/CreateChat" style="document" />
+    <wsdl:operation name="ConnectToChat">
+      <soap12:operation soapAction="http://tempuri.org/IChatManagement/ConnectToChat" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -313,9 +309,6 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ReceiveMessages">
       <soap12:operation soapAction="http://tempuri.org/IChatManagement/ReceiveMessages" style="document" />
@@ -339,8 +332,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Connect">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/Connect" style="document" />
+    <wsdl:operation name="ConnectToMatch">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/ConnectToMatch" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -354,8 +347,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Disconnect">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/Disconnect" style="document" />
+    <wsdl:operation name="DisconnectFromMatch">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/DisconnectFromMatch" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

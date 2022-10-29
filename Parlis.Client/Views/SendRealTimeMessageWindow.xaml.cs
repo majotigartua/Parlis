@@ -23,7 +23,7 @@ namespace Parlis.Client.Views
             this.playerProfile = playerProfile;
             try
             {
-                chatManagementClient.CreateChat(code);
+                chatManagementClient.ConnectToChat(code);
             }
             catch (EndpointNotFoundException)
             {
@@ -34,15 +34,11 @@ namespace Parlis.Client.Views
 
         public void ReceiveMessages(Message[] messages)
         {
+            ChatTextBox.Clear();
             foreach (var message in messages)
             {
-                ChatTextBox.Text += message.ToString();
+                ChatTextBox.AppendText(message.Username + ": " + message.Content + "\n");
             }
-        }
-
-        private void CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
 
         private void SendButtonClick(object sender, RoutedEventArgs e)
@@ -55,7 +51,17 @@ namespace Parlis.Client.Views
                     Content = MessageTextBox.Text,
                     Username = username,
                 };
-                chatManagementClient.SendMessage(code, message);
+                MessageTextBox.Clear();
+                try
+                {
+                    chatManagementClient.SendMessage(message, code);
+                }
+                catch
+                (EndpointNotFoundException)
+                {
+                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                        Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                }           
             }
             else
             {

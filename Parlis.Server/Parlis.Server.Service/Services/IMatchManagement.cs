@@ -10,16 +10,16 @@ namespace Parlis.Server.Service.Services
         bool CheckMatchExistence(int code);
 
         [OperationContract(IsOneWay = true)]
-        void Connect(int code, string username);
+        void ConnectToMatch(string username, int code);
 
         [OperationContract]
         void CreateMatch(int code);
 
         [OperationContract]
-        void Disconnect(int code, string username);
+        void DisconnectFromMatch(string username, int code);
 
         [OperationContract(IsOneWay = true)]
-        void GetPlayerProfiles(int code);
+        void GetPlayerProfiles(string username, int code);
     }
 
     [ServiceContract]

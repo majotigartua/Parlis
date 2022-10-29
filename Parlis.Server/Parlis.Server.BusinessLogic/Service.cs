@@ -277,20 +277,17 @@ namespace Parlis.Server.BusinessLogic
             return matches.Contains(code);
         }
 
-        public void Connect(int code, string username)
+        public void ConnectToMatch(string username, int code)
         {
-            var matchManagementCallback = OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>();
-            matchManagementCallback.ReceivePlayerProfiles(GetPlayerProfiles(code));
-            playerProfiles.Add(username, matchManagementCallback);
             playerProfilesByMatch.Add(username, code);
+            playerProfiles.Add(username, OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>());
             SetPlayerProfiles(code);
         }
 
-        public void CreateChat(int code)
+        public void ConnectToChat(int code)
         {
-            var matchManagementCallback = OperationContext.Current.GetCallbackChannel<IChatManagementCallback>();
-            matchManagementCallback.ReceiveMessages(GetMessages(code));
-            chats.Add(matchManagementCallback, code);
+            chats.Add(OperationContext.Current.GetCallbackChannel<IChatManagementCallback>(), code);
+            SetMessages(code);
         }
 
         public void CreateMatch(int code)
@@ -298,7 +295,7 @@ namespace Parlis.Server.BusinessLogic
             matches.Add(code);
         }
 
-        public void Disconnect(int code, string username)
+        public void DisconnectFromMatch(string username, int code)
         {
             playerProfilesByMatch.Remove(username);
             playerProfiles.Remove(username);
@@ -307,61 +304,64 @@ namespace Parlis.Server.BusinessLogic
 
         public List<Message> GetMessages(int code)
         {
-            List<Message> messages = new List<Message>();
             if (!messagesByMatch.ContainsKey(code))
             {
+                List<Message> messages = new List<Message>();
                 messagesByMatch.Add(code, messages);
+            }
+            return messagesByMatch[code];
+        }
+
+        void IMatchManagement.GetPlayerProfiles(string username, int code)
+        {
+            if (playerProfiles.ContainsKey(username))
+            {
+                OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().ReceivePlayerProfiles(new List<string>(playerProfiles.Keys));
             }
             else
             {
-                messages = messagesByMatch[code];
+                OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().ReceivePlayerProfiles(GetPlayerProfiles(code));
             }
-            return messages;
-        }
-
-        void IMatchManagement.GetPlayerProfiles(int code)
-        {
-            OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().ReceivePlayerProfiles(GetPlayerProfiles(code));
         }
 
         public List<string> GetPlayerProfiles(int code)
         {
-            if (CheckMatchExistence(code))
+            List<string> playerProfiles = new List<string>();
+            foreach (var playerProfile in playerProfilesByMatch)
             {
-                List<string> playerProfiles = new List<string>();
-                for (int playerProfile = 0; playerProfile < playerProfilesByMatch.Count(); playerProfile++)
+                if (playerProfile.Value.Equals(code))
                 {
-                    if (playerProfilesByMatch.ElementAt(playerProfile).Value == code)
-                    {
-                        playerProfiles.Add(playerProfilesByMatch.ElementAt(playerProfile).Key);
-                    }
+                    playerProfiles.Add(playerProfile.Key);
                 }
-                return playerProfiles;
             }
-            else
-            {
-                return new List<string>(playerProfiles.Keys);
-            }
+            return playerProfiles;
         }
 
-        public void SendMessage(int code, Message message)
+        public void SendMessage(Message message, int code)
         {
             messagesByMatch[code].Add(message);
+            SetMessages(code);
+        }
+
+        public void SetPlayerProfiles(int code)
+        {
+            foreach (var playerProfile in playerProfilesByMatch)
+            {
+                if (playerProfile.Value.Equals(code))
+                {
+                    playerProfiles[playerProfile.Key].ReceivePlayerProfiles(GetPlayerProfiles(code));
+                }
+            }
         }
 
         public void SetMessages(int code)
         {
             foreach (var chat in chats)
             {
-                chat.Key.ReceiveMessages(GetMessages(code));
-            }
-        }
-
-        public void SetPlayerProfiles(int code)
-        {
-            foreach (var playerProfile in playerProfiles)
-            {
-                playerProfile.Value.ReceivePlayerProfiles(GetPlayerProfiles(code));
+                if (chat.Value.Equals(code))
+                {
+                    chat.Key.ReceiveMessages(GetMessages(code));
+                }
             }
         }
     }

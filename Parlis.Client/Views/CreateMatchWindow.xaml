@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:p="clr-namespace:Parlis.Client.Properties"
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.CREATE_MATCH_WINDOW_TITLE}" Height="500" Width="750">
+        Title="{x:Static p:Resources.CREATE_MATCH_WINDOW_TITLE}" Height="500" Width="750" Closing="CreateMatchWindowClosing">
     <Viewbox Margin="20" Stretch="Fill" StretchDirection="Both">
         <Grid>
             <Label Content="{x:Static p:Resources.WAITING_ROOM_LABEL}" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="36"/>

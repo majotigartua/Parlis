@@ -33,7 +33,8 @@ namespace Parlis.Client.Views
                     code = int.Parse(CodeTextBox.Text);
                     if (matchManagementClient.CheckMatchExistence(code))
                     {
-                        matchManagementClient.GetPlayerProfiles(code);
+                        string username = playerProfile.Username;
+                        matchManagementClient.GetPlayerProfiles(username, code);
                     }
                     else
                     {

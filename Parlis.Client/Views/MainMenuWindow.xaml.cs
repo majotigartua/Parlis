@@ -27,9 +27,10 @@ namespace Parlis.Client.Views
         private void CreateMatchButtonClick(object sender, RoutedEventArgs e)
         {
             code = Utilities.GenerateRandomCode();
+            string username = playerProfile.Username;
             try
             {
-                matchManagementClient.GetPlayerProfiles(code);
+                matchManagementClient.GetPlayerProfiles(username, code);
             }
             catch (EndpointNotFoundException)
             {

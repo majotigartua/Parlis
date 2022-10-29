@@ -41,7 +41,7 @@ namespace Parlis.Client.Views
                 {
                     matchManagementClient.CreateMatch(code);
                 }
-                matchManagementClient.Connect(this.code, playerProfile.Username);
+                matchManagementClient.ConnectToMatch(playerProfile.Username, code);
             }
             catch (EndpointNotFoundException)
             {
@@ -153,9 +153,9 @@ namespace Parlis.Client.Views
             string username = playerProfile.Username;
             try
             {
-                matchManagementClient.Disconnect(code, username);
+                matchManagementClient.DisconnectFromMatch(username, code);
                 matchManagementClient.Close();
-            } 
+            }
             catch (EndpointNotFoundException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
