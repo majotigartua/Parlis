@@ -252,6 +252,9 @@
   <data name="REGISTER_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Registrar perfil do jogador.</value>
   </data>
+  <data name="SEND_BUTTON" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
   <data name="SEND_INVITATION_BUTTON" xml:space="preserve">
     <value>Enviar convite</value>
   </data>
@@ -259,7 +262,7 @@
     <value>Enviar mensagem em tempo real.</value>
   </data>
   <data name="START_MATCH_BUTTON" xml:space="preserve">
-    <value>Comece o jogo.</value>
+    <value>Comece o jogo</value>
   </data>
   <data name="TRY_AGAIN_LATER_LABEL" xml:space="preserve">
     <value>Por favor, tente novamente mais tarde.</value>

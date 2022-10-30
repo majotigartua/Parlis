@@ -98,6 +98,12 @@
   <wsdl:message name="IChatManagement_ConnectToChat_InputMessage">
     <wsdl:part name="parameters" element="tns:ConnectToChat" />
   </wsdl:message>
+  <wsdl:message name="IChatManagement_DisconnectFromChat_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectFromChat" />
+  </wsdl:message>
+  <wsdl:message name="IChatManagement_DisconnectFromChat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectFromChatResponse" />
+  </wsdl:message>
   <wsdl:message name="IChatManagement_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
   </wsdl:message>
@@ -127,6 +133,12 @@
   </wsdl:message>
   <wsdl:message name="IMatchManagement_DisconnectFromMatch_OutputMessage">
     <wsdl:part name="parameters" element="tns:DisconnectFromMatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManagement_ExpelPlayerProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExpelPlayerProfile" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManagement_ExpelPlayerProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExpelPlayerProfileResponse" />
   </wsdl:message>
   <wsdl:message name="IMatchManagement_GetPlayerProfiles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerProfiles" />
@@ -213,6 +225,10 @@
     <wsdl:operation name="ConnectToChat">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatManagement/ConnectToChat" message="tns:IChatManagement_ConnectToChat_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DisconnectFromChat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatManagement/DisconnectFromChat" message="tns:IChatManagement_DisconnectFromChat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatManagement/DisconnectFromChatResponse" message="tns:IChatManagement_DisconnectFromChat_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatManagement/SendMessage" message="tns:IChatManagement_SendMessage_InputMessage" />
     </wsdl:operation>
@@ -236,6 +252,10 @@
     <wsdl:operation name="DisconnectFromMatch">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/DisconnectFromMatch" message="tns:IMatchManagement_DisconnectFromMatch_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/DisconnectFromMatchResponse" message="tns:IMatchManagement_DisconnectFromMatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExpelPlayerProfile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/ExpelPlayerProfile" message="tns:IMatchManagement_ExpelPlayerProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/ExpelPlayerProfileResponse" message="tns:IMatchManagement_ExpelPlayerProfile_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetPlayerProfiles">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles" message="tns:IMatchManagement_GetPlayerProfiles_InputMessage" />
@@ -304,6 +324,15 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="DisconnectFromChat">
+      <soap12:operation soapAction="http://tempuri.org/IChatManagement/DisconnectFromChat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <soap12:operation soapAction="http://tempuri.org/IChatManagement/SendMessage" style="document" />
       <wsdl:input>
@@ -349,6 +378,15 @@
     </wsdl:operation>
     <wsdl:operation name="DisconnectFromMatch">
       <soap12:operation soapAction="http://tempuri.org/IMatchManagement/DisconnectFromMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExpelPlayerProfile">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/ExpelPlayerProfile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

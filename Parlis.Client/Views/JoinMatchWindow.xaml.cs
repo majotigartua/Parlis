@@ -62,7 +62,7 @@ namespace Parlis.Client.Views
 
         public void ReceivePlayerProfiles(string[] playerProfiles)
         {
-            int numberOfPlayerProfiles = (playerProfiles == null) ? 0 : playerProfiles.Length;
+            int numberOfPlayerProfiles = playerProfiles.Length;
             JoinMatch(playerProfiles, numberOfPlayerProfiles);
         }
 
@@ -99,7 +99,7 @@ namespace Parlis.Client.Views
         private void GoToCreateMatch()
         {
             var createMatchWindow = new CreateMatchWindow();
-            createMatchWindow.ConfigureWindow(code, playerProfile);
+            createMatchWindow.ConfigureWindow(playerProfile, code);
             Close();
             createMatchWindow.Show();
         }

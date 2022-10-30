@@ -270,11 +270,17 @@ namespace Parlis.Server.BusinessLogic
         private static readonly Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
         private static readonly Dictionary<int, List<Message>> messagesByMatch = new Dictionary<int, List<Message>>();
         private static readonly Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
-        private static readonly Dictionary<IChatManagementCallback, int> chats = new Dictionary<IChatManagementCallback, int>();
+        private static readonly Dictionary<string, IChatManagementCallback> chats = new Dictionary<string, IChatManagementCallback>();
 
         public bool CheckMatchExistence(int code)
         {
             return matches.Contains(code);
+        }
+
+        public void ConnectToChat(string username, int code)
+        {
+            chats.Add(username, OperationContext.Current.GetCallbackChannel<IChatManagementCallback>());
+            SetMessages(code);
         }
 
         public void ConnectToMatch(string username, int code)
@@ -284,15 +290,14 @@ namespace Parlis.Server.BusinessLogic
             SetPlayerProfiles(code);
         }
 
-        public void ConnectToChat(int code)
-        {
-            chats.Add(OperationContext.Current.GetCallbackChannel<IChatManagementCallback>(), code);
-            SetMessages(code);
-        }
-
         public void CreateMatch(int code)
         {
             matches.Add(code);
+        }
+
+        public void DisconnectFromChat(string username)
+        {
+            chats.Remove(username);
         }
 
         public void DisconnectFromMatch(string username, int code)
@@ -326,18 +331,12 @@ namespace Parlis.Server.BusinessLogic
 
         public List<string> GetPlayerProfiles(int code)
         {
-            List<string> playerProfiles = new List<string>();
-            foreach (var playerProfile in playerProfilesByMatch)
-            {
-                if (playerProfile.Value.Equals(code))
-                {
-                    playerProfiles.Add(playerProfile.Key);
-                }
-            }
-            return playerProfiles;
+            return playerProfilesByMatch.Where(playerProfile => playerProfile.Value == code)
+                .Select(playerProfile => playerProfile.Key)
+                .ToList();
         }
 
-        public void SendMessage(Message message, int code)
+        public void SendMessage(int code, Message message)
         {
             messagesByMatch[code].Add(message);
             SetMessages(code);
@@ -349,18 +348,20 @@ namespace Parlis.Server.BusinessLogic
             {
                 if (playerProfile.Value.Equals(code))
                 {
-                    playerProfiles[playerProfile.Key].ReceivePlayerProfiles(GetPlayerProfiles(code));
+                    string username = playerProfile.Key;
+                    playerProfiles[username].ReceivePlayerProfiles(GetPlayerProfiles(code));
                 }
             }
         }
 
         public void SetMessages(int code)
         {
-            foreach (var chat in chats)
+            foreach (var playerProfile in playerProfilesByMatch)
             {
-                if (chat.Value.Equals(code))
+                string username = playerProfile.Key;
+                if (chats.ContainsKey(username))
                 {
-                    chat.Key.ReceiveMessages(GetMessages(code));
+                    chats[username].ReceiveMessages(GetMessages(code));
                 }
             }
         }

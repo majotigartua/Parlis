@@ -8,10 +8,13 @@ namespace Parlis.Server.Service.Services
     public interface IChatManagement
     {
         [OperationContract(IsOneWay = true)]
-        void ConnectToChat(int code);
+        void ConnectToChat(string username, int code);
+
+        [OperationContract]
+        void DisconnectFromChat(string username);
 
         [OperationContract(IsOneWay = true)]
-        void SendMessage(Message message, int code);
+        void SendMessage(int code, Message message);
     }
 
     [ServiceContract]

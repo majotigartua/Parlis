@@ -11,7 +11,7 @@ namespace Parlis.Server.Service.Data
         [DataMember]
         public DateTime Date { get; set; }
         [DataMember]
-        public string Username { get; set; }
+        public string PlayerProfileUsername { get; set; }
 
         public Match()
         {

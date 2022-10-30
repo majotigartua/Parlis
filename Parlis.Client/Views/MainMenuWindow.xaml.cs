@@ -26,8 +26,8 @@ namespace Parlis.Client.Views
 
         private void CreateMatchButtonClick(object sender, RoutedEventArgs e)
         {
-            code = Utilities.GenerateRandomCode();
             string username = playerProfile.Username;
+            code = Utilities.GenerateRandomCode();
             try
             {
                 matchManagementClient.GetPlayerProfiles(username, code);
@@ -65,7 +65,7 @@ namespace Parlis.Client.Views
         private void GoToCreateMatch()
         {
             var createMatchWindow = new CreateMatchWindow();
-            createMatchWindow.ConfigureWindow(code, playerProfile);
+            createMatchWindow.ConfigureWindow(playerProfile, code);
             Close();
             createMatchWindow.Show();
         }

@@ -7,8 +7,8 @@ namespace Parlis.Client.Views
     public partial class SendRealTimeMessageWindow : Window, IChatManagementCallback
     {
         private readonly ChatManagementClient chatManagementClient;
+        private string username;
         private int code;
-        private PlayerProfile playerProfile;
 
         public SendRealTimeMessageWindow()
         {
@@ -17,13 +17,13 @@ namespace Parlis.Client.Views
             chatManagementClient = new ChatManagementClient(instanceContext);
         }
 
-        public void ConfigureWindow(int code, PlayerProfile playerProfile)
+        public void ConfigureWindow(string username, int code)
         {
             this.code = code;
-            this.playerProfile = playerProfile;
+            this.username = username;
             try
             {
-                chatManagementClient.ConnectToChat(code);
+                chatManagementClient.ConnectToChat(username, code);
             }
             catch (EndpointNotFoundException)
             {
@@ -37,7 +37,7 @@ namespace Parlis.Client.Views
             ChatTextBox.Clear();
             foreach (var message in messages)
             {
-                ChatTextBox.AppendText(message.Username + ": " + message.Content + "\n");
+                ChatTextBox.AppendText(message.PlayerProfileUsername + ": " + message.Content + "\n");
             }
         }
 
@@ -45,16 +45,15 @@ namespace Parlis.Client.Views
         {
             if (!string.IsNullOrEmpty(MessageTextBox.Text))
             {
-                string username = playerProfile.Username;
                 var message = new Message
                 {
                     Content = MessageTextBox.Text,
-                    Username = username,
+                    PlayerProfileUsername = username,
                 };
                 MessageTextBox.Clear();
                 try
                 {
-                    chatManagementClient.SendMessage(message, code);
+                    chatManagementClient.SendMessage(code, message);
                 }
                 catch
                 (EndpointNotFoundException)
@@ -68,6 +67,12 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
                     Properties.Resources.EMPTY_FIELDS_WINDOW_TITLE);
             }
+        }
+
+        private void SendRealTimeMessageWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            chatManagementClient.DisconnectFromChat(username);
+            chatManagementClient.Close();
         }
     }
 }
