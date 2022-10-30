@@ -110,13 +110,13 @@ namespace Parlis.Server.BusinessLogic
                     Username = playerProfiles.Username,
                     Password = playerProfiles.Password,
                 };
-
                 return playerProfile;
             }
         }
 
         public PlayerProfile Login(string username, string password)
         {
+            PlayerProfile playerProfile = null;
             using (ParlisContext context = new ParlisContext())
             {
                 var playerProfiles = (from gamer in context.PlayerProfiles
@@ -124,19 +124,15 @@ namespace Parlis.Server.BusinessLogic
                                       select gamer).FirstOrDefault();
                 if (playerProfiles != null)
                 {
-                    var playerProfile = new PlayerProfile
+                    playerProfile = new PlayerProfile
                     {
                         Username = playerProfiles.Username,
                         Password = playerProfiles.Password,
-                        IsVerified = (bool) playerProfiles.IsVerified,
+                        IsVerified = (bool)playerProfiles.IsVerified,
                     };
-                    return playerProfile;
-                }
-                else
-                {
-                    return null;
                 }
             }
+            return playerProfile;
         }
 
         public bool RegisterPlayer(Player player)
@@ -189,10 +185,10 @@ namespace Parlis.Server.BusinessLogic
 
         public bool SendMail(string username, string title, string message, int code)
         {
-            string smtpServer = ConfigurationManager.AppSettings["SmtpServer"];
-            int port = int.Parse(ConfigurationManager.AppSettings["Port"]);
-            string emailAddress = ConfigurationManager.AppSettings["EmailAddress"];
-            string password = ConfigurationManager.AppSettings["Password"];
+            string smtpServer = ConfigurationManager.AppSettings["SMTP_SERVER"];
+            int port = int.Parse(ConfigurationManager.AppSettings["PORT"]);
+            string emailAddress = ConfigurationManager.AppSettings["EMAIL_ADDRESS"];
+            string password = ConfigurationManager.AppSettings["PASSWORD"];
             string addressee = GetPlayer(username).EmailAddress;
             try
             {

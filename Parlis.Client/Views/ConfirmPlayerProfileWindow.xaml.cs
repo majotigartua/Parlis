@@ -47,12 +47,14 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             playerProfileManagementClient.Close();
             Close();
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             if (!string.IsNullOrEmpty(CodeTextBox.Text))
             {
                 try

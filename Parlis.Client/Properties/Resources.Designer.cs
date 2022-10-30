@@ -70,6 +70,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream ButtonClick {
+            get {
+                return ResourceManager.GetStream("ButtonClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancel.
         /// </summary>
         public static string CANCEL_BUTTON {
@@ -336,6 +345,15 @@ namespace Parlis.Client.Properties {
         public static string MATERNAL_SURNAME_LABEL {
             get {
                 return ResourceManager.GetString("MATERNAL_SURNAME_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Music {
+            get {
+                return ResourceManager.GetStream("Music", resourceCulture);
             }
         }
         

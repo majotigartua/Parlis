@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Configuration;
 using System.IO;
+using System.Media;
 using System.Net.Mail;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -11,7 +13,7 @@ using System.Windows.Media.Imaging;
 
 namespace Parlis.Client.Resources
 {
-    public class Utilities
+    public static class Utilities
     {
         public static string ComputeSHA256Hash(string password)
         {
@@ -31,6 +33,24 @@ namespace Parlis.Client.Resources
         {
             var random = new Random();
             return random.Next(100000, 999999);
+        }
+
+        public static void PlayMusic()
+        {
+            if (ConfigurationManager.AppSettings["MUSIC_ON"].Equals("true"))
+            {
+                var soundPlayer = new SoundPlayer(Properties.Resources.Music);
+                soundPlayer.Play();
+            }
+        }
+
+        public static void PlayButtonClickSound()
+        {
+            if (ConfigurationManager.AppSettings["SOUNDS_ON"].Equals("true"))
+            {
+                var soundPlayer = new SoundPlayer(Properties.Resources.ButtonClick);
+                soundPlayer.Play();
+            }
         }
 
         public static void SaveProfilePicture(string username, Image profilePicture)

@@ -12,18 +12,21 @@ namespace Parlis.Client.Views
         public LoginWindow()
         {
             InitializeComponent();
+            Utilities.PlayMusic();
             UsernameTextBox.Focus();
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
         private void ForgottenPasswordLabelMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var recoverPasswordEmailAddressWindow = new RecoverPasswordEmailAddressWindow();
             recoverPasswordEmailAddressWindow.ShowDialog();
         }
 
         private void LoginButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var username = UsernameTextBox.Text;
             var password = PasswordBox.Password.ToString();
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
@@ -73,12 +76,14 @@ namespace Parlis.Client.Views
 
         private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var enterAsGuestWindow =  new EnterAsGuestWindow();
             enterAsGuestWindow.ShowDialog();
         }
 
         private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)
-        { 
+        {
+            Utilities.PlayButtonClickSound();
             var registerPlayerProfileWindow = new RegisterPlayerProfileWindow();
             registerPlayerProfileWindow.ShowDialog();
         }

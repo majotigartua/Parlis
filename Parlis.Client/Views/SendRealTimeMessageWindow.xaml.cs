@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using System.Windows;
+using Parlis.Client.Resources;
 using Parlis.Client.Services;
 
 namespace Parlis.Client.Views
@@ -43,6 +44,7 @@ namespace Parlis.Client.Views
 
         private void SendButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             if (!string.IsNullOrEmpty(MessageTextBox.Text))
             {
                 var message = new Message

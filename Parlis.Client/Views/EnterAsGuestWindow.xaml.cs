@@ -1,4 +1,5 @@
-﻿using Parlis.Client.Services;
+﻿using Parlis.Client.Resources;
+using Parlis.Client.Services;
 using System.ServiceModel;
 using System.Windows;
 
@@ -17,6 +18,7 @@ namespace Parlis.Client.Views
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var username = UsernameTextBox.Text;
             if (!string.IsNullOrEmpty(username))
             {
@@ -75,6 +77,7 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             playerProfileManagementClient.Close();
             Close();
         }

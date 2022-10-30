@@ -15,6 +15,7 @@ namespace Parlis.Client.Views
         public MainMenuWindow()
         {
             InitializeComponent();
+            Utilities.PlayMusic();
             var instaceContext = new InstanceContext(this);
             matchManagementClient = new MatchManagementClient(instaceContext);
         }
@@ -26,6 +27,7 @@ namespace Parlis.Client.Views
 
         private void CreateMatchButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             string username = playerProfile.Username;
             code = Utilities.GenerateRandomCode();
             try
@@ -72,6 +74,7 @@ namespace Parlis.Client.Views
 
         private void JoinMatchButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var joinMatchWindow = new JoinMatchWindow();
             joinMatchWindow.ConfigureWindow(playerProfile);
             Close();
@@ -80,14 +83,16 @@ namespace Parlis.Client.Views
 
         private void SettingsMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var gameConfigurationWindow = new GameConfigurationWindow();
-            gameConfigurationWindow.ConfigureView(playerProfile);
+            gameConfigurationWindow.ConfigureWindow(playerProfile);
             Close();
             gameConfigurationWindow.Show();
         }
 
         private void PlayerProfileMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var editPlayerProfileWindow = new EditPlayerProfileWindow();
             editPlayerProfileWindow.ConfigureWindow(playerProfile);
             Close();
@@ -96,6 +101,7 @@ namespace Parlis.Client.Views
 
         private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var loginWindow = new LoginWindow();
             Close();
             loginWindow.Show();

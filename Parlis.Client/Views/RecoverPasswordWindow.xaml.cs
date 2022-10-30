@@ -44,14 +44,9 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            playerProfileManagementClient.Close();
-            Close();
-        }
-
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var password = PasswordBox.Password.ToString();
             if (!string.IsNullOrEmpty(CodeTextBox.Text) && !string.IsNullOrEmpty(password))
             {
@@ -98,6 +93,13 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
             }
+        }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            playerProfileManagementClient.Close();
+            Close();
         }
     }
 }
