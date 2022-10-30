@@ -1,26 +1,42 @@
-﻿using Parlis.Client.Services;
+﻿using Parlis.Client.Resources;
+using Parlis.Client.Services;
+using System.Configuration;
+using System.Reflection;
 using System.Windows;
 
 namespace Parlis.Client.Views
 {
     public partial class GameConfigurationWindow : Window
     {
-        private PlayerProfile playerProfile;
         private string language;
+        private readonly Configuration gameConfiguration;
+        private readonly KeyValueConfigurationElement musicOn;
+        private readonly KeyValueConfigurationElement soundsOn;
+        private PlayerProfile playerProfile;
 
         public GameConfigurationWindow()
         {
+            language = "";
+            gameConfiguration = ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location);
+            musicOn = gameConfiguration.AppSettings.Settings["MUSIC_ON"];
+            soundsOn = gameConfiguration.AppSettings.Settings["SOUNDS_ON"];
             InitializeComponent();
+            Utilities.PlayMusic();
+            MusicSettings.IsChecked = musicOn.Value.Equals("true");
+            SoundsSettings.IsChecked = soundsOn.Value.Equals("true");
         }
 
-        public void ConfigureView(PlayerProfile playerProfile)
+        public void ConfigureWindow(PlayerProfile playerProfile)
         {
             this.playerProfile = playerProfile;
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(language);
+            gameConfiguration.Save();
+            ConfigurationManager.RefreshSection("appSettings");
             GoToMainMenu();
         }
 
@@ -34,22 +50,50 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             GoToMainMenu();
         }
 
         private void EsMXFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             language = "es-MX";
         }
 
         private void EnUSFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             language = "";
         }
 
         private void PtBRFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             language = "pt-BR";
+        }
+
+        private void MusicSettingsChecked(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            musicOn.Value = "true";
+        }
+
+        private void MusicSettingsUnchecked(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            musicOn.Value = "false";
+        }
+
+        private void SoundsSettingsChecked(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            soundsOn.Value = "true";
+        }
+
+        private void SoundsSettingsUnchecked(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            soundsOn.Value = "false";
         }
     }
 }

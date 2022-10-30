@@ -1,4 +1,5 @@
-﻿using Parlis.Client.Services;
+﻿using Parlis.Client.Resources;
+using Parlis.Client.Services;
 using System;
 using System.IO;
 using System.Reflection;
@@ -24,6 +25,7 @@ namespace Parlis.Client.Views
         public CreateMatchWindow()
         {
             InitializeComponent();
+            Utilities.PlayMusic();
             usernames = new TextBlock[] { FirstUsernameTextBox, SecondUsernameTextBox, ThirdUsernameTextBox, FourthUsernameTextBox };
             profilePictures = new Image[] { FirstProfilePicture, SecondProfilePicture, ThirdProfilePicture, FourthProfilePicture };
             defaultProfilePicture = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
@@ -100,6 +102,7 @@ namespace Parlis.Client.Views
 
         private void MessageBalloonMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var sendRealTimeMessageWindow = new SendRealTimeMessageWindow();
             string username = playerProfile.Username;
             sendRealTimeMessageWindow.ConfigureWindow(username, code);
@@ -108,6 +111,7 @@ namespace Parlis.Client.Views
 
         private void SendInvitationButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var username = UsernameTextBox.Text;
             if (!string.IsNullOrEmpty(username))
             {
@@ -159,6 +163,7 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             string username = playerProfile.Username;
             try
             {

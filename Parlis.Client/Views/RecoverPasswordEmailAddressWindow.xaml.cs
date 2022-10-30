@@ -1,4 +1,5 @@
-﻿using Parlis.Client.Services;
+﻿using Parlis.Client.Resources;
+using Parlis.Client.Services;
 using System;
 using System.ServiceModel;
 using System.Windows;
@@ -15,8 +16,9 @@ namespace Parlis.Client.Views
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
-        private void RecoverPasswordButtonClick(object sender, RoutedEventArgs e)
+        private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var emailAddress = EmailAddressTextBox.Text;
             if (!string.IsNullOrEmpty(emailAddress))
             {
@@ -65,6 +67,7 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             playerProfileManagementClient.Close();
             Close();
         }

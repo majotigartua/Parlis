@@ -1,4 +1,5 @@
-﻿using Parlis.Client.Services;
+﻿using Parlis.Client.Resources;
+using Parlis.Client.Services;
 using System;
 using System.Linq;
 using System.ServiceModel;
@@ -15,6 +16,7 @@ namespace Parlis.Client.Views
         public JoinMatchWindow()
         {
             InitializeComponent();
+            Utilities.PlayMusic();
             var instanceContext = new InstanceContext(this);
             matchManagementClient = new MatchManagementClient(instanceContext);
         }
@@ -25,7 +27,8 @@ namespace Parlis.Client.Views
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
-        { 
+        {
+            Utilities.PlayButtonClickSound();
             if (!string.IsNullOrEmpty(CodeTextBox.Text))
             {
                 try

@@ -19,6 +19,7 @@ namespace Parlis.Client.Views
         public EditPlayerProfileWindow()
         {
             InitializeComponent();
+            Utilities.PlayMusic();
             NameTextBox.Focus();
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
@@ -57,6 +58,7 @@ namespace Parlis.Client.Views
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             if (!ValidateEmptyFields())
             {
                 var password = PasswordBox.Password.ToString();
@@ -139,6 +141,7 @@ namespace Parlis.Client.Views
 
         private void DeletePlayerProfileClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             try
             {
                 if (playerProfileManagementClient.DeletePlayer(player.EmailAddress) && playerProfileManagementClient.DeletePlayerProfile(playerProfile.Username))
@@ -168,6 +171,7 @@ namespace Parlis.Client.Views
 
         private void ConfirmPlayerProfileButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var confirmPlayerProfileWindow = new ConfirmPlayerProfileWindow();
             try
             {
@@ -184,6 +188,7 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             playerProfileManagementClient.Close();
             GoToMainMenu();
         }

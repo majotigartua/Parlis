@@ -22,6 +22,7 @@ namespace Parlis.Client.Views
 
         private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             string playerProfilePath = Utilities.SelectProfilePicture();
             if (!string.IsNullOrEmpty(playerProfilePath))
             {
@@ -31,6 +32,7 @@ namespace Parlis.Client.Views
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             if (!ValidateEmptyFields())
             {
                 var password = PasswordBox.Password.ToString();
@@ -136,6 +138,7 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             playerProfileManagementClient.Close();
             Close();
         }
