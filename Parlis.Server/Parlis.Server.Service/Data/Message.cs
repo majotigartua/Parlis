@@ -7,9 +7,9 @@ namespace Parlis.Server.Service.Data
     public class Message
     {
         [DataMember]
-        public string Username { get; set; }
-        [DataMember]
         public string Content { get; set; }
+        [DataMember]
+        public string PlayerProfileUsername { get; set; }
 
         public Message()
         {
@@ -19,7 +19,7 @@ namespace Parlis.Server.Service.Data
         override
         public string ToString()
         {
-            return $"{Username}: {Content}";
+            return $"{PlayerProfileUsername}: {Content}";
         }
     }
 }

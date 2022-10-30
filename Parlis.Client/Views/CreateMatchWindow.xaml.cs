@@ -11,13 +11,15 @@ namespace Parlis.Client.Views
 {
     public partial class CreateMatchWindow : Window, IMatchManagementCallback
     {
+        private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 4;
         private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;
         private readonly BitmapImage defaultProfilePicture;
         private readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
-        private int code;
+        private string[] playerProfiles;
         private PlayerProfile playerProfile;
+        private int code;
 
         public CreateMatchWindow()
         {
@@ -28,12 +30,13 @@ namespace Parlis.Client.Views
             var instanceContext = new InstanceContext(this);
             matchManagementClient = new MatchManagementClient(instanceContext);
             playerProfileManagementClient = new PlayerProfileManagementClient();
+            playerProfiles = new string[] { };
         }
 
-        public void ConfigureWindow(int code, PlayerProfile playerProfile)
+        public void ConfigureWindow(PlayerProfile playerProfile, int code)
         {
-            this.code = code;
             this.playerProfile = playerProfile;
+            this.code = code;
             ConfigureData();
             try
             {
@@ -50,10 +53,12 @@ namespace Parlis.Client.Views
             }
         }
 
-        public void ConfigureData()
+        private void ConfigureData()
         {
             CodeLabel.Content = code + ".";
-            for (int playerProfile = 0; playerProfile < 4; playerProfile++)
+            int numberOfPlayerProfiles = playerProfiles.Length;
+            StartMatchButton.IsEnabled = numberOfPlayerProfiles == NUMBER_OF_PLAYER_PROFILES_PER_MATCH;
+            for (int playerProfile = 0; playerProfile < NUMBER_OF_PLAYER_PROFILES_PER_MATCH; playerProfile++)
             {
                 usernames[playerProfile].Text = "";
                 profilePictures[playerProfile].Source = defaultProfilePicture;
@@ -62,11 +67,12 @@ namespace Parlis.Client.Views
 
         public void ReceivePlayerProfiles(string[] playerProfiles)
         {
+            this.playerProfiles = playerProfiles;
             ConfigureData();
-            ConfigurePlayerProfiles(playerProfiles);
+            ConfigurePlayerProfiles(this.playerProfiles);
         }
 
-        public void ConfigurePlayerProfiles(string[] playerProfiles)
+        private void ConfigurePlayerProfiles(string[] playerProfiles)
         {
             for (int playerProfile = 0; playerProfile < playerProfiles.Length; playerProfile++)
             {
@@ -87,13 +93,16 @@ namespace Parlis.Client.Views
         private void ExpelPlayerMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var expelPlayerWindow = new ExpelPlayerWindow();
-            expelPlayerWindow.ShowDialog();
+            string username = playerProfile.Username;
+            expelPlayerWindow.ConfigureWindow(username, playerProfiles);
+            expelPlayerWindow.Show();
         }
 
         private void MessageBalloonMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var sendRealTimeMessageWindow = new SendRealTimeMessageWindow();
-            sendRealTimeMessageWindow.ConfigureWindow(code, playerProfile);
+            string username = playerProfile.Username;
+            sendRealTimeMessageWindow.ConfigureWindow(username, code);
             sendRealTimeMessageWindow.ShowDialog();
         }
 
@@ -166,6 +175,7 @@ namespace Parlis.Client.Views
 
         private void GoToMainMenu()
         {
+            matchManagementClient.Close();
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.ConfigureWindow(playerProfile);
             Close();

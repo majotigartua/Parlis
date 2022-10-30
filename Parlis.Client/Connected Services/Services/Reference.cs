@@ -26,7 +26,7 @@ namespace Parlis.Client.Services {
         private string ContentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
+        private string PlayerProfileUsernameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -52,14 +52,14 @@ namespace Parlis.Client.Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
+        public string PlayerProfileUsername {
             get {
-                return this.UsernameField;
+                return this.PlayerProfileUsernameField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
+                if ((object.ReferenceEquals(this.PlayerProfileUsernameField, value) != true)) {
+                    this.PlayerProfileUsernameField = value;
+                    this.RaisePropertyChanged("PlayerProfileUsername");
                 }
             }
         }
@@ -265,16 +265,22 @@ namespace Parlis.Client.Services {
     public interface IChatManagement {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatManagement/ConnectToChat")]
-        void ConnectToChat(int code);
+        void ConnectToChat(string username, int code);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatManagement/ConnectToChat")]
-        System.Threading.Tasks.Task ConnectToChatAsync(int code);
+        System.Threading.Tasks.Task ConnectToChatAsync(string username, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManagement/DisconnectFromChat", ReplyAction="http://tempuri.org/IChatManagement/DisconnectFromChatResponse")]
+        void DisconnectFromChat(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManagement/DisconnectFromChat", ReplyAction="http://tempuri.org/IChatManagement/DisconnectFromChatResponse")]
+        System.Threading.Tasks.Task DisconnectFromChatAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatManagement/SendMessage")]
-        void SendMessage(Parlis.Client.Services.Message message, int code);
+        void SendMessage(int code, Parlis.Client.Services.Message message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatManagement/SendMessage")]
-        System.Threading.Tasks.Task SendMessageAsync(Parlis.Client.Services.Message message, int code);
+        System.Threading.Tasks.Task SendMessageAsync(int code, Parlis.Client.Services.Message message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -312,20 +318,28 @@ namespace Parlis.Client.Services {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void ConnectToChat(int code) {
-            base.Channel.ConnectToChat(code);
+        public void ConnectToChat(string username, int code) {
+            base.Channel.ConnectToChat(username, code);
         }
         
-        public System.Threading.Tasks.Task ConnectToChatAsync(int code) {
-            return base.Channel.ConnectToChatAsync(code);
+        public System.Threading.Tasks.Task ConnectToChatAsync(string username, int code) {
+            return base.Channel.ConnectToChatAsync(username, code);
         }
         
-        public void SendMessage(Parlis.Client.Services.Message message, int code) {
-            base.Channel.SendMessage(message, code);
+        public void DisconnectFromChat(string username) {
+            base.Channel.DisconnectFromChat(username);
         }
         
-        public System.Threading.Tasks.Task SendMessageAsync(Parlis.Client.Services.Message message, int code) {
-            return base.Channel.SendMessageAsync(message, code);
+        public System.Threading.Tasks.Task DisconnectFromChatAsync(string username) {
+            return base.Channel.DisconnectFromChatAsync(username);
+        }
+        
+        public void SendMessage(int code, Parlis.Client.Services.Message message) {
+            base.Channel.SendMessage(code, message);
+        }
+        
+        public System.Threading.Tasks.Task SendMessageAsync(int code, Parlis.Client.Services.Message message) {
+            return base.Channel.SendMessageAsync(code, message);
         }
     }
     
@@ -356,6 +370,12 @@ namespace Parlis.Client.Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/DisconnectFromMatch", ReplyAction="http://tempuri.org/IMatchManagement/DisconnectFromMatchResponse")]
         System.Threading.Tasks.Task DisconnectFromMatchAsync(string username, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/ExpelPlayerProfile", ReplyAction="http://tempuri.org/IMatchManagement/ExpelPlayerProfileResponse")]
+        void ExpelPlayerProfile(string username, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/ExpelPlayerProfile", ReplyAction="http://tempuri.org/IMatchManagement/ExpelPlayerProfileResponse")]
+        System.Threading.Tasks.Task ExpelPlayerProfileAsync(string username, int code);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles")]
         void GetPlayerProfiles(string username, int code);
@@ -429,6 +449,14 @@ namespace Parlis.Client.Services {
         
         public System.Threading.Tasks.Task DisconnectFromMatchAsync(string username, int code) {
             return base.Channel.DisconnectFromMatchAsync(username, code);
+        }
+        
+        public void ExpelPlayerProfile(string username, int code) {
+            base.Channel.ExpelPlayerProfile(username, code);
+        }
+        
+        public System.Threading.Tasks.Task ExpelPlayerProfileAsync(string username, int code) {
+            return base.Channel.ExpelPlayerProfileAsync(username, code);
         }
         
         public void GetPlayerProfiles(string username, int code) {

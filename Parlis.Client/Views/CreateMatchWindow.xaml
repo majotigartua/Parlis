@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:p="clr-namespace:Parlis.Client.Properties"
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.CREATE_MATCH_WINDOW_TITLE}" Height="500" Width="750" Closing="CreateMatchWindowClosing">
+        Title="{x:Static p:Resources.CREATE_MATCH_WINDOW_TITLE}" Height="500" Width="750">
     <Viewbox Margin="20" Stretch="Fill" StretchDirection="Both">
         <Grid>
             <Label Content="{x:Static p:Resources.WAITING_ROOM_LABEL}" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="36"/>
@@ -24,7 +24,7 @@
             <Image x:Name="ThirdProfilePicture" HorizontalAlignment="Left" Height="100" Margin="245,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
             <Image x:Name="FourthProfilePicture" HorizontalAlignment="Left" Height="100" Margin="360,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
             <Button Content="{x:Static p:Resources.SEND_INVITATION_BUTTON}" HorizontalAlignment="Left" Margin="325,249,0,0" VerticalAlignment="Top" Width="120" Click="SendInvitationButtonClick"/>
-            <Button Content="{x:Static p:Resources.START_MATCH_BUTTON}" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Width="150" Click="StartMatchButtonClick"/>
+            <Button x:Name="StartMatchButton" Content="{x:Static p:Resources.START_MATCH_BUTTON}" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Width="150" Click="StartMatchButtonClick"/>
             <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="400,310,0,0" VerticalAlignment="Top" Width="80" Click="CancelButtonClick"/>
         </Grid>
     </Viewbox>
