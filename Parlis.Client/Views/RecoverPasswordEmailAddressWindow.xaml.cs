@@ -8,7 +8,7 @@ namespace Parlis.Client.Views
 {
     public partial class RecoverPasswordEmailAddressWindow : Window
     {
-        private PlayerProfileManagementClient playerProfileManagementClient;
+        private readonly PlayerProfileManagementClient playerProfileManagementClient;
 
         public RecoverPasswordEmailAddressWindow()
         {

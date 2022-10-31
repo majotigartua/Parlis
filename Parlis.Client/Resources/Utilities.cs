@@ -13,8 +13,11 @@ using System.Windows.Media.Imaging;
 
 namespace Parlis.Client.Resources
 {
-    public static class Utilities
+    public class Utilities
     {
+        private static readonly SoundPlayer MUSIC = new SoundPlayer(Properties.Resources.Music);
+        private static readonly SoundPlayer SOUNDS = new SoundPlayer(Properties.Resources.ButtonClick);
+
         public static string ComputeSHA256Hash(string password)
         {
             using (SHA256 sha256Hash = SHA256.Create())
@@ -39,8 +42,7 @@ namespace Parlis.Client.Resources
         {
             if (ConfigurationManager.AppSettings["MUSIC_ON"].Equals("true"))
             {
-                var soundPlayer = new SoundPlayer(Properties.Resources.Music);
-                soundPlayer.Play();
+                MUSIC.Play();
             }
         }
 
@@ -48,8 +50,7 @@ namespace Parlis.Client.Resources
         {
             if (ConfigurationManager.AppSettings["SOUNDS_ON"].Equals("true"))
             {
-                var soundPlayer = new SoundPlayer(Properties.Resources.ButtonClick);
-                soundPlayer.Play();
+                SOUNDS.Play();
             }
         }
 
