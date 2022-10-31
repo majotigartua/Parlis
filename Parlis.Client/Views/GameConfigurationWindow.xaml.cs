@@ -21,9 +21,9 @@ namespace Parlis.Client.Views
             musicOn = gameConfiguration.AppSettings.Settings["MUSIC_ON"];
             soundsOn = gameConfiguration.AppSettings.Settings["SOUNDS_ON"];
             InitializeComponent();
-            Utilities.PlayMusic();
             MusicSettings.IsChecked = musicOn.Value.Equals("true");
             SoundsSettings.IsChecked = soundsOn.Value.Equals("true");
+            Utilities.PlayMusic();
         }
 
         public void ConfigureWindow(PlayerProfile playerProfile)
@@ -76,24 +76,28 @@ namespace Parlis.Client.Views
         {
             Utilities.PlayButtonClickSound();
             musicOn.Value = "true";
-        }
-
-        private void MusicSettingsUnchecked(object sender, RoutedEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            musicOn.Value = "false";
-        }
-
-        private void SoundsSettingsChecked(object sender, RoutedEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            soundsOn.Value = "true";
+            SoundsSettings.IsChecked = false;
+            SoundsSettingsUnchecked(sender, e);
         }
 
         private void SoundsSettingsUnchecked(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
             soundsOn.Value = "false";
+        }
+
+        private void SoundsSettingsChecked(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            soundsOn.Value = "true";
+            MusicSettings.IsChecked = false;
+            MusicSettingsUnchecked(sender, e);
+        }
+
+        private void MusicSettingsUnchecked(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            musicOn.Value = "false";
         }
     }
 }

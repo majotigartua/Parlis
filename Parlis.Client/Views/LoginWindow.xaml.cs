@@ -12,8 +12,8 @@ namespace Parlis.Client.Views
         public LoginWindow()
         {
             InitializeComponent();
-            Utilities.PlayMusic();
             UsernameTextBox.Focus();
+            Utilities.PlayMusic();
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 

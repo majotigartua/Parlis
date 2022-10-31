@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Parlis.Client.Resources;
+using System.Windows;
 
 namespace Parlis.Client.Views
 {
@@ -32,6 +33,7 @@ namespace Parlis.Client.Views
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             var username = UsernameComboBox.SelectedItem as string;
             if (!string.IsNullOrEmpty(username))
             {
@@ -46,6 +48,7 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
             Close();
         }
     }
