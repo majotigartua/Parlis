@@ -13,12 +13,13 @@ namespace Parlis.Client.Views
     public partial class CreateMatchWindow : Window, IMatchManagementCallback
     {
         private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 4;
+        private readonly BitmapImage DEFAULT_PROFILE_PICTURE = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
         private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;
-        private readonly BitmapImage defaultProfilePicture;
         private readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private string[] playerProfiles;
+        private int numberOfPlayerProfiles;
         private PlayerProfile playerProfile;
         private int code;
 
@@ -28,7 +29,6 @@ namespace Parlis.Client.Views
             Utilities.PlayMusic();
             usernames = new TextBlock[] { FirstUsernameTextBox, SecondUsernameTextBox, ThirdUsernameTextBox, FourthUsernameTextBox };
             profilePictures = new Image[] { FirstProfilePicture, SecondProfilePicture, ThirdProfilePicture, FourthProfilePicture };
-            defaultProfilePicture = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
             var instanceContext = new InstanceContext(this);
             matchManagementClient = new MatchManagementClient(instanceContext);
             playerProfileManagementClient = new PlayerProfileManagementClient();
@@ -58,12 +58,12 @@ namespace Parlis.Client.Views
         private void ConfigureData()
         {
             CodeLabel.Content = code + ".";
-            int numberOfPlayerProfiles = playerProfiles.Length;
+            numberOfPlayerProfiles = playerProfiles.Length;
             StartMatchButton.IsEnabled = numberOfPlayerProfiles == NUMBER_OF_PLAYER_PROFILES_PER_MATCH;
             for (int playerProfile = 0; playerProfile < NUMBER_OF_PLAYER_PROFILES_PER_MATCH; playerProfile++)
             {
                 usernames[playerProfile].Text = "";
-                profilePictures[playerProfile].Source = defaultProfilePicture;
+                profilePictures[playerProfile].Source = DEFAULT_PROFILE_PICTURE;
             }
         }
 
@@ -76,7 +76,8 @@ namespace Parlis.Client.Views
 
         private void ConfigurePlayerProfiles(string[] playerProfiles)
         {
-            for (int playerProfile = 0; playerProfile < playerProfiles.Length; playerProfile++)
+
+            for (int playerProfile = 0; playerProfile < numberOfPlayerProfiles; playerProfile++)
             {
                 string username = playerProfiles[playerProfile];
                 usernames[playerProfile].Text = username;
@@ -87,7 +88,7 @@ namespace Parlis.Client.Views
                 }
                 catch (IOException)
                 {
-                    profilePictures[playerProfile].Source = defaultProfilePicture;
+                    profilePictures[playerProfile].Source = DEFAULT_PROFILE_PICTURE;
                 }
             }
         }
