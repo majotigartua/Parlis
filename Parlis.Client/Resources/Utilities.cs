@@ -38,19 +38,20 @@ namespace Parlis.Client.Resources
             return random.Next(100000, 999999);
         }
 
-        public static void PlayMusic()
-        {
-            if (ConfigurationManager.AppSettings["MUSIC_ON"].Equals("true"))
-            {
-                MUSIC.Play();
-            }
-        }
-
         public static void PlayButtonClickSound()
         {
             if (ConfigurationManager.AppSettings["SOUNDS_ON"].Equals("true"))
             {
                 SOUNDS.Play();
+            }
+        }
+
+        public static void PlayMusic()
+        {
+            MUSIC.Stop();
+            if (ConfigurationManager.AppSettings["MUSIC_ON"].Equals("true"))
+            {
+                MUSIC.Play();
             }
         }
 
