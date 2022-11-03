@@ -14,8 +14,7 @@ namespace Parlis.Client.Views
         public SendRealTimeMessageWindow()
         {
             InitializeComponent();
-            InstanceContext instanceContext = new InstanceContext(this);
-            chatManagementClient = new ChatManagementClient(instanceContext);
+            chatManagementClient = new ChatManagementClient(new InstanceContext(this));
         }
 
         public void ConfigureWindow(string username, int code)

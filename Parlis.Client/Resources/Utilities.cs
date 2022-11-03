@@ -24,9 +24,9 @@ namespace Parlis.Client.Resources
             {
                 byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
                 var hashedPassword = new StringBuilder();
-                for (int i = 0; i < (bytes.Length); i++)
+                for (int bit = 0; bit < (bytes.Length); bit++)
                 {
-                    hashedPassword.Append(bytes[i].ToString("x2"));
+                    hashedPassword.Append(bytes[bit].ToString("x2"));
                 }
                 return hashedPassword.ToString();
             }

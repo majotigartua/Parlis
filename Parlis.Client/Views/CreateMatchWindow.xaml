@@ -18,7 +18,7 @@
             <TextBlock x:Name="ThirdUsernameTextBox" HorizontalAlignment="Left" Margin="255,220,0,0" VerticalAlignment="Top" Width="80" FontSize="10" TextAlignment="Center"/>
             <TextBlock x:Name="FourthUsernameTextBox" HorizontalAlignment="Left" Margin="370,220,0,0" VerticalAlignment="Top" Width="80" FontSize="10" TextAlignment="Center"/>
             <Image HorizontalAlignment="Left" Height="50" Margin="15,15,0,0" VerticalAlignment="Top" Width="50" Stretch="UniformToFill" Source="/Resources/Images/MessageBalloon.png" MouseDown="MessageBalloonMouseDown"/>
-            <Image HorizontalAlignment="Left" Height="50" Margin="415,15,0,0" VerticalAlignment="Top" Width="50" Stretch="UniformToFill" Source="/Resources/Images/ExpelPlayer.png" MouseDown="ExpelPlayerMouseDown"/>
+            <Image x:Name="ExpelPlayer" HorizontalAlignment="Left" Height="50" Margin="415,15,0,0" VerticalAlignment="Top" Width="50" Stretch="UniformToFill" Source="/Resources/Images/ExpelPlayer.png" MouseDown="ExpelPlayerMouseDown"/>
             <Image x:Name="FirstProfilePicture" HorizontalAlignment="Left" Height="100" Margin="15,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
             <Image x:Name="SecondProfilePicture" HorizontalAlignment="Left" Height="100" Margin="130,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
             <Image x:Name="ThirdProfilePicture" HorizontalAlignment="Left" Height="100" Margin="245,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>

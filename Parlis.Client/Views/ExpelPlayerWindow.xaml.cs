@@ -1,26 +1,43 @@
 ﻿using Parlis.Client.Resources;
+using Parlis.Client.Services;
+using System.ServiceModel;
 using System.Windows;
 
 namespace Parlis.Client.Views
 {
-    public partial class ExpelPlayerWindow : Window
+    public partial class ExpelPlayerWindow : Window, IMatchManagementCallback
     {
+        private readonly MatchManagementClient matchManagementClient;
+        private CreateMatchWindow createMatchWindow;
         private string username;
-        private string[] playerProfiles;
 
         public ExpelPlayerWindow()
         {
             InitializeComponent();
+            matchManagementClient = new MatchManagementClient(new InstanceContext(this));
         }
 
-        public void ConfigureWindow(string username, string[] playerProfiles)
+        public void ConfigureWindow(CreateMatchWindow createMatchWindow, string username, int code)
         {
+            this.createMatchWindow = createMatchWindow;
             this.username = username;
-            this.playerProfiles = playerProfiles;
-            ConfigureData();
+            try
+            {
+                matchManagementClient.GetPlayerProfiles(username, code);
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
         }
 
-        private void ConfigureData()
+        public void ReceivePlayerProfiles(string[] playerProfiles)
+        {
+            ConfigureData(playerProfiles);
+        }
+
+        private void ConfigureData(string[] playerProfiles)
         {
             foreach (var playerProfile in playerProfiles)
             {

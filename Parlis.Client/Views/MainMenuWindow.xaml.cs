@@ -16,8 +16,7 @@ namespace Parlis.Client.Views
         {
             InitializeComponent();
             Utilities.PlayMusic();
-            var instaceContext = new InstanceContext(this);
-            matchManagementClient = new MatchManagementClient(instaceContext);
+            matchManagementClient = new MatchManagementClient(new InstanceContext(this));
         }
 
         public void ConfigureWindow(PlayerProfile playerProfile)

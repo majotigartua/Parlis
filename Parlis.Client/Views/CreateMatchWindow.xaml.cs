@@ -2,6 +2,7 @@
 using Parlis.Client.Services;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 using System.Windows;
@@ -18,7 +19,6 @@ namespace Parlis.Client.Views
         private readonly Image[] profilePictures;
         private readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
-        private string[] playerProfiles;
         private int numberOfPlayerProfiles;
         private PlayerProfile playerProfile;
         private int code;
@@ -29,10 +29,8 @@ namespace Parlis.Client.Views
             Utilities.PlayMusic();
             usernames = new TextBlock[] { FirstUsernameTextBox, SecondUsernameTextBox, ThirdUsernameTextBox, FourthUsernameTextBox };
             profilePictures = new Image[] { FirstProfilePicture, SecondProfilePicture, ThirdProfilePicture, FourthProfilePicture };
-            var instanceContext = new InstanceContext(this);
-            matchManagementClient = new MatchManagementClient(instanceContext);
+            matchManagementClient = new MatchManagementClient(new InstanceContext(this));
             playerProfileManagementClient = new PlayerProfileManagementClient();
-            playerProfiles = new string[] { };
         }
 
         public void ConfigureWindow(PlayerProfile playerProfile, int code)
@@ -58,7 +56,7 @@ namespace Parlis.Client.Views
         private void ConfigureData()
         {
             CodeLabel.Content = code + ".";
-            numberOfPlayerProfiles = playerProfiles.Length;
+            ExpelPlayer.IsEnabled = numberOfPlayerProfiles > 1;
             StartMatchButton.IsEnabled = numberOfPlayerProfiles == NUMBER_OF_PLAYER_PROFILES_PER_MATCH;
             for (int playerProfile = 0; playerProfile < NUMBER_OF_PLAYER_PROFILES_PER_MATCH; playerProfile++)
             {
@@ -69,14 +67,20 @@ namespace Parlis.Client.Views
 
         public void ReceivePlayerProfiles(string[] playerProfiles)
         {
-            this.playerProfiles = playerProfiles;
-            ConfigureData();
-            ConfigurePlayerProfiles(this.playerProfiles);
+            numberOfPlayerProfiles = playerProfiles.Length;
+            string username = playerProfile.Username;
+            if (playerProfiles.Contains(username))
+            {
+                ConfigureData();
+                ConfigurePlayerProfiles(playerProfiles);
+            }
+            else
+            {
+            }
         }
 
         private void ConfigurePlayerProfiles(string[] playerProfiles)
         {
-
             for (int playerProfile = 0; playerProfile < numberOfPlayerProfiles; playerProfile++)
             {
                 string username = playerProfiles[playerProfile];
@@ -97,7 +101,7 @@ namespace Parlis.Client.Views
         {
             var expelPlayerWindow = new ExpelPlayerWindow();
             string username = playerProfile.Username;
-            expelPlayerWindow.ConfigureWindow(username, playerProfiles);
+            expelPlayerWindow.ConfigureWindow(this, username, code);
             expelPlayerWindow.Show();
         }
 
@@ -169,7 +173,6 @@ namespace Parlis.Client.Views
             try
             {
                 matchManagementClient.DisconnectFromMatch(username, code);
-                matchManagementClient.Close();
             }
             catch (EndpointNotFoundException)
             {
