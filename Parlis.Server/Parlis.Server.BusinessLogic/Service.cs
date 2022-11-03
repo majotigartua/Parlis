@@ -128,7 +128,7 @@ namespace Parlis.Server.BusinessLogic
                     {
                         Username = playerProfiles.Username,
                         Password = playerProfiles.Password,
-                        IsVerified = (bool)playerProfiles.IsVerified,
+                        IsVerified = (bool) playerProfiles.IsVerified,
                     };
                 }
             }
