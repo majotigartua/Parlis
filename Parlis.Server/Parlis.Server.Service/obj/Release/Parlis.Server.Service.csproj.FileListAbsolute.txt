@@ -16,3 +16,6 @@ C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\ob
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Release\Parlis.Server.Service.csproj.CoreCompileInputs.cache
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Release\Parlis.Server.Service.dll
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Release\Parlis.Server.Service.pdb
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\bin\Release\Microsoft.Bcl.HashCode.dll
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\bin\Release\Microsoft.Bcl.HashCode.xml
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Release\Parlis.Server.Service.csproj.CopyComplete

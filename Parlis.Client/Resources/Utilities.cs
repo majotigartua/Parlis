@@ -16,7 +16,7 @@ namespace Parlis.Client.Resources
     public class Utilities
     {
         private static readonly SoundPlayer MUSIC = new SoundPlayer(Properties.Resources.Music);
-        private static readonly SoundPlayer SOUNDS = new SoundPlayer(Properties.Resources.ButtonClick);
+        private static readonly SoundPlayer BUTTON_CLICK = new SoundPlayer(Properties.Resources.ButtonClick);
 
         public static string ComputeSHA256Hash(string password)
         {
@@ -42,7 +42,7 @@ namespace Parlis.Client.Resources
         {
             if (ConfigurationManager.AppSettings["SOUNDS_ON"].Equals("true"))
             {
-                SOUNDS.Play();
+                BUTTON_CLICK.Play();
             }
         }
 

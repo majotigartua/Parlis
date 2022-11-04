@@ -87,3 +87,5 @@ C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server\obj\Debug\P
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server\obj\Debug\Parlis.Server.csproj.CopyComplete
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server\obj\Debug\Parlis.Server.exe
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server\obj\Debug\Parlis.Server.pdb
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server\bin\Debug\Microsoft.Bcl.HashCode.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server\bin\Debug\Microsoft.Bcl.HashCode.xml
