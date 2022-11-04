@@ -32,3 +32,5 @@ C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.BusinessLo
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\obj\Release\Parlis.Server.BusinessLogic.csproj.CopyComplete
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\obj\Release\Parlis.Server.BusinessLogic.dll
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\obj\Release\Parlis.Server.BusinessLogic.pdb
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\bin\Release\Microsoft.Bcl.HashCode.dll
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\bin\Release\Microsoft.Bcl.HashCode.xml
