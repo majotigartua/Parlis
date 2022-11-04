@@ -87,35 +87,6 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IGameManagement_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
-        <wsaw:UsingAddressing />
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -163,23 +134,20 @@
   <wsdl:message name="IMatchManagement_DisconnectFromMatch_OutputMessage">
     <wsdl:part name="parameters" element="tns:DisconnectFromMatchResponse" />
   </wsdl:message>
+  <wsdl:message name="IMatchManagement_ExpelPlayerProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExpelPlayerProfile" />
+  </wsdl:message>
+  <wsdl:message name="IMatchManagement_ExpelPlayerProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExpelPlayerProfileResponse" />
+  </wsdl:message>
   <wsdl:message name="IMatchManagement_GetPlayerProfiles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerProfiles" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManagement_SetBoardMatch_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetBoardMatch" />
   </wsdl:message>
   <wsdl:message name="IMatchManagement_ReceivePlayerProfiles_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceivePlayerProfiles" />
   </wsdl:message>
   <wsdl:message name="IMatchManagement_ReceivePlayerProfiles_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceivePlayerProfilesResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManagement_StarMatch_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:StarMatch" />
-  </wsdl:message>
-  <wsdl:message name="IMatchManagement_StarMatch_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:StarMatchResponse" />
   </wsdl:message>
   <wsdl:message name="IPlayerProfileManagement_CheckPlayerExistence_InputMessage">
     <wsdl:part name="parameters" element="tns:CheckPlayerExistence" />
@@ -253,33 +221,6 @@
   <wsdl:message name="IPlayerProfileManagement_UpdatePlayerProfile_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdatePlayerProfileResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameManagement_ConnectToBoard_InputMessage">
-    <wsdl:part name="parameters" element="tns:ConnectToBoard" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_DisconnectFromBoard_InputMessage">
-    <wsdl:part name="parameters" element="tns:DisconnectFromBoard" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_DisconnectFromBoard_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DisconnectFromBoardResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_SendMove_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendMove" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_GetPlayerProfilesForBoard_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetPlayerProfilesForBoard" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_ReceiveMove_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReceiveMove" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_ReceiveMove_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReceiveMoveResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_ReceivePlayerProfilesForBoard_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReceivePlayerProfilesForBoard" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_ReceivePlayerProfilesForBoard_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReceivePlayerProfilesForBoardResponse" />
-  </wsdl:message>
   <wsdl:portType name="IChatManagement">
     <wsdl:operation name="ConnectToChat">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatManagement/ConnectToChat" message="tns:IChatManagement_ConnectToChat_InputMessage" />
@@ -312,19 +253,16 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/DisconnectFromMatch" message="tns:IMatchManagement_DisconnectFromMatch_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/DisconnectFromMatchResponse" message="tns:IMatchManagement_DisconnectFromMatch_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ExpelPlayerProfile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/ExpelPlayerProfile" message="tns:IMatchManagement_ExpelPlayerProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/ExpelPlayerProfileResponse" message="tns:IMatchManagement_ExpelPlayerProfile_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetPlayerProfiles">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles" message="tns:IMatchManagement_GetPlayerProfiles_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetBoardMatch">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/SetBoardMatch" message="tns:IMatchManagement_SetBoardMatch_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReceivePlayerProfiles">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/ReceivePlayerProfiles" message="tns:IMatchManagement_ReceivePlayerProfiles_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/ReceivePlayerProfilesResponse" message="tns:IMatchManagement_ReceivePlayerProfiles_InputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="StarMatch">
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/StarMatch" message="tns:IMatchManagement_StarMatch_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/StarMatchResponse" message="tns:IMatchManagement_StarMatch_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IPlayerProfileManagement">
@@ -375,29 +313,6 @@
     <wsdl:operation name="UpdatePlayerProfile">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfile" message="tns:IPlayerProfileManagement_UpdatePlayerProfile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerProfileManagement/UpdatePlayerProfileResponse" message="tns:IPlayerProfileManagement_UpdatePlayerProfile_OutputMessage" />
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="IGameManagement">
-    <wsdl:operation name="ConnectToBoard">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/ConnectToBoard" message="tns:IGameManagement_ConnectToBoard_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DisconnectFromBoard">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/DisconnectFromBoard" message="tns:IGameManagement_DisconnectFromBoard_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/DisconnectFromBoardResponse" message="tns:IGameManagement_DisconnectFromBoard_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SendMove">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SendMove" message="tns:IGameManagement_SendMove_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetPlayerProfilesForBoard">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetPlayerProfilesForBoard" message="tns:IGameManagement_GetPlayerProfilesForBoard_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ReceiveMove">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ReceiveMove" message="tns:IGameManagement_ReceiveMove_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/ReceiveMoveResponse" message="tns:IGameManagement_ReceiveMove_InputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ReceivePlayerProfilesForBoard">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ReceivePlayerProfilesForBoard" message="tns:IGameManagement_ReceivePlayerProfilesForBoard_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/ReceivePlayerProfilesForBoardResponse" message="tns:IGameManagement_ReceivePlayerProfilesForBoard_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IChatManagement" type="tns:IChatManagement">
@@ -470,20 +385,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetPlayerProfiles">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/GetPlayerProfiles" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="SetBoardMatch">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/SetBoardMatch" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="ReceivePlayerProfiles">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/ReceivePlayerProfiles" style="document" />
+    <wsdl:operation name="ExpelPlayerProfile">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/ExpelPlayerProfile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -491,8 +394,14 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="StarMatch">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/StarMatch" style="document" />
+    <wsdl:operation name="GetPlayerProfiles">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/GetPlayerProfiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ReceivePlayerProfiles">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/ReceivePlayerProfiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -613,62 +522,13 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="NetTcpBinding_IGameManagement" type="tns:IGameManagement">
-    <wsp:PolicyReference URI="#NetTcpBinding_IGameManagement_policy" />
-    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="ConnectToBoard">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/ConnectToBoard" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="DisconnectFromBoard">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/DisconnectFromBoard" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SendMove">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SendMove" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="GetPlayerProfilesForBoard">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetPlayerProfilesForBoard" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="ReceiveMove">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/ReceiveMove" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ReceivePlayerProfilesForBoard">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/ReceivePlayerProfilesForBoard" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
   <wsdl:service name="Service">
     <wsdl:port name="NetTcpBinding_IChatManagement" binding="tns:NetTcpBinding_IChatManagement">
       <soap12:address location="net.tcp://localhost:8081/ChatManagement" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/ChatManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -677,7 +537,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/MatchManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -686,16 +546,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/PlayerProfileManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
-        </Identity>
-      </wsa10:EndpointReference>
-    </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IGameManagement" binding="tns:NetTcpBinding_IGameManagement">
-      <soap12:address location="net.tcp://localhost:8081/GameManagement" />
-      <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8081/GameManagement</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

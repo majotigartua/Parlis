@@ -1,7 +1,6 @@
 ﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
 using System;
-using System.Diagnostics.Tracing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -57,13 +56,8 @@ namespace Parlis.Client.Views
         private void ConfigureData()
         {
             CodeLabel.Content = code + ".";
-<<<<<<< Updated upstream
             ExpelPlayer.IsEnabled = numberOfPlayerProfiles > 1;
             StartMatchButton.IsEnabled = numberOfPlayerProfiles == NUMBER_OF_PLAYER_PROFILES_PER_MATCH;
-=======
-            numberOfPlayerProfiles = playerProfiles.Length;
-            StartMatchButton.IsEnabled = (numberOfPlayerProfiles <= NUMBER_OF_PLAYER_PROFILES_PER_MATCH) || (numberOfPlayerProfiles>1);
->>>>>>> Stashed changes
             for (int playerProfile = 0; playerProfile < NUMBER_OF_PLAYER_PROFILES_PER_MATCH; playerProfile++)
             {
                 usernames[playerProfile].Text = "";
@@ -101,7 +95,6 @@ namespace Parlis.Client.Views
                     profilePictures[playerProfile].Source = DEFAULT_PROFILE_PICTURE;
                 }
             }
-            Console.WriteLine("ConfigurePlayerProfiles()");
         }
 
         private void ExpelPlayerMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -171,7 +164,6 @@ namespace Parlis.Client.Views
 
         private void StartMatchButtonClick(object sender, RoutedEventArgs e)
         {
-            matchManagementClient.SetBoardMatch();
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
@@ -197,16 +189,6 @@ namespace Parlis.Client.Views
             mainMenuWindow.ConfigureWindow(playerProfile);
             Close();
             mainMenuWindow.Show();
-        }
-
-
-
-        public void StarMatch()
-        {
-            var gameWindow = new GameWindow();
-            gameWindow.ConfigureWindow(playerProfile, code);
-            Close();
-            gameWindow.Show();
         }
     }
 }
