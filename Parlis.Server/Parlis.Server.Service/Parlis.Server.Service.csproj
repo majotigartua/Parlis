@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Coin.cs" />
     <Compile Include="Data\Match.cs" />
     <Compile Include="Data\Message.cs" />
     <Compile Include="Data\Player.cs" />

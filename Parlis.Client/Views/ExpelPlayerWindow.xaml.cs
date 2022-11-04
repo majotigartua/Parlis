@@ -68,5 +68,10 @@ namespace Parlis.Client.Views
             Utilities.PlayButtonClickSound();
             Close();
         }
+
+        public void StarMatch()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
