@@ -89,25 +89,17 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ExpelPlayerProfile">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="code" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ExpelPlayerProfileResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetPlayerProfiles">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="code" type="xs:int" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetBoardMatch">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceivePlayerProfiles">
@@ -118,6 +110,16 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceivePlayerProfilesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StarMatch">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StarMatchResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -292,6 +294,66 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="UpdatePlayerProfileResult" type="xs:boolean" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectToBoard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="code" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisconnectFromBoard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisconnectFromBoardResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMove">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="result" type="xs:int" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="coin" nillable="true" type="q11:Coin" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPlayerProfilesForBoard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="code" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceiveMove">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="coin" nillable="true" type="q12:Coin" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceiveMoveResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceivePlayerProfilesForBoard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="playerProfiles" nillable="true" type="q13:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceivePlayerProfilesForBoardResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

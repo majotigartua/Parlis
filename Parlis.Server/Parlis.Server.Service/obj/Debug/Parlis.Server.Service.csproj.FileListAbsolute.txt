@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.dll
 C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.pdb
 C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.DataAccess.dll
@@ -25,3 +26,29 @@ C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\ob
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.CopyComplete
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.dll
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.pdb
+=======
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.dll
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.pdb
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.DataAccess.dll
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\bin\Debug\EntityFramework.dll
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.DataAccess.pdb
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.DataAccess.dll.config
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\bin\Debug\EntityFramework.xml
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.AssemblyReference.cache
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.CoreCompileInputs.cache
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.CopyComplete
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.dll
+C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.pdb
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.pdb
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.AssemblyReference.cache
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.CoreCompileInputs.cache
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.pdb
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.dll
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.pdb
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.AssemblyReference.cache
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.CoreCompileInputs.cache
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.dll
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.pdb
+>>>>>>> Stashed changes
