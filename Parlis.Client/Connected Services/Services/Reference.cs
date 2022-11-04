@@ -260,6 +260,83 @@ namespace Parlis.Client.Services {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Coin", Namespace="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data")]
+    [System.SerializableAttribute()]
+    public partial class Coin : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ColorTeamField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PlayerProfileUsernameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PositionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ColorTeam {
+            get {
+                return this.ColorTeamField;
+            }
+            set {
+                if ((this.ColorTeamField.Equals(value) != true)) {
+                    this.ColorTeamField = value;
+                    this.RaisePropertyChanged("ColorTeam");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PlayerProfileUsername {
+            get {
+                return this.PlayerProfileUsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlayerProfileUsernameField, value) != true)) {
+                    this.PlayerProfileUsernameField = value;
+                    this.RaisePropertyChanged("PlayerProfileUsername");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Position {
+            get {
+                return this.PositionField;
+            }
+            set {
+                if ((this.PositionField.Equals(value) != true)) {
+                    this.PositionField = value;
+                    this.RaisePropertyChanged("Position");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Services.IChatManagement", CallbackContract=typeof(Parlis.Client.Services.IChatManagementCallback))]
     public interface IChatManagement {
@@ -371,17 +448,17 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/DisconnectFromMatch", ReplyAction="http://tempuri.org/IMatchManagement/DisconnectFromMatchResponse")]
         System.Threading.Tasks.Task DisconnectFromMatchAsync(string username, int code);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/ExpelPlayerProfile", ReplyAction="http://tempuri.org/IMatchManagement/ExpelPlayerProfileResponse")]
-        void ExpelPlayerProfile(string username, int code);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/ExpelPlayerProfile", ReplyAction="http://tempuri.org/IMatchManagement/ExpelPlayerProfileResponse")]
-        System.Threading.Tasks.Task ExpelPlayerProfileAsync(string username, int code);
-        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles")]
         void GetPlayerProfiles(string username, int code);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles")]
         System.Threading.Tasks.Task GetPlayerProfilesAsync(string username, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SetBoardMatch")]
+        void SetBoardMatch();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SetBoardMatch")]
+        System.Threading.Tasks.Task SetBoardMatchAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -389,6 +466,9 @@ namespace Parlis.Client.Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/ReceivePlayerProfiles", ReplyAction="http://tempuri.org/IMatchManagement/ReceivePlayerProfilesResponse")]
         void ReceivePlayerProfiles(string[] playerProfiles);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/StarMatch", ReplyAction="http://tempuri.org/IMatchManagement/StarMatchResponse")]
+        void StarMatch();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -451,20 +531,20 @@ namespace Parlis.Client.Services {
             return base.Channel.DisconnectFromMatchAsync(username, code);
         }
         
-        public void ExpelPlayerProfile(string username, int code) {
-            base.Channel.ExpelPlayerProfile(username, code);
-        }
-        
-        public System.Threading.Tasks.Task ExpelPlayerProfileAsync(string username, int code) {
-            return base.Channel.ExpelPlayerProfileAsync(username, code);
-        }
-        
         public void GetPlayerProfiles(string username, int code) {
             base.Channel.GetPlayerProfiles(username, code);
         }
         
         public System.Threading.Tasks.Task GetPlayerProfilesAsync(string username, int code) {
             return base.Channel.GetPlayerProfilesAsync(username, code);
+        }
+        
+        public void SetBoardMatch() {
+            base.Channel.SetBoardMatch();
+        }
+        
+        public System.Threading.Tasks.Task SetBoardMatchAsync() {
+            return base.Channel.SetBoardMatchAsync();
         }
     }
     
@@ -666,6 +746,106 @@ namespace Parlis.Client.Services {
         
         public System.Threading.Tasks.Task<bool> UpdatePlayerProfileAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
             return base.Channel.UpdatePlayerProfileAsync(playerProfile);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Services.IGameManagement", CallbackContract=typeof(Parlis.Client.Services.IGameManagementCallback))]
+    public interface IGameManagement {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/ConnectToBoard")]
+        void ConnectToBoard(string username, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/ConnectToBoard")]
+        System.Threading.Tasks.Task ConnectToBoardAsync(string username, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/DisconnectFromBoard", ReplyAction="http://tempuri.org/IGameManagement/DisconnectFromBoardResponse")]
+        void DisconnectFromBoard(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/DisconnectFromBoard", ReplyAction="http://tempuri.org/IGameManagement/DisconnectFromBoardResponse")]
+        System.Threading.Tasks.Task DisconnectFromBoardAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SendMove")]
+        void SendMove(int result, Parlis.Client.Services.Coin coin);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SendMove")]
+        System.Threading.Tasks.Task SendMoveAsync(int result, Parlis.Client.Services.Coin coin);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/GetPlayerProfilesForBoard")]
+        void GetPlayerProfilesForBoard(string username, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/GetPlayerProfilesForBoard")]
+        System.Threading.Tasks.Task GetPlayerProfilesForBoardAsync(string username, int code);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IGameManagementCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ReceiveMove", ReplyAction="http://tempuri.org/IGameManagement/ReceiveMoveResponse")]
+        void ReceiveMove(Parlis.Client.Services.Coin coin);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ReceivePlayerProfilesForBoard", ReplyAction="http://tempuri.org/IGameManagement/ReceivePlayerProfilesForBoardResponse")]
+        void ReceivePlayerProfilesForBoard(string[] playerProfiles);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IGameManagementChannel : Parlis.Client.Services.IGameManagement, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GameManagementClient : System.ServiceModel.DuplexClientBase<Parlis.Client.Services.IGameManagement>, Parlis.Client.Services.IGameManagement {
+        
+        public GameManagementClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public GameManagementClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public GameManagementClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public GameManagementClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public GameManagementClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void ConnectToBoard(string username, int code) {
+            base.Channel.ConnectToBoard(username, code);
+        }
+        
+        public System.Threading.Tasks.Task ConnectToBoardAsync(string username, int code) {
+            return base.Channel.ConnectToBoardAsync(username, code);
+        }
+        
+        public void DisconnectFromBoard(string username) {
+            base.Channel.DisconnectFromBoard(username);
+        }
+        
+        public System.Threading.Tasks.Task DisconnectFromBoardAsync(string username) {
+            return base.Channel.DisconnectFromBoardAsync(username);
+        }
+        
+        public void SendMove(int result, Parlis.Client.Services.Coin coin) {
+            base.Channel.SendMove(result, coin);
+        }
+        
+        public System.Threading.Tasks.Task SendMoveAsync(int result, Parlis.Client.Services.Coin coin) {
+            return base.Channel.SendMoveAsync(result, coin);
+        }
+        
+        public void GetPlayerProfilesForBoard(string username, int code) {
+            base.Channel.GetPlayerProfilesForBoard(username, code);
+        }
+        
+        public System.Threading.Tasks.Task GetPlayerProfilesForBoardAsync(string username, int code) {
+            return base.Channel.GetPlayerProfilesForBoardAsync(username, code);
         }
     }
 }

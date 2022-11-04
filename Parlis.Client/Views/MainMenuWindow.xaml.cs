@@ -105,5 +105,10 @@ namespace Parlis.Client.Views
             Close();
             loginWindow.Show();
         }
+
+        public void StarMatch()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
