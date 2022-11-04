@@ -305,18 +305,13 @@ namespace Parlis.Server.BusinessLogic
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
-    public partial class Service : IMatchManagement, IChatManagement, IGameManagement
+    public partial class Service : IMatchManagement, IChatManagement
     {
         private static readonly List<int> matches = new List<int>();
         private static readonly Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
-
-        private static readonly Dictionary<string, int> playerProfilesByBoard = new Dictionary<string, int>();
-
         private static readonly Dictionary<int, List<Message>> messagesByMatch = new Dictionary<int, List<Message>>();
         private static readonly Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
         private static readonly Dictionary<string, IChatManagementCallback> chats = new Dictionary<string, IChatManagementCallback>();
-        private static readonly Dictionary<string, IGameManagementCallback> boards = new Dictionary<string, IGameManagementCallback>();
-
 
         public bool CheckMatchExistence(int code)
         {
@@ -411,64 +406,5 @@ namespace Parlis.Server.BusinessLogic
                 }
             }
         }
-        public void SetBoardMatch() 
-        {
-            foreach (var playerProfile in playerProfiles)
-            {
-                string username = playerProfile.Key;
-                if (playerProfiles.ContainsKey(username))
-                {
-                    playerProfiles[username].StarMatch();
-                }
-            }
-        }
-
-
-
-
-
-        public void ConnectToBoard(string username, int code)
-        {
-            boards.Add(username, OperationContext.Current.GetCallbackChannel<IGameManagementCallback>());
-            playerProfilesByBoard.Add(username, code);
-            SetPlayerProfilesForBoard(code);
-        }
-        public void DisconnectFromBoard(string username)
-        {
-            boards.Remove(username);
-        }
-        public void SendMove(int result, Coin coin)
-        {
-        }
-        void IGameManagement.GetPlayerProfilesForBoard(string username, int code)
-        {
-            if (playerProfiles.ContainsKey(username))
-            {
-                OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceivePlayerProfilesForBoard(new List<string>(playerProfiles.Keys));
-            }
-            else
-            {
-                OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceivePlayerProfilesForBoard(GetPlayerProfilesForBoard(code));
-            }
-        }
-        public List<string> GetPlayerProfilesForBoard(int code)
-        {
-            return playerProfilesByBoard.Where(playerProfile => playerProfile.Value == code)
-                .Select(playerProfile => playerProfile.Key)
-                .ToList();
-        }
-        public void SetPlayerProfilesForBoard(int code)
-        {
-            foreach (var playerProfile in playerProfilesByBoard)
-            {
-                if (playerProfile.Value.Equals(code))
-                {
-                    string username = playerProfile.Key;
-                    boards[username].ReceivePlayerProfilesForBoard(GetPlayerProfilesForBoard(code));
-                }
-            }
-        }
-
-
     }
 }

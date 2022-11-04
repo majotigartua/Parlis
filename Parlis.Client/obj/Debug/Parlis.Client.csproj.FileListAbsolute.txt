@@ -4,6 +4,7 @@ C:\Users\Propietario\source\repos\Parlis\Parlis.Client\bin\Debug\Parlis.Client.p
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.csproj.AssemblyReference.cache
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.csproj.SuggestedBindingRedirects.cache
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\GameWindow.baml
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\ChatWindow.g.cs
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\ConfirmPlayerProfileWindow.g.cs
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\CreateMatchWindow.g.cs
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\EditPlayerProfileWindow.g.cs
@@ -19,6 +20,7 @@ C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\RegisterP
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\App.g.cs
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client_MarkupCompile.cache
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client_MarkupCompile.lref
+C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\ChatWindow.baml
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\ConfirmPlayerProfileWindow.baml
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\CreateMatchWindow.baml
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\EditPlayerProfileWindow.baml
@@ -132,13 +134,3 @@ C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\pt-BR\Parlis.Client.resour
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\es-MX\Parlis.Client.resources.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.exe
 C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.pdb
-C:\Users\Propietario\source\repos\Parlis\Parlis.Client\bin\Debug\pt-BR\Parlis.Client.resources.dll
-C:\Users\Propietario\source\repos\Parlis\Parlis.Client\bin\Debug\es-MX\Parlis.Client.resources.dll
-C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\EnterAsGuestWindow.g.cs
-C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\SendRealTimeMessageWindow.g.cs
-C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\EnterAsGuestWindow.baml
-C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Views\SendRealTimeMessageWindow.baml
-C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.Properties.Resources.pt-BR.resources
-C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.Properties.Resources.es-MX.resources
-C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\pt-BR\Parlis.Client.resources.dll
-C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\es-MX\Parlis.Client.resources.dll
