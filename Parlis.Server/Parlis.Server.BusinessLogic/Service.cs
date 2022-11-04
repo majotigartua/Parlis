@@ -309,9 +309,7 @@ namespace Parlis.Server.BusinessLogic
     {
         private static readonly List<int> matches = new List<int>();
         private static readonly Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
-
         private static readonly Dictionary<string, int> playerProfilesByBoard = new Dictionary<string, int>();
-
         private static readonly Dictionary<int, List<Message>> messagesByMatch = new Dictionary<int, List<Message>>();
         private static readonly Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
         private static readonly Dictionary<string, IChatManagementCallback> chats = new Dictionary<string, IChatManagementCallback>();
@@ -321,6 +319,13 @@ namespace Parlis.Server.BusinessLogic
         public bool CheckMatchExistence(int code)
         {
             return matches.Contains(code);
+        }
+
+        public void ConnectToBoard(string username, int code)
+        {
+            boards.Add(username, OperationContext.Current.GetCallbackChannel<IGameManagementCallback>());
+            playerProfilesByBoard.Add(username, code);
+            SetPlayerProfilesForBoard(code);
         }
 
         public void ConnectToChat(string username, int code)
@@ -339,6 +344,11 @@ namespace Parlis.Server.BusinessLogic
         public void CreateMatch(int code)
         {
             matches.Add(code);
+        }
+
+        public void DisconnectFromBoard(string username)
+        {
+            boards.Remove(username);
         }
 
         public void DisconnectFromChat(string username)
@@ -411,6 +421,7 @@ namespace Parlis.Server.BusinessLogic
                 }
             }
         }
+
         public void SetBoardMatch()
         {
             foreach (var playerProfile in playerProfiles)
@@ -423,23 +434,10 @@ namespace Parlis.Server.BusinessLogic
             }
         }
 
-
-
-
-
-        public void ConnectToBoard(string username, int code)
-        {
-            boards.Add(username, OperationContext.Current.GetCallbackChannel<IGameManagementCallback>());
-            playerProfilesByBoard.Add(username, code);
-            SetPlayerProfilesForBoard(code);
-        }
-        public void DisconnectFromBoard(string username)
-        {
-            boards.Remove(username);
-        }
         public void SendMove(int result, Coin coin)
         {
         }
+
         void IGameManagement.GetPlayerProfilesForBoard(string username, int code)
         {
             if (playerProfiles.ContainsKey(username))
@@ -457,6 +455,7 @@ namespace Parlis.Server.BusinessLogic
                 .Select(playerProfile => playerProfile.Key)
                 .ToList();
         }
+
         public void SetPlayerProfilesForBoard(int code)
         {
             foreach (var playerProfile in playerProfilesByBoard)
@@ -468,7 +467,5 @@ namespace Parlis.Server.BusinessLogic
                 }
             }
         }
-
-
     }
 }

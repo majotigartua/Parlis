@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 
 namespace Parlis.Client.Views
 {
-    public partial class GameWindow : Window, Client.Services.IGameManagementCallback
+    public partial class GameWindow : Window, IGameManagementCallback
     {
         private readonly BitmapImage DEFAULT_PROFILE_PICTURE = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
         private readonly TextBlock[] usernames;
@@ -47,7 +47,6 @@ namespace Parlis.Client.Views
 
             dice = randomDiceResult.Next(1, 7);
             SetDiceValue(dice);
-
         }
 
         private void SetDiceValue(int val0)
@@ -55,8 +54,6 @@ namespace Parlis.Client.Views
             this.FirstDice.IsEnabled = true;
             this.FirstDice.Source = new BitmapImage(new Uri(Dices[val0 - 1], UriKind.Relative));
         }
-
-
 
         public void ConfigureWindow(PlayerProfile playerProfile, int code)
         {
@@ -85,9 +82,15 @@ namespace Parlis.Client.Views
             this.FirstDice.Source = DEFAULT_DICE;
         }
 
+        public void ReceivePlayerProfilesForBoard(string[] playerProfiles)
+        {
+            this.playerProfiles = playerProfiles;
+            ConfigureData();
+            ConfigurePlayerProfiles(this.playerProfiles);
+        }
+
         private void ConfigurePlayerProfiles(string[] playerProfiles)
         {
-
             for (int playerProfile = 0; playerProfile < numberOfPlayerProfiles; playerProfile++)
             {
                 string username = playerProfiles[playerProfile];
@@ -105,68 +108,6 @@ namespace Parlis.Client.Views
             }
         }
 
-        public void ReceivePlayerProfilesForBoard(string[] playerProfiles)
-        {
-            this.playerProfiles = playerProfiles;
-            ConfigureData();
-            ConfigurePlayerProfiles(this.playerProfiles);
-        }
-
-
-
-
-
-
-        public void ConnectToBoard(string username, int code)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task ConnectToBoardAsync(string username, int code)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DisconnectFromBoard(string username)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DisconnectFromBoardAsync(string username)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SendMove(int result, Coin coin)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SendMoveAsync(int result, Coin coin)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetPlayerProfilesForBoard(string username, int code)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task GetPlayerProfilesForBoardAsync(string username, int code)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReceiveMove(Coin coin)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-
-
-        //Extras
         private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Utilities.PlayButtonClickSound();
@@ -187,6 +128,11 @@ namespace Parlis.Client.Views
         private void FirstDiceMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ThrowDice();
+        }
+
+        public void ReceiveMove(Coin coin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

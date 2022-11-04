@@ -2,7 +2,6 @@
 using Parlis.Client.Services;
 using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 using System.Windows;
@@ -13,15 +12,15 @@ namespace Parlis.Client.Views
 {
     public partial class CreateMatchWindow : Window, IMatchManagementCallback
     {
-        private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 3;
+        private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 4;
         private readonly BitmapImage DEFAULT_PROFILE_PICTURE = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
         private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;
         private readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
-        private int numberOfPlayerProfiles;
         private PlayerProfile playerProfile;
         private int code;
+        private int numberOfPlayerProfiles;
 
         public CreateMatchWindow()
         {
@@ -37,7 +36,6 @@ namespace Parlis.Client.Views
         {
             this.playerProfile = playerProfile;
             this.code = code;
-            ConfigureData();
             try
             {
                 if (!matchManagementClient.CheckMatchExistence(code))
@@ -68,15 +66,8 @@ namespace Parlis.Client.Views
         public void ReceivePlayerProfiles(string[] playerProfiles)
         {
             numberOfPlayerProfiles = playerProfiles.Length;
-            string username = playerProfile.Username;
-            if (playerProfiles.Contains(username))
-            {
-                ConfigureData();
-                ConfigurePlayerProfiles(playerProfiles);
-            }
-            else
-            {
-            }
+            ConfigureData();
+            ConfigurePlayerProfiles(playerProfiles);
         }
 
         private void ConfigurePlayerProfiles(string[] playerProfiles)
@@ -95,7 +86,6 @@ namespace Parlis.Client.Views
                     profilePictures[playerProfile].Source = DEFAULT_PROFILE_PICTURE;
                 }
             }
-            Console.WriteLine("ConfigurePlayerProfiles()");
         }
 
         private void ExpelPlayerMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -192,8 +182,6 @@ namespace Parlis.Client.Views
             Close();
             mainMenuWindow.Show();
         }
-
-
 
         public void StarMatch()
         {
