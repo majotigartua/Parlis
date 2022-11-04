@@ -25,3 +25,12 @@ C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\ob
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.CopyComplete
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.dll
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.pdb
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.dll
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.pdb
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Microsoft.Bcl.HashCode.dll
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Microsoft.Bcl.HashCode.xml
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.AssemblyReference.cache
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.CoreCompileInputs.cache
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.CopyComplete
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.dll
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.pdb

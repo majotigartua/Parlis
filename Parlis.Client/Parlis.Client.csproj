@@ -285,5 +285,19 @@
   <ItemGroup>
     <None Include="Resources\Music.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\BlueCoin.png" />
+    <Resource Include="Resources\Images\BoardGame.png" />
+    <Resource Include="Resources\Images\Dice.png" />
+    <Resource Include="Resources\Images\Dice1.png" />
+    <Resource Include="Resources\Images\Dice2.png" />
+    <Resource Include="Resources\Images\Dice3.png" />
+    <Resource Include="Resources\Images\Dice4.png" />
+    <Resource Include="Resources\Images\Dice5.png" />
+    <Resource Include="Resources\Images\Dice6.png" />
+    <Resource Include="Resources\Images\GreenCoin.png" />
+    <Resource Include="Resources\Images\RedCoin.png" />
+    <Resource Include="Resources\Images\YellowCoin.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
