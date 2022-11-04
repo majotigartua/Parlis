@@ -13,7 +13,7 @@ using System.ServiceModel;
 using Parlis.Server.Service.Data;
 
 namespace Parlis.Server.BusinessLogic
-{ 
+{
     public partial class Service : IPlayerProfileManagement
     {
         public bool CheckPlayerExistence(string emailAddress)
@@ -21,8 +21,8 @@ namespace Parlis.Server.BusinessLogic
             using (ParlisContext context = new ParlisContext())
             {
                 int numberOfPlayers = (from player in context.Players
-                                     where player.EmailAddress.Equals(emailAddress)
-                                     select player).Count();
+                                       where player.EmailAddress.Equals(emailAddress)
+                                       select player).Count();
                 return numberOfPlayers > 0;
             }
         }
@@ -32,8 +32,8 @@ namespace Parlis.Server.BusinessLogic
             using (ParlisContext context = new ParlisContext())
             {
                 int numberOfPlayerProfiles = (from playerProfile in context.PlayerProfiles
-                                            where playerProfile.Username.Equals(username)
-                                            select playerProfile).Count();
+                                              where playerProfile.Username.Equals(username)
+                                              select playerProfile).Count();
                 return numberOfPlayerProfiles > 0;
             }
         }
@@ -42,16 +42,20 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
-                var player = (from players in context.Players
-                              where players.EmailAddress.Equals(emailAddress)
-                              select players).First();
                 try
                 {
+                    var player = (from players in context.Players
+                                  where players.EmailAddress.Equals(emailAddress)
+                                  select players).First();
                     context.Players.Remove(player);
                     context.SaveChanges();
                     return true;
                 }
                 catch (DbUpdateException)
+                {
+                    return false;
+                }
+                catch (InvalidOperationException)
                 {
                     return false;
                 }
@@ -62,16 +66,20 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
-                var playerProfile = (from playerProfiles in context.PlayerProfiles
-                                     where playerProfiles.Username.Equals(username)
-                                     select playerProfiles).First();
                 try
                 {
+                    var playerProfile = (from playerProfiles in context.PlayerProfiles
+                                         where playerProfiles.Username.Equals(username)
+                                         select playerProfiles).First();
                     context.PlayerProfiles.Remove(playerProfile);
                     context.SaveChanges();
                     return true;
                 }
                 catch (DbUpdateException)
+                {
+                    return false;
+                }
+                catch (InvalidOperationException)
                 {
                     return false;
                 }
@@ -82,17 +90,24 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
-                var players = (from gamer in context.Players
-                               where gamer.PlayerProfileUsername.Equals(username)
-                               select gamer).First();
-                var player = new Player
+                try
                 {
-                    EmailAddress = players.EmailAddress,
-                    Name = players.Name,
-                    PaternalSurname = players.PaternalSurname,
-                    MaternalSurname = players.MaternalSurname,
-                };
-                return player;
+                    var players = (from gamer in context.Players
+                                   where gamer.PlayerProfileUsername.Equals(username)
+                                   select gamer).First();
+                    var player = new Player
+                    {
+                        EmailAddress = players.EmailAddress,
+                        Name = players.Name,
+                        PaternalSurname = players.PaternalSurname,
+                        MaternalSurname = players.MaternalSurname,
+                    };
+                    return player;
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
             }
         }
 
@@ -100,17 +115,24 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
-                var playerProfiles = (from gamer in context.PlayerProfiles
-                                      join player in context.Players
-                                      on gamer.Username equals player.PlayerProfileUsername
-                                      where player.EmailAddress.Equals(emailAddress)
-                                      select gamer).First();
-                var playerProfile = new PlayerProfile
+                try
                 {
-                    Username = playerProfiles.Username,
-                    Password = playerProfiles.Password,
-                };
-                return playerProfile;
+                    var playerProfiles = (from gamer in context.PlayerProfiles
+                                          join player in context.Players
+                                          on gamer.Username equals player.PlayerProfileUsername
+                                          where player.EmailAddress.Equals(emailAddress)
+                                          select gamer).First();
+                    var playerProfile = new PlayerProfile
+                    {
+                        Username = playerProfiles.Username,
+                        Password = playerProfiles.Password,
+                    };
+                    return playerProfile;
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
             }
         }
 
@@ -128,7 +150,7 @@ namespace Parlis.Server.BusinessLogic
                     {
                         Username = playerProfiles.Username,
                         Password = playerProfiles.Password,
-                        IsVerified = (bool) playerProfiles.IsVerified,
+                        IsVerified = (bool)playerProfiles.IsVerified,
                     };
                 }
             }
@@ -139,21 +161,26 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
-                var players = new DataAccess.Player
-                {
-                    EmailAddress = player.EmailAddress,
-                    Name = player.Name,
-                    PaternalSurname = player.PaternalSurname,
-                    MaternalSurname = player.MaternalSurname,
-                    PlayerProfileUsername = player.PlayerProfileUsername,
-                };
                 try
                 {
+                    var players = new DataAccess.Player
+                    {
+                        EmailAddress = player.EmailAddress,
+                        Name = player.Name,
+                        PaternalSurname = player.PaternalSurname,
+                        MaternalSurname = player.MaternalSurname,
+                        PlayerProfileUsername = player.PlayerProfileUsername,
+                    };
+
                     context.Players.Add(players);
                     context.SaveChanges();
                     return true;
                 }
                 catch (DbUpdateException)
+                {
+                    return false;
+                }
+                catch (NullReferenceException)
                 {
                     return false;
                 }
@@ -164,14 +191,15 @@ namespace Parlis.Server.BusinessLogic
         {
             using (ParlisContext context = new ParlisContext())
             {
-                var playerProfiles = new DataAccess.PlayerProfile
-                {
-                    Username = playerProfile.Username,
-                    Password = playerProfile.Password,
-                    IsVerified = playerProfile.IsVerified,
-                };
                 try
                 {
+                    var playerProfiles = new DataAccess.PlayerProfile
+                    {
+                        Username = playerProfile.Username,
+                        Password = playerProfile.Password,
+                        IsVerified = playerProfile.IsVerified,
+                    };
+
                     context.PlayerProfiles.Add(playerProfiles);
                     context.SaveChanges();
                     return true;
@@ -180,18 +208,23 @@ namespace Parlis.Server.BusinessLogic
                 {
                     return false;
                 }
+                catch (NullReferenceException)
+                {
+                    return false;
+                }
             }
         }
 
         public bool SendMail(string username, string title, string message, int code)
         {
-            string smtpServer = ConfigurationManager.AppSettings["SMTP_SERVER"];
-            int port = int.Parse(ConfigurationManager.AppSettings["PORT"]);
-            string emailAddress = ConfigurationManager.AppSettings["EMAIL_ADDRESS"];
-            string password = ConfigurationManager.AppSettings["PASSWORD"];
-            string addressee = GetPlayer(username).EmailAddress;
             try
             {
+                string smtpServer = ConfigurationManager.AppSettings["SMTP_SERVER"];
+                int port = int.Parse(ConfigurationManager.AppSettings["PORT"]);
+                string emailAddress = ConfigurationManager.AppSettings["EMAIL_ADDRESS"];
+                string password = ConfigurationManager.AppSettings["PASSWORD"];
+                string addressee = GetPlayer(username).EmailAddress;
+
                 var mailMessage = new MailMessage(emailAddress, addressee, title, (message + " " + code + "."))
                 {
                     IsBodyHtml = true
@@ -206,55 +239,67 @@ namespace Parlis.Server.BusinessLogic
                 smtpClient.Send(mailMessage);
                 return true;
             }
-            catch (Exception)
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+            catch (ArgumentNullException)
             {
                 return false;
             }
         }
-        
+
 
         public bool UpdatePlayer(Player player)
         {
-            var emailAddress = player.EmailAddress;
-            using (ParlisContext context = new ParlisContext())
+            try
             {
-                var players = (from gamer in context.Players
-                               where gamer.EmailAddress.Equals(emailAddress)
-                               select gamer).First();
-                players.Name = player.Name;
-                players.PaternalSurname = player.PaternalSurname;
-                players.MaternalSurname = player.MaternalSurname;
-                try
+                var emailAddress = player.EmailAddress;
+                using (ParlisContext context = new ParlisContext())
                 {
+                    var players = (from gamer in context.Players
+                                   where gamer.EmailAddress.Equals(emailAddress)
+                                   select gamer).First();
+                    players.Name = player.Name;
+                    players.PaternalSurname = player.PaternalSurname;
+                    players.MaternalSurname = player.MaternalSurname;
                     context.SaveChanges();
                     return true;
                 }
-                catch (DbUpdateException)
-                {
-                    return false;
-                }
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+            catch (NullReferenceException)
+            {
+                return false;
             }
         }
 
         public bool UpdatePlayerProfile(PlayerProfile playerProfile)
         {
-            var username = playerProfile.Username;
-            using (ParlisContext context = new ParlisContext())
+            try
             {
-                var playerProfiles = (from gamer in context.PlayerProfiles
-                                      where gamer.Username.Equals(username)
-                                      select gamer).First();
-                playerProfiles.Password = playerProfile.Password;
-                playerProfiles.IsVerified = playerProfile.IsVerified;
-                try
+                var username = playerProfile.Username;
+                using (ParlisContext context = new ParlisContext())
                 {
+                    var playerProfiles = (from gamer in context.PlayerProfiles
+                                          where gamer.Username.Equals(username)
+                                          select gamer).First();
+                    playerProfiles.Password = playerProfile.Password;
+                    playerProfiles.IsVerified = playerProfile.IsVerified;
                     context.SaveChanges();
                     return true;
                 }
-                catch (DbUpdateException)
-                {
-                    return false;
-                }
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+            catch (NullReferenceException)
+            {
+                return false;
             }
         }
     }
