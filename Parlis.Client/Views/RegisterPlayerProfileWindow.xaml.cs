@@ -26,7 +26,12 @@ namespace Parlis.Client.Views
             string playerProfilePath = Utilities.SelectProfilePicture();
             if (!string.IsNullOrEmpty(playerProfilePath))
             {
-                ProfilePicture.Source = new BitmapImage(new Uri(playerProfilePath));
+                var bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.UriSource = new Uri(playerProfilePath);
+                bitmapImage.EndInit();
+                ProfilePicture.Source = bitmapImage;
             }
         }
 
