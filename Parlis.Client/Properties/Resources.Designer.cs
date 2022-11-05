@@ -142,15 +142,6 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Do you want to confirm the player profile?.
-        /// </summary>
-        public static string CONFIRM_PLAYER_PROFILE_LABEL {
-            get {
-                return ResourceManager.GetString("CONFIRM_PLAYER_PROFILE_LABEL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Confirm player profile..
         /// </summary>
         public static string CONFIRM_PLAYER_PROFILE_WINDOW_TITLE {
@@ -183,15 +174,6 @@ namespace Parlis.Client.Properties {
         public static string DELETE_PLAYER_PROFILE_BUTTON {
             get {
                 return ResourceManager.GetString("DELETE_PLAYER_PROFILE_BUTTON", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Do you want to delete the player profile?.
-        /// </summary>
-        public static string DELETE_PLAYER_PROFILE_LABEL {
-            get {
-                return ResourceManager.GetString("DELETE_PLAYER_PROFILE_LABEL", resourceCulture);
             }
         }
         
