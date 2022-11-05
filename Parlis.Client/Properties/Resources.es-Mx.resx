@@ -127,7 +127,7 @@
     <value>Por favor, verifica la información ingresada e inténtalo nuevamente.</value>
   </data>
   <data name="CODE_EMAIL_ADDRESS_LABEL" xml:space="preserve">
-    <value>Este es tu código de 6 dígitos:</value>
+    <value>Este es tu código de 6 dígitos: </value>
   </data>
   <data name="CODE_INSTRUCTION_LABEL" xml:space="preserve">
     <value>Ingresa el código de 6 dígitos enviado a tu correo electrónico.</value>
@@ -141,9 +141,6 @@
   <data name="CONFIRM_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Confirmar perfil de jugador</value>
   </data>
-  <data name="CONFIRM_PLAYER_PROFILE_LABEL" xml:space="preserve">
-    <value>¿Deseas confirmar el perfil de jugador?</value>
-  </data>
   <data name="CONFIRM_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Confirmar perfil de jugador.</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="DELETE_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Eliminar perfil de jugador</value>
-  </data>
-  <data name="DELETE_PLAYER_PROFILE_LABEL" xml:space="preserve">
-    <value>¿Deseas eliminar el perfil de jugador?</value>
   </data>
   <data name="EDIT_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Editar perfil de jugador.</value>
