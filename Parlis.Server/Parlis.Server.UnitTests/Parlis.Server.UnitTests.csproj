@@ -66,6 +66,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatManagementTest.cs" />
+    <Compile Include="GameManagementTest.cs" />
     <Compile Include="MatchManagementTest.cs" />
     <Compile Include="PlayerProfileManagementTestcs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
