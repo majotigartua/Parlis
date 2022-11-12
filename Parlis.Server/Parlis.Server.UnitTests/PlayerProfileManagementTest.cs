@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Parlis.Server.UnitTests
 {
-    public class PlayerProfileManagementTestcs
+    public class PlayerProfileManagementTest
     {
         private PlayerProfile playerProfile = new PlayerProfile
         {
