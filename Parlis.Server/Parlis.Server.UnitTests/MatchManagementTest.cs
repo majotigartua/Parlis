@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Parlis.Server.Service.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,10 @@ namespace Parlis.Server.UnitTests
     public class MatchManagementTest
     {
         private int code = 901182;
+        PlayerProfile playerProfile = new PlayerProfile
+        {
+            Username = "testguy"
+        };
 
         [Fact]
         public void CheckMatchExistenceHappyPathTest()
@@ -32,6 +37,18 @@ namespace Parlis.Server.UnitTests
             isCreated = service.CheckMatchExistence(0);
 
             Assert.False(isCreated);
+        }
+
+        [Fact]
+        public void GetPlayerProfilesUnhappyPathTest()
+        {
+            List<string> playerProfiles;
+            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
+
+            //service.ConnectToMatch(playerProfile.Username, code);
+            playerProfiles = service.GetPlayerProfiles(code);
+
+            Assert.Empty(playerProfiles);
         }
 
     }
