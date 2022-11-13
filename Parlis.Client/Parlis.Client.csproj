@@ -299,5 +299,8 @@
     <Resource Include="Resources\Images\RedCoin.png" />
     <Resource Include="Resources\Images\YellowCoin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\YourTurn.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

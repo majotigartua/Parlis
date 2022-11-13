@@ -311,11 +311,15 @@ namespace Parlis.Server.BusinessLogic
         private static readonly Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
 
         private static readonly Dictionary<string, int> playerProfilesByBoard = new Dictionary<string, int>();
+        private static readonly Dictionary<string, int> turns = new Dictionary<string, int>();
 
         private static readonly Dictionary<int, List<Message>> messagesByMatch = new Dictionary<int, List<Message>>();
         private static readonly Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
         private static readonly Dictionary<string, IChatManagementCallback> chats = new Dictionary<string, IChatManagementCallback>();
         private static readonly Dictionary<string, IGameManagementCallback> boards = new Dictionary<string, IGameManagementCallback>();
+
+        //Board COmplement
+        private Random randomResult;
 
 
         public bool CheckMatchExistence(int code)
@@ -424,51 +428,134 @@ namespace Parlis.Server.BusinessLogic
         }
 
 
+        //Board methods 
 
 
-
+        #region Board and gameplay methods
+        
+        //Conexion to server and boards
         public void ConnectToBoard(string username, int code)
         {
-            boards.Add(username, OperationContext.Current.GetCallbackChannel<IGameManagementCallback>());
             playerProfilesByBoard.Add(username, code);
-            SetPlayerProfilesForBoard(code);
+            boards.Add(username, OperationContext.Current.GetCallbackChannel<IGameManagementCallback>());
+            if (playerProfilesByBoard.Count == 1)
+            {
+                SetTurns();
+                SetPlayerToPlay();
+
+            }
         }
         public void DisconnectFromBoard(string username)
         {
             boards.Remove(username);
         }
-        public void SendMove(int result, Coin coin)
-        {
-        }
         void IGameManagement.GetPlayerProfilesForBoard(string username, int code)
         {
             if (playerProfiles.ContainsKey(username))
             {
-                OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceivePlayerProfilesForBoard(new List<string>(playerProfiles.Keys));
+                OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceivePlayerProfilesForBoard(new Dictionary<string, int>(turns));
             }
             else
             {
                 OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceivePlayerProfilesForBoard(GetPlayerProfilesForBoard(code));
             }
         }
-        public List<string> GetPlayerProfilesForBoard(int code)
+        public Dictionary<string, int> GetPlayerProfilesForBoard(int code)
         {
-            return playerProfilesByBoard.Where(playerProfile => playerProfile.Value == code)
-                .Select(playerProfile => playerProfile.Key)
-                .ToList();
+            Dictionary<string, int> playerProfilesTurns = new Dictionary<string, int>();
+            if ((playerProfilesByBoard.Where(playerProfile => playerProfile.Value == code)) != null)
+            {
+                playerProfilesTurns = turns;
+            }
+            else
+                playerProfilesTurns = null;
+            return playerProfilesTurns;
         }
         public void SetPlayerProfilesForBoard(int code)
         {
-            foreach (var playerProfile in playerProfilesByBoard)
-            {
-                if (playerProfile.Value.Equals(code))
+                foreach (var playerProfile in playerProfilesByBoard)
                 {
-                    string username = playerProfile.Key;
-                    boards[username].ReceivePlayerProfilesForBoard(GetPlayerProfilesForBoard(code));
+                    if (playerProfile.Value.Equals(code))
+                    {
+                        string username = playerProfile.Key;
+
+                        boards[username].ReceivePlayerProfilesForBoard(GetPlayerProfilesForBoard(code));
+                    }
+                }
+            
+        }
+        public void SetPlayerToPlay()
+        {
+            lock (playerProfilesByBoard)
+            {
+                foreach (var playerProfile in playerProfilesByBoard)
+                {
+                    SetPlayerProfilesForBoard(playerProfile.Value);
+                    
                 }
             }
         }
 
+        //Dice Methods
+        public void SetDiceResult()
+        {
+            randomResult = new Random();
+            int diceResult = randomResult.Next(1, 7);
+            foreach (var playerProfile in boards)
+            {
+                string username = playerProfile.Key;
+                if (playerProfiles.ContainsKey(username))
+                {
+                    boards[username].ShowDiceResult(diceResult);
+                }
+            }
+        }
+        //Turns Methods
+
+        public void SetTurns()
+        {
+            randomResult = new Random();
+            int randomPlayer, randomColorTeam;
+            List<int> colorTeam = new List<int>();
+            colorTeam.Add(1);//red
+            colorTeam.Add(2);//blue
+            colorTeam.Add(3);//green
+            colorTeam.Add(4);//yellow
+            for (int i = 0; i < playerProfilesByBoard.Count; i++)
+            
+            {
+                do
+                {
+                    randomPlayer = randomResult.Next(playerProfilesByBoard.Count);
+                } while (turns.ContainsKey(playerProfilesByBoard.ElementAt(randomPlayer).Key));
+                do
+                {
+                    randomColorTeam = randomResult.Next(0,4);
+                } while (turns.ContainsValue(colorTeam[randomColorTeam]));
+                turns.Add(playerProfilesByBoard.ElementAt(randomPlayer).Key, colorTeam[randomColorTeam]);
+            }
+        }
+
+        public void StartGame()
+        {
+            bool winnerPlayer = false;
+            int turn = 0;
+            string player;
+            do
+            {
+                player = turns.ElementAt(turn).Key;
+                boards[player].ShowNextTurn(turn);
+                SetDiceResult();
+                if (turn > 2) {
+                    turn = -1;
+                }
+                turn++;
+            }while(!winnerPlayer);
+        
+        
+        }
+
+        #endregion 
 
     }
 }

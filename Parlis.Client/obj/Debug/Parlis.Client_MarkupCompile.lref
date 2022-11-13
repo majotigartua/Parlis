@@ -6,6 +6,7 @@ FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\EditPlayerProfileW
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\EnterAsGuestWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\ExpelPlayerWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\GameConfigurationWindow.xaml;;
+FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\GameWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\JoinMatchWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\LoginWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\MainMenuWindow.xaml;;
@@ -13,5 +14,4 @@ FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\RecoverPasswordWin
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\RecoverPasswordEmailAddressWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\RegisterPlayerProfileWindow.xaml;;
 FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\SendRealTimeMessageWindow.xaml;;
-FC:\Users\Propietario\source\repos\Parlis\Parlis.Client\Views\GameWindow.xaml;;
 

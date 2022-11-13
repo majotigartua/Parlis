@@ -13,7 +13,7 @@ namespace Parlis.Client.Views
 {
     public partial class CreateMatchWindow : Window, IMatchManagementCallback
     {
-        private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 3;
+        private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 1;
         private readonly BitmapImage DEFAULT_PROFILE_PICTURE = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
         private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;
@@ -95,7 +95,6 @@ namespace Parlis.Client.Views
                     profilePictures[playerProfile].Source = DEFAULT_PROFILE_PICTURE;
                 }
             }
-            Console.WriteLine("ConfigurePlayerProfiles()");
         }
 
         private void ExpelPlayerMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

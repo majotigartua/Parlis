@@ -12,12 +12,13 @@ namespace Parlis.Server.Service.Services
 
         [OperationContract]
         void DisconnectFromBoard(string username);
-
-        [OperationContract(IsOneWay = true)]
-        void SendMove(int result, Coin coin);
-
+        
         [OperationContract(IsOneWay = true)]
         void GetPlayerProfilesForBoard(string username, int code);
+        [OperationContract(IsOneWay = true)]
+        void SetDiceResult();
+        [OperationContract(IsOneWay = true)]
+        void StartGame();
     }
 
     [ServiceContract]
@@ -26,6 +27,10 @@ namespace Parlis.Server.Service.Services
         [OperationContract]
         void ReceiveMove(Coin coin);
         [OperationContract]
-        void ReceivePlayerProfilesForBoard(List<string> playerProfiles);
+        void ReceivePlayerProfilesForBoard(Dictionary<string, int> playerProfilesTurns);
+        [OperationContract]
+        void ShowDiceResult(int diceResult);
+        [OperationContract]
+        void ShowNextTurn(int turn);
     }
 }
