@@ -776,6 +776,18 @@ namespace Parlis.Client.Services {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/GetPlayerProfilesForBoard")]
         System.Threading.Tasks.Task GetPlayerProfilesForBoardAsync(string username, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetDiceResult")]
+        void SetDiceResult();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetDiceResult")]
+        System.Threading.Tasks.Task SetDiceResultAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/StartGame")]
+        void StartGame();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/StartGame")]
+        System.Threading.Tasks.Task StartGameAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -785,7 +797,13 @@ namespace Parlis.Client.Services {
         void ReceiveMove(Parlis.Client.Services.Coin coin);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ReceivePlayerProfilesForBoard", ReplyAction="http://tempuri.org/IGameManagement/ReceivePlayerProfilesForBoardResponse")]
-        void ReceivePlayerProfilesForBoard(string[] playerProfiles);
+        void ReceivePlayerProfilesForBoard(System.Collections.Generic.Dictionary<string, int> playerProfilesTurns);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ShowDiceResult", ReplyAction="http://tempuri.org/IGameManagement/ShowDiceResultResponse")]
+        void ShowDiceResult(int result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ShowNextTurn", ReplyAction="http://tempuri.org/IGameManagement/ShowNextTurnResponse")]
+        void ShowNextTurn(int turn);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -846,6 +864,22 @@ namespace Parlis.Client.Services {
         
         public System.Threading.Tasks.Task GetPlayerProfilesForBoardAsync(string username, int code) {
             return base.Channel.GetPlayerProfilesForBoardAsync(username, code);
+        }
+        
+        public void SetDiceResult() {
+            base.Channel.SetDiceResult();
+        }
+        
+        public System.Threading.Tasks.Task SetDiceResultAsync() {
+            return base.Channel.SetDiceResultAsync();
+        }
+        
+        public void StartGame() {
+            base.Channel.StartGame();
+        }
+        
+        public System.Threading.Tasks.Task StartGameAsync() {
+            return base.Channel.StartGameAsync();
         }
     }
 }

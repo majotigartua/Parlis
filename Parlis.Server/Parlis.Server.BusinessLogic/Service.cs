@@ -310,10 +310,12 @@ namespace Parlis.Server.BusinessLogic
         private static readonly List<int> matches = new List<int>();
         private static readonly Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
         private static readonly Dictionary<string, int> playerProfilesByBoard = new Dictionary<string, int>();
+        private static readonly Dictionary<string, int> turns = new Dictionary<string, int>();
         private static readonly Dictionary<int, List<Message>> messagesByMatch = new Dictionary<int, List<Message>>();
         private static readonly Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
         private static readonly Dictionary<string, IChatManagementCallback> chats = new Dictionary<string, IChatManagementCallback>();
         private static readonly Dictionary<string, IGameManagementCallback> boards = new Dictionary<string, IGameManagementCallback>();
+        private Random random;
 
 
         public bool CheckMatchExistence(int code)
@@ -325,7 +327,11 @@ namespace Parlis.Server.BusinessLogic
         {
             boards.Add(username, OperationContext.Current.GetCallbackChannel<IGameManagementCallback>());
             playerProfilesByBoard.Add(username, code);
-            SetPlayerProfilesForBoard(code);
+            if (playerProfilesByBoard.Count == 1)
+            {
+                SetTurns();
+                SetPlayerToPlay();
+            }
         }
 
         public void ConnectToChat(string username, int code)
@@ -442,18 +448,21 @@ namespace Parlis.Server.BusinessLogic
         {
             if (playerProfiles.ContainsKey(username))
             {
-                OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceivePlayerProfilesForBoard(new List<string>(playerProfiles.Keys));
+                OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceivePlayerProfilesForBoard(new Dictionary<string, int>(turns));
             }
             else
             {
                 OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceivePlayerProfilesForBoard(GetPlayerProfilesForBoard(code));
             }
         }
-        public List<string> GetPlayerProfilesForBoard(int code)
+        public Dictionary<string, int> GetPlayerProfilesForBoard(int code)
         {
-            return playerProfilesByBoard.Where(playerProfile => playerProfile.Value == code)
-                .Select(playerProfile => playerProfile.Key)
-                .ToList();
+            Dictionary<string, int> playerProfilesTurns = new Dictionary<string, int>();
+            if ((playerProfilesByBoard.Where(playerProfile => playerProfile.Value == code)) != null)
+            {
+                return turns;
+            }
+            return null;
         }
 
         public void SetPlayerProfilesForBoard(int code)
@@ -466,6 +475,74 @@ namespace Parlis.Server.BusinessLogic
                     boards[username].ReceivePlayerProfilesForBoard(GetPlayerProfilesForBoard(code));
                 }
             }
+        }
+
+        public void SetPlayerToPlay()
+        {
+            lock (playerProfilesByBoard)
+            {
+                foreach (var playerProfile in playerProfilesByBoard)
+                {
+                    SetPlayerProfilesForBoard(playerProfile.Value);
+                }
+            }
+        }
+
+        public void SetDiceResult()
+        {
+            random = new Random();
+            int diceResult = random.Next(1, 7);
+            foreach (var playerProfile in boards)
+            {
+                string username = playerProfile.Key;
+                if (playerProfiles.ContainsKey(username))
+                {
+                    boards[username].ShowDiceResult(diceResult);
+                }
+            }
+        }
+
+        public void SetTurns()
+        {
+            random = new Random();
+            int randomPlayer, randomColorTeam;
+            List<int> colorTeam = new List<int>();
+            colorTeam.Add(1); //Red.
+            colorTeam.Add(2); //Blue.
+            colorTeam.Add(3); //Green.
+            colorTeam.Add(4); //Yellow.
+
+            for (int i = 0; i < playerProfilesByBoard.Count; i++)
+
+            {
+                do
+                {
+                    randomPlayer = random.Next(playerProfilesByBoard.Count);
+                } while (turns.ContainsKey(playerProfilesByBoard.ElementAt(randomPlayer).Key));
+                do
+                {
+                    randomColorTeam = random.Next(0, 4);
+                } while (turns.ContainsValue(colorTeam[randomColorTeam]));
+                turns.Add(playerProfilesByBoard.ElementAt(randomPlayer).Key, colorTeam[randomColorTeam]);
+            }
+        }
+
+        public void StartGame()
+        {
+            bool winner = false;
+            int turn = 0;
+            string player;
+            do
+            {
+                player = turns.ElementAt(turn).Key;
+                boards[player].ShowNextTurn(turn);
+                SetDiceResult();
+                if (turn > 2)
+                {
+                    turn = -1;
+                }
+                turn++;
+            } while (!winner);
         }
     }
 }

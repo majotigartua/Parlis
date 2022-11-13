@@ -22,6 +22,7 @@ namespace Parlis.Server.Service.Services
 
         [OperationContract(IsOneWay = true)]
         void GetPlayerProfiles(string username, int code);
+
         [OperationContract(IsOneWay = true)]
         void SetBoardMatch();
     }
@@ -31,6 +32,7 @@ namespace Parlis.Server.Service.Services
     {
         [OperationContract]
         void ReceivePlayerProfiles(List<string> playerProfiles);
+
         [OperationContract]
         void StarMatch();
     }

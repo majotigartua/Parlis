@@ -2,6 +2,7 @@
 using Parlis.Client.Services;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 using System.Windows;
@@ -12,7 +13,7 @@ namespace Parlis.Client.Views
 {
     public partial class CreateMatchWindow : Window, IMatchManagementCallback
     {
-        private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 4;
+        private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 1;
         private readonly BitmapImage DEFAULT_PROFILE_PICTURE = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
         private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;
@@ -66,8 +67,12 @@ namespace Parlis.Client.Views
         public void ReceivePlayerProfiles(string[] playerProfiles)
         {
             numberOfPlayerProfiles = playerProfiles.Length;
-            ConfigureData();
-            ConfigurePlayerProfiles(playerProfiles);
+            string username = playerProfile.Username;
+            if (playerProfiles.Contains(username))
+            {
+                ConfigureData();
+                ConfigurePlayerProfiles(playerProfiles);
+            }
         }
 
         private void ConfigurePlayerProfiles(string[] playerProfiles)

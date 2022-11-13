@@ -13,8 +13,9 @@ namespace Parlis.Server.Service.Data
         [DataMember]
         public string PlayerProfileUsername { get; set; }
 
-        public Coin()
+        public Coin(int colorValue)
         {
+            this.ColorTeam = colorValue;
         }
     }
 }
