@@ -38,18 +38,5 @@ namespace Parlis.Server.UnitTests
 
             Assert.False(isCreated);
         }
-
-        [Fact]
-        public void GetPlayerProfilesUnhappyPathTest()
-        {
-            List<string> playerProfiles;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            //service.ConnectToMatch(playerProfile.Username, code);
-            playerProfiles = service.GetPlayerProfiles(code);
-
-            Assert.Empty(playerProfiles);
-        }
-
     }
 }

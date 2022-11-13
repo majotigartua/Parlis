@@ -332,6 +332,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetDiceResult">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartGame">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ReceiveMove">
     <xs:complexType>
       <xs:sequence>
@@ -347,11 +357,35 @@
   <xs:element name="ReceivePlayerProfilesForBoard">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="playerProfiles" nillable="true" type="q13:ArrayOfstring" />
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="playerProfilesTurns" nillable="true" type="q13:ArrayOfKeyValueOfstringint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceivePlayerProfilesForBoardResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShowDiceResult">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="result" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShowDiceResultResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShowNextTurn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="turn" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShowNextTurnResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

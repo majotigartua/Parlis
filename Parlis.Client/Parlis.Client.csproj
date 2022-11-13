@@ -312,5 +312,8 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Fr-FRFlag.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\YourTurn.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
