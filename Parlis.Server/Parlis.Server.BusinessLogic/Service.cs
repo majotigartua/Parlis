@@ -538,6 +538,7 @@ namespace Parlis.Server.BusinessLogic
 
         public void StartGame()
         {
+            //work in
             bool winnerPlayer = false;
             int turn = 0;
             string player;

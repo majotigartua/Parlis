@@ -164,7 +164,7 @@ namespace Parlis.Client.Views
             }
         }
 
-
+        //ShowMoveCoin
 
 
 
