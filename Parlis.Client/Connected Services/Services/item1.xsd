@@ -316,14 +316,6 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="SendMove">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="result" type="xs:int" />
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="coin" nillable="true" type="q11:Coin" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetPlayerProfilesForBoard">
     <xs:complexType>
       <xs:sequence>
@@ -337,6 +329,16 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+<<<<<<< HEAD
+  <xs:element name="SetNextTurn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="turn" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+=======
+>>>>>>> main
   <xs:element name="StartGame">
     <xs:complexType>
       <xs:sequence />
@@ -345,7 +347,7 @@
   <xs:element name="ReceiveMove">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="coin" nillable="true" type="q12:Coin" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="coin" nillable="true" type="q11:Coin" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -357,7 +359,11 @@
   <xs:element name="ReceivePlayerProfilesForBoard">
     <xs:complexType>
       <xs:sequence>
+<<<<<<< HEAD
+        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="playerProfilesTurns" nillable="true" type="q12:ArrayOfKeyValueOfstringint" />
+=======
         <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="playerProfilesTurns" nillable="true" type="q13:ArrayOfKeyValueOfstringint" />
+>>>>>>> main
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -369,7 +375,11 @@
   <xs:element name="ShowDiceResult">
     <xs:complexType>
       <xs:sequence>
+<<<<<<< HEAD
+        <xs:element minOccurs="0" name="diceResult" type="xs:int" />
+=======
         <xs:element minOccurs="0" name="result" type="xs:int" />
+>>>>>>> main
       </xs:sequence>
     </xs:complexType>
   </xs:element>

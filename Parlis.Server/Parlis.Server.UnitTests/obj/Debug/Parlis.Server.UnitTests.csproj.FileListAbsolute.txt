@@ -67,7 +67,6 @@ C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\b
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\Parlis.Server.Service.pdb
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\EntityFramework.xml
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.abstractions.xml
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.assert.xml
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.core.xml
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.execution.desktop.xml
@@ -79,6 +78,12 @@ C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\o
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.csproj.CopyComplete
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.dll
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.pdb
+<<<<<<< HEAD
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.runner.visualstudio.testadapter.dll
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.runner.reporters.net452.dll
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.runner.utility.net452.dll
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.csproj.SuggestedBindingRedirects.cache
+=======
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.runner.visualstudio.testadapter.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.runner.reporters.net452.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.runner.utility.net452.dll
@@ -112,3 +117,4 @@ C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Pa
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.csproj.CopyComplete
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.pdb
+>>>>>>> main

@@ -1,3 +1,52 @@
+<<<<<<< HEAD
+﻿<Window x:Class="Parlis.Client.Views.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:Parlis.Client.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.CREATE_MATCH_WINDOW_TITLE}" Height="600" Width="862">
+    <Viewbox Margin="20" Stretch="Fill" StretchDirection="Both">
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Left" ShowGridLines="True" Width="250" Height="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="217*" />
+                <ColumnDefinition Width="33*" />
+            </Grid.ColumnDefinitions>
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" HorizontalAlignment="Center" Width="216" x:Name="BoardGAme"  Source="/Resources/Images/BoardGame.png" />
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="1" Margin="7,0,7,86" Source="/Resources/Images/MessageBalloon.png" MouseDown="MessageBalloonMouseDown" />
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="1" Margin="7,86,7,0" Source="/Resources/Images/Exit.png" MouseDown="ExitMouseDown" />
+
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="27,11,168,76" Height="13" Width="22" x:Name="RedProfilePicture" Source="/Resources/Images/DefaultProfilePicture.png"/>
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="35,25,176,71" x:Name="RedCoin" Source="/Resources/Images/RedCoin.png" />
+            <TextBlock Grid.Column="0" Margin="10,0,149,89" FontSize="10" x:Name="RedUsernameTextBox" TextAlignment="Center"/>
+
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="167,11,28,76" Height="13" Width="22" x:Name="BlueProfilePicture" Source="/Resources/Images/DefaultProfilePicture.png" />
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="175,25,36,71" Height="4" Width="6" x:Name="BlueCoin" Source="/Resources/Images/BlueCoin.png" />
+            <TextBlock x:Name="BlueUsernameTextBox" HorizontalAlignment="Left" Margin="150,0,0,87" Width="57" FontSize="10" TextAlignment="Center" Height="13" VerticalAlignment="Bottom"/>
+
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="27,76,168,11" Height="13" Width="22" x:Name="GreenProfilePicture" Source="/Resources/Images/DefaultProfilePicture.png"/>
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="35,90,176,6" Height="4" Width="6" x:Name="GreenCoin" Source="/Resources/Images/GreenCoin.png" />
+            <TextBlock x:Name="GreenUsernameTextBox" HorizontalAlignment="Right" Margin="0,65,149,24" Width="58" FontSize="10" TextAlignment="Center"/>
+
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="167,76,28,11" Height="13" Width="22" x:Name="YellowProfilePicture" Source="/Resources/Images/DefaultProfilePicture.png" />
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="175,90,36,6" Height="4" Width="6" x:Name="YellowCoin" Source="/Resources/Images/YellowCoin.png" />
+            <TextBlock x:Name="YellowUsernameTextBox" HorizontalAlignment="Left" Margin="150,65,0,0" VerticalAlignment="Top" Width="57" FontSize="10" TextAlignment="Center"/>
+
+
+            <Image x:Name="FirstDice" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="100,45,100,44" Height="11" Width="17" MouseDown="FirstDiceMouseDown" />
+            <Image x:Name="FocusedDice" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="97,43,97,42" Height="15" Width="23" MouseDown="FirstDiceMouseDown" />
+
+
+
+
+            <Canvas x:Name="MyCanvas" Focusable="true" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image x:Name="RingTurn" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Source="/Resources/Images/YourTurn.png" Height="29" VerticalAlignment="Top" Width="61" Canvas.Top="3" Canvas.Left="8" RenderTransformOrigin="0.5,0.5" >
+                </Image>
+            </Canvas>
+        </Grid>
+    </Viewbox>
+=======
 ﻿<Window x:Class="Parlis.Client.Views.GameWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -44,4 +93,5 @@
             </Canvas>
         </Grid>
     </Viewbox>
+>>>>>>> main
 </Window>   

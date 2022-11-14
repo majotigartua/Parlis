@@ -765,12 +765,6 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/DisconnectFromBoard", ReplyAction="http://tempuri.org/IGameManagement/DisconnectFromBoardResponse")]
         System.Threading.Tasks.Task DisconnectFromBoardAsync(string username);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SendMove")]
-        void SendMove(int result, Parlis.Client.Services.Coin coin);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SendMove")]
-        System.Threading.Tasks.Task SendMoveAsync(int result, Parlis.Client.Services.Coin coin);
-        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/GetPlayerProfilesForBoard")]
         void GetPlayerProfilesForBoard(string username, int code);
         
@@ -783,6 +777,15 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetDiceResult")]
         System.Threading.Tasks.Task SetDiceResultAsync();
         
+<<<<<<< HEAD
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetNextTurn")]
+        void SetNextTurn(int turn);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetNextTurn")]
+        System.Threading.Tasks.Task SetNextTurnAsync(int turn);
+        
+=======
+>>>>>>> main
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/StartGame")]
         void StartGame();
         
@@ -800,7 +803,11 @@ namespace Parlis.Client.Services {
         void ReceivePlayerProfilesForBoard(System.Collections.Generic.Dictionary<string, int> playerProfilesTurns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ShowDiceResult", ReplyAction="http://tempuri.org/IGameManagement/ShowDiceResultResponse")]
+<<<<<<< HEAD
+        void ShowDiceResult(int diceResult);
+=======
         void ShowDiceResult(int result);
+>>>>>>> main
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ShowNextTurn", ReplyAction="http://tempuri.org/IGameManagement/ShowNextTurnResponse")]
         void ShowNextTurn(int turn);
@@ -850,14 +857,6 @@ namespace Parlis.Client.Services {
             return base.Channel.DisconnectFromBoardAsync(username);
         }
         
-        public void SendMove(int result, Parlis.Client.Services.Coin coin) {
-            base.Channel.SendMove(result, coin);
-        }
-        
-        public System.Threading.Tasks.Task SendMoveAsync(int result, Parlis.Client.Services.Coin coin) {
-            return base.Channel.SendMoveAsync(result, coin);
-        }
-        
         public void GetPlayerProfilesForBoard(string username, int code) {
             base.Channel.GetPlayerProfilesForBoard(username, code);
         }
@@ -874,6 +873,17 @@ namespace Parlis.Client.Services {
             return base.Channel.SetDiceResultAsync();
         }
         
+<<<<<<< HEAD
+        public void SetNextTurn(int turn) {
+            base.Channel.SetNextTurn(turn);
+        }
+        
+        public System.Threading.Tasks.Task SetNextTurnAsync(int turn) {
+            return base.Channel.SetNextTurnAsync(turn);
+        }
+        
+=======
+>>>>>>> main
         public void StartGame() {
             base.Channel.StartGame();
         }

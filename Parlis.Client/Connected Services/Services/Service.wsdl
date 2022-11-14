@@ -262,15 +262,18 @@
   <wsdl:message name="IGameManagement_DisconnectFromBoard_OutputMessage">
     <wsdl:part name="parameters" element="tns:DisconnectFromBoardResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameManagement_SendMove_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendMove" />
-  </wsdl:message>
   <wsdl:message name="IGameManagement_GetPlayerProfilesForBoard_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerProfilesForBoard" />
   </wsdl:message>
   <wsdl:message name="IGameManagement_SetDiceResult_InputMessage">
     <wsdl:part name="parameters" element="tns:SetDiceResult" />
   </wsdl:message>
+<<<<<<< HEAD
+  <wsdl:message name="IGameManagement_SetNextTurn_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNextTurn" />
+  </wsdl:message>
+=======
+>>>>>>> main
   <wsdl:message name="IGameManagement_StartGame_InputMessage">
     <wsdl:part name="parameters" element="tns:StartGame" />
   </wsdl:message>
@@ -403,15 +406,18 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/DisconnectFromBoard" message="tns:IGameManagement_DisconnectFromBoard_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/DisconnectFromBoardResponse" message="tns:IGameManagement_DisconnectFromBoard_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SendMove">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SendMove" message="tns:IGameManagement_SendMove_InputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetPlayerProfilesForBoard">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetPlayerProfilesForBoard" message="tns:IGameManagement_GetPlayerProfilesForBoard_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetDiceResult">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SetDiceResult" message="tns:IGameManagement_SetDiceResult_InputMessage" />
     </wsdl:operation>
+<<<<<<< HEAD
+    <wsdl:operation name="SetNextTurn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SetNextTurn" message="tns:IGameManagement_SetNextTurn_InputMessage" />
+    </wsdl:operation>
+=======
+>>>>>>> main
     <wsdl:operation name="StartGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/StartGame" message="tns:IGameManagement_StartGame_InputMessage" />
     </wsdl:operation>
@@ -663,14 +669,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SendMove">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SendMove" style="document" />
+    <wsdl:operation name="GetPlayerProfilesForBoard">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetPlayerProfilesForBoard" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="GetPlayerProfilesForBoard">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetPlayerProfilesForBoard" style="document" />
+    <wsdl:operation name="SetDiceResult">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SetDiceResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SetNextTurn">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SetNextTurn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="StartGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/StartGame" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
