@@ -311,10 +311,6 @@ namespace Parlis.Server.BusinessLogic
         private static readonly Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
         private static readonly Dictionary<string, int> playerProfilesByBoard = new Dictionary<string, int>();
         private static readonly Dictionary<string, int> turns = new Dictionary<string, int>();
-<<<<<<< HEAD
-
-=======
->>>>>>> main
         private static readonly Dictionary<int, List<Message>> messagesByMatch = new Dictionary<int, List<Message>>();
         private static readonly Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
         private static readonly Dictionary<string, IChatManagementCallback> chats = new Dictionary<string, IChatManagementCallback>();
@@ -447,35 +443,17 @@ namespace Parlis.Server.BusinessLogic
             }
         }
 
-<<<<<<< HEAD
-
         //Board methods 
 
 
         #region Board and gameplay methods
         
         //Conexion to server and boards
-        public void ConnectToBoard(string username, int code)
-        {
-            playerProfilesByBoard.Add(username, code);
-            boards.Add(username, OperationContext.Current.GetCallbackChannel<IGameManagementCallback>());
-            if (playerProfilesByBoard.Count == 4)
-            {
-                SetTurns();
-                SetPlayerToPlay();
 
-            }
-        }
-        public void DisconnectFromBoard(string username)
-        {
-            boards.Remove(username);
-        }
-=======
         public void SendMove(int result, Coin coin)
         {
         }
 
->>>>>>> main
         void IGameManagement.GetPlayerProfilesForBoard(string username, int code)
         {
             if (playerProfiles.ContainsKey(username))
@@ -492,17 +470,11 @@ namespace Parlis.Server.BusinessLogic
             Dictionary<string, int> playerProfilesTurns = new Dictionary<string, int>();
             if ((playerProfilesByBoard.Where(playerProfile => playerProfile.Value == code)) != null)
             {
-<<<<<<< HEAD
                 playerProfilesTurns = turns;
             }
             else
                 playerProfilesTurns = null;
             return playerProfilesTurns;
-=======
-                return turns;
-            }
-            return null;
->>>>>>> main
         }
 
         public void SetPlayerProfilesForBoard(int code)
@@ -530,7 +502,6 @@ namespace Parlis.Server.BusinessLogic
             }
         }
 
-<<<<<<< HEAD
         //Dice Methods
         public void SetDiceResult()
         {
@@ -606,74 +577,7 @@ namespace Parlis.Server.BusinessLogic
             }
         }
         #endregion 
-=======
-        public void SetPlayerToPlay()
-        {
-            lock (playerProfilesByBoard)
-            {
-                foreach (var playerProfile in playerProfilesByBoard)
-                {
-                    SetPlayerProfilesForBoard(playerProfile.Value);
-                }
-            }
-        }
->>>>>>> main
 
-        public void SetDiceResult()
-        {
-            random = new Random();
-            int diceResult = random.Next(1, 7);
-            foreach (var playerProfile in boards)
-            {
-                string username = playerProfile.Key;
-                if (playerProfiles.ContainsKey(username))
-                {
-                    boards[username].ShowDiceResult(diceResult);
-                }
-            }
-        }
 
-        public void SetTurns()
-        {
-            random = new Random();
-            int randomPlayer, randomColorTeam;
-            List<int> colorTeam = new List<int>();
-            colorTeam.Add(1); //Red.
-            colorTeam.Add(2); //Blue.
-            colorTeam.Add(3); //Green.
-            colorTeam.Add(4); //Yellow.
-
-            for (int i = 0; i < playerProfilesByBoard.Count; i++)
-
-            {
-                do
-                {
-                    randomPlayer = random.Next(playerProfilesByBoard.Count);
-                } while (turns.ContainsKey(playerProfilesByBoard.ElementAt(randomPlayer).Key));
-                do
-                {
-                    randomColorTeam = random.Next(0, 4);
-                } while (turns.ContainsValue(colorTeam[randomColorTeam]));
-                turns.Add(playerProfilesByBoard.ElementAt(randomPlayer).Key, colorTeam[randomColorTeam]);
-            }
-        }
-
-        public void StartGame()
-        {
-            bool winner = false;
-            int turn = 0;
-            string player;
-            do
-            {
-                player = turns.ElementAt(turn).Key;
-                boards[player].ShowNextTurn(turn);
-                SetDiceResult();
-                if (turn > 2)
-                {
-                    turn = -1;
-                }
-                turn++;
-            } while (!winner);
-        }
     }
 }
