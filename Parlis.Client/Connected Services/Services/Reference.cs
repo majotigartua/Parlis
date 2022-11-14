@@ -777,15 +777,12 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetDiceResult")]
         System.Threading.Tasks.Task SetDiceResultAsync();
         
-<<<<<<< HEAD
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetNextTurn")]
         void SetNextTurn(int turn);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetNextTurn")]
         System.Threading.Tasks.Task SetNextTurnAsync(int turn);
         
-=======
->>>>>>> main
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/StartGame")]
         void StartGame();
         
@@ -803,11 +800,7 @@ namespace Parlis.Client.Services {
         void ReceivePlayerProfilesForBoard(System.Collections.Generic.Dictionary<string, int> playerProfilesTurns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ShowDiceResult", ReplyAction="http://tempuri.org/IGameManagement/ShowDiceResultResponse")]
-<<<<<<< HEAD
         void ShowDiceResult(int diceResult);
-=======
-        void ShowDiceResult(int result);
->>>>>>> main
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ShowNextTurn", ReplyAction="http://tempuri.org/IGameManagement/ShowNextTurnResponse")]
         void ShowNextTurn(int turn);
@@ -873,7 +866,6 @@ namespace Parlis.Client.Services {
             return base.Channel.SetDiceResultAsync();
         }
         
-<<<<<<< HEAD
         public void SetNextTurn(int turn) {
             base.Channel.SetNextTurn(turn);
         }
@@ -882,8 +874,6 @@ namespace Parlis.Client.Services {
             return base.Channel.SetNextTurnAsync(turn);
         }
         
-=======
->>>>>>> main
         public void StartGame() {
             base.Channel.StartGame();
         }

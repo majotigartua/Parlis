@@ -118,3 +118,4 @@ C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Pa
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.pdb
 >>>>>>> main
+C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.abstractions.xml
