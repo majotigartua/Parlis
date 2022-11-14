@@ -19,10 +19,10 @@ namespace Parlis.Client.Views
     public partial class GameWindow : Window, Client.Services.IGameManagementCallback
     {
         private readonly BitmapImage DEFAULT_PROFILE_PICTURE = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
+        private readonly BitmapImage FOCUSED_DICE = new BitmapImage(new Uri("/Resources/Images/FocusedDice.png", UriKind.Relative));
         private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;
         private readonly GameManagementClient gameManagementClient;
-        //private string[] playerProfiles;
         private Dictionary<string, int> playerProfiles;
         private int numberOfPlayerProfiles;
         private PlayerProfile playerProfile;
@@ -32,14 +32,9 @@ namespace Parlis.Client.Views
         private readonly BitmapImage DEFAULT_DICE = new BitmapImage(new Uri("/Resources/Images/Dice.png", UriKind.Relative));
         private Random randomDiceResult;
         private readonly String[] Dices;
-
-        //Style of rectangle
-        private ImageBrush spriteCircle;
+        private int TURN_PLAYER;
         public GameWindow()
         {
-           /* spriteCircle = new ImageBrush();
-            spriteCircle.ImageSource = new BitmapImage(new Uri("C:/Users/Propietario/source/repos/Parlis/Parlis.Client/Resources/Images/YourTurn.png", UriKind.Absolute));
-            test.Fill = spriteCircle;*/
             InitializeComponent();
             Utilities.PlayMusic();
             usernames = new TextBlock[] { RedUsernameTextBox, BlueUsernameTextBox, GreenUsernameTextBox, YellowUsernameTextBox };
@@ -49,6 +44,7 @@ namespace Parlis.Client.Views
             var instanceContext = new InstanceContext(this);
             gameManagementClient = new GameManagementClient(instanceContext);
             playerProfiles = new Dictionary<string, int> { };
+            TURN_PLAYER = 0;
         }
 
         public void ConfigureWindow(PlayerProfile playerProfile, int code)
@@ -97,11 +93,19 @@ namespace Parlis.Client.Views
                 {
                     profilePictures[(playerProfiles.ElementAt(playerProfile).Value) - 1].Source = DEFAULT_PROFILE_PICTURE;
                 }
-                if (playerProfiles.ElementAt(playerProfile).Value - 1 == 2)
-                {
-                    ShowNextTurn(playerProfiles.ElementAt(playerProfile).Value - 1);
-                }
                 Console.WriteLine("TURNPLAYER: ("+(playerProfile + 1)+ ") player: (" +username+ ") ColorTeam: (" + playerProfiles.ElementAt(playerProfile).Value + ")");
+            }
+            if (this.playerProfile.Username == playerProfiles.First().Key)
+            {
+                this.FirstDice.IsEnabled = true;
+                this.FocusedDice.Source = FOCUSED_DICE;
+                gameManagementClient.SetNextTurn(playerProfiles.First().Value);
+            }
+            else
+            {
+                this.FirstDice.IsEnabled = false;
+                this.FocusedDice.Source = null;
+
             }
         }
 
@@ -110,43 +114,61 @@ namespace Parlis.Client.Views
             this.playerProfiles = playerProfilesTurns;
             ConfigureData();
             ConfigurePlayerProfiles(this.playerProfiles);
-            gameManagementClient.StartGame();
         }
 
 
         public void ShowDiceResult(int diceResult)
         {
-            this.FirstDice.IsEnabled = true;
             this.FirstDice.Source = new BitmapImage(new Uri(Dices[diceResult - 1], UriKind.Relative));
+            if (TURN_PLAYER == 3)
+            {
+                this.TURN_PLAYER = 0;
+            }
+            else
+                this.TURN_PLAYER++;
+            gameManagementClient.SetNextTurn(playerProfiles.ElementAt(TURN_PLAYER).Value);
+
         }
 
         public void ShowNextTurn(int turn)
         {
-            Console.WriteLine(turn);
-        switch(turn)
+            if (this.playerProfile.Username == playerProfiles.ElementAt(turn - 1).Key)
+            {
+                this.FirstDice.IsEnabled = true;
+                this.FocusedDice.Source = FOCUSED_DICE;
+            }
+            else
+            {
+                this.FirstDice.IsEnabled = false;
+                this.FocusedDice.Source = null;
+            }
+            switch (turn-1)
             {
                 case 0:
-                    Point point = new Point(0,0);
-                    //this.TranslatePoint(point, RingTurn);
-                    // RingCanvas.SetTop((UIElement)RingTurn,15);
-                    //RingCanvas.SetLeft((UIElement)RingTurn, 15);
-                    Canvas.SetTop(test, 15);
+                    Canvas.SetTop(RingTurn, 3);
+                    Canvas.SetLeft(RingTurn, 8);
                     break;
                 case 1:
-                    Point point1 = new Point(140, 0);
-                    this.TranslatePoint(point1, RingTurn);
+                    Canvas.SetTop(RingTurn, 3);
+                    Canvas.SetLeft(RingTurn, 148);
                     break;
                 case 2:
-                    Point point2 = new Point(0, 65);
-                    this.TranslatePoint(point2, RingTurn);
+                    Canvas.SetTop(RingTurn, 68);
+                    Canvas.SetLeft(RingTurn, 8);
                     break;
                 case 3:
-                    Point point3 = new Point(140, 65);
-                    this.TranslatePoint(point3, RingTurn);
+                    Canvas.SetTop(RingTurn, 68);
+                    Canvas.SetLeft(RingTurn, 148);
                     break;
 
             }
         }
+
+
+
+
+
+
 
         public void ConnectToBoard(string username, int code)
         {

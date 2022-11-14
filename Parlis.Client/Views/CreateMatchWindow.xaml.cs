@@ -13,7 +13,7 @@ namespace Parlis.Client.Views
 {
     public partial class CreateMatchWindow : Window, IMatchManagementCallback
     {
-        private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 1;
+        private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 4;
         private readonly BitmapImage DEFAULT_PROFILE_PICTURE = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
         private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;

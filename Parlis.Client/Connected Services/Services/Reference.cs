@@ -777,6 +777,12 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetDiceResult")]
         System.Threading.Tasks.Task SetDiceResultAsync();
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetNextTurn")]
+        void SetNextTurn(int turn);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetNextTurn")]
+        System.Threading.Tasks.Task SetNextTurnAsync(int turn);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/StartGame")]
         void StartGame();
         
@@ -858,6 +864,14 @@ namespace Parlis.Client.Services {
         
         public System.Threading.Tasks.Task SetDiceResultAsync() {
             return base.Channel.SetDiceResultAsync();
+        }
+        
+        public void SetNextTurn(int turn) {
+            base.Channel.SetNextTurn(turn);
+        }
+        
+        public System.Threading.Tasks.Task SetNextTurnAsync(int turn) {
+            return base.Channel.SetNextTurnAsync(turn);
         }
         
         public void StartGame() {

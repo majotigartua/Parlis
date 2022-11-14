@@ -438,7 +438,7 @@ namespace Parlis.Server.BusinessLogic
         {
             playerProfilesByBoard.Add(username, code);
             boards.Add(username, OperationContext.Current.GetCallbackChannel<IGameManagementCallback>());
-            if (playerProfilesByBoard.Count == 1)
+            if (playerProfilesByBoard.Count == 4)
             {
                 SetTurns();
                 SetPlayerToPlay();
@@ -545,16 +545,30 @@ namespace Parlis.Server.BusinessLogic
             {
                 player = turns.ElementAt(turn).Key;
                 boards[player].ShowNextTurn(turn);
+
                 SetDiceResult();
                 if (turn > 2) {
                     turn = -1;
                 }
                 turn++;
             }while(!winnerPlayer);
+            StartGame();
         
         
         }
 
+
+        public void SetNextTurn(int turn)
+        {
+            foreach (var playerProfile in boards)
+            {
+                string username = playerProfile.Key;
+                if (playerProfiles.ContainsKey(username))
+                {
+                    boards[username].ShowNextTurn(turn);
+                }
+            }
+        }
         #endregion 
 
     }

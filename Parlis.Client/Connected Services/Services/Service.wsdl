@@ -268,6 +268,9 @@
   <wsdl:message name="IGameManagement_SetDiceResult_InputMessage">
     <wsdl:part name="parameters" element="tns:SetDiceResult" />
   </wsdl:message>
+  <wsdl:message name="IGameManagement_SetNextTurn_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNextTurn" />
+  </wsdl:message>
   <wsdl:message name="IGameManagement_StartGame_InputMessage">
     <wsdl:part name="parameters" element="tns:StartGame" />
   </wsdl:message>
@@ -405,6 +408,9 @@
     </wsdl:operation>
     <wsdl:operation name="SetDiceResult">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SetDiceResult" message="tns:IGameManagement_SetDiceResult_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNextTurn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SetNextTurn" message="tns:IGameManagement_SetNextTurn_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="StartGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/StartGame" message="tns:IGameManagement_StartGame_InputMessage" />
@@ -665,6 +671,12 @@
     </wsdl:operation>
     <wsdl:operation name="SetDiceResult">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/SetDiceResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SetNextTurn">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SetNextTurn" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

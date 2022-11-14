@@ -18,6 +18,8 @@ namespace Parlis.Server.Service.Services
         [OperationContract(IsOneWay = true)]
         void SetDiceResult();
         [OperationContract(IsOneWay = true)]
+        void SetNextTurn(int turn);
+        [OperationContract(IsOneWay = true)]
         void StartGame();
     }
 
