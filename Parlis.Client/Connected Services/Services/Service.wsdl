@@ -268,9 +268,12 @@
   <wsdl:message name="IGameManagement_SetDiceResult_InputMessage">
     <wsdl:part name="parameters" element="tns:SetDiceResult" />
   </wsdl:message>
+<<<<<<< HEAD
   <wsdl:message name="IGameManagement_SetNextTurn_InputMessage">
     <wsdl:part name="parameters" element="tns:SetNextTurn" />
   </wsdl:message>
+=======
+>>>>>>> main
   <wsdl:message name="IGameManagement_StartGame_InputMessage">
     <wsdl:part name="parameters" element="tns:StartGame" />
   </wsdl:message>
@@ -409,9 +412,12 @@
     <wsdl:operation name="SetDiceResult">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SetDiceResult" message="tns:IGameManagement_SetDiceResult_InputMessage" />
     </wsdl:operation>
+<<<<<<< HEAD
     <wsdl:operation name="SetNextTurn">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SetNextTurn" message="tns:IGameManagement_SetNextTurn_InputMessage" />
     </wsdl:operation>
+=======
+>>>>>>> main
     <wsdl:operation name="StartGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/StartGame" message="tns:IGameManagement_StartGame_InputMessage" />
     </wsdl:operation>
@@ -687,6 +693,18 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="SetDiceResult">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SetDiceResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="StartGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/StartGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="ReceiveMove">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/ReceiveMove" style="document" />
       <wsdl:input>
@@ -730,7 +748,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/ChatManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>HUAWEID14\sebtr</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -739,7 +757,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/MatchManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>HUAWEID14\sebtr</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -748,7 +766,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/PlayerProfileManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>HUAWEID14\sebtr</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -757,7 +775,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/GameManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>HUAWEID14\sebtr</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

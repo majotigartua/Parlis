@@ -72,3 +72,5 @@ C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.BusinessLog
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\bin\Debug\Microsoft.Bcl.HashCode.xml
 C:\Users\Propietario\source\repos\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\obj\Debug\Parlis.Server.BusinessLogic.csproj.CopyComplete
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\bin\Debug\Microsoft.Bcl.HashCode.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\bin\Debug\Microsoft.Bcl.HashCode.xml

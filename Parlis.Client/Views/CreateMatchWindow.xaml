@@ -23,7 +23,7 @@
             <Image x:Name="SecondProfilePicture" HorizontalAlignment="Left" Height="100" Margin="130,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
             <Image x:Name="ThirdProfilePicture" HorizontalAlignment="Left" Height="100" Margin="245,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
             <Image x:Name="FourthProfilePicture" HorizontalAlignment="Left" Height="100" Margin="360,120,0,0" VerticalAlignment="Top" Width="100" Stretch="UniformToFill" Source="/Resources/Images/DefaultProfilePicture.png"/>
-            <Button Content="{x:Static p:Resources.SEND_INVITATION_BUTTON}" HorizontalAlignment="Left" Margin="325,249,0,0" VerticalAlignment="Top" Width="120" Click="SendInvitationButtonClick"/>
+            <Button Content="{x:Static p:Resources.SEND_INVITATION_BUTTON}" HorizontalAlignment="Left" Margin="320,249,0,0" VerticalAlignment="Top" Width="140" Click="SendInvitationButtonClick"/>
             <Button x:Name="StartMatchButton" Content="{x:Static p:Resources.START_MATCH_BUTTON}" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Width="150" Click="StartMatchButtonClick"/>
             <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="400,310,0,0" VerticalAlignment="Top" Width="80" Click="CancelButtonClick"/>
         </Grid>

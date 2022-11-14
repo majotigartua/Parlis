@@ -66,6 +66,12 @@ namespace Parlis.Client.Views
             language = "";
         }
 
+        private void FrFRFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            language = "fr-FR";
+        }
+
         private void PtBRFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Utilities.PlayButtonClickSound();

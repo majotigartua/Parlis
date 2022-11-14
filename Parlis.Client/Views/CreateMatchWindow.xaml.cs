@@ -13,15 +13,19 @@ namespace Parlis.Client.Views
 {
     public partial class CreateMatchWindow : Window, IMatchManagementCallback
     {
+<<<<<<< HEAD
         private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 4;
+=======
+        private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 1;
+>>>>>>> main
         private readonly BitmapImage DEFAULT_PROFILE_PICTURE = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
         private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;
         private readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
-        private int numberOfPlayerProfiles;
         private PlayerProfile playerProfile;
         private int code;
+        private int numberOfPlayerProfiles;
 
         public CreateMatchWindow()
         {
@@ -37,7 +41,6 @@ namespace Parlis.Client.Views
         {
             this.playerProfile = playerProfile;
             this.code = code;
-            ConfigureData();
             try
             {
                 if (!matchManagementClient.CheckMatchExistence(code))
@@ -73,9 +76,6 @@ namespace Parlis.Client.Views
             {
                 ConfigureData();
                 ConfigurePlayerProfiles(playerProfiles);
-            }
-            else
-            {
             }
         }
 
@@ -191,8 +191,6 @@ namespace Parlis.Client.Views
             Close();
             mainMenuWindow.Show();
         }
-
-
 
         public void StarMatch()
         {

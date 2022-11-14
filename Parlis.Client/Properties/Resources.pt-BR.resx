@@ -127,7 +127,7 @@
     <value>Por favor, verifique as informações que você inseriu e tente novamente.</value>
   </data>
   <data name="CODE_EMAIL_ADDRESS_LABEL" xml:space="preserve">
-    <value>Este é o seu código de 6 dígitos:</value>
+    <value>Este é o seu código de 6 dígitos: </value>
   </data>
   <data name="CODE_INSTRUCTION_LABEL" xml:space="preserve">
     <value>Digite o código de 6 dígitos enviado para seu e-mail.</value>
@@ -141,9 +141,6 @@
   <data name="CONFIRM_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Confirmar o perfil do jogador</value>
   </data>
-  <data name="CONFIRM_PLAYER_PROFILE_LABEL" xml:space="preserve">
-    <value>Você deseja confirmar o perfil do jogador?</value>
-  </data>
   <data name="CONFIRM_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Confirmar o perfil do jogador.</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="DELETE_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Excluir o perfil do jogador</value>
-  </data>
-  <data name="DELETE_PLAYER_PROFILE_LABEL" xml:space="preserve">
-    <value>Você quer excluir o perfil do jogador?</value>
   </data>
   <data name="EDIT_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Editar o perfil do jogador.</value>
@@ -188,9 +182,6 @@
   </data>
   <data name="INVALID_DATA_WINDOW_TITLE" xml:space="preserve">
     <value>As informações inseridas são inválidas.</value>
-  </data>
-  <data name="JOIN_MATCH_BUTTON" xml:space="preserve">
-    <value>Junte-se ao jogo.</value>
   </data>
   <data name="JOIN_MATCH_WINDOW_TITLE" xml:space="preserve">
     <value>Junte-se ao jogo.</value>
@@ -275,5 +266,8 @@
   </data>
   <data name="WAITING_ROOM_LABEL" xml:space="preserve">
     <value>Sala de espera.</value>
+  </data>
+  <data name="JOIN_MATCH_BUTTON" xml:space="preserve">
+    <value>Junte-se ao jogo</value>
   </data>
 </root>

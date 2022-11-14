@@ -142,3 +142,6 @@ C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.P
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\Parlis.Client.Properties.Resources.es-MX.resources
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\pt-BR\Parlis.Client.resources.dll
 C:\Users\Propietario\source\repos\Parlis\Parlis.Client\obj\Debug\es-MX\Parlis.Client.resources.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Client\bin\Debug\fr-FR\Parlis.Client.resources.dll
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\Parlis.Client.Properties.Resources.fr-FR.resources
+C:\Users\majot\Desktop\Parlis\Parlis.Client\obj\Debug\fr-FR\Parlis.Client.resources.dll
