@@ -449,50 +449,7 @@ namespace Parlis.Client.Views
 
 
         #region iNTERFACES
-        public void ConnectToBoard(string username, int code)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task ConnectToBoardAsync(string username, int code)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DisconnectFromBoard(string username)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DisconnectFromBoardAsync(string username)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SendMove(int result, Coin coin)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SendMoveAsync(int result, Coin coin)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetPlayerProfilesForBoard(string username, int code)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task GetPlayerProfilesForBoardAsync(string username, int code)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReceiveMove(Coin coin)
-        {
-            throw new NotImplementedException();
-        }
         #endregion
 
         //Extras
