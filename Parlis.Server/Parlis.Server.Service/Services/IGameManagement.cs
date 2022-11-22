@@ -8,45 +8,33 @@ namespace Parlis.Server.Service.Services
     public interface IGameManagement
     {
         [OperationContract(IsOneWay = true)]
+        void GetCoinsForBoard(string username, int code);
+        [OperationContract(IsOneWay = true)]
+        void ThrowDice();
+        [OperationContract(IsOneWay = true)]
+        void SetNextTurn(int colorTeamValue);
+        [OperationContract(IsOneWay = true)]
+        void SetCoinToMove(int turnPlayer);
+
+
+        //Borrador
+        [OperationContract(IsOneWay = true)]
         void ConnectToBoard(string username, int code);
 
         [OperationContract]
         void DisconnectFromBoard(string username);
-        
-        [OperationContract(IsOneWay = true)]
-        void GetPlayerProfilesForBoard(string username, int code);
-<<<<<<< HEAD
-        [OperationContract(IsOneWay = true)]
-        void SetDiceResult();
-        [OperationContract(IsOneWay = true)]
-        void SetNextTurn(int turn);
-=======
-
-        [OperationContract(IsOneWay = true)]
-        void SetDiceResult();
-
->>>>>>> main
-        [OperationContract(IsOneWay = true)]
-        void StartGame();
     }
 
     [ServiceContract]
     public interface IGameManagementCallback
     {
         [OperationContract]
-        void ReceiveMove(Coin coin);
-        [OperationContract]
-        void ReceivePlayerProfilesForBoard(Dictionary<string, int> playerProfilesTurns);
-<<<<<<< HEAD
+        void ReceiveCoinsForBoard(List<Coin> coins);
         [OperationContract]
         void ShowDiceResult(int diceResult);
-=======
-
         [OperationContract]
-        void ShowDiceResult(int result);
-
->>>>>>> main
+        void ShowNextTurn(int colorTeamValue);
         [OperationContract]
-        void ShowNextTurn(int turn);
+        void ShowCoinMoved(int turnPlayer);
     }
 }

@@ -84,6 +84,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.pt-BR.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Constants.cs" />
     <Compile Include="Views\ConfirmPlayerProfileWindow.xaml.cs">
       <DependentUpon>ConfirmPlayerProfileWindow.xaml</DependentUpon>
     </Compile>
@@ -263,7 +264,7 @@
     <Resource Include="Resources\Images\Es-MXFlag.png" />
     <Resource Include="Resources\Images\Music.png" />
     <Resource Include="Resources\Images\Pt-BRFlag.png" />
-	<Resource Include="Resources\Images\Fr-FRFlag.png" />
+    <Resource Include="Resources\Images\Fr-FRFlag.png" />
     <Resource Include="Resources\Images\Sounds.png" />
   </ItemGroup>
   <ItemGroup>
@@ -309,8 +310,11 @@
     <Resource Include="Resources\Images\GreenCoin.png" />
     <Resource Include="Resources\Images\RedCoin.png" />
     <Resource Include="Resources\Images\YellowCoin.png" />
-	<Resource Include="Resources\Images\YourTurn.png" />
-	<Resource Include="Resources\Images\FocusedDice.png" />
+    <Resource Include="Resources\Images\YourTurn.png" />
+    <Resource Include="Resources\Images\FocusedDice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\EatingCoin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
