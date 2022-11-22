@@ -310,12 +310,14 @@ namespace Parlis.Server.BusinessLogic
         private static readonly List<int> matches = new List<int>();
         private static readonly Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
         private static readonly Dictionary<string, int> playerProfilesByBoard = new Dictionary<string, int>();
-        private static readonly Dictionary<string, int> turns = new Dictionary<string, int>();
+
+        //private static readonly Dictionary<string, int> turns = new Dictionary<string, int>();
+        private static readonly List<Coin> coins = new List<Coin>();
+
         private static readonly Dictionary<int, List<Message>> messagesByMatch = new Dictionary<int, List<Message>>();
         private static readonly Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
         private static readonly Dictionary<string, IChatManagementCallback> chats = new Dictionary<string, IChatManagementCallback>();
         private static readonly Dictionary<string, IGameManagementCallback> boards = new Dictionary<string, IGameManagementCallback>();
-        private Random random;
 
         //Board COmplement
         private Random randomResult;
@@ -330,7 +332,7 @@ namespace Parlis.Server.BusinessLogic
         {
             boards.Add(username, OperationContext.Current.GetCallbackChannel<IGameManagementCallback>());
             playerProfilesByBoard.Add(username, code);
-            if (playerProfilesByBoard.Count == 1)
+            if (playerProfilesByBoard.Count == 4)
             {
                 SetTurns();
                 SetPlayerToPlay();
@@ -450,34 +452,30 @@ namespace Parlis.Server.BusinessLogic
         
         //Conexion to server and boards
 
-        public void SendMove(int result, Coin coin)
-        {
-        }
-
-        void IGameManagement.GetPlayerProfilesForBoard(string username, int code)
+        void IGameManagement.GetCoinsForBoard(string username, int code)
         {
             if (playerProfiles.ContainsKey(username))
             {
-                OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceivePlayerProfilesForBoard(new Dictionary<string, int>(turns));
+                OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceiveCoinsForBoard(new List<Coin> (coins));
             }
             else
             {
-                OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceivePlayerProfilesForBoard(GetPlayerProfilesForBoard(code));
+                OperationContext.Current.GetCallbackChannel<IGameManagementCallback>().ReceiveCoinsForBoard(GetCoinsForBoard(code));
             }
         }
-        public Dictionary<string, int> GetPlayerProfilesForBoard(int code)
+        public List<Coin> GetCoinsForBoard(int code)
         {
-            Dictionary<string, int> playerProfilesTurns = new Dictionary<string, int>();
+            List<Coin> CoinsTurn = new List<Coin>();
             if ((playerProfilesByBoard.Where(playerProfile => playerProfile.Value == code)) != null)
             {
-                playerProfilesTurns = turns;
+                CoinsTurn = coins;
             }
             else
-                playerProfilesTurns = null;
-            return playerProfilesTurns;
+                CoinsTurn = null;
+            return CoinsTurn;
         }
 
-        public void SetPlayerProfilesForBoard(int code)
+        public void SetCoinsForBoard(int code)
         {
                 foreach (var playerProfile in playerProfilesByBoard)
                 {
@@ -485,7 +483,7 @@ namespace Parlis.Server.BusinessLogic
                     {
                         string username = playerProfile.Key;
 
-                        boards[username].ReceivePlayerProfilesForBoard(GetPlayerProfilesForBoard(code));
+                        boards[username].ReceiveCoinsForBoard(GetCoinsForBoard(code));
                     }
                 }
             
@@ -496,17 +494,18 @@ namespace Parlis.Server.BusinessLogic
             {
                 foreach (var playerProfile in playerProfilesByBoard)
                 {
-                    SetPlayerProfilesForBoard(playerProfile.Value);
+                    SetCoinsForBoard(playerProfile.Value);
                     
                 }
             }
         }
 
         //Dice Methods
-        public void SetDiceResult()
+        public void ThrowDice()
         {
+            int diceResult;
             randomResult = new Random();
-            int diceResult = randomResult.Next(1, 7);
+            diceResult = randomResult.Next(1, 7);            
             foreach (var playerProfile in boards)
             {
                 string username = playerProfile.Key;
@@ -521,58 +520,54 @@ namespace Parlis.Server.BusinessLogic
         public void SetTurns()
         {
             randomResult = new Random();
-            int randomPlayer, randomColorTeam;
-            List<int> colorTeam = new List<int>();
-            colorTeam.Add(1);//red
-            colorTeam.Add(2);//blue
-            colorTeam.Add(3);//green
-            colorTeam.Add(4);//yellow
+            int randomPlayer, randomColorTeamValue;
+            List<int> ColorTeamValues = new List<int>();
+            ColorTeamValues.Add(0);
+            ColorTeamValues.Add(1);
+            ColorTeamValues.Add(2);
+            ColorTeamValues.Add(3);
+            List<string> players = new List<string>();
+            players = playerProfilesByBoard.Keys.ToList();
+
             for (int i = 0; i < playerProfilesByBoard.Count; i++)
             
             {
-                do
-                {
-                    randomPlayer = randomResult.Next(playerProfilesByBoard.Count);
-                } while (turns.ContainsKey(playerProfilesByBoard.ElementAt(randomPlayer).Key));
-                do
-                {
-                    randomColorTeam = randomResult.Next(0,4);
-                } while (turns.ContainsValue(colorTeam[randomColorTeam]));
-                turns.Add(playerProfilesByBoard.ElementAt(randomPlayer).Key, colorTeam[randomColorTeam]);
+
+                randomPlayer = randomResult.Next(players.Count);
+                randomColorTeamValue = randomResult.Next(ColorTeamValues.Count);
+                //PRUEBA Orden Rojo,Azul,Verde,Amarillo
+                Coin coin = new Coin(ColorTeamValues[i]);
+                Console.WriteLine(i);
+
+                //NORMAL Random
+                //Coin coin = new Coin(ColorTeamValues[randomColorTeamValue]);
+                coin.PlayerProfileUsername = players.ElementAt(randomPlayer);
+                //ColorTeamValues.RemoveAt(randomColorTeamValue);
+                players.RemoveAt(randomPlayer);
+                coins.Add(coin);
             }
         }
 
-        public void StartGame()
-        {
-            //work in
-            bool winnerPlayer = false;
-            int turn = 0;
-            string player;
-            do
-            {
-                player = turns.ElementAt(turn).Key;
-                boards[player].ShowNextTurn(turn);
-
-                SetDiceResult();
-                if (turn > 2) {
-                    turn = -1;
-                }
-                turn++;
-            }while(!winnerPlayer);
-            StartGame();
-        
-        
-        }
-
-
-        public void SetNextTurn(int turn)
+        public void SetNextTurn(int colorValueTurn)
         {
             foreach (var playerProfile in boards)
             {
                 string username = playerProfile.Key;
                 if (playerProfiles.ContainsKey(username))
                 {
-                    boards[username].ShowNextTurn(turn);
+                    boards[username].ShowNextTurn(colorValueTurn);
+                }
+            }
+        }
+
+        public void SetCoinToMove(int turnPlayer)
+        {
+            foreach (var playerProfile in boards)
+            {
+                string username = playerProfile.Key;
+                if (playerProfiles.ContainsKey(username))
+                {
+                    boards[username].ShowCoinMoved(turnPlayer);
                 }
             }
         }

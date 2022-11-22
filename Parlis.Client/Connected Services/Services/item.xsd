@@ -31,11 +31,23 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PlayerProfile" nillable="true" type="tns:PlayerProfile" />
+  <xs:complexType name="ArrayOfCoin">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Coin" nillable="true" type="tns:Coin" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCoin" nillable="true" type="tns:ArrayOfCoin" />
   <xs:complexType name="Coin">
     <xs:sequence>
-      <xs:element minOccurs="0" name="ColorTeam" type="xs:int" />
+      <xs:element minOccurs="0" name="AtFinalRow" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AtSlot" type="xs:int" />
+      <xs:element minOccurs="0" name="ColorTeamText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ColorTeamValue" type="xs:int" />
+      <xs:element minOccurs="0" name="FisrtLeap" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPlaying" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsWinner" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NumRolls" type="xs:int" />
       <xs:element minOccurs="0" name="PlayerProfileUsername" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Position" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Coin" nillable="true" type="tns:Coin" />
