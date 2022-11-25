@@ -21,44 +21,51 @@ namespace Parlis.Client.Views
     public partial class GameWindow : Window, IGameManagementCallback
     {
         private readonly BitmapImage DEFAULT_PROFILE_PICTURE = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
+        private readonly BitmapImage DEFAULT_DICE = new BitmapImage(new Uri("/Resources/Images/Dice.png", UriKind.Relative));
         private readonly BitmapImage FOCUSED_DICE = new BitmapImage(new Uri("/Resources/Images/FocusedDice.png", UriKind.Relative));
+        private readonly BitmapImage DISCONECTED_PLAYER = new BitmapImage(new Uri("/Resources/Images/DisconectedPlayer.png", UriKind.Relative));
         private readonly TextBlock[] usernames;
+        private readonly String[] Dices;
+        private readonly String[] PlacesResult;
+        private readonly Image[] Medals;
+        private readonly Image[] coinsImages;
         private readonly Image[] profilePictures;
         private readonly GameManagementClient gameManagementClient;
-        private List<Coin> coinsPlaying;
-        private int numberOfCoins;
+        private CreateMatchWindow createMatchWindow;
         private PlayerProfile playerProfile;
+        private List<Coin> coinsPlaying;
         private int code;
+        private int numberOfCoins;
+        private int turnCoin;
+        private int diceValue;
+        private bool reRoll;
+        private bool eatCoin;
+        private bool finishGame;
 
-        //BoardComponents
-        private readonly BitmapImage DEFAULT_DICE = new BitmapImage(new Uri("/Resources/Images/Dice.png", UriKind.Relative));
-        private readonly String[] Dices;
-        private readonly Image[] coinsImages;
-
-        //Coin elements?
-
-        //extra components boards
-        private int TURN_PLAYER, DICE_VALUE;
-        private bool REROLL, EATINGCOIN;
         public GameWindow()
         {
             InitializeComponent();
             Utilities.PlayMusic();
             usernames = new TextBlock[] { RedUsernameTextBox, BlueUsernameTextBox, GreenUsernameTextBox, YellowUsernameTextBox };
             profilePictures = new Image[] { RedProfilePicture, BlueProfilePicture, GreenProfilePicture, YellowProfilePicture };
-            Dices = new String[] { "/Resources/Images/Dice1.png", "/Resources/Images/Dice2.png", "/Resources/Images/Dice3.png", "/Resources/Images/Dice4.png", "/Resources/Images/Dice5.png", "/Resources/Images/Dice6.png", "/Resources/Images/EatingCoin.png" };
+            Dices = new String[] { "/Resources/Images/Dice1.png", "/Resources/Images/Dice2.png", "/Resources/Images/Dice3.png", "/Resources/Images/Dice4.png", "/Resources/Images/Dice5.png", "/Resources/Images/Dice6.png", "/Resources/Images/EatingCoin.png", "/Resources/Images/FinishDice.png" };
+
             var instanceContext = new InstanceContext(this);
             gameManagementClient = new GameManagementClient(instanceContext);
             coinsPlaying = new List<Coin> { };
             coinsImages = new Image[] { RedCoin, BlueCoin, GreenCoin, YellowCoin };
-            TURN_PLAYER = 0;
-            DICE_VALUE = 0;
-            REROLL = false;
-            EATINGCOIN = false;
+            PlacesResult = new string[] { "/Resources/Images/1stPlace.png", "/Resources/Images/2ndPlace.png", "/Resources/Images/3rdPlace.png", "/Resources/Images/4thPlace.png"};
+            Medals = new Image[] {RedPlace,BluePlace,GreenPlace,YellowPlace};
+            turnCoin = 0;
+            diceValue = 0;
+            reRoll = false;
+            eatCoin = false;
+            finishGame = false;
         }
 
-        public void ConfigureWindow(PlayerProfile playerProfile, int code)
+        public void ConfigureWindow(CreateMatchWindow createMatchWindow, PlayerProfile playerProfile, int code)
         {
+            this.createMatchWindow = createMatchWindow;
             this.code = code;
             this.playerProfile = playerProfile;
             ConfigureData();
@@ -75,7 +82,6 @@ namespace Parlis.Client.Views
         }
         private void ConfigureData()
         {
-            numberOfCoins = coinsPlaying.Count;
             for (int coinPlace = 0; coinPlace < 4; coinPlace++)
             {
                 usernames[coinPlace].Text = "";
@@ -103,81 +109,91 @@ namespace Parlis.Client.Views
         public void ReceiveCoinsForBoard(Coin[] coins)
         {
             this.coinsPlaying = coins.ToList();
-            ConfigureData();
-            ConfigurePlayerProfiles(this.coinsPlaying);
-            if (this.playerProfile.Username == coinsPlaying.First().PlayerProfileUsername)
+            numberOfCoins = coinsPlaying.Count;
+            string username = playerProfile.Username;
+            
+            if (coinsPlaying.Contains(coinsPlaying.Find(x => x.PlayerProfileUsername == username)))
             {
-                this.FirstDice.IsEnabled = true;
-                this.FocusedDice.Source = FOCUSED_DICE;
-                gameManagementClient.SetNextTurn(coinsPlaying.First().ColorTeamValue);
-            }
-            else
-            {
-                this.FirstDice.IsEnabled = false;
-                this.FocusedDice.Source = null;
+                ConfigureData();
+                ConfigurePlayerProfiles(this.coinsPlaying);
+                if (this.playerProfile.Username == coinsPlaying.First().PlayerProfileUsername)
+                {
+                    this.FirstDice.IsEnabled = true;
+                    this.FocusedDice.Source = FOCUSED_DICE;
+                    gameManagementClient.SetNextTurn();
+                }
+                else
+                {
+                    this.FirstDice.IsEnabled = false;
+                    this.FocusedDice.Source = null;
 
+                }
+                //createMatchWindow.matchManagementClient.Close();
             }
+
         }
         public void ShowDiceResult(int diceResult)
         {
-            this.DICE_VALUE = diceResult;
-            this.FirstDice.Source = new BitmapImage(new Uri(Dices[DICE_VALUE - 1], UriKind.Relative));
-            HowMuchAndWhereToMove(TURN_PLAYER);
-            if (!REROLL)
+            this.diceValue = diceResult;
+            this.FirstDice.Source = new BitmapImage(new Uri(Dices[diceValue - 1], UriKind.Relative));
+            HowMuchAndWhereToMove(turnCoin);
+            if (!reRoll)
             {
-                coinsPlaying.ElementAt(TURN_PLAYER).NumRolls = 0;
-                this.REROLL = false;
-                this.TURN_PLAYER++;
-                if (this.TURN_PLAYER >= 4)
+                coinsPlaying.ElementAt(turnCoin).NumRolls = 0;
+                this.reRoll = false;
+                this.turnCoin++;
+                if (this.turnCoin >= 4)
                 {
-                    this.TURN_PLAYER = 0;
+                    this.turnCoin = 0;
                 }
-                gameManagementClient.SetNextTurn(coinsPlaying.ElementAt(TURN_PLAYER).ColorTeamValue);
+                Console.WriteLine("Before SetNextTurn turnCoin=" + turnCoin);
+                gameManagementClient.SetNextTurn();
+                Console.WriteLine("After SetNextTurn turnCoin=" + turnCoin);
             }
         }
         public void HowMuchAndWhereToMove(int turnPlayer)
         {
             int colorValueTeam = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
-            this.REROLL = false;
+            this.reRoll = false;
             coinsPlaying.ElementAt(turnPlayer).NumRolls++;
 
             #region test values
             //TEST ReRoll & HomeSlots
-            //DICE_VALUE = 6;
+            //diceValue = 6;
             //TEST ReRoll adn HomeSlots
 
             //TEST IsFinalColorPathStarted
-            //DICE_VALUE = 5;
+            //diceValue = 5;
             //TEST IsFinalColorPathStarted 
 
             //TEST EatCoin 1 Casilla Normal al limite & Share
-            /*switch (colorValueTeam)
+            switch (colorValueTeam)
             {
                 case 0:
-                    DICE_VALUE = 2;
+                    diceValue = 2;
                     break;
                 case 1:
-                    DICE_VALUE = 4;
+                    diceValue = 4;
                     break;
                 case 2:
-                    DICE_VALUE = 4;
+                    diceValue = 4;
                     break;
                 case 3:
                     //Para la 1er prueba y 2nd
-                    //DICE_VALUE = 5;
+                    //diceValue = 5;
 
                     //Para la 3er
-                    DICE_VALUE = 1;
+                    diceValue = 1;
                     break;
-            }*/
+            }
             //TEST EatCoin 1 Casilla Normal
 
             #endregion
 
-            if (EATINGCOIN)
+            if (eatCoin)
             {
-                DICE_VALUE = 20;
-                EATINGCOIN = false;
+                diceValue = 20;
+                eatCoin = false;
                 coinsPlaying.ElementAt(turnPlayer).NumRolls--;
             }
 
@@ -187,11 +203,11 @@ namespace Parlis.Client.Views
             }
             else
             {
-                if (DICE_VALUE == 6)
+                if (diceValue == 6)
                 {
-                    this.REROLL = true;
+                    this.reRoll = true;
                 }
-                coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot + DICE_VALUE;
+                coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot + diceValue;
                 if (coinsPlaying.ElementAt(turnPlayer).AtFinalRow)
                 {
                     MoveInFInalColorPath(turnPlayer);
@@ -203,9 +219,11 @@ namespace Parlis.Client.Views
                     if (colorValueTeam == 3)
                     {
                         coinsPlaying.ElementAt(turnPlayer).AtFinalRow = true;
+                        coinsPlaying.ElementAt(turnPlayer).Poinst = 64;
                         MoveInFInalColorPath(turnPlayer);
                     }
                     else {
+                        coinsPlaying.ElementAt(turnPlayer).Poinst = coinsPlaying.ElementAt(turnPlayer).Poinst + diceValue;
                         CheckForCoinsAtSameSlot(turnPlayer);
                     }
                 }
@@ -215,6 +233,7 @@ namespace Parlis.Client.Views
                 }
                 else 
                 {
+                    coinsPlaying.ElementAt(turnPlayer).Poinst = coinsPlaying.ElementAt(turnPlayer).Poinst + diceValue;
                     CheckForCoinsAtSameSlot(turnPlayer);
                 }
             }
@@ -228,44 +247,62 @@ namespace Parlis.Client.Views
             {
                 coinsPlaying.ElementAt(turnPlayer).AtFinalRow = true;
                 coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot - (Constants.INITIAL_COLOR_PATH_SLOT[colorTeamValue] + 1);
+                coinsPlaying.ElementAt(turnPlayer).Poinst = 64;
                 ableToStart = true;
             }
             return ableToStart;
         }
-        public void ShowNextTurn(int colorTeamValue)
+        public void ShowNextTurn()
         {
-            if (this.playerProfile.Username == coinsPlaying.ElementAt(TURN_PLAYER).PlayerProfileUsername)
+            int colorTeamValue = coinsPlaying.ElementAt(turnCoin).ColorTeamValue;
+            if (!finishGame)
             {
-                this.FirstDice.IsEnabled = true;
-                this.FocusedDice.Source = FOCUSED_DICE;
-            }
-            else
-            {
-                this.FirstDice.IsEnabled = false;
-                this.FocusedDice.Source = null;
-            }
-            switch (colorTeamValue)
-            {
-                case 0:
-                    Canvas.SetTop(RingTurn, 3);
-                    Canvas.SetLeft(RingTurn, 8);
-                    break;
-                case 1:
-                    Canvas.SetTop(RingTurn, 3);
-                    Canvas.SetLeft(RingTurn, 148);
-                    break;
-                case 2:
-                    Canvas.SetTop(RingTurn, 68);
-                    Canvas.SetLeft(RingTurn, 8);
-                    break;
-                case 3:
-                    Canvas.SetTop(RingTurn, 68);
-                    Canvas.SetLeft(RingTurn, 148);
-                    break;
-
+                Utilities.PlayGameplaySound(6);
+                Console.WriteLine("1- ShowNextTurn turnCoin=" + turnCoin + " colorTeamValue=" + colorTeamValue);
+                Console.WriteLine("1.1- IsPlaying=" + (coinsPlaying.ElementAt(turnCoin).IsPlaying));
+                while (!coinsPlaying.ElementAt(turnCoin).IsPlaying)
+                {
+                    turnCoin++;
+                    Console.WriteLine("1.2- IsPlaying-turnCoin=" + turnCoin);
+                    if (this.turnCoin >= 4)
+                    {
+                        this.turnCoin = 0;
+                        Console.WriteLine("1.3- IsPlaying-turnCoin=" + turnCoin + " colorTeamValue=" + colorTeamValue);
+                    }
+                }
+                Console.WriteLine("1.4- turnCoin=" + turnCoin);
+                if (this.playerProfile.Username == coinsPlaying.ElementAt(turnCoin).PlayerProfileUsername)
+                {
+                    this.FirstDice.IsEnabled = true;
+                    this.FocusedDice.Source = FOCUSED_DICE;
+                }
+                else
+                {
+                    this.FirstDice.IsEnabled = false;
+                    this.FocusedDice.Source = null;
+                }
+                switch (colorTeamValue)
+                {
+                    case 0:
+                        Canvas.SetTop(RingTurn, 3);
+                        Canvas.SetLeft(RingTurn, 8);
+                        break;
+                    case 1:
+                        Canvas.SetTop(RingTurn, 3);
+                        Canvas.SetLeft(RingTurn, 148);
+                        break;
+                    case 2:
+                        Canvas.SetTop(RingTurn, 68);
+                        Canvas.SetLeft(RingTurn, 8);
+                        break;
+                    case 3:
+                        Canvas.SetTop(RingTurn, 68);
+                        Canvas.SetLeft(RingTurn, 148);
+                        break;
+                }
             }
         }
-        public void ShowCoinMoved(int turnPlayer)
+        public void MoveInNormalPath(int turnPlayer)
         {
             int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
             Canvas.SetTop(coinsImages[colorTeamValue], Constants.BOARD_SLOTS[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
@@ -273,6 +310,7 @@ namespace Parlis.Client.Views
         }
         public void GoToHomeSlot(int turnPlayer)
         {
+            Utilities.PlayGameplaySound(4);
             int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
             coinsPlaying.ElementAt(turnPlayer).AtFinalRow = false;
             coinsPlaying.ElementAt(turnPlayer).FisrtLeap = false;
@@ -280,13 +318,14 @@ namespace Parlis.Client.Views
             Canvas.SetTop(coinsImages[colorTeamValue], Constants.HOME_SLOTS_CORDINATES[colorTeamValue].X);
             Canvas.SetLeft(coinsImages[colorTeamValue], Constants.HOME_SLOTS_CORDINATES[colorTeamValue].Y);
             coinsPlaying.ElementAt(turnPlayer).NumRolls = 0;
-            this.REROLL = false;
+            coinsPlaying.ElementAt(turnPlayer).Poinst = 0;
+            this.reRoll = false;
 
         }
         public void MoveInFInalColorPath(int turnPlayer)
         {
+            Utilities.PlayGameplaySound(5);
             int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
-
             if (coinsPlaying.ElementAt(turnPlayer).AtSlot != 7)
             {
                 if (coinsPlaying.ElementAt(turnPlayer).AtSlot > 7)
@@ -318,7 +357,9 @@ namespace Parlis.Client.Views
             }
             else if (coinsPlaying.ElementAt(turnPlayer).AtSlot == 7)
             {
+                Utilities.PlayGameplaySound(8);
                 coinsPlaying.ElementAt(turnPlayer).IsWinner = true;
+                WinnerPlayer();
                 GoToHomeSlot(turnPlayer);
             }
         }
@@ -372,15 +413,31 @@ namespace Parlis.Client.Views
                 }
             }
         }
+        public bool AtSafeSlot(int invadedPlayerSlotPosition)
+        {
+            bool isSafeSlot = false;
+            for (int slot = 0; slot < Constants.SAFE_SLOTS.Length; slot++)
+            {
+                if (invadedPlayerSlotPosition == Constants.SAFE_SLOTS[slot])
+                {
+                    isSafeSlot = true;
+                    break;
+                }
+
+            }
+            return isSafeSlot;
+        }
         public void EatCoin(int turnInvaderPlayer, int turnInvadedPlayer)
         {
+            Utilities.PlayGameplaySound(2);
             GoToHomeSlot(turnInvadedPlayer);
-            this.EATINGCOIN = true;
+            this.eatCoin = true;
             this.FirstDice.Source = new BitmapImage(new Uri(Dices[6], UriKind.Relative));
             HowMuchAndWhereToMove(turnInvaderPlayer);
         }
         public void ShareSlot(int turnInvaderPlayer, int turnInvadedPlayer)
         {
+            Utilities.PlayGameplaySound(3);
             int sharedSlot = coinsPlaying.ElementAt(turnInvadedPlayer).AtSlot;
             int colorTeamValueInvader = coinsPlaying.ElementAt(turnInvaderPlayer).ColorTeamValue;
             int colorTeamValueInvaded = coinsPlaying.ElementAt(turnInvadedPlayer).ColorTeamValue;
@@ -431,35 +488,108 @@ namespace Parlis.Client.Views
                     break;
             }
         }
-        public bool AtSafeSlot(int invadedPlayerSlotPosition)
+        public void ShowDisconectedPlayer(string disconectedPlayerUsername)
         {
-            bool isSafeSlot = false;
-            for (int slot = 0; slot < Constants.SAFE_SLOTS.Length; slot++)
-            {
-                if (invadedPlayerSlotPosition == Constants.SAFE_SLOTS[slot])
-                {
-                    isSafeSlot = true;
-                    break;
-                }
-
+            int coinAt = coinsPlaying.FindIndex(x => x.PlayerProfileUsername == disconectedPlayerUsername);
+            GoToHomeSlot(coinAt);
+            coinsPlaying.ElementAt(coinAt).IsPlaying = false;
+            profilePictures[coinAt].Source = DISCONECTED_PLAYER;
+            usernames[coinAt].Text = "";
+            if (turnCoin == coinAt) {
+                gameManagementClient.SetNextTurn();
             }
-            return isSafeSlot;
+           /* if (coinsPlaying.LongCount(x => x.IsPlaying == false) == 4)
+            { 
+            
+            }*/
+        }
+
+        public void WinnerPlayer()
+        {
+            List<Coin> finalResultCoin = new List<Coin>(coinsPlaying);
+            string winnerPlayerUsername = finalResultCoin.Find(x => x.IsWinner == true).PlayerProfileUsername;
+            int winnerColorTeamValue = finalResultCoin.Find(x => x.IsWinner == true).ColorTeamValue;
+            finalResultCoin.RemoveAll(x => x.IsWinner == true);
+            int placement = 0;
+            List<Coin> coinsAtNormalPath = new List<Coin>();
+            Medals[winnerColorTeamValue].Source = new BitmapImage(new Uri(PlacesResult[placement], UriKind.Relative));
+            placement++;
+            finalResultCoin.RemoveAll(x => x.IsPlaying == false);
+            coinsAtNormalPath.AddRange(finalResultCoin.FindAll(x => x.AtFinalRow == false));
+            if (coinsAtNormalPath.Count > 0) 
+            {
+                coinsAtNormalPath.OrderBy(x => x.Poinst);
+                finalResultCoin.RemoveAll(x => x.AtFinalRow == false);
+            }
+
+            if (finalResultCoin.Count > 0)
+            {
+                finalResultCoin.OrderBy(x => x.AtSlot);
+            }
+            finalResultCoin.AddRange(coinsAtNormalPath);
+
+            foreach (var coin in finalResultCoin)
+            {
+                Medals[coin.ColorTeamValue].Source = new BitmapImage(new Uri(PlacesResult[placement], UriKind.Relative));
+                placement++;
+            }
+            this.FirstDice.Source = new BitmapImage(new Uri(Dices[7], UriKind.Relative));
+            this.FirstDice.IsEnabled = false;
+            this.FocusedDice.Source = FOCUSED_DICE;
+            this.RingTurn.Source = null;
+            finishGame = true;        }
+
+        public void RegisterMatchResult(PlayerProfile playerProfile)
+        {
+            int winnerTurn = coinsPlaying.FindIndex(x => x.IsWinner == true);
+            if (winnerTurn >= 0)
+            {
+                string username = playerProfile.Username;
+                String winnerPlayer = coinsPlaying.ElementAt(winnerTurn).PlayerProfileUsername;
+                if (username == winnerPlayer)
+                {
+                    if (!gameManagementClient.RegisterMatchResult(playerProfile))
+                    {
+                        MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                            Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
+                    }
+                }
+            }
+
+
+        }
+
+        public void GoToMainMenu()
+        {
+            gameManagementClient.Close();
+            createMatchWindow.matchManagementClient.Close();
+            var mainMenuWindow = new MainMenuWindow();
+            mainMenuWindow.ConfigureWindow(playerProfile);
+            this.Close();
+            mainMenuWindow.Show();
+
         }
 
 
-
-        #region iNTERFACES
-
-        #endregion
 
         //Extras
 
         private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Utilities.PlayButtonClickSound();
-            var mainMenu = new MainMenuWindow();
-            Close();
-            mainMenu.Show();
+            Utilities.PlayGameplaySound(7);
+            string username = this.playerProfile.Username;
+            RegisterMatchResult(this.playerProfile);
+            try
+            {
+                gameManagementClient.DisconnectFromBoard(username);
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
+            GoToMainMenu();
+
         }
 
         private void MessageBalloonMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -473,7 +603,17 @@ namespace Parlis.Client.Views
 
         private void FirstDiceMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            gameManagementClient.ThrowDice();
+            if (!finishGame)
+            {
+                Utilities.PlayGameplaySound(0);
+                gameManagementClient.ThrowDice();
+                Utilities.PlayGameplaySound(1);
+                Utilities.PlayGameplaySound(6);
+            }
+            else
+            {
+                Utilities.PlayGameplaySound(8);
+            }
         }
 
 

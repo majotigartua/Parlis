@@ -14,7 +14,6 @@ namespace Parlis.Client.Resources
         //INITIAL SLOTS
         public static int[] INITIAL_SLOTS = { 37,20,54,3};
         //SAFE SLOTS
-            //public static Point[] SAFE_SLOTS_CORDINATES = { new Point(75.8, 129), new Point(59, 165), new Point(48, 205.5), new Point(37, 165), new Point(20.3,129), new Point(1.8,105.6), new Point(20.3,82.3), new Point(37,45.8), new Point(48,5.4), new Point(59,45.8), new Point(75.8,82.3), new Point(94.3,105.5), };
         public static int[] SAFE_SLOTS = {4,11,16,21,28,33,38,45,50,55,62,67};
         //COLOR PATH SLOTS
         public static int[] INITIAL_COLOR_PATH_SLOT = { 33, 16, 50, 67 };

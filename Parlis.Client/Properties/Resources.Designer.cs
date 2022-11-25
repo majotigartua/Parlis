@@ -72,6 +72,15 @@ namespace Parlis.Client.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
         /// </summary>
+        public static System.IO.UnmanagedMemoryStream Bummer {
+            get {
+                return ResourceManager.GetStream("Bummer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
         public static System.IO.UnmanagedMemoryStream ButtonClick {
             get {
                 return ResourceManager.GetStream("ButtonClick", resourceCulture);
@@ -133,6 +142,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream ColorPath {
+            get {
+                return ResourceManager.GetStream("ColorPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Confirm player profile.
         /// </summary>
         public static string CONFIRM_PLAYER_PROFILE_BUTTON {
@@ -174,6 +192,15 @@ namespace Parlis.Client.Properties {
         public static string DELETE_PLAYER_PROFILE_BUTTON {
             get {
                 return ResourceManager.GetString("DELETE_PLAYER_PROFILE_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream EatCoin {
+            get {
+                return ResourceManager.GetStream("EatCoin", resourceCulture);
             }
         }
         
@@ -259,6 +286,15 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream GoToHomeSlot {
+            get {
+                return ResourceManager.GetStream("GoToHomeSlot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The information entered is invalid..
         /// </summary>
         public static string INVALID_DATA_WINDOW_TITLE {
@@ -333,6 +369,15 @@ namespace Parlis.Client.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
         /// </summary>
+        public static System.IO.UnmanagedMemoryStream MoveCoin {
+            get {
+                return ResourceManager.GetStream("MoveCoin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
         public static System.IO.UnmanagedMemoryStream Music {
             get {
                 return ResourceManager.GetStream("Music", resourceCulture);
@@ -345,6 +390,15 @@ namespace Parlis.Client.Properties {
         public static string NAME_LABEL {
             get {
                 return ResourceManager.GetString("NAME_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream NextTurn {
+            get {
+                return ResourceManager.GetStream("NextTurn", resourceCulture);
             }
         }
         
@@ -493,11 +547,29 @@ namespace Parlis.Client.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream ShareSlot {
+            get {
+                return ResourceManager.GetStream("ShareSlot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Start match.
         /// </summary>
         public static string START_MATCH_BUTTON {
             get {
                 return ResourceManager.GetString("START_MATCH_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream ThrowDice {
+            get {
+                return ResourceManager.GetStream("ThrowDice", resourceCulture);
             }
         }
         
@@ -534,6 +606,15 @@ namespace Parlis.Client.Properties {
         public static string WAITING_ROOM_LABEL {
             get {
                 return ResourceManager.GetString("WAITING_ROOM_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Winner {
+            get {
+                return ResourceManager.GetStream("Winner", resourceCulture);
             }
         }
     }

@@ -316,5 +316,25 @@
   <ItemGroup>
     <Resource Include="Resources\Images\EatingCoin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\DisconectedPlayer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Bummer.wav" />
+    <Content Include="Resources\ColorPath.wav" />
+    <Content Include="Resources\EatCoin.wav" />
+    <Content Include="Resources\FinishGame.wav" />
+    <Content Include="Resources\GoToHomeSlot.wav" />
+    <Resource Include="Resources\Images\2ndPlace.png" />
+    <Resource Include="Resources\Images\3rdPlace.png" />
+    <Resource Include="Resources\Images\1stPlace.png" />
+    <Resource Include="Resources\Images\4thPlace.png" />
+    <Resource Include="Resources\Images\FinishDice.png" />
+    <Content Include="Resources\MoveCoin.wav" />
+    <Content Include="Resources\NextTurn.wav" />
+    <Content Include="Resources\ShareSlot.wav" />
+    <Content Include="Resources\ThrowDice.wav" />
+    <Content Include="Resources\Winner.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

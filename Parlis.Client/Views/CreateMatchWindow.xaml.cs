@@ -17,7 +17,7 @@ namespace Parlis.Client.Views
         private readonly BitmapImage DEFAULT_PROFILE_PICTURE = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
         private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;
-        private readonly MatchManagementClient matchManagementClient;
+        public readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
         private int code;
@@ -161,6 +161,7 @@ namespace Parlis.Client.Views
         private void StartMatchButtonClick(object sender, RoutedEventArgs e)
         {
             matchManagementClient.SetBoardMatch();
+            //matchManagementClient.Close();
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
@@ -191,9 +192,11 @@ namespace Parlis.Client.Views
         public void StarMatch()
         {
             var gameWindow = new GameWindow();
-            gameWindow.ConfigureWindow(playerProfile, code);
+            gameWindow.ConfigureWindow(this, playerProfile, code);
             Close();
             gameWindow.Show();
+            //matchManagementClient.Close();
+
         }
     }
 }

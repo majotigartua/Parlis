@@ -48,6 +48,7 @@
       <xs:element minOccurs="0" name="IsWinner" type="xs:boolean" />
       <xs:element minOccurs="0" name="NumRolls" type="xs:int" />
       <xs:element minOccurs="0" name="PlayerProfileUsername" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Poinst" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Coin" nillable="true" type="tns:Coin" />

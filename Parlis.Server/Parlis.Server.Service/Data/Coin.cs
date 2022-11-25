@@ -24,13 +24,16 @@ namespace Parlis.Server.Service.Data
         public bool IsPlaying { get; set; }
         [DataMember]
         public int NumRolls { get; set; }
+        [DataMember]
+        public int Poinst { get; set; }
 
         public Coin(int colorValue)
         {
             this.ColorTeamValue = colorValue;
+            this.IsPlaying = true;
 
             //NORMAL
-            
+            /*
             switch (ColorTeamValue)
             {
                 case 0:
@@ -49,7 +52,7 @@ namespace Parlis.Server.Service.Data
                     this.AtSlot = 3;
                     this.ColorTeamText = "Yellow";
                     break;
-            }
+            }*/
             
 
             /*//Prueba EatCoin 1 Casilla Normal
@@ -76,7 +79,7 @@ namespace Parlis.Server.Service.Data
             */
 
             //Prueba EatCoin 1 Casilla al limte & Share
-            /*
+            
             switch (ColorTeamValue)
             {
                 case 0:
@@ -95,10 +98,9 @@ namespace Parlis.Server.Service.Data
                 case 3:
                     this.AtSlot = 9;
                     this.ColorTeamText = "Yellow";
-                    //FisrtLeap=true;
                     break;
             }
-            */
+            
         }
     }
 }
