@@ -121,6 +121,9 @@
     <value>Accept</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Bummer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bummer.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="ButtonClick" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ButtonClick.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -142,6 +145,9 @@
   <data name="CODE_SENT_WINDOW_TITLE" xml:space="preserve">
     <value>The code was sent correctly.</value>
   </data>
+  <data name="ColorPath" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ColorPath.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="CONFIRM_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Confirm player profile</value>
   </data>
@@ -156,6 +162,9 @@
   </data>
   <data name="DELETE_PLAYER_PROFILE_BUTTON" xml:space="preserve">
     <value>Delete player profile</value>
+  </data>
+  <data name="EatCoin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EatCoin.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="EDIT_PLAYER_PROFILE_WINDOW_TITLE" xml:space="preserve">
     <value>Edit player profile.</value>
@@ -184,6 +193,9 @@
   <data name="GAME_CONFIGURATION_WINDOW_TITLE" xml:space="preserve">
     <value>Game configuration.</value>
   </data>
+  <data name="GoToHomeSlot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GoToHomeSlot.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="INVALID_DATA_WINDOW_TITLE" xml:space="preserve">
     <value>The information entered is invalid.</value>
   </data>
@@ -208,11 +220,17 @@
   <data name="MATERNAL_SURNAME_LABEL" xml:space="preserve">
     <value>Maternal surname:</value>
   </data>
+  <data name="MoveCoin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MoveCoin.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Music" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Music.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="NAME_LABEL" xml:space="preserve">
     <value>Name:</value>
+  </data>
+  <data name="NextTurn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NextTurn.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="NO_DATABASE_CONNECTION_WINDOW_TITLE" xml:space="preserve">
     <value>No connection to the database.</value>
@@ -262,8 +280,14 @@
   <data name="SEND_REAL_TIME_MESSAGE_WINDOW_TITLE" xml:space="preserve">
     <value>Send real time message.</value>
   </data>
+  <data name="ShareSlot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ShareSlot.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="START_MATCH_BUTTON" xml:space="preserve">
     <value>Start match</value>
+  </data>
+  <data name="ThrowDice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ThrowDice.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="TRY_AGAIN_LATER_LABEL" xml:space="preserve">
     <value>Please try again later.</value>
@@ -276,5 +300,8 @@
   </data>
   <data name="WAITING_ROOM_LABEL" xml:space="preserve">
     <value>Waiting room.</value>
+  </data>
+  <data name="Winner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Winner.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

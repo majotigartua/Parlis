@@ -22,22 +22,28 @@
 
             <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="27,11,168,76" Height="13" Width="22" x:Name="RedProfilePicture" Source="/Resources/Images/DefaultProfilePicture.png"/>
             <TextBlock Margin="22,7,0,0" FontSize="3" x:Name="RedUsernameTextBox" TextAlignment="Center" HorizontalAlignment="Left" Width="33" Height="7" VerticalAlignment="Top"/>
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="49,11,146,76" Height="13" Width="22" x:Name="RedPlace"/>
+
             <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="167,11,28,76" Height="13" Width="22" x:Name="BlueProfilePicture" Source="/Resources/Images/DefaultProfilePicture.png" />
             <TextBlock x:Name="BlueUsernameTextBox" HorizontalAlignment="Left" Margin="162,0,0,86" Width="33" Height="7" FontSize="3" TextAlignment="Center" VerticalAlignment="Bottom"/>
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="145,11,50,76" Height="13" Width="22" x:Name="BluePlace"/>
+
             <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="27,76,168,11" Height="13" Width="22" x:Name="GreenProfilePicture" Source="/Resources/Images/DefaultProfilePicture.png"/>
             <TextBlock x:Name="GreenUsernameTextBox" HorizontalAlignment="Right" Margin="0,72,162,21" Width="33" Height="7"  FontSize="3" TextAlignment="Center"/>
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="49,76,146,11" Height="13" Width="22" x:Name="GreenPlace"/>
+
             <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="167,76,28,11" Height="13" Width="22" x:Name="YellowProfilePicture" Source="/Resources/Images/DefaultProfilePicture.png" />
             <TextBlock x:Name="YellowUsernameTextBox" HorizontalAlignment="Left" Margin="162,72,0,0" VerticalAlignment="Top" Width="33" Height="7" FontSize="3" TextAlignment="Center"/>
+            <Image RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Margin="145,76,50,11" Height="13" Width="22" x:Name="YellowPlace"/>
 
-
-            <Canvas x:Name="MyCanvas" Focusable="true" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Canvas x:Name="MyCanvas" Focusable="true" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" d:IsHidden="True">
                 <Image x:Name="RingTurn" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Height="29" VerticalAlignment="Top" Width="61" Canvas.Top="3" Canvas.Left="8" RenderTransformOrigin="0.5,0.5" Source="/Resources/Images/YourTurn.png" />
                 <Image x:Name="RedCoin" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Canvas.Top="25" Canvas.Left="35" Source="/Resources/Images/RedCoin.png" Height="4" Width="6" HorizontalAlignment="Center" VerticalAlignment="Top" />
                 <Image x:Name="BlueCoin" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Canvas.Top="25" Canvas.Left="175" Source="/Resources/Images/BlueCoin.png" Height="4" Width="6" HorizontalAlignment="Center" VerticalAlignment="Top" />
                 <Image x:Name="GreenCoin" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Canvas.Top="90" Canvas.Left="35" Source="/Resources/Images/GreenCoin.png" Height="4" Width="6" HorizontalAlignment="Center" VerticalAlignment="Top" />
                 <Image x:Name="YellowCoin" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Grid.Column="0" Canvas.Top="90" Canvas.Left="175" Source="/Resources/Images/YellowCoin.png" Height="4" Width="6" HorizontalAlignment="Center" VerticalAlignment="Top" />
             </Canvas>
-
+            
         </Grid>
     </Viewbox>
-</Window>   
+</Window>
