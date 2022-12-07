@@ -166,8 +166,8 @@
   <wsdl:message name="IMatchManagement_GetPlayerProfiles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerProfiles" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_SetBoardMatch_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetBoardMatch" />
+  <wsdl:message name="IMatchManagement_SetBoards_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetBoards" />
   </wsdl:message>
   <wsdl:message name="IMatchManagement_ReceivePlayerProfiles_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceivePlayerProfiles" />
@@ -253,8 +253,8 @@
   <wsdl:message name="IPlayerProfileManagement_UpdatePlayerProfile_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdatePlayerProfileResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameManagement_GetCoinsForBoard_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetCoinsForBoard" />
+  <wsdl:message name="IGameManagement_GetCoinsByBoard_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoinsByBoard" />
   </wsdl:message>
   <wsdl:message name="IGameManagement_ThrowDice_InputMessage">
     <wsdl:part name="parameters" element="tns:ThrowDice" />
@@ -277,11 +277,11 @@
   <wsdl:message name="IGameManagement_DisconnectFromBoard_OutputMessage">
     <wsdl:part name="parameters" element="tns:DisconnectFromBoardResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameManagement_RegisterMatchResult_InputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterMatchResult" />
+  <wsdl:message name="IGameManagement_RegisterMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterMatch" />
   </wsdl:message>
-  <wsdl:message name="IGameManagement_RegisterMatchResult_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterMatchResultResponse" />
+  <wsdl:message name="IGameManagement_RegisterMatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterMatchResponse" />
   </wsdl:message>
   <wsdl:message name="IGameManagement_ReceiveCoinsForBoard_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveCoinsForBoard" />
@@ -348,8 +348,8 @@
     <wsdl:operation name="GetPlayerProfiles">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles" message="tns:IMatchManagement_GetPlayerProfiles_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SetBoardMatch">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/SetBoardMatch" message="tns:IMatchManagement_SetBoardMatch_InputMessage" />
+    <wsdl:operation name="SetBoards">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/SetBoards" message="tns:IMatchManagement_SetBoards_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReceivePlayerProfiles">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/ReceivePlayerProfiles" message="tns:IMatchManagement_ReceivePlayerProfiles_OutputCallbackMessage" />
@@ -411,8 +411,8 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IGameManagement">
-    <wsdl:operation name="GetCoinsForBoard">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetCoinsForBoard" message="tns:IGameManagement_GetCoinsForBoard_InputMessage" />
+    <wsdl:operation name="GetCoinsByBoard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetCoinsByBoard" message="tns:IGameManagement_GetCoinsByBoard_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ThrowDice">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/ThrowDice" message="tns:IGameManagement_ThrowDice_InputMessage" />
@@ -433,9 +433,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/DisconnectFromBoard" message="tns:IGameManagement_DisconnectFromBoard_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/DisconnectFromBoardResponse" message="tns:IGameManagement_DisconnectFromBoard_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="RegisterMatchResult">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/RegisterMatchResult" message="tns:IGameManagement_RegisterMatchResult_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/RegisterMatchResultResponse" message="tns:IGameManagement_RegisterMatchResult_OutputMessage" />
+    <wsdl:operation name="RegisterMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/RegisterMatch" message="tns:IGameManagement_RegisterMatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/RegisterMatchResponse" message="tns:IGameManagement_RegisterMatch_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReceiveCoinsForBoard">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ReceiveCoinsForBoard" message="tns:IGameManagement_ReceiveCoinsForBoard_OutputCallbackMessage" />
@@ -534,8 +534,8 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="SetBoardMatch">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/SetBoardMatch" style="document" />
+    <wsdl:operation name="SetBoards">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/SetBoards" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -674,8 +674,8 @@
   <wsdl:binding name="NetTcpBinding_IGameManagement" type="tns:IGameManagement">
     <wsp:PolicyReference URI="#NetTcpBinding_IGameManagement_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="GetCoinsForBoard">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetCoinsForBoard" style="document" />
+    <wsdl:operation name="GetCoinsByBoard">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetCoinsByBoard" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -719,8 +719,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RegisterMatchResult">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/RegisterMatchResult" style="document" />
+    <wsdl:operation name="RegisterMatch">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/RegisterMatch" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -780,7 +780,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/ChatManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -789,7 +789,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/MatchManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -798,7 +798,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/PlayerProfileManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -807,7 +807,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/GameManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

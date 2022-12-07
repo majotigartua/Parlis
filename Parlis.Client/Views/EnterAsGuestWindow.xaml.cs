@@ -8,12 +8,18 @@ namespace Parlis.Client.Views
     public partial class EnterAsGuestWindow : Window
     {
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
+        private LoginWindow loginWindow;
 
         public EnterAsGuestWindow()
         {
             InitializeComponent();
             UsernameTextBox.Focus();
             playerProfileManagementClient = new PlayerProfileManagementClient();
+        }
+    
+        public void ConfigureView(LoginWindow loginWindow)
+        {
+            this.loginWindow = loginWindow;
         }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
@@ -44,7 +50,7 @@ namespace Parlis.Client.Views
                     };
                     if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile))
                     {
-                        playerProfileManagementClient.Close();
+                        loginWindow.Close();
                         GoToMainMenu(playerProfile);
                     }
                     else
@@ -78,7 +84,6 @@ namespace Parlis.Client.Views
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
-            playerProfileManagementClient.Close();
             Close();
         }
     }

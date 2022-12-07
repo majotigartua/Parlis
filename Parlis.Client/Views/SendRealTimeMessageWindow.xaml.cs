@@ -73,7 +73,6 @@ namespace Parlis.Client.Views
         private void SendRealTimeMessageWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             chatManagementClient.DisconnectFromChat(username);
-            chatManagementClient.Close();
         }
     }
 }

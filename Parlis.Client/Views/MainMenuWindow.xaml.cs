@@ -8,6 +8,7 @@ namespace Parlis.Client.Views
 {
     public partial class MainMenuWindow : Window, IMatchManagementCallback
     {
+        private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private readonly MatchManagementClient matchManagementClient;
         private PlayerProfile playerProfile;
         private int code;
@@ -16,6 +17,7 @@ namespace Parlis.Client.Views
         {
             InitializeComponent();
             Utilities.PlayMusic();
+            playerProfileManagementClient = new PlayerProfileManagementClient();
             matchManagementClient = new MatchManagementClient(new InstanceContext(this));
         }
 
@@ -92,15 +94,23 @@ namespace Parlis.Client.Views
         private void PlayerProfileMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Utilities.PlayButtonClickSound();
-            var editPlayerProfileWindow = new EditPlayerProfileWindow();
-            editPlayerProfileWindow.ConfigureWindow(playerProfile);
-            Close();
-            editPlayerProfileWindow.Show();
+            if (!string.IsNullOrEmpty(playerProfile.Password))
+            {
+                var editPlayerProfileWindow = new EditPlayerProfileWindow();
+                editPlayerProfileWindow.ConfigureWindow(playerProfile);
+                Close();
+                editPlayerProfileWindow.Show();
+            }
         }
 
         private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Utilities.PlayButtonClickSound();
+            if (string.IsNullOrEmpty(playerProfile.Password))
+            {
+                string username = playerProfile.Username;
+                playerProfileManagementClient.DeletePlayerProfile(username);
+            }
             var loginWindow = new LoginWindow();
             Close();
             loginWindow.Show();

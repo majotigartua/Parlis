@@ -566,11 +566,11 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles")]
         System.Threading.Tasks.Task GetPlayerProfilesAsync(string username, int code);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SetBoardMatch")]
-        void SetBoardMatch();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SetBoards")]
+        void SetBoards();
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SetBoardMatch")]
-        System.Threading.Tasks.Task SetBoardMatchAsync();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SetBoards")]
+        System.Threading.Tasks.Task SetBoardsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -651,12 +651,12 @@ namespace Parlis.Client.Services {
             return base.Channel.GetPlayerProfilesAsync(username, code);
         }
         
-        public void SetBoardMatch() {
-            base.Channel.SetBoardMatch();
+        public void SetBoards() {
+            base.Channel.SetBoards();
         }
         
-        public System.Threading.Tasks.Task SetBoardMatchAsync() {
-            return base.Channel.SetBoardMatchAsync();
+        public System.Threading.Tasks.Task SetBoardsAsync() {
+            return base.Channel.SetBoardsAsync();
         }
     }
     
@@ -865,11 +865,11 @@ namespace Parlis.Client.Services {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Services.IGameManagement", CallbackContract=typeof(Parlis.Client.Services.IGameManagementCallback))]
     public interface IGameManagement {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/GetCoinsForBoard")]
-        void GetCoinsForBoard(string username, int code);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/GetCoinsByBoard")]
+        void GetCoinsByBoard(string username, int code);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/GetCoinsForBoard")]
-        System.Threading.Tasks.Task GetCoinsForBoardAsync(string username, int code);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/GetCoinsByBoard")]
+        System.Threading.Tasks.Task GetCoinsByBoardAsync(string username, int code);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/ThrowDice")]
         void ThrowDice();
@@ -884,10 +884,10 @@ namespace Parlis.Client.Services {
         System.Threading.Tasks.Task SetNextTurnAsync();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetCoinToMove")]
-        void SetCoinToMove(int turnPlayer);
+        void SetCoinToMove(int turn);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetCoinToMove")]
-        System.Threading.Tasks.Task SetCoinToMoveAsync(int turnPlayer);
+        System.Threading.Tasks.Task SetCoinToMoveAsync(int turn);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/LeaveMatch")]
         void LeaveMatch(string username);
@@ -907,11 +907,11 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/DisconnectFromBoard", ReplyAction="http://tempuri.org/IGameManagement/DisconnectFromBoardResponse")]
         System.Threading.Tasks.Task DisconnectFromBoardAsync(string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/RegisterMatchResult", ReplyAction="http://tempuri.org/IGameManagement/RegisterMatchResultResponse")]
-        bool RegisterMatchResult(Parlis.Client.Services.PlayerProfile playerProfile);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/RegisterMatch", ReplyAction="http://tempuri.org/IGameManagement/RegisterMatchResponse")]
+        bool RegisterMatch(Parlis.Client.Services.PlayerProfile playerProfile);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/RegisterMatchResult", ReplyAction="http://tempuri.org/IGameManagement/RegisterMatchResultResponse")]
-        System.Threading.Tasks.Task<bool> RegisterMatchResultAsync(Parlis.Client.Services.PlayerProfile playerProfile);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/RegisterMatch", ReplyAction="http://tempuri.org/IGameManagement/RegisterMatchResponse")]
+        System.Threading.Tasks.Task<bool> RegisterMatchAsync(Parlis.Client.Services.PlayerProfile playerProfile);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -961,12 +961,12 @@ namespace Parlis.Client.Services {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void GetCoinsForBoard(string username, int code) {
-            base.Channel.GetCoinsForBoard(username, code);
+        public void GetCoinsByBoard(string username, int code) {
+            base.Channel.GetCoinsByBoard(username, code);
         }
         
-        public System.Threading.Tasks.Task GetCoinsForBoardAsync(string username, int code) {
-            return base.Channel.GetCoinsForBoardAsync(username, code);
+        public System.Threading.Tasks.Task GetCoinsByBoardAsync(string username, int code) {
+            return base.Channel.GetCoinsByBoardAsync(username, code);
         }
         
         public void ThrowDice() {
@@ -985,12 +985,12 @@ namespace Parlis.Client.Services {
             return base.Channel.SetNextTurnAsync();
         }
         
-        public void SetCoinToMove(int turnPlayer) {
-            base.Channel.SetCoinToMove(turnPlayer);
+        public void SetCoinToMove(int turn) {
+            base.Channel.SetCoinToMove(turn);
         }
         
-        public System.Threading.Tasks.Task SetCoinToMoveAsync(int turnPlayer) {
-            return base.Channel.SetCoinToMoveAsync(turnPlayer);
+        public System.Threading.Tasks.Task SetCoinToMoveAsync(int turn) {
+            return base.Channel.SetCoinToMoveAsync(turn);
         }
         
         public void LeaveMatch(string username) {
@@ -1017,12 +1017,12 @@ namespace Parlis.Client.Services {
             return base.Channel.DisconnectFromBoardAsync(username);
         }
         
-        public bool RegisterMatchResult(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.RegisterMatchResult(playerProfile);
+        public bool RegisterMatch(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.RegisterMatch(playerProfile);
         }
         
-        public System.Threading.Tasks.Task<bool> RegisterMatchResultAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
-            return base.Channel.RegisterMatchResultAsync(playerProfile);
+        public System.Threading.Tasks.Task<bool> RegisterMatchAsync(Parlis.Client.Services.PlayerProfile playerProfile) {
+            return base.Channel.RegisterMatchAsync(playerProfile);
         }
     }
 }

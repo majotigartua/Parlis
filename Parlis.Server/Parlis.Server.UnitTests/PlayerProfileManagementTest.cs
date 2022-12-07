@@ -1,24 +1,19 @@
-﻿using Parlis.Server.BusinessLogic;
-using Parlis.Server.Service.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Parlis.Server.Service.Data;
 using Xunit;
 
 namespace Parlis.Server.UnitTests
 {
     public class PlayerProfileManagementTest
     {
-        private PlayerProfile playerProfile = new PlayerProfile
+
+        private readonly PlayerProfile playerProfile = new PlayerProfile
         {
             Username = "testguy",
             Password = "TrialPassword0",
             IsVerified = true
         };
 
-        private Player player = new Player
+        private readonly Player player = new Player
         {
             EmailAddress = "testplayer@outlook.com",
             Name = "Regular",
@@ -28,267 +23,91 @@ namespace Parlis.Server.UnitTests
         };
 
         [Fact]
-        public void RegisterPlayerProfileHappyPathTest()
+        public void RegisterPlayerProfileTest()
         {
-            bool isRegistered = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
+            BusinessLogic.Service service = new BusinessLogic.Service();
+            bool isPlayerProfileRegistered = service.RegisterPlayerProfile(playerProfile);
+            Assert.True(isPlayerProfileRegistered);
+        }
 
-            isRegistered = service.RegisterPlayerProfile(playerProfile);
-
+        [Fact]
+        public void RegisterPlayerTest()
+        {
+            BusinessLogic.Service service = new BusinessLogic.Service();
+            bool isRegistered = service.RegisterPlayer(player);
             Assert.True(isRegistered);
         }
 
         [Fact]
-        public void RegisterPlayerProfileUnhappyPathTest()
+        public void CheckPlayerProfileExistenceTest()
         {
-            bool isRegistered = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isRegistered = service.RegisterPlayerProfile(null);
-
-            Assert.False(isRegistered);
-        }
-
-        [Fact]
-        public void RegisterPlayerHappyPathTest()
-        {
-            bool isRegistered = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isRegistered = service.RegisterPlayer(player);
-
+            BusinessLogic.Service service = new BusinessLogic.Service();
+            bool isRegistered = service.CheckPlayerProfileExistence(playerProfile.Username);
             Assert.True(isRegistered);
         }
 
         [Fact]
-        public void RegisterPlayerUnhappyPathTest()
+        public void CheckPlayerExistenceTest()
         {
-            bool isRegistered = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isRegistered = service.RegisterPlayer(null);
-
-            Assert.False(isRegistered);
+            BusinessLogic.Service service = new Server.BusinessLogic.Service();
+            bool isRegistered = service.CheckPlayerExistence(player.EmailAddress);
+            Assert.True(isRegistered);
         }
 
         [Fact]
-        public void CheckPlayerProfileExistenceHappyPathTest()
+        public void GetPlayerProfileTest()
         {
-            bool isSelected = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isSelected = service.CheckPlayerProfileExistence(playerProfile.Username);
-
-            Assert.True(isSelected);
+            BusinessLogic.Service service = new BusinessLogic.Service();
+            PlayerProfile playerProfile = service.GetPlayerProfile(player.EmailAddress);
+            Assert.True(playerProfile.Equals(this.playerProfile));
         }
 
         [Fact]
-        public void CheckPlayerProfileExistenceUnhappyPathTest()
+        public void GetPlayerTest()
         {
-            bool isSelected = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isSelected = service.CheckPlayerProfileExistence(null);
-
-            Assert.False(isSelected);
+            BusinessLogic.Service service = new BusinessLogic.Service();
+            Player player = service.GetPlayer(playerProfile.Username);
+            Assert.True(player.Equals(this.player));
         }
 
         [Fact]
-        public void CheckPlayerExistenceHappyPathTest()
+        public void LoginTest()
         {
-            bool isSelected = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isSelected = service.CheckPlayerExistence(player.EmailAddress);
-
-            Assert.True(isSelected);
+            BusinessLogic.Service service = new BusinessLogic.Service();
+            PlayerProfile playerProfile = service.Login(this.playerProfile.Username, this.playerProfile.Password);
+            Assert.True(playerProfile.Equals(this.playerProfile));
         }
 
         [Fact]
-        public void CheckPlayerExistenceUnhappyPathTest()
+        public void UpdatePlayerProfileTest()
         {
-            bool isSelected = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isSelected = service.CheckPlayerExistence(null);
-
-            Assert.False(isSelected);
-        }
-
-        [Fact]
-        public void GetPlayerProfileHappyPathTest()
-        {
-            PlayerProfile testPlayerProfile = new PlayerProfile();
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            testPlayerProfile = service.GetPlayerProfile(player.EmailAddress);
-
-            Assert.True(testPlayerProfile.Equals(playerProfile));
-        }
-
-        [Fact]
-        public void GetPlayerProfileUnhappyPathTest()
-        {
-            PlayerProfile testPlayerProfile = new PlayerProfile();
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            testPlayerProfile = service.GetPlayerProfile(null);
-
-            Assert.Null(testPlayerProfile);
-        }
-
-        [Fact]
-        public void GetPlayerHappyPathTest()
-        {
-            Player testPlayer = new Player();
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            testPlayer = service.GetPlayer(playerProfile.Username);
-
-            Assert.True(testPlayer.Equals(player));
-        }
-
-        [Fact]
-        public void GetPlayerUnhappyPathTest()
-        {
-            Player testPlayer = new Player();
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            testPlayer = service.GetPlayer(null);
-
-            Assert.Null(testPlayer);
-        }
-
-        [Fact]
-        public void LoginHappyPathTest()
-        {
-            PlayerProfile testPlayerProfile = new PlayerProfile();
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            testPlayerProfile = service.Login(playerProfile.Username, playerProfile.Password);
-
-            Assert.True(testPlayerProfile.Equals(playerProfile));
-        }
-
-        [Fact]
-        public void LoginUnhappyPathTest()
-        {
-            PlayerProfile testPlayerProfile = new PlayerProfile();
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            testPlayerProfile = service.Login(null, null);
-
-            Assert.Null(testPlayerProfile);
-        }
-
-        [Fact]
-        public void UpdatePlayerProfileHappyPathTest()
-        {
-            bool isUpdated = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isUpdated = service.UpdatePlayerProfile(playerProfile);
-
+            BusinessLogic.Service service = new BusinessLogic.Service();
+            bool isUpdated = service.UpdatePlayerProfile(playerProfile);
             Assert.True(isUpdated);
         }
 
         [Fact]
-        public void UpdatePlayerProfileUnhappyPathTest()
+        public void UpdatePlayerTest()
         {
-            bool isUpdated = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isUpdated = service.UpdatePlayerProfile(null);
-
-            Assert.False(isUpdated);
-        }
-
-        [Fact]
-        public void UpdatePlayerHappyPathTest()
-        {
-            bool isUpdated = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isUpdated = service.UpdatePlayer(player);
-
+            BusinessLogic.Service service = new BusinessLogic.Service();
+            bool isUpdated = service.UpdatePlayer(player);
             Assert.True(isUpdated);
         }
 
         [Fact]
-        public void UpdatePlayerUnhappyPathTest()
+        public void DeletePlayerTest()
         {
-            bool isUpdated = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isUpdated = service.UpdatePlayer(null);
-
-            Assert.False(isUpdated);
-        }
-
-        [Fact]
-        public void SendEmailHappyPathTest()
-        {
-            bool isSent = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isSent = service.SendMail(playerProfile.Username, "Test", "Please, do not reply.", 112233);
-
-            Assert.True(isSent); // ArgumentNullException threw on line 223.
-        }
-
-        [Fact]
-        public void SendEmailUnHappyPathTest()
-        {
-            bool isSent = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isSent = service.SendMail(null, null, null, 112233);
-
-            Assert.False(isSent);
-        }
-
-        [Fact]
-        public void DeletePlayerHappyPathTest()
-        {
-            bool isDeleted = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isDeleted = service.DeletePlayer(player.EmailAddress);
-
+            BusinessLogic.Service service = new BusinessLogic.Service();
+            bool isDeleted = service.DeletePlayer(player.EmailAddress);
             Assert.True(isDeleted);
         }
 
         [Fact]
-        public void DeletePlayerUnhappyPathTest()
+        public void DeletePlayerProfileTest()
         {
-            bool isDeleted = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isDeleted = service.DeletePlayer(null);
-
-            Assert.False(isDeleted);
-        }
-
-        [Fact]
-        public void DeletePlayerProfileHappyPathTest()
-        {
-            bool isDeleted = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isDeleted = service.DeletePlayerProfile(playerProfile.Username);
-
+            BusinessLogic.Service service = new BusinessLogic.Service();
+            bool isDeleted = service.DeletePlayerProfile(playerProfile.Username);
             Assert.True(isDeleted);
-        }
-
-        [Fact]
-        public void DeletePlayerProfileUnhappyPathTest()
-        {
-            bool isDeleted = false;
-            Server.BusinessLogic.Service service = new Server.BusinessLogic.Service();
-
-            isDeleted = service.DeletePlayerProfile(null);
-
-            Assert.False(isDeleted);
         }
     }
 }

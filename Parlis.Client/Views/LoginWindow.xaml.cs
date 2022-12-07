@@ -48,7 +48,6 @@ namespace Parlis.Client.Views
                 var playerProfile = playerProfileManagementClient.Login(username, password);
                 if (playerProfile != null)
                 {
-                    playerProfileManagementClient.Close();
                     GoToMainMenu(playerProfile);
                 }
                 else
@@ -78,6 +77,7 @@ namespace Parlis.Client.Views
         {
             Utilities.PlayButtonClickSound();
             var enterAsGuestWindow =  new EnterAsGuestWindow();
+            enterAsGuestWindow.ConfigureView(this);
             enterAsGuestWindow.ShowDialog();
         }
 

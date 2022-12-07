@@ -14,7 +14,6 @@ namespace Parlis.Client.Views
     public partial class CreateMatchWindow : Window, IMatchManagementCallback
     {
         private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 4;
-        private readonly BitmapImage DEFAULT_PROFILE_PICTURE = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
         private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;
         public readonly MatchManagementClient matchManagementClient;
@@ -60,7 +59,7 @@ namespace Parlis.Client.Views
             for (int playerProfile = 0; playerProfile < NUMBER_OF_PLAYER_PROFILES_PER_MATCH; playerProfile++)
             {
                 usernames[playerProfile].Text = "";
-                profilePictures[playerProfile].Source = DEFAULT_PROFILE_PICTURE;
+                profilePictures[playerProfile].Source = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
             }
         }
 
@@ -88,7 +87,7 @@ namespace Parlis.Client.Views
                 }
                 catch (IOException)
                 {
-                    profilePictures[playerProfile].Source = DEFAULT_PROFILE_PICTURE;
+                    profilePictures[playerProfile].Source = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
                 }
             }
         }
@@ -121,7 +120,6 @@ namespace Parlis.Client.Views
                     if (playerProfileManagementClient.CheckPlayerProfileExistence(username))
                     {
                         SendMail(username);
-                        playerProfileManagementClient.Close();
                     }
                     else
                     {
@@ -160,8 +158,7 @@ namespace Parlis.Client.Views
 
         private void StartMatchButtonClick(object sender, RoutedEventArgs e)
         {
-            matchManagementClient.SetBoardMatch();
-            //matchManagementClient.Close();
+            matchManagementClient.SetBoards();
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
@@ -182,7 +179,6 @@ namespace Parlis.Client.Views
 
         private void GoToMainMenu()
         {
-            matchManagementClient.Close();
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.ConfigureWindow(playerProfile);
             Close();
@@ -195,8 +191,6 @@ namespace Parlis.Client.Views
             gameWindow.ConfigureWindow(this, playerProfile, code);
             Close();
             gameWindow.Show();
-            //matchManagementClient.Close();
-
         }
     }
 }

@@ -548,7 +548,7 @@ namespace Parlis.Client.Views
                 String winnerPlayer = coinsPlaying.ElementAt(winnerTurn).PlayerProfileUsername;
                 if (username == winnerPlayer)
                 {
-                    if (!gameManagementClient.RegisterMatchResult(playerProfile))
+                    if (!gameManagementClient.RegisterMatch(playerProfile))
                     {
                         MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                             Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);

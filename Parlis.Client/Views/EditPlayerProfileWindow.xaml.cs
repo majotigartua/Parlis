@@ -121,7 +121,6 @@ namespace Parlis.Client.Views
             if (playerProfileManagementClient.UpdatePlayer(player))
             {
                 MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
-                playerProfileManagementClient.Close();
                 GoToMainMenu();
             }
             else
@@ -146,7 +145,6 @@ namespace Parlis.Client.Views
             {
                 if (playerProfileManagementClient.DeletePlayer(player.EmailAddress) && playerProfileManagementClient.DeletePlayerProfile(playerProfile.Username))
                 {
-                    playerProfileManagementClient.Close();
                     GoToLogin();
                 }
                 else
@@ -189,7 +187,6 @@ namespace Parlis.Client.Views
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
-            playerProfileManagementClient.Close();
             GoToMainMenu();
         }
     }
