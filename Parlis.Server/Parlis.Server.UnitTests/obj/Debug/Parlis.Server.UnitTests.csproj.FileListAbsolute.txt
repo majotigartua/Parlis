@@ -1,7 +1,7 @@
+C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.abstractions.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.runner.visualstudio.testadapter.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.runner.reporters.net452.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.runner.utility.net452.dll
-C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\xunit.abstractions.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\Parlis.Server.UnitTests.dll.config
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\Parlis.Server.UnitTests.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\bin\Debug\Parlis.Server.UnitTests.pdb

@@ -1,5 +1,4 @@
-﻿using System.Net.Mail;
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 
 namespace Parlis.Server.Service.Data
@@ -23,12 +22,11 @@ namespace Parlis.Server.Service.Data
             return Equals(obj as PlayerProfile);
         }
 
-        public bool Equals(PlayerProfile other)
+        public bool Equals(PlayerProfile player)
         {
-            return ((other != null) &&
-               (Username == other.Username) &&
-               (Password == other.Password)) 
-               ? true : false;
+            return player != null &&
+               Username == player.Username &&
+               Password == player.Password;
         }
 
         public override int GetHashCode()

@@ -48,6 +48,7 @@ namespace Parlis.Client.Views
                 var playerProfile = playerProfileManagementClient.Login(username, password);
                 if (playerProfile != null)
                 {
+                    playerProfileManagementClient.Close();
                     GoToMainMenu(playerProfile);
                 }
                 else

@@ -1,5 +1,4 @@
 ﻿using System.Runtime.Serialization;
-using System.ServiceModel;
 
 namespace Parlis.Server.Service.Data
 {
@@ -15,7 +14,7 @@ namespace Parlis.Server.Service.Data
         [DataMember]
         public int AtSlot { get; set; }
         [DataMember]
-        public bool FisrtLeap { get; set; }
+        public bool FirstLeap { get; set; }
         [DataMember]
         public bool AtFinalRow { get; set; }
         [DataMember]
@@ -25,82 +24,32 @@ namespace Parlis.Server.Service.Data
         [DataMember]
         public int NumRolls { get; set; }
         [DataMember]
-        public int Poinst { get; set; }
+        public int Points { get; set; }
 
         public Coin(int colorValue)
         {
-            this.ColorTeamValue = colorValue;
-            this.IsPlaying = true;
-
-            //NORMAL
-            /*
+            ColorTeamValue = colorValue;
+            IsPlaying = true;      
             switch (ColorTeamValue)
             {
-                case 0:
-                    this.AtSlot = 37;
-                    this.ColorTeamText = "Red";
+                case Constants.RED_COIN_CODE:
+                    AtSlot = 37;
+                    ColorTeamText = "Red";
                     break;
-                case 1:
-                    this.AtSlot = 20;
-                    this.ColorTeamText = "Blue";
+                case Constants.BLUE_COIN_CODE:
+                    AtSlot = 33;
+                    ColorTeamText = "Blue";
                     break;
-                case 2:
-                    this.AtSlot = 54;
-                    this.ColorTeamText = "Green";
+                case Constants.GREEN_COIN_CODE:
+                    AtSlot = 3;
+                    ColorTeamText = "Green";
+                    FirstLeap = true;
                     break;
-                case 3:
-                    this.AtSlot = 3;
-                    this.ColorTeamText = "Yellow";
+                case Constants.YELLOW_COIN_CODE:
+                    AtSlot = 9;
+                    ColorTeamText = "Yellow";
                     break;
-            }*/
-            
-
-            /*//Prueba EatCoin 1 Casilla Normal
-            
-            switch (ColorTeamValue)
-            {
-                case 0:
-                    this.AtSlot = 37;
-                    this.ColorTeamText = "Red";
-                    break;
-                case 1:
-                    this.AtSlot = 33;
-                    this.ColorTeamText = "Blue";
-                    break;
-                case 2:
-                    this.AtSlot = 54;
-                    this.ColorTeamText = "Green";
-                    break;
-                case 3:
-                    this.AtSlot = 3;
-                    this.ColorTeamText = "Yellow";
-                    break;
-            }
-            */
-
-            //Prueba EatCoin 1 Casilla al limte & Share
-            
-            switch (ColorTeamValue)
-            {
-                case 0:
-                    this.AtSlot = 37;
-                    this.ColorTeamText = "Red";
-                    break;
-                case 1:
-                    this.AtSlot = 33;
-                    this.ColorTeamText = "Blue";
-                    break;
-                case 2:
-                    this.AtSlot = 3;
-                    this.ColorTeamText = "Green";
-                    FisrtLeap = true;
-                    break;
-                case 3:
-                    this.AtSlot = 9;
-                    this.ColorTeamText = "Yellow";
-                    break;
-            }
-            
+            }  
         }
     }
 }

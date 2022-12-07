@@ -2,7 +2,6 @@
 using Parlis.Client.Services;
 using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 using System.Windows;
@@ -13,21 +12,21 @@ namespace Parlis.Client.Views
 {
     public partial class CreateMatchWindow : Window, IMatchManagementCallback
     {
-        private static readonly int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 4;
-        private readonly TextBlock[] usernames;
         private readonly Image[] profilePictures;
+        private readonly TextBlock[] usernames;
         public readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
         private int code;
         private int numberOfPlayerProfiles;
+        private readonly BitmapImage defaultProfilePicture = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
 
         public CreateMatchWindow()
         {
             InitializeComponent();
             Utilities.PlayMusic();
-            usernames = new TextBlock[] { FirstUsernameTextBox, SecondUsernameTextBox, ThirdUsernameTextBox, FourthUsernameTextBox };
             profilePictures = new Image[] { FirstProfilePicture, SecondProfilePicture, ThirdProfilePicture, FourthProfilePicture };
+            usernames = new TextBlock[] { FirstUsernameTextBox, SecondUsernameTextBox, ThirdUsernameTextBox, FourthUsernameTextBox };
             matchManagementClient = new MatchManagementClient(new InstanceContext(this));
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
@@ -36,6 +35,7 @@ namespace Parlis.Client.Views
         {
             this.playerProfile = playerProfile;
             this.code = code;
+            CodeLabel.Content = code + ".";
             try
             {
                 if (!matchManagementClient.CheckMatchExistence(code))
@@ -51,32 +51,27 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void ConfigureData()
-        {
-            CodeLabel.Content = code + ".";
-            ExpelPlayer.IsEnabled = numberOfPlayerProfiles > 1;
-            StartMatchButton.IsEnabled = numberOfPlayerProfiles == NUMBER_OF_PLAYER_PROFILES_PER_MATCH;
-            for (int playerProfile = 0; playerProfile < NUMBER_OF_PLAYER_PROFILES_PER_MATCH; playerProfile++)
-            {
-                usernames[playerProfile].Text = "";
-                profilePictures[playerProfile].Source = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
-            }
-        }
-
         public void ReceivePlayerProfiles(string[] playerProfiles)
         {
             numberOfPlayerProfiles = playerProfiles.Length;
-            string username = playerProfile.Username;
-            if (playerProfiles.Contains(username))
+            ConfigureData();
+            ConfigurePlayerProfiles(playerProfiles);
+        }
+
+        private void ConfigureData()
+        {
+            for (int playerProfile = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH; playerProfile < Constants.NUMBER_OF_PLAYER_PROFILES_PER_MATCH; playerProfile++)
             {
-                ConfigureData();
-                ConfigurePlayerProfiles(playerProfiles);
+                usernames[playerProfile].Text = "";
+                profilePictures[playerProfile].Source = defaultProfilePicture;
             }
+            ExpelPlayer.IsEnabled = numberOfPlayerProfiles > Constants.MINIUM_OF_PLAYER_PROFILES_PER_MATCH;
+            StartMatchButton.IsEnabled = numberOfPlayerProfiles == Constants.NUMBER_OF_PLAYER_PROFILES_PER_MATCH;
         }
 
         private void ConfigurePlayerProfiles(string[] playerProfiles)
         {
-            for (int playerProfile = 0; playerProfile < numberOfPlayerProfiles; playerProfile++)
+            for (int playerProfile = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH; playerProfile < numberOfPlayerProfiles; playerProfile++)
             {
                 string username = playerProfiles[playerProfile];
                 usernames[playerProfile].Text = username;
@@ -87,7 +82,7 @@ namespace Parlis.Client.Views
                 }
                 catch (IOException)
                 {
-                    profilePictures[playerProfile].Source = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
+                    profilePictures[playerProfile].Source = defaultProfilePicture;
                 }
             }
         }
@@ -158,7 +153,16 @@ namespace Parlis.Client.Views
 
         private void StartMatchButtonClick(object sender, RoutedEventArgs e)
         {
-            matchManagementClient.SetBoards();
+            try
+            {
+                matchManagementClient.SetBoards();
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
+            playerProfileManagementClient.Close();
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
@@ -168,12 +172,14 @@ namespace Parlis.Client.Views
             try
             {
                 matchManagementClient.DisconnectFromMatch(username, code);
+                matchManagementClient.Close();
             }
             catch (EndpointNotFoundException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
+            playerProfileManagementClient.Close();
             GoToMainMenu();
         }
 
@@ -185,7 +191,7 @@ namespace Parlis.Client.Views
             mainMenuWindow.Show();
         }
 
-        public void StarMatch()
+        public void StartMatch()
         {
             var gameWindow = new GameWindow();
             gameWindow.ConfigureWindow(this, playerProfile, code);
