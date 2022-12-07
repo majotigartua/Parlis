@@ -70,12 +70,12 @@ namespace Parlis.Client.Views
 
         private void JoinMatch(string[] playerProfiles, int numberOfPlayerProfiles)
         {
-            if (numberOfPlayerProfiles > 0)
+            if (numberOfPlayerProfiles > Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH)
             {
                 string username = playerProfile.Username;
                 if (!playerProfiles.Contains(username))
                 {
-                    if (numberOfPlayerProfiles < 4)
+                    if (numberOfPlayerProfiles < Constants.NUMBER_OF_PLAYER_PROFILES_PER_MATCH)
                     {
                         GoToCreateMatch();
                     }
@@ -109,15 +109,15 @@ namespace Parlis.Client.Views
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
+            matchManagementClient.Close();
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.ConfigureWindow(playerProfile);
             Close();
             mainMenuWindow.Show();
         }
 
-        public void StarMatch()
+        public void StartMatch()
         {
-            throw new NotImplementedException();
         }
     }
 }

@@ -6,21 +6,22 @@ namespace Parlis.Server.UnitTests
 {
     public class ChatManagementTest
     {
+        private readonly BusinessLogic.Service service = new BusinessLogic.Service();
+        private readonly int code = 123456;
+        private readonly PlayerProfile playerProfile = new PlayerProfile
+        {
+            Username = "testguy"
+        };
 
         [Fact]
-        public void GetMessagesTest()
+        public void GetMessagesSuccessTest()
         {
-            int code = 123456;
-            PlayerProfile playerProfile = new PlayerProfile
-            {
-                Username = "testguy"
-            };
+            string username = playerProfile.Username;
             Message message = new Message
             {
-                PlayerProfileUsername = playerProfile.Username,
-                Content = "Ready to play?"
+                Content = "Ready to play?",
+                PlayerProfileUsername = username,
             };
-            BusinessLogic.Service service = new BusinessLogic.Service();
             service.GetMessages(code);
             service.SendMessage(code, message);
             List<Message> chat = service.GetMessages(code);

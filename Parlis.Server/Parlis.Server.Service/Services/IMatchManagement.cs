@@ -32,6 +32,6 @@ namespace Parlis.Server.Service.Services
         void ReceivePlayerProfiles(List<string> playerProfiles);
 
         [OperationContract]
-        void StarMatch();
+        void StartMatch();
     }
 }

@@ -85,6 +85,7 @@ namespace Parlis.Client.Views
             if (playerProfileManagementClient.UpdatePlayerProfile(playerProfile))
             {
                 MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
+                playerProfileManagementClient.Close();
                 Close();
             }
             else
@@ -97,6 +98,7 @@ namespace Parlis.Client.Views
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
+            playerProfileManagementClient.Close();
             Close();
         }
     }

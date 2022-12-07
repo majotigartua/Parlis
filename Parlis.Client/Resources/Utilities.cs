@@ -15,17 +15,17 @@ namespace Parlis.Client.Resources
 {
     public class Utilities
     {
-        private static readonly SoundPlayer MUSIC = new SoundPlayer(Properties.Resources.Music);
-        private static readonly SoundPlayer BUTTON_CLICK = new SoundPlayer(Properties.Resources.ButtonClick);
-        private static readonly SoundPlayer THROW_DICE = new SoundPlayer(Properties.Resources.ThrowDice);
-        private static readonly SoundPlayer MOVE_COIN = new SoundPlayer(Properties.Resources.MoveCoin);
-        private static readonly SoundPlayer EAT_COIN = new SoundPlayer(Properties.Resources.EatCoin);
-        private static readonly SoundPlayer SHARE_SLOT = new SoundPlayer(Properties.Resources.ShareSlot);
-        private static readonly SoundPlayer GO_TO_HOME_SLOT = new SoundPlayer(Properties.Resources.GoToHomeSlot);
-        private static readonly SoundPlayer COLOR_PATH = new SoundPlayer(Properties.Resources.ColorPath);
-        private static readonly SoundPlayer NEXT_TURN = new SoundPlayer(Properties.Resources.NextTurn);
-        private static readonly SoundPlayer BUMMER = new SoundPlayer(Properties.Resources.Bummer);
-        private static readonly SoundPlayer WINNER = new SoundPlayer(Properties.Resources.Winner);
+        private static readonly SoundPlayer music = new SoundPlayer(Properties.Resources.Music);
+        private static readonly SoundPlayer buttonClick = new SoundPlayer(Properties.Resources.ButtonClick);
+        private static readonly SoundPlayer throwDice = new SoundPlayer(Properties.Resources.ThrowDice);
+        private static readonly SoundPlayer moveCoin = new SoundPlayer(Properties.Resources.MoveCoin);
+        private static readonly SoundPlayer eatCoin = new SoundPlayer(Properties.Resources.EatCoin);
+        private static readonly SoundPlayer shareSlot = new SoundPlayer(Properties.Resources.ShareSlot);
+        private static readonly SoundPlayer goToHomeSlot = new SoundPlayer(Properties.Resources.GoToHomeSlot);
+        private static readonly SoundPlayer colorPath = new SoundPlayer(Properties.Resources.ColorPath);
+        private static readonly SoundPlayer nextTurn = new SoundPlayer(Properties.Resources.NextTurn);
+        private static readonly SoundPlayer bummer = new SoundPlayer(Properties.Resources.Bummer);
+        private static readonly SoundPlayer winner = new SoundPlayer(Properties.Resources.Winner);
 
         public static string ComputeSHA256Hash(string password)
         {
@@ -51,42 +51,42 @@ namespace Parlis.Client.Resources
         {
             if (ConfigurationManager.AppSettings["SOUNDS_ON"].Equals("true"))
             {
-                BUTTON_CLICK.Play();
+                buttonClick.Play();
             }
         }
 
-        public static void PlayGameplaySound(int situation) 
+        public static void PlayGameSound(int code) 
         {
             if (ConfigurationManager.AppSettings["SOUNDS_ON"].Equals("true"))
             {
-                switch (situation)
+                switch (code)
                 {
-                    case 0:
-                        THROW_DICE.Play();
+                    case Constants.THROW_DICE_CODE:
+                        throwDice.Play();
                         break;
-                    case 1:
-                        MOVE_COIN.Play();
+                    case Constants.MOVE_COIN_CODE:
+                        moveCoin.Play();
                         break;
-                    case 2:
-                        EAT_COIN.Play();
+                    case Constants.EAT_COIN_CODE:
+                        eatCoin.Play();
                         break;
-                    case 3:
-                        SHARE_SLOT.Play();
+                    case Constants.SHARE_SLOT_CODE:
+                        shareSlot.Play();
                         break;
-                    case 4:
-                        GO_TO_HOME_SLOT.Play();
+                    case Constants.GO_TO_HOME_SLOT_CODE:
+                        goToHomeSlot.Play();
                         break;
-                    case 5:
-                        COLOR_PATH.Play();
+                    case Constants.COLOR_PATH_CODE:
+                        colorPath.Play();
                         break;
-                    case 6:
-                        NEXT_TURN.Play();
+                    case Constants.NEXT_TURN_CODE:
+                        nextTurn.Play();
                         break;
-                    case 7:
-                        BUMMER.Play();
+                    case Constants.BUMMER_CODE:
+                        bummer.Play();
                         break;
-                    case 8:
-                        WINNER.Play();
+                    case Constants.WINNER_CODE:
+                        winner.Play();
                         break;
                 }
             }
@@ -94,17 +94,16 @@ namespace Parlis.Client.Resources
 
         public static void PlayMusic()
         {
-            MUSIC.Stop();
+            music.Stop();
             if (ConfigurationManager.AppSettings["MUSIC_ON"].Equals("true"))
             {
-                MUSIC.Play();
+                music.Play();
             }
         }
 
         public static void SaveProfilePicture(string username, Image profilePicture)
         {
             var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "../../ProfilePictures/" + username + ".jpg";
-            Console.WriteLine(Assembly.GetEntryAssembly().Location);
             using (var fileStream = new FileStream(profilePicturePath, FileMode.Create))
             {
                 var jpegBitmapEncoder = new JpegBitmapEncoder();

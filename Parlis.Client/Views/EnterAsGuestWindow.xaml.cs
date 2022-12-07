@@ -50,6 +50,7 @@ namespace Parlis.Client.Views
                     };
                     if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile))
                     {
+                        playerProfileManagementClient.Close();
                         loginWindow.Close();
                         GoToMainMenu(playerProfile);
                     }
@@ -84,6 +85,7 @@ namespace Parlis.Client.Views
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
+            playerProfileManagementClient.Close();
             Close();
         }
     }
