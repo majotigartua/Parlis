@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Windows;
 
 namespace Parlis.Server.Service.Services
 {
@@ -24,7 +22,7 @@ namespace Parlis.Server.Service.Services
         void GetPlayerProfiles(string username, int code);
 
         [OperationContract(IsOneWay = true)]
-        void SetBoardMatch();
+        void SetBoards();
     }
 
     [ServiceContract]
@@ -34,6 +32,6 @@ namespace Parlis.Server.Service.Services
         void ReceivePlayerProfiles(List<string> playerProfiles);
 
         [OperationContract]
-        void StarMatch();
+        void StartMatch();
     }
 }

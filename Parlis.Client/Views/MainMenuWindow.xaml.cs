@@ -8,6 +8,7 @@ namespace Parlis.Client.Views
 {
     public partial class MainMenuWindow : Window, IMatchManagementCallback
     {
+        private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private readonly MatchManagementClient matchManagementClient;
         private PlayerProfile playerProfile;
         private int code;
@@ -16,6 +17,7 @@ namespace Parlis.Client.Views
         {
             InitializeComponent();
             Utilities.PlayMusic();
+            playerProfileManagementClient = new PlayerProfileManagementClient();
             matchManagementClient = new MatchManagementClient(new InstanceContext(this));
         }
 
@@ -92,6 +94,15 @@ namespace Parlis.Client.Views
         private void PlayerProfileMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Utilities.PlayButtonClickSound();
+            bool isGuest = string.IsNullOrEmpty(playerProfile.Password);
+            if (!isGuest)
+            {
+                GoToEditPlayerProfile();
+            }
+        }
+
+        private void GoToEditPlayerProfile()
+        {
             var editPlayerProfileWindow = new EditPlayerProfileWindow();
             editPlayerProfileWindow.ConfigureWindow(playerProfile);
             Close();
@@ -101,14 +112,43 @@ namespace Parlis.Client.Views
         private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Utilities.PlayButtonClickSound();
+            bool isGuest = string.IsNullOrEmpty(playerProfile.Password);
+            if (isGuest)
+            {
+                DeletePlayerProfile();
+            }
+            playerProfileManagementClient.Close();
+            matchManagementClient.Close();
+            GoToLogin();
+        }
+
+        private void DeletePlayerProfile()
+        {
+            string username = playerProfile.Username;
+            try
+            {
+                if (!playerProfileManagementClient.DeletePlayerProfile(username))
+                {
+                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                        Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
+                }
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
+        }
+
+        private void GoToLogin()
+        {
             var loginWindow = new LoginWindow();
             Close();
             loginWindow.Show();
         }
 
-        public void StarMatch()
+        public void StartMatch()
         {
-            throw new System.NotImplementedException();
         }
     }
 }

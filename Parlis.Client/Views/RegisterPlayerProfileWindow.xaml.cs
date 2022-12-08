@@ -95,10 +95,10 @@ namespace Parlis.Client.Views
                 var password = Utilities.ComputeSHA256Hash(PasswordBox.Password.ToString());
                 if (RegisterPlayerProfile(username, password) && RegisterPlayer(emailAddress))
                 {
-                    playerProfileManagementClient.Close();
                     Utilities.SaveProfilePicture(username, ProfilePicture);
                     MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
                 }
+                playerProfileManagementClient.Close();
                 Close();
             }
             else
@@ -110,7 +110,8 @@ namespace Parlis.Client.Views
         }
 
         private bool RegisterPlayerProfile(string username, string password)
-        { 
+        {
+            var isRegistered = false;
             playerProfile = new PlayerProfile
             {
                 Username = username,
@@ -119,18 +120,19 @@ namespace Parlis.Client.Views
             };
             if (playerProfileManagementClient.RegisterPlayerProfile(playerProfile))
             {
-                return true;
+                isRegistered = true;
             }
             else
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
-                return false;
             }
+            return isRegistered;
         }
 
         private bool RegisterPlayer(string emailAddress)
         {
+            var isRegistered = false;
             var player = new Player
             {
                 EmailAddress = emailAddress,
@@ -141,14 +143,14 @@ namespace Parlis.Client.Views
             };
             if (playerProfileManagementClient.RegisterPlayer(player))
             {
-                return true;
+                isRegistered = true;
             }
             else
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
-                return false;
             }
+            return isRegistered;
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)

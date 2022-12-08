@@ -84,8 +84,8 @@ namespace Parlis.Client.Views
             playerProfile.Password = password;
             if (playerProfileManagementClient.UpdatePlayerProfile(playerProfile))
             {
-                playerProfileManagementClient.Close();
                 MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_WINDOW_TITLE);
+                playerProfileManagementClient.Close();
                 Close();
             }
             else

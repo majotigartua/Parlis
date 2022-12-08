@@ -26,14 +26,13 @@ namespace Parlis.Server.Service.Data
             return Equals(obj as Player);
         }
 
-        public bool Equals(Player other)
+        public bool Equals(Player player)
         {
-            return ((other != null) &&
-               (EmailAddress == other.EmailAddress) &&
-               (Name == other.Name) &&
-               (PaternalSurname == other.PaternalSurname) &&
-               (MaternalSurname == other.MaternalSurname))
-               ? true : false;
+            return player != null &&
+               EmailAddress == player.EmailAddress &&
+               Name == player.Name &&
+               PaternalSurname == player.PaternalSurname &&
+               MaternalSurname == player.MaternalSurname;
         }
 
         public override int GetHashCode()
