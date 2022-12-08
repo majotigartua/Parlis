@@ -52,7 +52,7 @@ namespace Parlis.Client.Views
             {
                 try
                 {
-                    if (int.Parse(CodeTextBox.Text).Equals(code) && Utilities.ValidatePasswordFormat(password))
+                    if (int.Parse(CodeTextBox.Text).Equals(code) && Utilities.ValidatePasswordFormat(password) && Utilities.ValidateTextLengthOverflowed(password, Constants.MAXIUM_PASSWORD_LENGTH))
                     {
                         password = Utilities.ComputeSHA256Hash(password);
                         UpdatePlayerProfile(password);

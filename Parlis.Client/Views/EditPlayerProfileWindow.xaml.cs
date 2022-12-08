@@ -64,13 +64,13 @@ namespace Parlis.Client.Views
                 var password = PasswordBox.Password.ToString();
                 try
                 {
-                    if (string.IsNullOrEmpty(password) && !ValidatePlayerFieldLengthOverflowed())
+                    if (string.IsNullOrEmpty(password))
                     {
                         UpdatePlayer();
                     }
                     else
                     {
-                        if (Utilities.ValidatePasswordFormat(password) && !Utilities.ValidateTextLengthOverflowed(256, password) && !ValidatePlayerFieldLengthOverflowed())
+                        if (Utilities.ValidatePasswordFormat(password) && !ValidateTextLengthOverflowed())
                         {
                             password = Utilities.ComputeSHA256Hash(password);
                             UpdatePlayerProfile(password);
@@ -101,6 +101,14 @@ namespace Parlis.Client.Views
             return string.IsNullOrEmpty(NameTextBox.Text) ||
                 string.IsNullOrEmpty(PaternalSurnameTextBox.Text) ||
                 string.IsNullOrEmpty(MaternalSurnameTextBox.Text);
+        }
+
+        private bool ValidateTextLengthOverflowed()
+        {
+            return Utilities.ValidateTextLengthOverflowed(NameTextBox.Text, Constants.MAXIUM_NORMAL_TEXTS_LENGTH) ||
+                Utilities.ValidateTextLengthOverflowed(PaternalSurnameTextBox.Text, Constants.MAXIUM_NORMAL_TEXTS_LENGTH) ||
+                Utilities.ValidateTextLengthOverflowed(MaternalSurnameTextBox.Text, Constants.MAXIUM_NORMAL_TEXTS_LENGTH) ||
+                Utilities.ValidateTextLengthOverflowed(PasswordBox.Password.ToString(), Constants.MAXIUM_PASSWORD_LENGTH);
         }
 
         private void UpdatePlayerProfile(string password)
@@ -193,13 +201,6 @@ namespace Parlis.Client.Views
             Utilities.PlayButtonClickSound();
             playerProfileManagementClient.Close();
             GoToMainMenu();
-        }
-
-        private bool ValidatePlayerFieldLengthOverflowed()
-        {
-            return Utilities.ValidateTextLengthOverflowed(50, NameTextBox.Text) ||
-                Utilities.ValidateTextLengthOverflowed(50, PaternalSurnameTextBox.Text) ||
-                Utilities.ValidateTextLengthOverflowed(50, MaternalSurnameTextBox.Text);
         }
     }
 }

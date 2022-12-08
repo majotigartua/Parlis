@@ -46,7 +46,7 @@ namespace Parlis.Client.Views
             try
             {
                 var playerProfile = playerProfileManagementClient.Login(username, password);
-                if (playerProfile != null && !ValidateFieldLengthOverflowed(username, password))
+                if (playerProfile != null && !ValidateTextLengthOverflowed())
                 {
                     playerProfileManagementClient.Close();
                     GoToMainMenu(playerProfile);
@@ -64,6 +64,12 @@ namespace Parlis.Client.Views
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
                 Close();
             }
+        }
+
+        private bool ValidateTextLengthOverflowed()
+        {
+            return Utilities.ValidateTextLengthOverflowed(UsernameTextBox.Text, Constants.MAXIUM_USERNAME_LENGTH) ||
+                Utilities.ValidateTextLengthOverflowed(PasswordBox.Password.ToString(), Constants.MAXIUM_PASSWORD_LENGTH);
         }
 
         private void GoToMainMenu(PlayerProfile playerProfile)
@@ -87,12 +93,6 @@ namespace Parlis.Client.Views
             Utilities.PlayButtonClickSound();
             var registerPlayerProfileWindow = new RegisterPlayerProfileWindow();
             registerPlayerProfileWindow.ShowDialog();
-        }
-
-        private bool ValidateFieldLengthOverflowed(string username, string password)
-        {
-            return Utilities.ValidateTextLengthOverflowed(15, username) ||
-                Utilities.ValidateTextLengthOverflowed(256, password);
         }
     }
 }

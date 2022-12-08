@@ -4,6 +4,11 @@ namespace Parlis.Client.Resources
 {
     public class Constants
     {
+        public const int MAXIUM_USERNAME_LENGTH = 15;
+        public const int MAXIUM_NORMAL_TEXTS_LENGTH = 50;
+        public const int MAXIUM_EMAIL_ADDRESS_LENGTH = 100;
+        public const int MAXIUM_PASSWORD_LENGTH = 256;
+
         public const int NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH = 0;
         public const int MINIUM_OF_PLAYER_PROFILES_PER_MATCH = 1;
         public const int NUMBER_OF_PLAYER_PROFILES_PER_MATCH = 4;
@@ -23,6 +28,7 @@ namespace Parlis.Client.Resources
         public static Point[] BluePathSlots = {new Point(48, 195), new Point(48, 185), new Point(48, 175), new Point(48, 165), new Point(48, 155), new Point(48, 145), new Point(48, 135), };
         public static Point[] GreenPathSlots = {new Point(48, 16), new Point(48, 26), new Point(48, 36), new Point(48, 45.8), new Point(48, 56), new Point(48, 66), new Point(48, 75), };
         public static Point[] YellowPathSlots = {new Point(89.8, 105.5), new Point(85, 105.5), new Point(80.3, 105.5), new Point(75.8, 105.5), new Point(71, 105.5), new Point(66.3, 105.5), new Point(61.8, 105.5), };
+
         public static int[] InitialSlots = { 37, 20, 54, 3 };
         public static int[] SafeSlots = { 4, 11, 16, 21, 28, 33, 38, 45, 50, 55, 62, 67 };
         public static int[] InitialColorPathSlot = { 33, 16, 50, 67 };
