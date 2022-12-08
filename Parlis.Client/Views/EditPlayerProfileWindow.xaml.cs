@@ -64,13 +64,13 @@ namespace Parlis.Client.Views
                 var password = PasswordBox.Password.ToString();
                 try
                 {
-                    if (string.IsNullOrEmpty(password))
+                    if (string.IsNullOrEmpty(password) && !ValidatePlayerFieldLengthOverflowed())
                     {
                         UpdatePlayer();
                     }
                     else
                     {
-                        if (Utilities.ValidatePasswordFormat(password))
+                        if (Utilities.ValidatePasswordFormat(password) && !Utilities.ValidateTextLengthOverflowed(256, password) && !ValidatePlayerFieldLengthOverflowed())
                         {
                             password = Utilities.ComputeSHA256Hash(password);
                             UpdatePlayerProfile(password);
@@ -101,6 +101,13 @@ namespace Parlis.Client.Views
             return string.IsNullOrEmpty(NameTextBox.Text) ||
                 string.IsNullOrEmpty(PaternalSurnameTextBox.Text) ||
                 string.IsNullOrEmpty(MaternalSurnameTextBox.Text);
+        }
+
+        private bool ValidatePlayerFieldLengthOverflowed()
+        {
+            return Utilities.ValidateTextLengthOverflowed(50, NameTextBox.Text) ||
+                Utilities.ValidateTextLengthOverflowed(50, PaternalSurnameTextBox.Text) ||
+                Utilities.ValidateTextLengthOverflowed(50, MaternalSurnameTextBox.Text);
         }
 
         private void UpdatePlayerProfile(string password)

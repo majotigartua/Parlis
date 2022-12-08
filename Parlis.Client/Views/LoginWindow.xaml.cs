@@ -41,12 +41,18 @@ namespace Parlis.Client.Views
             }
         }
 
+        private bool ValidateFieldLengthOverflowed(string username, string password)
+        {
+            return Utilities.ValidateTextLengthOverflowed(15, username) || 
+                Utilities.ValidateTextLengthOverflowed(256, password);
+        }
+
         private void Login(string username, string password)
         {
             try
             {
                 var playerProfile = playerProfileManagementClient.Login(username, password);
-                if (playerProfile != null)
+                if (playerProfile != null && !ValidateFieldLengthOverflowed(username, password))
                 {
                     playerProfileManagementClient.Close();
                     GoToMainMenu(playerProfile);

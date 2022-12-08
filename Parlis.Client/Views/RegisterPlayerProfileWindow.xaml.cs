@@ -42,7 +42,7 @@ namespace Parlis.Client.Views
             {
                 var password = PasswordBox.Password.ToString();
                 var emailAddress = EmailAddressTextBox.Text;
-                if (Utilities.ValidatePasswordFormat(password) && Utilities.ValidateEmailAddressFormat(emailAddress))
+                if (Utilities.ValidatePasswordFormat(password) && Utilities.ValidateEmailAddressFormat(emailAddress) && !ValidateFieldLengthOverflowed())
                 {
                     var username = UsernameTextBox.Text.Replace(" ", "").ToLower();
                     try
@@ -76,6 +76,16 @@ namespace Parlis.Client.Views
                 string.IsNullOrEmpty(UsernameTextBox.Text) ||
                 string.IsNullOrEmpty(EmailAddressTextBox.Text) ||
                 string.IsNullOrEmpty(PasswordBox.Password.ToString());
+        }
+
+        private bool ValidateFieldLengthOverflowed()
+        {
+            return Utilities.ValidateTextLengthOverflowed(50, NameTextBox.Text) ||
+                Utilities.ValidateTextLengthOverflowed(50, PaternalSurnameTextBox.Text) ||
+                Utilities.ValidateTextLengthOverflowed(50, MaternalSurnameTextBox.Text) ||
+                Utilities.ValidateTextLengthOverflowed(15, UsernameTextBox.Text) ||
+                Utilities.ValidateTextLengthOverflowed(100, EmailAddressTextBox.Text) ||
+                Utilities.ValidateTextLengthOverflowed(256, PasswordBox.Password.ToString());
         }
 
         private void CheckPlayerExistence(string username, string emailAddress)

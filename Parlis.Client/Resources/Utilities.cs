@@ -146,5 +146,14 @@ namespace Parlis.Client.Resources
                 hasUpperLetter.IsMatch(password) &&
                 hasMiniumEightDigits.IsMatch(password));
         }
+
+        public static bool ValidateTextLengthOverflowed(int lenght, string text)
+        {
+            if(text.Length > lenght)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

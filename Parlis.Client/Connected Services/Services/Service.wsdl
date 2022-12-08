@@ -780,7 +780,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/ChatManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>HUAWEID14\sebtr</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -789,7 +789,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/MatchManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>HUAWEID14\sebtr</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -798,7 +798,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/PlayerProfileManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>HUAWEID14\sebtr</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -807,7 +807,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/GameManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>HUAWEID14\sebtr</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
