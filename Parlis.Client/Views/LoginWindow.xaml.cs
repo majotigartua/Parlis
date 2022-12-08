@@ -78,6 +78,7 @@ namespace Parlis.Client.Views
         {
             Utilities.PlayButtonClickSound();
             var enterAsGuestWindow =  new EnterAsGuestWindow();
+            enterAsGuestWindow.ConfigureView(this);
             enterAsGuestWindow.ShowDialog();
         }
 

@@ -97,7 +97,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SetBoardMatch">
+  <xs:element name="SetBoards">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -114,12 +114,12 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="StarMatch">
+  <xs:element name="StartMatch">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="StarMatchResponse">
+  <xs:element name="StartMatchResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -296,38 +296,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetCoinsForBoard">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="code" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ThrowDice">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetNextTurn">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetCoinToMove">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="turnPlayer" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="LeaveMatch">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="ConnectToBoard">
     <xs:complexType>
       <xs:sequence>
@@ -348,18 +316,62 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="RegisterMatchResult">
+  <xs:element name="GetCoinsByBoard">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="playerProfile" nillable="true" type="q11:PlayerProfile" />
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="code" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="RegisterMatchResultResponse">
+  <xs:element name="LeaveMatch">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="RegisterMatchResultResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetCoinToMove">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="turn" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNextTurn">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThrowDice">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterMatch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Parlis.Server.Service.Data" minOccurs="0" name="match" nillable="true" type="q11:Match" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterMatchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterMatchResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MoveInNormalPath">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="turnPlayer" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MoveInNormalPathResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceiveCoinsForBoard">
@@ -386,36 +398,24 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ShowNextTurn">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ShowNextTurnResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="MoveInNormalPath">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="turnPlayer" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="MoveInNormalPathResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ShowDisconectedPlayer">
+  <xs:element name="ShowDisconnectedPlayer">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ShowDisconectedPlayerResponse">
+  <xs:element name="ShowDisconnectedPlayerResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShowNextTurn">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShowNextTurnResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

@@ -8,36 +8,46 @@ namespace Parlis.Server.Service.Services
     public interface IGameManagement
     {
         [OperationContract(IsOneWay = true)]
-        void GetCoinsForBoard(string username, int code);
-        [OperationContract(IsOneWay = true)]
-        void ThrowDice();
-        [OperationContract(IsOneWay = true)]
-        void SetNextTurn();
-        [OperationContract(IsOneWay = true)]
-        void SetCoinToMove(int turnPlayer);
-        [OperationContract(IsOneWay = true)]
-        void LeaveMatch(string username);
-        [OperationContract(IsOneWay = true)]
         void ConnectToBoard(string username, int code);
+
         [OperationContract]
         void DisconnectFromBoard(string username);
+
+        [OperationContract(IsOneWay = true)]
+        void GetCoinsByBoard(string username, int code);
+
+        [OperationContract(IsOneWay = true)]
+        void LeaveMatch(string username);
+
+        [OperationContract(IsOneWay = true)]
+        void SetCoinToMove(int turn);
+
+        [OperationContract(IsOneWay = true)]
+        void SetNextTurn();
+
+        [OperationContract(IsOneWay = true)]
+        void ThrowDice();
+
         [OperationContract]
-        bool RegisterMatchResult(PlayerProfile playerProfile);
+        bool RegisterMatch(Match match);
     }
 
     [ServiceContract]
     public interface IGameManagementCallback
     {
         [OperationContract]
+        void MoveInNormalPath(int turnPlayer);
+
+        [OperationContract]
         void ReceiveCoinsForBoard(List<Coin> coins);
+
         [OperationContract]
         void ShowDiceResult(int diceResult);
+
+        [OperationContract]
+        void ShowDisconnectedPlayer(string username);
+
         [OperationContract]
         void ShowNextTurn();
-        [OperationContract]
-        void MoveInNormalPath(int turnPlayer);
-        [OperationContract]
-        void ShowDisconectedPlayer(string username);
-
     }
 }

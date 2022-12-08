@@ -166,8 +166,8 @@
   <wsdl:message name="IMatchManagement_GetPlayerProfiles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerProfiles" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_SetBoardMatch_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetBoardMatch" />
+  <wsdl:message name="IMatchManagement_SetBoards_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetBoards" />
   </wsdl:message>
   <wsdl:message name="IMatchManagement_ReceivePlayerProfiles_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceivePlayerProfiles" />
@@ -175,11 +175,11 @@
   <wsdl:message name="IMatchManagement_ReceivePlayerProfiles_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceivePlayerProfilesResponse" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_StarMatch_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:StarMatch" />
+  <wsdl:message name="IMatchManagement_StartMatch_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:StartMatch" />
   </wsdl:message>
-  <wsdl:message name="IMatchManagement_StarMatch_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:StarMatchResponse" />
+  <wsdl:message name="IMatchManagement_StartMatch_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:StartMatchResponse" />
   </wsdl:message>
   <wsdl:message name="IPlayerProfileManagement_CheckPlayerExistence_InputMessage">
     <wsdl:part name="parameters" element="tns:CheckPlayerExistence" />
@@ -253,21 +253,6 @@
   <wsdl:message name="IPlayerProfileManagement_UpdatePlayerProfile_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdatePlayerProfileResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameManagement_GetCoinsForBoard_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetCoinsForBoard" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_ThrowDice_InputMessage">
-    <wsdl:part name="parameters" element="tns:ThrowDice" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_SetNextTurn_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetNextTurn" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_SetCoinToMove_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetCoinToMove" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_LeaveMatch_InputMessage">
-    <wsdl:part name="parameters" element="tns:LeaveMatch" />
-  </wsdl:message>
   <wsdl:message name="IGameManagement_ConnectToBoard_InputMessage">
     <wsdl:part name="parameters" element="tns:ConnectToBoard" />
   </wsdl:message>
@@ -277,11 +262,32 @@
   <wsdl:message name="IGameManagement_DisconnectFromBoard_OutputMessage">
     <wsdl:part name="parameters" element="tns:DisconnectFromBoardResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameManagement_RegisterMatchResult_InputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterMatchResult" />
+  <wsdl:message name="IGameManagement_GetCoinsByBoard_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoinsByBoard" />
   </wsdl:message>
-  <wsdl:message name="IGameManagement_RegisterMatchResult_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterMatchResultResponse" />
+  <wsdl:message name="IGameManagement_LeaveMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeaveMatch" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_SetCoinToMove_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetCoinToMove" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_SetNextTurn_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNextTurn" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_ThrowDice_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThrowDice" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_RegisterMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterMatch" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_RegisterMatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterMatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_MoveInNormalPath_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MoveInNormalPath" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_MoveInNormalPath_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MoveInNormalPathResponse" />
   </wsdl:message>
   <wsdl:message name="IGameManagement_ReceiveCoinsForBoard_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveCoinsForBoard" />
@@ -295,23 +301,17 @@
   <wsdl:message name="IGameManagement_ShowDiceResult_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ShowDiceResultResponse" />
   </wsdl:message>
+  <wsdl:message name="IGameManagement_ShowDisconnectedPlayer_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ShowDisconnectedPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_ShowDisconnectedPlayer_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ShowDisconnectedPlayerResponse" />
+  </wsdl:message>
   <wsdl:message name="IGameManagement_ShowNextTurn_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ShowNextTurn" />
   </wsdl:message>
   <wsdl:message name="IGameManagement_ShowNextTurn_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ShowNextTurnResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_MoveInNormalPath_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:MoveInNormalPath" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_MoveInNormalPath_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:MoveInNormalPathResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_ShowDisconectedPlayer_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ShowDisconectedPlayer" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_ShowDisconectedPlayer_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ShowDisconectedPlayerResponse" />
   </wsdl:message>
   <wsdl:portType name="IChatManagement">
     <wsdl:operation name="ConnectToChat">
@@ -348,16 +348,16 @@
     <wsdl:operation name="GetPlayerProfiles">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles" message="tns:IMatchManagement_GetPlayerProfiles_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SetBoardMatch">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/SetBoardMatch" message="tns:IMatchManagement_SetBoardMatch_InputMessage" />
+    <wsdl:operation name="SetBoards">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/SetBoards" message="tns:IMatchManagement_SetBoards_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReceivePlayerProfiles">
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/ReceivePlayerProfiles" message="tns:IMatchManagement_ReceivePlayerProfiles_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/ReceivePlayerProfilesResponse" message="tns:IMatchManagement_ReceivePlayerProfiles_InputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="StarMatch">
-      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/StarMatch" message="tns:IMatchManagement_StarMatch_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/StarMatchResponse" message="tns:IMatchManagement_StarMatch_InputCallbackMessage" />
+    <wsdl:operation name="StartMatch">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchManagement/StartMatch" message="tns:IMatchManagement_StartMatch_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchManagement/StartMatchResponse" message="tns:IMatchManagement_StartMatch_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IPlayerProfileManagement">
@@ -411,21 +411,6 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IGameManagement">
-    <wsdl:operation name="GetCoinsForBoard">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetCoinsForBoard" message="tns:IGameManagement_GetCoinsForBoard_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ThrowDice">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/ThrowDice" message="tns:IGameManagement_ThrowDice_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetNextTurn">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SetNextTurn" message="tns:IGameManagement_SetNextTurn_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetCoinToMove">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SetCoinToMove" message="tns:IGameManagement_SetCoinToMove_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="LeaveMatch">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/LeaveMatch" message="tns:IGameManagement_LeaveMatch_InputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="ConnectToBoard">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/ConnectToBoard" message="tns:IGameManagement_ConnectToBoard_InputMessage" />
     </wsdl:operation>
@@ -433,9 +418,28 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/DisconnectFromBoard" message="tns:IGameManagement_DisconnectFromBoard_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/DisconnectFromBoardResponse" message="tns:IGameManagement_DisconnectFromBoard_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="RegisterMatchResult">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/RegisterMatchResult" message="tns:IGameManagement_RegisterMatchResult_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/RegisterMatchResultResponse" message="tns:IGameManagement_RegisterMatchResult_OutputMessage" />
+    <wsdl:operation name="GetCoinsByBoard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetCoinsByBoard" message="tns:IGameManagement_GetCoinsByBoard_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeaveMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/LeaveMatch" message="tns:IGameManagement_LeaveMatch_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCoinToMove">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SetCoinToMove" message="tns:IGameManagement_SetCoinToMove_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNextTurn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SetNextTurn" message="tns:IGameManagement_SetNextTurn_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThrowDice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/ThrowDice" message="tns:IGameManagement_ThrowDice_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/RegisterMatch" message="tns:IGameManagement_RegisterMatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/RegisterMatchResponse" message="tns:IGameManagement_RegisterMatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveInNormalPath">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/MoveInNormalPath" message="tns:IGameManagement_MoveInNormalPath_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/MoveInNormalPathResponse" message="tns:IGameManagement_MoveInNormalPath_InputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReceiveCoinsForBoard">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ReceiveCoinsForBoard" message="tns:IGameManagement_ReceiveCoinsForBoard_OutputCallbackMessage" />
@@ -445,17 +449,13 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ShowDiceResult" message="tns:IGameManagement_ShowDiceResult_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/ShowDiceResultResponse" message="tns:IGameManagement_ShowDiceResult_InputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ShowDisconnectedPlayer">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ShowDisconnectedPlayer" message="tns:IGameManagement_ShowDisconnectedPlayer_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/ShowDisconnectedPlayerResponse" message="tns:IGameManagement_ShowDisconnectedPlayer_InputCallbackMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ShowNextTurn">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ShowNextTurn" message="tns:IGameManagement_ShowNextTurn_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/ShowNextTurnResponse" message="tns:IGameManagement_ShowNextTurn_InputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="MoveInNormalPath">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/MoveInNormalPath" message="tns:IGameManagement_MoveInNormalPath_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/MoveInNormalPathResponse" message="tns:IGameManagement_MoveInNormalPath_InputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ShowDisconectedPlayer">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ShowDisconectedPlayer" message="tns:IGameManagement_ShowDisconectedPlayer_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/ShowDisconectedPlayerResponse" message="tns:IGameManagement_ShowDisconectedPlayer_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IChatManagement" type="tns:IChatManagement">
@@ -534,8 +534,8 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="SetBoardMatch">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/SetBoardMatch" style="document" />
+    <wsdl:operation name="SetBoards">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/SetBoards" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -549,8 +549,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="StarMatch">
-      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/StarMatch" style="document" />
+    <wsdl:operation name="StartMatch">
+      <soap12:operation soapAction="http://tempuri.org/IMatchManagement/StartMatch" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -674,36 +674,6 @@
   <wsdl:binding name="NetTcpBinding_IGameManagement" type="tns:IGameManagement">
     <wsp:PolicyReference URI="#NetTcpBinding_IGameManagement_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="GetCoinsForBoard">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetCoinsForBoard" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="ThrowDice">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/ThrowDice" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="SetNextTurn">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SetNextTurn" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="SetCoinToMove">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SetCoinToMove" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="LeaveMatch">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/LeaveMatch" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
     <wsdl:operation name="ConnectToBoard">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/ConnectToBoard" style="document" />
       <wsdl:input>
@@ -719,8 +689,47 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RegisterMatchResult">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/RegisterMatchResult" style="document" />
+    <wsdl:operation name="GetCoinsByBoard">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetCoinsByBoard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="LeaveMatch">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/LeaveMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SetCoinToMove">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SetCoinToMove" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SetNextTurn">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SetNextTurn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ThrowDice">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/ThrowDice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterMatch">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/RegisterMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveInNormalPath">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/MoveInNormalPath" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -746,26 +755,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ShowDisconnectedPlayer">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/ShowDisconnectedPlayer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ShowNextTurn">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/ShowNextTurn" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="MoveInNormalPath">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/MoveInNormalPath" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ShowDisconectedPlayer">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/ShowDisconectedPlayer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -780,7 +780,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/ChatManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -789,7 +789,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/MatchManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -798,7 +798,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/PlayerProfileManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -807,7 +807,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/GameManagement</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-NSUUH5M\Propietario</Upn>
+          <Upn>DESKTOP-6EK866S\majotigartua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

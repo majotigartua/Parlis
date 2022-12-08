@@ -26,7 +26,7 @@ namespace Parlis.Client.Views
                 {
                     if (playerProfileManagementClient.CheckPlayerExistence(emailAddress))
                     {
-                        var playerProfile = playerProfileManagementClient.GetPlayerProfile(emailAddress);
+                        PlayerProfile playerProfile = playerProfileManagementClient.GetPlayerProfile(emailAddress);
                         playerProfileManagementClient.Close();
                         GoToRecoverPassword(playerProfile);
                     }

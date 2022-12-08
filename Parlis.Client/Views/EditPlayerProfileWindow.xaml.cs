@@ -142,9 +142,11 @@ namespace Parlis.Client.Views
         private void DeletePlayerProfileClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
+            string emailAddress = player.EmailAddress;
+            string username = playerProfile.Username;
             try
             {
-                if (playerProfileManagementClient.DeletePlayer(player.EmailAddress) && playerProfileManagementClient.DeletePlayerProfile(playerProfile.Username))
+                if (playerProfileManagementClient.DeletePlayer(emailAddress) && playerProfileManagementClient.DeletePlayerProfile(username))
                 {
                     playerProfileManagementClient.Close();
                     GoToLogin();
