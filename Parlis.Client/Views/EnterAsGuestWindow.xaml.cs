@@ -28,7 +28,15 @@ namespace Parlis.Client.Views
             var username = UsernameTextBox.Text;
             if (!string.IsNullOrEmpty(username))
             {
-                RegisterPlayerProfile(username);
+                if (!Utilities.ValidateTextLengthOverflowed(username, Constants.MAXIUM_USERNAME_LENGTH))
+                {
+                    RegisterPlayerProfile(username);
+                }
+                else
+                {
+                    MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
+                        Properties.Resources.INVALID_DATA_WINDOW_TITLE);
+                }
             }
             else
             {

@@ -125,15 +125,17 @@ namespace Parlis.Client.Resources
 
         public static bool ValidateEmailAddressFormat(string emailAddress)
         {
+            bool isValid;
             try
             {
                 var mailAddress = new MailAddress(emailAddress);
-                return true;
+                isValid = true;
             }
             catch (FormatException)
             {
-                return false;
+                isValid = false;
             }
+            return isValid;
         }
 
         public static bool ValidatePasswordFormat(string password)
@@ -141,18 +143,14 @@ namespace Parlis.Client.Resources
             var hasUpperLetter = new Regex(@"[A-Z]+");
             var hasNumber = new Regex(@"[0-9]+");
             var hasMiniumEightDigits = new Regex(@".{8,}");
-            return (hasNumber.IsMatch(password) &&
+            return hasNumber.IsMatch(password) &&
                 hasUpperLetter.IsMatch(password) &&
-                hasMiniumEightDigits.IsMatch(password));
+                hasMiniumEightDigits.IsMatch(password);
         }
 
-        public static bool ValidateTextLengthOverflowed(int lenght, string text)
+        public static bool ValidateTextLengthOverflowed(string text, int length)
         {
-            if (text.Length > lenght)
-            {
-                return true;
-            }
-            return false;
+            return text.Length > length;
         }
     }
 }
