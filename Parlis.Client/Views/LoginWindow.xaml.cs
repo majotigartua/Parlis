@@ -46,7 +46,7 @@ namespace Parlis.Client.Views
             try
             {
                 var playerProfile = playerProfileManagementClient.Login(username, password);
-                if (playerProfile != null)
+                if (playerProfile != null && !ValidateFieldLengthOverflowed(username, password))
                 {
                     playerProfileManagementClient.Close();
                     GoToMainMenu(playerProfile);
@@ -77,7 +77,7 @@ namespace Parlis.Client.Views
         private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
-            var enterAsGuestWindow =  new EnterAsGuestWindow();
+            var enterAsGuestWindow = new EnterAsGuestWindow();
             enterAsGuestWindow.ConfigureView(this);
             enterAsGuestWindow.ShowDialog();
         }
@@ -87,6 +87,12 @@ namespace Parlis.Client.Views
             Utilities.PlayButtonClickSound();
             var registerPlayerProfileWindow = new RegisterPlayerProfileWindow();
             registerPlayerProfileWindow.ShowDialog();
+        }
+
+        private bool ValidateFieldLengthOverflowed(string username, string password)
+        {
+            return Utilities.ValidateTextLengthOverflowed(15, username) ||
+                Utilities.ValidateTextLengthOverflowed(256, password);
         }
     }
 }

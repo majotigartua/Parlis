@@ -55,7 +55,7 @@ namespace Parlis.Client.Resources
             }
         }
 
-        public static void PlayGameSound(int code) 
+        public static void PlayGameSound(int code)
         {
             if (ConfigurationManager.AppSettings["SOUNDS_ON"].Equals("true"))
             {
@@ -107,7 +107,7 @@ namespace Parlis.Client.Resources
             using (var fileStream = new FileStream(profilePicturePath, FileMode.Create))
             {
                 var jpegBitmapEncoder = new JpegBitmapEncoder();
-                jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource) profilePicture.Source));
+                jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)profilePicture.Source));
                 jpegBitmapEncoder.Save(fileStream);
             }
         }
@@ -144,6 +144,15 @@ namespace Parlis.Client.Resources
             return (hasNumber.IsMatch(password) &&
                 hasUpperLetter.IsMatch(password) &&
                 hasMiniumEightDigits.IsMatch(password));
+        }
+
+        public static bool ValidateTextLengthOverflowed(int lenght, string text)
+        {
+            if (text.Length > lenght)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
