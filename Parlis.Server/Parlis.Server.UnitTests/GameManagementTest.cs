@@ -23,7 +23,6 @@ namespace Parlis.Server.UnitTests
         [Fact]
         public void RegisterMatchSuccessTest()
         {
-
             bool isRegistered = service.RegisterMatch(match);
             Assert.True(isRegistered);
         }

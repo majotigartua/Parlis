@@ -6,8 +6,6 @@ namespace Parlis.Server.Service.Data
     public class Coin
     {
         [DataMember]
-        public string PlayerProfileUsername { get; set; }
-        [DataMember]
         public int ColorTeamValue { get; set; }
         [DataMember]
         public string ColorTeamText { get; set; }
@@ -25,6 +23,8 @@ namespace Parlis.Server.Service.Data
         public int NumRolls { get; set; }
         [DataMember]
         public int Points { get; set; }
+        [DataMember]
+        public string PlayerProfileUsername { get; set; }
 
         public Coin(int colorValue)
         {
