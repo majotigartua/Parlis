@@ -24,7 +24,9 @@ namespace Parlis.Server.UnitTests
         [Fact]
         public void CheckPlayerExistenceFailedTest()
         {
-            bool isRegistered = service.CheckPlayerExistence(null);
+            player.EmailAddress = "testplayer@gmail.com";
+            string emailAddress = player.EmailAddress;
+            bool isRegistered = service.CheckPlayerExistence(emailAddress);
             Assert.False(isRegistered);
         }
 
@@ -39,7 +41,9 @@ namespace Parlis.Server.UnitTests
         [Fact]
         public void CheckPlayerProfileExistenceFailedTest()
         {
-            bool isRegistered = service.CheckPlayerProfileExistence(null);
+            playerProfile.Username = "guytest";
+            string username = playerProfile.Username;
+            bool isRegistered = service.CheckPlayerProfileExistence(username);
             Assert.False(isRegistered);
         }
 
@@ -54,7 +58,9 @@ namespace Parlis.Server.UnitTests
         [Fact]
         public void DeletePlayerFailedTest()
         {
-            bool isDeleted = service.DeletePlayer(null);
+            player.EmailAddress = "testplayer@gmail.com";
+            string emailAddress = player.EmailAddress;
+            bool isDeleted = service.DeletePlayer(emailAddress);
             Assert.False(isDeleted);
         }
 
@@ -69,7 +75,9 @@ namespace Parlis.Server.UnitTests
         [Fact]
         public void DeletePlayerProfileFailedTest()
         {
-            bool isDeleted = service.DeletePlayerProfile(null);
+            playerProfile.Username = "guytest";
+            string username = playerProfile.Username;
+            bool isDeleted = service.DeletePlayerProfile(username);
             Assert.False(isDeleted);
         }
 
@@ -84,53 +92,61 @@ namespace Parlis.Server.UnitTests
         [Fact]
         public void GetPlayerFailedTest()
         {
-            Player player = service.GetPlayer(null);
-            Assert.False(this.player.Equals(player));
+            player.EmailAddress = "testplayer@gmail.com";
+            string emailAddress = player.EmailAddress;
+            Player playerTest = service.GetPlayer(emailAddress);
+            Assert.False(player.Equals(playerTest));
         }
 
         [Fact]
         public void GetPlayerSuccessTest()
         {
             string username = playerProfile.Username;
-            Player player = service.GetPlayer(username);
-            Assert.True(this.player.Equals(player));
+            Player playerTest = service.GetPlayer(username);
+            Assert.True(player.Equals(playerTest));
         }
 
         [Fact]
         public void GetPlayerProfileFailedTest()
         {
-            PlayerProfile playerProfile = service.GetPlayerProfile(null);
-            Assert.False(this.playerProfile.Equals(playerProfile));
+            playerProfile.Username = "guytest";
+            string username = playerProfile.Username;
+            PlayerProfile playerProfileTest = service.GetPlayerProfile(username);
+            Assert.False(playerProfile.Equals(playerProfileTest));
         }
 
         [Fact]
         public void GetPlayerProfileSuccessTest()
         {
             string emailAddress = player.EmailAddress;
-            PlayerProfile playerProfile = service.GetPlayerProfile(emailAddress);
-            Assert.True(this.playerProfile.Equals(playerProfile));
+            PlayerProfile playerProfileTest = service.GetPlayerProfile(emailAddress);
+            Assert.True(playerProfile.Equals(playerProfileTest));
         }
 
         [Fact]
         public void LoginFailedTest()
         {
-            PlayerProfile playerProfile = service.Login(null, null);
-            Assert.False(this.playerProfile.Equals(playerProfile));
+            playerProfile.Username = "guytest";
+            string username = playerProfile.Username;
+            string password = playerProfile.Password;
+            PlayerProfile playerProfileTest = service.Login(username, password);
+            Assert.False(playerProfile.Equals(playerProfileTest));
         }
 
         [Fact]
         public void LoginSuccessTest()
         {
-            string username = this.playerProfile.Username;
-            string password = this.playerProfile.Password;
-            PlayerProfile playerProfile = service.Login(username, password);
-            Assert.True(this.playerProfile.Equals(playerProfile));
+            string username = playerProfile.Username;
+            string password = playerProfile.Password;
+            PlayerProfile playerProfileTest = service.Login(username, password);
+            Assert.True(playerProfile.Equals(playerProfileTest));
         }
 
         [Fact]
         public void RegisterPlayerFailedTest()
         {
-            bool isRegistered = service.RegisterPlayer(null);
+            player.EmailAddress = null;
+            bool isRegistered = service.RegisterPlayer(player);
             Assert.False(isRegistered);
         }
 
@@ -144,7 +160,8 @@ namespace Parlis.Server.UnitTests
         [Fact]
         public void RegisterPlayerProfileFailedTest()
         {
-            bool isRegistered = service.RegisterPlayerProfile(null);
+            playerProfile.Username = null;
+            bool isRegistered = service.RegisterPlayerProfile(playerProfile);
             Assert.False(isRegistered);
         }
 
@@ -158,13 +175,15 @@ namespace Parlis.Server.UnitTests
         [Fact]
         public void UpdatePlayerFailedTest()
         {
-            bool isUpdated = service.UpdatePlayer(null);
+            player.EmailAddress = "testplayer@gmail.com";
+            bool isUpdated = service.UpdatePlayer(player);
             Assert.False(isUpdated);
         }
 
         [Fact]
         public void UpdatePlayerSuccessTest()
         {
+            player.EmailAddress = "testplayer@outlook.com";
             bool isUpdated = service.UpdatePlayer(player);
             Assert.True(isUpdated);
         }
@@ -172,7 +191,8 @@ namespace Parlis.Server.UnitTests
         [Fact]
         public void UpdatePlayerProfileFailedTest()
         {
-            bool isUpdated = service.UpdatePlayerProfile(null);
+            playerProfile.Username = "guytest";
+            bool isUpdated = service.UpdatePlayerProfile(playerProfile);
             Assert.False(isUpdated);
         }
 
