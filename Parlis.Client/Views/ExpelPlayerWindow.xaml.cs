@@ -54,15 +54,8 @@ namespace Parlis.Client.Views
             var username = UsernameComboBox.SelectedItem as string;
             if (!string.IsNullOrEmpty(username))
             {
-                try
-                {
-                    matchManagementClient.Close();
-                }
-                catch (EndpointNotFoundException)
-                {
-                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                        Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
-                }
+                createMatchWindow.expeledPlayerUSername = username;
+                Close();
             }
             else
             {
@@ -80,6 +73,11 @@ namespace Parlis.Client.Views
 
         public void StartMatch()
         {
+        }
+
+        public void ExpelPlayerFromMatch(string ExpeledPlayerUSername)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

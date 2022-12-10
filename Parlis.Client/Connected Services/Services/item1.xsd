@@ -102,6 +102,13 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="SelectPlayerToExpel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExpeledPlayerUSername" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ReceivePlayerProfiles">
     <xs:complexType>
       <xs:sequence>
@@ -110,6 +117,18 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceivePlayerProfilesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExpelPlayerFromMatch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExpeledPlayerUSername" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExpelPlayerFromMatchResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

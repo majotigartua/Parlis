@@ -648,6 +648,12 @@ namespace Parlis.Client.Services {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SetBoards")]
         System.Threading.Tasks.Task SetBoardsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SelectPlayerToExpel")]
+        void SelectPlayerToExpel(string ExpeledPlayerUSername);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SelectPlayerToExpel")]
+        System.Threading.Tasks.Task SelectPlayerToExpelAsync(string ExpeledPlayerUSername);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -655,6 +661,9 @@ namespace Parlis.Client.Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/ReceivePlayerProfiles", ReplyAction="http://tempuri.org/IMatchManagement/ReceivePlayerProfilesResponse")]
         void ReceivePlayerProfiles(string[] playerProfiles);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/ExpelPlayerFromMatch", ReplyAction="http://tempuri.org/IMatchManagement/ExpelPlayerFromMatchResponse")]
+        void ExpelPlayerFromMatch(string ExpeledPlayerUSername);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/StartMatch", ReplyAction="http://tempuri.org/IMatchManagement/StartMatchResponse")]
         void StartMatch();
@@ -734,6 +743,14 @@ namespace Parlis.Client.Services {
         
         public System.Threading.Tasks.Task SetBoardsAsync() {
             return base.Channel.SetBoardsAsync();
+        }
+        
+        public void SelectPlayerToExpel(string ExpeledPlayerUSername) {
+            base.Channel.SelectPlayerToExpel(ExpeledPlayerUSername);
+        }
+        
+        public System.Threading.Tasks.Task SelectPlayerToExpelAsync(string ExpeledPlayerUSername) {
+            return base.Channel.SelectPlayerToExpelAsync(ExpeledPlayerUSername);
         }
     }
     

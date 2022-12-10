@@ -149,40 +149,6 @@ namespace Parlis.Client.Views
             int colorValueTeam = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
             this.reRoll = false;
             coinsPlaying.ElementAt(turnPlayer).NumRolls++;
-
-            #region test values
-            //TEST ReRoll & HomeSlots
-            //diceValue = 6;
-            //TEST ReRoll adn HomeSlots
-
-            //TEST IsFinalColorPathStarted
-            //diceValue = 5;
-            //TEST IsFinalColorPathStarted 
-
-            //TEST EatCoin 1 Casilla Normal al limite & Share
-            switch (colorValueTeam)
-            {
-                case 0:
-                    diceValue = 2;
-                    break;
-                case 1:
-                    diceValue = 4;
-                    break;
-                case 2:
-                    diceValue = 4;
-                    break;
-                case 3:
-                    //Para la 1er prueba y 2nd
-                    //diceValue = 5;
-
-                    //Para la 3er
-                    diceValue = 1;
-                    break;
-            }
-            //TEST EatCoin 1 Casilla Normal
-
-            #endregion
-
             if (eatCoin)
             {
                 diceValue = 20;
@@ -251,8 +217,6 @@ namespace Parlis.Client.Views
             if (!finishGame)
             {
                 Utilities.PlayGameSound(Constants.NEXT_TURN_CODE);
-                Console.WriteLine("1- ShowNextTurn turnCoin=" + turnCoin + " colorTeamValue=" + colorTeamValue);
-                Console.WriteLine("1.1- IsPlaying=" + (coinsPlaying.ElementAt(turnCoin).IsPlaying));
                 while (!coinsPlaying.ElementAt(turnCoin).IsPlaying)
                 {
                     turnCoin++;
@@ -263,7 +227,6 @@ namespace Parlis.Client.Views
                         Console.WriteLine("1.3- IsPlaying-turnCoin=" + turnCoin + " colorTeamValue=" + colorTeamValue);
                     }
                 }
-                Console.WriteLine("1.4- turnCoin=" + turnCoin);
                 if (this.playerProfile.Username == coinsPlaying.ElementAt(turnCoin).PlayerProfileUsername)
                 {
                     this.FirstDice.IsEnabled = true;
@@ -484,17 +447,15 @@ namespace Parlis.Client.Views
         public void ShowDisconnectedPlayer(string disconectedPlayerUsername)
         {
             int coinAt = coinsPlaying.FindIndex(x => x.PlayerProfileUsername == disconectedPlayerUsername);
+            int colorTeamValue = coinsPlaying.ElementAt(coinAt).ColorTeamValue;
             GoToHomeSlot(coinAt);
             coinsPlaying.ElementAt(coinAt).IsPlaying = false;
-            profilePictures[coinAt].Source = new BitmapImage(new Uri("/Resources/Images/DisconectedPlayer.png", UriKind.Relative));
-            usernames[coinAt].Text = "";
+            profilePictures[colorTeamValue].Source = new BitmapImage(new Uri("/Resources/Images/DisconectedPlayer.png", UriKind.Relative));
+            usernames[colorTeamValue].Text = "";
             if (turnCoin == coinAt) {
+                turnCoin++;
                 gameManagementClient.SetNextTurn();
             }
-           /* if (coinsPlaying.LongCount(x => x.IsPlaying == false) == 4)
-            { 
-            
-            }*/
         }
 
         public void WinnerPlayer()
