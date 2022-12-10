@@ -1,6 +1,7 @@
 ﻿using Parlis.Server.Service.Data;
 using System.Collections.Generic;
 using System.ServiceModel;
+///SEMA******************************************
 
 namespace Parlis.Server.Service.Services
 {

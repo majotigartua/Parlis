@@ -17,6 +17,7 @@ namespace Parlis.Client.Views
         public readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
+        public string expeledPlayerUSername;
         private int code;
         private int numberOfPlayerProfiles;
         private readonly BitmapImage defaultProfilePicture = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
@@ -92,7 +93,12 @@ namespace Parlis.Client.Views
             var expelPlayerWindow = new ExpelPlayerWindow();
             string username = playerProfile.Username;
             expelPlayerWindow.ConfigureWindow(this, username, code);
-            expelPlayerWindow.Show();
+            expelPlayerWindow.ShowDialog();
+            if (expeledPlayerUSername != null)
+            {
+                matchManagementClient.SelectPlayerToExpel(expeledPlayerUSername);
+
+            }            
         }
 
         private void MessageBalloonMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -167,19 +173,17 @@ namespace Parlis.Client.Views
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+
             Utilities.PlayButtonClickSound();
-            string username = playerProfile.Username;
             try
             {
-                matchManagementClient.DisconnectFromMatch(username, code);
-                matchManagementClient.Close();
+                matchManagementClient.DisconnectFromMatch(this.playerProfile.Username, code);
             }
             catch (EndpointNotFoundException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
-            playerProfileManagementClient.Close();
             GoToMainMenu();
         }
 
@@ -189,6 +193,15 @@ namespace Parlis.Client.Views
             mainMenuWindow.ConfigureWindow(playerProfile);
             Close();
             mainMenuWindow.Show();
+        }
+
+        public void ExpelPlayerFromMatch(string ExpeledPlayerUSername)
+        {
+            if (this.playerProfile.Username == ExpeledPlayerUSername)
+            {
+                GoToMainMenu();
+            }
+            else { expeledPlayerUSername = null; }
         }
 
         public void StartMatch()

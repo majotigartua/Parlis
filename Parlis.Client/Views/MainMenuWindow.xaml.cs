@@ -150,5 +150,10 @@ namespace Parlis.Client.Views
         public void StartMatch()
         {
         }
+
+        public void ExpelPlayerFromMatch(string ExpeledPlayerUSername)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

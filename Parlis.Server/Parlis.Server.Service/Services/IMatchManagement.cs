@@ -23,6 +23,8 @@ namespace Parlis.Server.Service.Services
 
         [OperationContract(IsOneWay = true)]
         void SetBoards();
+        [OperationContract(IsOneWay = true)]
+        void SelectPlayerToExpel(string ExpeledPlayerUSername);
     }
 
     [ServiceContract]
@@ -30,6 +32,8 @@ namespace Parlis.Server.Service.Services
     {
         [OperationContract]
         void ReceivePlayerProfiles(List<string> playerProfiles);
+        [OperationContract]
+        void ExpelPlayerFromMatch(string ExpeledPlayerUSername);
 
         [OperationContract]
         void StartMatch();

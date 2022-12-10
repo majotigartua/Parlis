@@ -37,16 +37,15 @@ namespace Parlis.Server.Service.Data
                     ColorTeamText = "Red";
                     break;
                 case Constants.BLUE_COIN_CODE:
-                    AtSlot = 33;
+                    AtSlot = 20;
                     ColorTeamText = "Blue";
                     break;
                 case Constants.GREEN_COIN_CODE:
-                    AtSlot = 3;
+                    AtSlot = 54;
                     ColorTeamText = "Green";
-                    FirstLeap = true;
                     break;
                 case Constants.YELLOW_COIN_CODE:
-                    AtSlot = 9;
+                    AtSlot = 3;
                     ColorTeamText = "Yellow";
                     break;
             }  

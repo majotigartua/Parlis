@@ -207,6 +207,17 @@ namespace Parlis.Server.BusinessLogic
             return isRegistered;
         }
 
+        public void SelectPlayerToExpel(string ExpeledPlayerUSername)
+        {
+            int codeExpelPlayer;
+            if (playerProfiles.ContainsKey(ExpeledPlayerUSername))
+            {
+                playerProfiles[ExpeledPlayerUSername].ExpelPlayerFromMatch(ExpeledPlayerUSername);
+                codeExpelPlayer = playerProfilesByMatch[ExpeledPlayerUSername];
+                DisconnectFromMatch(ExpeledPlayerUSername, codeExpelPlayer);
+            }
+        }
+
         public bool SendMail(string username, string title, string message, int code)
         {
             bool isSent;
@@ -421,11 +432,11 @@ namespace Parlis.Server.BusinessLogic
 
         public void DisconnectFromBoard(string username)
         {
-            playerProfilesByMatch.Remove(username);
-            playerProfilesByBoard.Remove(username);
-            playerProfiles.Remove(username);
-            chats.Remove(username);
             boards.Remove(username);
+            playerProfilesByBoard.Remove(username);
+            chats.Remove(username);
+            playerProfilesByMatch.Remove(username);
+            playerProfiles.Remove(username);
             LeaveMatch(username);
         }
 
@@ -453,7 +464,7 @@ namespace Parlis.Server.BusinessLogic
                 string playerProfileUsername = playerProfile.Key;
                 if (playerProfiles.ContainsKey(playerProfileUsername))
                 {
-                    boards[playerProfileUsername].ShowDisconnectedPlayer(playerProfileUsername);
+                    boards[playerProfileUsername].ShowDisconnectedPlayer(username);
                 }
             }
         }
@@ -546,11 +557,12 @@ namespace Parlis.Server.BusinessLogic
             {
                 int randomPlayer = random.Next(players.Count);
                 int randomColorTeamValue = random.Next(ColorTeamValues.Count);
-                Coin coin = new Coin(ColorTeamValues[turn])
+                Coin coin = new Coin(ColorTeamValues[randomColorTeamValue])
                 {
                     PlayerProfileUsername = players.ElementAt(randomPlayer)
                 };
                 players.RemoveAt(randomPlayer);
+                ColorTeamValues.RemoveAt(randomColorTeamValue);
                 coins.Add(coin);
             }
         }
