@@ -55,7 +55,7 @@ namespace Parlis.Client.Views
                 }
                 matchManagementClient.ConnectToMatch(playerProfile.Username, code);
             }
-            catch (EndpointNotFoundException)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
@@ -131,7 +131,7 @@ namespace Parlis.Client.Views
             {
                 matchManagementClient.DisconnectFromMatch(username, code);
             }
-            catch (EndpointNotFoundException)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
@@ -146,7 +146,16 @@ namespace Parlis.Client.Views
             expelPlayerWindow.ShowDialog();
             if (!string.IsNullOrEmpty(expeledPlayerProfile))
             {
-                matchManagementClient.ExpelPlayerProfile(expeledPlayerProfile);
+                try
+                {
+                    matchManagementClient.ExpelPlayerProfile(expeledPlayerProfile);
+                }
+                catch (CommunicationException)
+                {
+                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                        Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                    GoToMainMenu();
+                }
             }            
         }
 
@@ -178,10 +187,11 @@ namespace Parlis.Client.Views
                     }
                     UsernameTextBox.Clear();
                 }
-                catch (EndpointNotFoundException)
+                catch (CommunicationException)
                 {
                     MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                         Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                    GoToMainMenu();
                 }
             }
             else
@@ -212,10 +222,11 @@ namespace Parlis.Client.Views
             {
                 matchManagementClient.SetBoards();
             }
-            catch (EndpointNotFoundException)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                GoToMainMenu();
             }
             playerProfileManagementClient.Close();
         }

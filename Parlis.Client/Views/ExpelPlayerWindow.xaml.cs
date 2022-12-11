@@ -26,7 +26,7 @@ namespace Parlis.Client.Views
             {
                 matchManagementClient.GetPlayerProfiles(username, code);
             }
-            catch (EndpointNotFoundException)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);

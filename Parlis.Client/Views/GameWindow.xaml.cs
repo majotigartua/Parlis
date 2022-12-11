@@ -97,10 +97,11 @@ namespace Parlis.Client.Views
             {
                 gameManagementClient.ConnectToBoard(playerProfile.Username, code);
             }
-            catch (EndpointNotFoundException)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                GoToMainMenu();
             }
         }
 
@@ -134,7 +135,15 @@ namespace Parlis.Client.Views
                 {
                     FocusedDice.Source = new BitmapImage(new Uri("/Resources/Images/FocusedDice.png", UriKind.Relative));
                     FirstDice.IsEnabled = true;
-                    gameManagementClient.SetNextTurn();
+                    try
+                    {
+                        gameManagementClient.SetNextTurn();
+                    }
+                    catch (CommunicationException)
+                    {
+                        MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                            Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                    }
                 }
                 else
                 {
@@ -176,7 +185,16 @@ namespace Parlis.Client.Views
                     turnCoin = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
                 }
                 reRoll = false;
-                gameManagementClient.SetNextTurn();
+                try
+                {
+                    gameManagementClient.SetNextTurn();
+                }
+                catch (CommunicationException)
+                {
+                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                        Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                    GoToMainMenu();
+                }
             }
         }
 
@@ -272,7 +290,16 @@ namespace Parlis.Client.Views
                 }
                 else
                 {
-                    gameManagementClient.SetCoinToMove(playerProfileTurn);
+                    try
+                    {
+                        gameManagementClient.SetCoinToMove(playerProfileTurn);
+                    }
+                    catch (CommunicationException)
+                    {
+                        MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                            Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                        GoToMainMenu();
+                    }
                 }
             }
         }
@@ -467,7 +494,16 @@ namespace Parlis.Client.Views
             if (turnCoin.Equals(coinAt))
             {
                 turnCoin++;
-                gameManagementClient.SetNextTurn();
+                try
+                {
+                    gameManagementClient.SetNextTurn();
+                }
+                catch (CommunicationException)
+                {
+                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                        Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                    GoToMainMenu();
+                }
             }
             coinsPlaying.ElementAt(coinAt).IsPlaying = false;
             GoToHomeSlot(coinAt);
@@ -528,7 +564,7 @@ namespace Parlis.Client.Views
                 RegisterMatch(username);
                 gameManagementClient.DisconnectFromBoard(username);
             }
-            catch (EndpointNotFoundException)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
@@ -575,7 +611,16 @@ namespace Parlis.Client.Views
                 Utilities.PlayGameSound(Constants.THROW_DICE_CODE);
                 Utilities.PlayGameSound(Constants.MOVE_COIN_CODE);
                 Utilities.PlayGameSound(Constants.NEXT_TURN_CODE);
-                gameManagementClient.ThrowDice();
+                try
+                {
+                    gameManagementClient.ThrowDice();
+                }
+                catch (CommunicationException)
+                {
+                    MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                        Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                    GoToMainMenu();
+                }
             }
             else
             {

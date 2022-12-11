@@ -68,7 +68,6 @@ C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\bin\Debu
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\bin\Debug\Parlis.Server.Service.pdb
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\bin\Debug\EntityFramework.xml
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\bin\Debug\Microsoft.Bcl.HashCode.xml
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\obj\Debug\Parlis.Server.BusinessLogic.csproj.AssemblyReference.cache
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\obj\Debug\Parlis.Server.BusinessLogic.csproj.CoreCompileInputs.cache
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.BusinessLogic\obj\Debug\Parlis.Server.BusinessLogic.csproj.CopyComplete

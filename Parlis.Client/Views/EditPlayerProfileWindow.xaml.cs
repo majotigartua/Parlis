@@ -45,7 +45,7 @@ namespace Parlis.Client.Views
                 UsernameTextBox.Text = username;
                 ProfilePicture.Source = new BitmapImage(new Uri(profilePicturePath));
             }
-            catch (EndpointNotFoundException)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
@@ -83,7 +83,7 @@ namespace Parlis.Client.Views
                         }
                     }
                 }
-                catch (EndpointNotFoundException)
+                catch (CommunicationException)
                 {
                     MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                         Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
@@ -163,7 +163,7 @@ namespace Parlis.Client.Views
                 confirmPlayerProfileWindow.ConfigureWindow(playerProfile);
                 confirmPlayerProfileWindow.ShowDialog();
             }
-            catch (TimeoutException)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
@@ -189,7 +189,7 @@ namespace Parlis.Client.Views
                         Properties.Resources.NO_DATABASE_CONNECTION_WINDOW_TITLE);
                 }
             }
-            catch (EndpointNotFoundException)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);

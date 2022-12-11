@@ -25,10 +25,11 @@ namespace Parlis.Client.Views
             {
                 chatManagementClient.ConnectToChat(username, code);
             }
-            catch (EndpointNotFoundException)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                Close();
             }
         }
 
@@ -56,11 +57,11 @@ namespace Parlis.Client.Views
                 {
                     chatManagementClient.SendMessage(code, message);
                 }
-                catch
-                (EndpointNotFoundException)
+                catch (CommunicationException)
                 {
                     MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                         Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+                    Close();
                 }           
             }
             else
@@ -72,7 +73,15 @@ namespace Parlis.Client.Views
 
         private void SendRealTimeMessageWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            chatManagementClient.DisconnectFromChat(username);
+            try
+            {
+                chatManagementClient.DisconnectFromChat(username);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
         }
     }
 }
