@@ -13,7 +13,6 @@ C:\Users\majot\Desktop\Copia\Parlis.Server\Parlis.Server.Service\obj\Debug\Parli
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.dll
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Parlis.Server.Service.pdb
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Microsoft.Bcl.HashCode.dll
-C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\bin\Debug\Microsoft.Bcl.HashCode.xml
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.AssemblyReference.cache
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.CoreCompileInputs.cache
 C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\Parlis.Server.Service.csproj.CopyComplete

@@ -1,0 +1,13 @@
+c
+ZC:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\Constants.csutf-8c
+ZC:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\Data\Coin.csutf-8d
+[C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\Data\Match.csutf-8f
+]C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\Data\Message.csutf-8e
+\C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\Data\Player.csutf-8l
+cC:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\Data\PlayerProfile.csutf-8r
+iC:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\Services\IChatManagement.csutf-8r
+iC:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\Services\IGameManagement.csutf-8s
+jC:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\Services\IMatchManagement.csutf-8{
+rC:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\Services\IPlayerProfileManagement.csutf-8q
+hC:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\Properties\AssemblyInfo.csutf-8–
+ŠC:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.csutf-8
