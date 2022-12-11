@@ -637,6 +637,12 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/DisconnectFromMatch", ReplyAction="http://tempuri.org/IMatchManagement/DisconnectFromMatchResponse")]
         System.Threading.Tasks.Task DisconnectFromMatchAsync(string username, int code);
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/ExpelPlayerProfile")]
+        void ExpelPlayerProfile(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/ExpelPlayerProfile")]
+        System.Threading.Tasks.Task ExpelPlayerProfileAsync(string username);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/GetPlayerProfiles")]
         void GetPlayerProfiles(string username, int code);
         
@@ -648,22 +654,16 @@ namespace Parlis.Client.Services {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SetBoards")]
         System.Threading.Tasks.Task SetBoardsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SelectPlayerToExpel")]
-        void SelectPlayerToExpel(string ExpeledPlayerUSername);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMatchManagement/SelectPlayerToExpel")]
-        System.Threading.Tasks.Task SelectPlayerToExpelAsync(string ExpeledPlayerUSername);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IMatchManagementCallback {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/ExpelPlayerProfileFromMatch", ReplyAction="http://tempuri.org/IMatchManagement/ExpelPlayerProfileFromMatchResponse")]
+        void ExpelPlayerProfileFromMatch(string username);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/ReceivePlayerProfiles", ReplyAction="http://tempuri.org/IMatchManagement/ReceivePlayerProfilesResponse")]
         void ReceivePlayerProfiles(string[] playerProfiles);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/ExpelPlayerFromMatch", ReplyAction="http://tempuri.org/IMatchManagement/ExpelPlayerFromMatchResponse")]
-        void ExpelPlayerFromMatch(string ExpeledPlayerUSername);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchManagement/StartMatch", ReplyAction="http://tempuri.org/IMatchManagement/StartMatchResponse")]
         void StartMatch();
@@ -729,6 +729,14 @@ namespace Parlis.Client.Services {
             return base.Channel.DisconnectFromMatchAsync(username, code);
         }
         
+        public void ExpelPlayerProfile(string username) {
+            base.Channel.ExpelPlayerProfile(username);
+        }
+        
+        public System.Threading.Tasks.Task ExpelPlayerProfileAsync(string username) {
+            return base.Channel.ExpelPlayerProfileAsync(username);
+        }
+        
         public void GetPlayerProfiles(string username, int code) {
             base.Channel.GetPlayerProfiles(username, code);
         }
@@ -743,14 +751,6 @@ namespace Parlis.Client.Services {
         
         public System.Threading.Tasks.Task SetBoardsAsync() {
             return base.Channel.SetBoardsAsync();
-        }
-        
-        public void SelectPlayerToExpel(string ExpeledPlayerUSername) {
-            base.Channel.SelectPlayerToExpel(ExpeledPlayerUSername);
-        }
-        
-        public System.Threading.Tasks.Task SelectPlayerToExpelAsync(string ExpeledPlayerUSername) {
-            return base.Channel.SelectPlayerToExpelAsync(ExpeledPlayerUSername);
         }
     }
     
@@ -1020,8 +1020,8 @@ namespace Parlis.Client.Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ShowDiceResult", ReplyAction="http://tempuri.org/IGameManagement/ShowDiceResultResponse")]
         void ShowDiceResult(int diceResult);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ShowDisconnectedPlayer", ReplyAction="http://tempuri.org/IGameManagement/ShowDisconnectedPlayerResponse")]
-        void ShowDisconnectedPlayer(string username);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ShowDisconnectedPlayerProfile", ReplyAction="http://tempuri.org/IGameManagement/ShowDisconnectedPlayerProfileResponse")]
+        void ShowDisconnectedPlayerProfile(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/ShowNextTurn", ReplyAction="http://tempuri.org/IGameManagement/ShowNextTurnResponse")]
         void ShowNextTurn();

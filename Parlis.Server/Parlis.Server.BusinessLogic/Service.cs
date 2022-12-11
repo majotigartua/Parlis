@@ -1,4 +1,6 @@
-﻿using Parlis.Server.DataAccess;
+﻿using Match = Parlis.Server.Service.Data.Match;
+using Parlis.Server.Service.Data;
+using Parlis.Server.DataAccess;
 using Parlis.Server.Service.Services;
 using Player = Parlis.Server.Service.Data.Player;
 using PlayerProfile = Parlis.Server.Service.Data.PlayerProfile;
@@ -9,8 +11,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.ServiceModel;
-using Parlis.Server.Service.Data;
-using Match = Parlis.Server.Service.Data.Match;
 
 namespace Parlis.Server.BusinessLogic
 {
@@ -207,17 +207,6 @@ namespace Parlis.Server.BusinessLogic
             return isRegistered;
         }
 
-        public void SelectPlayerToExpel(string ExpeledPlayerUSername)
-        {
-            int codeExpelPlayer;
-            if (playerProfiles.ContainsKey(ExpeledPlayerUSername))
-            {
-                playerProfiles[ExpeledPlayerUSername].ExpelPlayerFromMatch(ExpeledPlayerUSername);
-                codeExpelPlayer = playerProfilesByMatch[ExpeledPlayerUSername];
-                DisconnectFromMatch(ExpeledPlayerUSername, codeExpelPlayer);
-            }
-        }
-
         public bool SendMail(string username, string title, string message, int code)
         {
             bool isSent;
@@ -395,15 +384,13 @@ namespace Parlis.Server.BusinessLogic
                 .ToList();
         }
 
-        public void SetBoards()
+        public void ExpelPlayerProfile(string username)
         {
-            foreach (var playerProfile in playerProfiles)
+            if (playerProfiles.ContainsKey(username))
             {
-                string username = playerProfile.Key;
-                if (playerProfiles.ContainsKey(username))
-                {
-                    playerProfiles[username].StartMatch();
-                }
+                playerProfiles[username].ExpelPlayerProfileFromMatch(username);
+                int code = playerProfilesByMatch[username];
+                DisconnectFromMatch(username, code);
             }
         }
 
@@ -423,7 +410,7 @@ namespace Parlis.Server.BusinessLogic
         {
             boards.Add(username, OperationContext.Current.GetCallbackChannel<IGameManagementCallback>());
             playerProfilesByBoard.Add(username, code);
-            if (playerProfilesByBoard.Count == Constants.NUMBER_OF_PLAYER_PROFILES_PER_MATCH)
+            if (playerProfilesByBoard.Count.Equals(Constants.NUMBER_OF_PLAYER_PROFILES_PER_MATCH))
             {
                 SetTurns();
                 SetPlayerToPlay();
@@ -432,10 +419,10 @@ namespace Parlis.Server.BusinessLogic
 
         public void DisconnectFromBoard(string username)
         {
-            boards.Remove(username);
             playerProfilesByBoard.Remove(username);
-            chats.Remove(username);
             playerProfilesByMatch.Remove(username);
+            boards.Remove(username);
+            chats.Remove(username);
             playerProfiles.Remove(username);
             LeaveMatch(username);
         }
@@ -464,33 +451,21 @@ namespace Parlis.Server.BusinessLogic
                 string playerProfileUsername = playerProfile.Key;
                 if (playerProfiles.ContainsKey(playerProfileUsername))
                 {
-                    boards[playerProfileUsername].ShowDisconnectedPlayer(username);
+                    boards[playerProfileUsername].ShowDisconnectedPlayerProfile(username);
                 }
             }
         }
 
-        public bool RegisterMatch(Match match)
+        public void SetBoards()
         {
-            bool isRegistered;
-            using (ParlisContext context = new ParlisContext())
+            foreach (var playerProfile in playerProfiles)
             {
-                try
+                string username = playerProfile.Key;
+                if (playerProfiles.ContainsKey(username))
                 {
-                    var matches = new DataAccess.Match
-                    {
-                        Date = match.Date,
-                        PlayerProfileUsername = match.PlayerProfileUsername,
-                    };
-                    context.Matches.Add(matches);
-                    context.SaveChanges();
-                    isRegistered = true;
-                }
-                catch (Exception)
-                {
-                    isRegistered = false;
+                    playerProfiles[username].StartMatch();
                 }
             }
-            return isRegistered;
         }
 
         public void SetCoinsByBoard(int code)
@@ -530,6 +505,30 @@ namespace Parlis.Server.BusinessLogic
             }
         }
 
+        public bool RegisterMatch(Match match)
+        {
+            bool isRegistered;
+            using (ParlisContext context = new ParlisContext())
+            {
+                try
+                {
+                    var matches = new DataAccess.Match
+                    {
+                        Date = match.Date,
+                        PlayerProfileUsername = match.PlayerProfileUsername,
+                    };
+                    context.Matches.Add(matches);
+                    context.SaveChanges();
+                    isRegistered = true;
+                }
+                catch (Exception)
+                {
+                    isRegistered = false;
+                }
+            }
+            return isRegistered;
+        }
+
         public void SetPlayerToPlay()
         {
             lock (playerProfilesByBoard)
@@ -537,40 +536,36 @@ namespace Parlis.Server.BusinessLogic
                 foreach (var playerProfile in playerProfilesByBoard)
                 {
                     SetCoinsByBoard(playerProfile.Value);
-
                 }
             }
         }
 
         public void SetTurns()
         {
-            Random random = new Random();
-            List<string> players = playerProfilesByBoard.Keys.ToList();
-            List<int> ColorTeamValues = new List<int>
-            {
+            List<int> colorTeamValues = new List<int> {
                 0,
                 1,
                 2,
                 3
             };
+            List<string> playerProfiles = playerProfilesByBoard.Keys.ToList();
             for (int turn = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH; turn < playerProfilesByBoard.Count; turn++)
             {
-                int randomPlayer = random.Next(players.Count);
-                int randomColorTeamValue = random.Next(ColorTeamValues.Count);
-                Coin coin = new Coin(ColorTeamValues[randomColorTeamValue])
+                int randomColorTeamValue = Constants.Random.Next(colorTeamValues.Count);
+                int randomPlayer = Constants.Random.Next(playerProfiles.Count);
+                Coin coin = new Coin(colorTeamValues[randomColorTeamValue])
                 {
-                    PlayerProfileUsername = players.ElementAt(randomPlayer)
+                    PlayerProfileUsername = playerProfiles.ElementAt(randomPlayer)
                 };
-                players.RemoveAt(randomPlayer);
-                ColorTeamValues.RemoveAt(randomColorTeamValue);
+                colorTeamValues.RemoveAt(randomColorTeamValue);
+                playerProfiles.RemoveAt(randomPlayer);
                 coins.Add(coin);
             }
         }
 
         public void ThrowDice()
         {
-            Random random = new Random();
-            int diceResult = random.Next(1, 7);
+            int diceResult = Constants.Random.Next(1, 7);
             foreach (var playerProfile in boards)
             {
                 string username = playerProfile.Key;

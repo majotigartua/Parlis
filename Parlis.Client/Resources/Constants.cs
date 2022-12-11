@@ -23,15 +23,87 @@ namespace Parlis.Client.Resources
         public const int BUMMER_CODE = 7;
         public const int WINNER_CODE = 8;
 
-        public static Point[] HomeSlotCordinates = { new Point(25, 35), new Point(25, 175), new Point(90, 35), new Point(90, 175) };
-        public static Point[] RedPathSlots = { new Point(6.3, 105.6), new Point(11, 105.6), new Point(15.8, 105.6), new Point(20.3, 105.6), new Point(25, 105.6), new Point(29.8, 105.6), new Point(34.3, 105.6), };
-        public static Point[] BluePathSlots = {new Point(48, 195), new Point(48, 185), new Point(48, 175), new Point(48, 165), new Point(48, 155), new Point(48, 145), new Point(48, 135), };
-        public static Point[] GreenPathSlots = {new Point(48, 16), new Point(48, 26), new Point(48, 36), new Point(48, 45.8), new Point(48, 56), new Point(48, 66), new Point(48, 75), };
-        public static Point[] YellowPathSlots = {new Point(89.8, 105.5), new Point(85, 105.5), new Point(80.3, 105.5), new Point(75.8, 105.5), new Point(71, 105.5), new Point(66.3, 105.5), new Point(61.8, 105.5), };
+        public const int RED_COIN_CODE = 0;
+        public const int BLUE_COIN_CODE = 1;
+        public const int GREEN_COIN_CODE = 2;
+        public const int YELLOW_COIN_CODE = 3;
 
-        public static int[] InitialSlots = { 37, 20, 54, 3 };
-        public static int[] SafeSlots = { 4, 11, 16, 21, 28, 33, 38, 45, 50, 55, 62, 67 };
-        public static int[] InitialColorPathSlot = { 33, 16, 50, 67 };
+        public const int NUMBER_OF_TURN_PER_INVADED_PLAYER = -1;
+        public const int MAXIUM_REROLLS_PER_PLAYER_PROFILE = 3;
+        public const int NUMBER_OF_DICE_RESULT_TO_REROLL = 6;
+        public const int FINAL_DICE_VALUE = 7;
+        public const int MAXIUM_SLOTS_AT_FINAL_ROW = 7;
+        public const int NUMBER_OF_SLOTS_PER_EATED_COIN = 20;
+        public const int NUMBER_OF_POINTS_AT_FINAL_ROW = 64;
+        public const int MAXIUM_SLOTS_PER_LEAP = 67;
+
+
+        public static int[] InitialSlots = { 
+            37, 
+            20, 
+            54, 
+            3 
+        };
+        public static int[] SafeSlots = {
+            4, 
+            11, 
+            16, 
+            21, 
+            28, 
+            33, 
+            38, 
+            45, 
+            50, 
+            55, 
+            62, 
+            67 
+        };
+        public static int[] InitialColorPathSlot = {
+            33, 
+            16, 
+            50, 
+            67 
+        };
+
+        public static Point[] HomeSlotCordinates = { 
+            new Point(25, 35), 
+            new Point(25, 175),
+            new Point(90, 35), 
+            new Point(90, 175) 
+        };
+        public static Point[] RedPathSlots = {
+            new Point(6.3, 105.6),
+            new Point(11, 105.6), 
+            new Point(15.8, 105.6), 
+            new Point(20.3, 105.6), 
+            new Point(25, 105.6), 
+            new Point(29.8, 105.6), 
+            new Point(34.3, 105.6), 
+        };
+        public static Point[] BluePathSlots = { 
+            new Point(48, 195),
+            new Point(48, 185),
+            new Point(48, 175),
+            new Point(48, 165), 
+            new Point(48, 155), 
+            new Point(48, 145), 
+            new Point(48, 135), 
+        };
+        public static Point[] GreenPathSlots = {
+            new Point(48, 16), new Point(48, 26), 
+            new Point(48, 36), new Point(48, 45.8),
+            new Point(48, 56), new Point(48, 66), 
+            new Point(48, 75), 
+        };
+        public static Point[] YellowPathSlots = {
+            new Point(89.8, 105.5), 
+            new Point(85, 105.5), 
+            new Point(80.3, 105.5), 
+            new Point(75.8, 105.5), 
+            new Point(71, 105.5), 
+            new Point(66.3, 105.5), 
+            new Point(61.8, 105.5), 
+        };
 
         public static Point[] BoardSlots =
         {   new Point(94.3, 129),

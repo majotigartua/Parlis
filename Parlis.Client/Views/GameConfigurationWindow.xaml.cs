@@ -53,29 +53,16 @@ namespace Parlis.Client.Views
             Utilities.PlayButtonClickSound();
             GoToMainMenu();
         }
-
-        private void EsMXFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            language = "es-MX";
-        }
-
         private void EnUSFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Utilities.PlayButtonClickSound();
             language = "";
         }
 
-        private void FrFRFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void EsMXFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Utilities.PlayButtonClickSound();
-            language = "fr-FR";
-        }
-
-        private void PtBRFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            language = "pt-BR";
+            language = "es-MX";
         }
 
         private void MusicSettingsChecked(object sender, RoutedEventArgs e)
@@ -84,6 +71,24 @@ namespace Parlis.Client.Views
             musicOn.Value = "true";
             SoundsSettings.IsChecked = false;
             SoundsSettingsUnchecked(sender, e);
+        }
+
+        private void MusicSettingsUnchecked(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            musicOn.Value = "false";
+        }
+
+        private void PtBRFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            language = "pt-BR";
+        }
+
+        private void FrFRFlagMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            language = "fr-FR";
         }
 
         private void SoundsSettingsUnchecked(object sender, RoutedEventArgs e)
@@ -98,12 +103,6 @@ namespace Parlis.Client.Views
             soundsOn.Value = "true";
             MusicSettings.IsChecked = false;
             MusicSettingsUnchecked(sender, e);
-        }
-
-        private void MusicSettingsUnchecked(object sender, RoutedEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            musicOn.Value = "false";
         }
     }
 }

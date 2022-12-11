@@ -89,6 +89,13 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="ExpelPlayerProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetPlayerProfiles">
     <xs:complexType>
       <xs:sequence>
@@ -102,11 +109,16 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="SelectPlayerToExpel">
+  <xs:element name="ExpelPlayerProfileFromMatch">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ExpeledPlayerUSername" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExpelPlayerProfileFromMatchResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceivePlayerProfiles">
@@ -117,18 +129,6 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceivePlayerProfilesResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ExpelPlayerFromMatch">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ExpeledPlayerUSername" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ExpelPlayerFromMatchResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -417,14 +417,14 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ShowDisconnectedPlayer">
+  <xs:element name="ShowDisconnectedPlayerProfile">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ShowDisconnectedPlayerResponse">
+  <xs:element name="ShowDisconnectedPlayerProfileResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

@@ -20,21 +20,6 @@ namespace Parlis.Client.Views
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
-        private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            string playerProfilePath = Utilities.SelectProfilePicture();
-            if (!string.IsNullOrEmpty(playerProfilePath))
-            {
-                var bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.UriSource = new Uri(playerProfilePath);
-                bitmapImage.EndInit();
-                ProfilePicture.Source = bitmapImage;
-            }
-        }
-
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
@@ -158,6 +143,21 @@ namespace Parlis.Client.Views
             Utilities.PlayButtonClickSound();
             playerProfileManagementClient.Close();
             Close();
+        }
+
+        private void ProfilePictureMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            string playerProfilePath = Utilities.SelectProfilePicture();
+            if (!string.IsNullOrEmpty(playerProfilePath))
+            {
+                var bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.UriSource = new Uri(playerProfilePath);
+                bitmapImage.EndInit();
+                ProfilePicture.Source = bitmapImage;
+            }
         }
     }
 }

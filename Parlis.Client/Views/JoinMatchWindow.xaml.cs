@@ -62,6 +62,10 @@ namespace Parlis.Client.Views
             }
         }
 
+        public void ExpelPlayerProfileFromMatch(string username)
+        {
+        }
+
         public void ReceivePlayerProfiles(string[] playerProfiles)
         {
             int numberOfPlayerProfiles = playerProfiles.Length;
@@ -106,6 +110,10 @@ namespace Parlis.Client.Views
             createMatchWindow.Show();
         }
 
+        public void StartMatch()
+        {
+        }
+
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
@@ -114,15 +122,6 @@ namespace Parlis.Client.Views
             mainMenuWindow.ConfigureWindow(playerProfile);
             Close();
             mainMenuWindow.Show();
-        }
-
-        public void StartMatch()
-        {
-        }
-
-        public void ExpelPlayerFromMatch(string ExpeledPlayerUSername)
-        {
-            throw new NotImplementedException();
         }
     }
 }

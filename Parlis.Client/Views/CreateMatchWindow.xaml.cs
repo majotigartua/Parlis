@@ -17,7 +17,7 @@ namespace Parlis.Client.Views
         public readonly MatchManagementClient matchManagementClient;
         private readonly PlayerProfileManagementClient playerProfileManagementClient;
         private PlayerProfile playerProfile;
-        public string expeledPlayerUSername;
+        public string expeledPlayerProfile;
         private int code;
         private int numberOfPlayerProfiles;
         private readonly BitmapImage defaultProfilePicture = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
@@ -26,8 +26,18 @@ namespace Parlis.Client.Views
         {
             InitializeComponent();
             Utilities.PlayMusic();
-            profilePictures = new Image[] { FirstProfilePicture, SecondProfilePicture, ThirdProfilePicture, FourthProfilePicture };
-            usernames = new TextBlock[] { FirstUsernameTextBox, SecondUsernameTextBox, ThirdUsernameTextBox, FourthUsernameTextBox };
+            profilePictures = new Image[] {
+                FirstProfilePicture, 
+                SecondProfilePicture, 
+                ThirdProfilePicture, 
+                FourthProfilePicture 
+            };
+            usernames = new TextBlock[] { 
+                FirstUsernameTextBox, 
+                SecondUsernameTextBox, 
+                ThirdUsernameTextBox, 
+                FourthUsernameTextBox 
+            };
             matchManagementClient = new MatchManagementClient(new InstanceContext(this));
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
@@ -50,6 +60,22 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
+        }
+
+        public void ExpelPlayerProfileFromMatch(string username)
+        {
+            if (username.Equals(playerProfile.Username))
+            {
+                GoToMainMenu();
+            }
+        }
+
+        private void GoToMainMenu()
+        {
+            var mainMenuWindow = new MainMenuWindow();
+            mainMenuWindow.ConfigureWindow(playerProfile);
+            Close();
+            mainMenuWindow.Show();
         }
 
         public void ReceivePlayerProfiles(string[] playerProfiles)
@@ -88,16 +114,39 @@ namespace Parlis.Client.Views
             }
         }
 
+        public void StartMatch()
+        {
+            var gameWindow = new GameWindow();
+            gameWindow.ConfigureWindow(this, playerProfile, code);
+            Close();
+            gameWindow.Show();
+        }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+
+            Utilities.PlayButtonClickSound();
+            string username = playerProfile.Username;
+            try
+            {
+                matchManagementClient.DisconnectFromMatch(username, code);
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
+            GoToMainMenu();
+        }
+
         private void ExpelPlayerMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var expelPlayerWindow = new ExpelPlayerWindow();
-            string username = playerProfile.Username;
-            expelPlayerWindow.ConfigureWindow(this, username, code);
+            expelPlayerWindow.ConfigureWindow(this, playerProfile, code);
             expelPlayerWindow.ShowDialog();
-            if (expeledPlayerUSername != null)
+            if (!string.IsNullOrEmpty(expeledPlayerProfile))
             {
-                matchManagementClient.SelectPlayerToExpel(expeledPlayerUSername);
-
+                matchManagementClient.ExpelPlayerProfile(expeledPlayerProfile);
             }            
         }
 
@@ -169,47 +218,6 @@ namespace Parlis.Client.Views
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
             playerProfileManagementClient.Close();
-        }
-
-        private void CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-
-            Utilities.PlayButtonClickSound();
-            try
-            {
-                matchManagementClient.DisconnectFromMatch(this.playerProfile.Username, code);
-            }
-            catch (EndpointNotFoundException)
-            {
-                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
-            }
-            GoToMainMenu();
-        }
-
-        private void GoToMainMenu()
-        {
-            var mainMenuWindow = new MainMenuWindow();
-            mainMenuWindow.ConfigureWindow(playerProfile);
-            Close();
-            mainMenuWindow.Show();
-        }
-
-        public void ExpelPlayerFromMatch(string ExpeledPlayerUSername)
-        {
-            if (this.playerProfile.Username == ExpeledPlayerUSername)
-            {
-                GoToMainMenu();
-            }
-            else { expeledPlayerUSername = null; }
-        }
-
-        public void StartMatch()
-        {
-            var gameWindow = new GameWindow();
-            gameWindow.ConfigureWindow(this, playerProfile, code);
-            Close();
-            gameWindow.Show();
         }
     }
 }

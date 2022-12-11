@@ -9,7 +9,7 @@ namespace Parlis.Client.Views
     {
         private readonly MatchManagementClient matchManagementClient;
         private CreateMatchWindow createMatchWindow;
-        private string username;
+        private PlayerProfile playerProfile;
 
         public ExpelPlayerWindow()
         {
@@ -17,10 +17,11 @@ namespace Parlis.Client.Views
             matchManagementClient = new MatchManagementClient(new InstanceContext(this));
         }
 
-        public void ConfigureWindow(CreateMatchWindow createMatchWindow, string username, int code)
+        public void ConfigureWindow(CreateMatchWindow createMatchWindow, PlayerProfile playerProfile, int code)
         {
             this.createMatchWindow = createMatchWindow;
-            this.username = username;
+            this.playerProfile = playerProfile;
+            string username = playerProfile.Username;
             try
             {
                 matchManagementClient.GetPlayerProfiles(username, code);
@@ -31,6 +32,9 @@ namespace Parlis.Client.Views
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
         }
+        public void ExpelPlayerProfileFromMatch(string username)
+        {
+        }
 
         public void ReceivePlayerProfiles(string[] playerProfiles)
         {
@@ -39,6 +43,7 @@ namespace Parlis.Client.Views
 
         private void ConfigureData(string[] playerProfiles)
         {
+            string username = playerProfile.Username;
             foreach (var playerProfile in playerProfiles)
             {
                 if (!playerProfile.Equals(username))
@@ -48,13 +53,17 @@ namespace Parlis.Client.Views
             }
         }
 
+        public void StartMatch()
+        {
+        }
+
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
             var username = UsernameComboBox.SelectedItem as string;
             if (!string.IsNullOrEmpty(username))
             {
-                createMatchWindow.expeledPlayerUSername = username;
+                createMatchWindow.expeledPlayerProfile = username;
                 Close();
             }
             else
@@ -69,15 +78,6 @@ namespace Parlis.Client.Views
             Utilities.PlayButtonClickSound();
             matchManagementClient.Close();
             Close();
-        }
-
-        public void StartMatch()
-        {
-        }
-
-        public void ExpelPlayerFromMatch(string ExpeledPlayerUSername)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
