@@ -26,26 +26,26 @@ namespace Parlis.Server.Service.Data
         [DataMember]
         public string PlayerProfileUsername { get; set; }
 
-        public Coin(int colorValue)
+        public Coin(int code)
         {
-            ColorTeamValue = colorValue;
+            ColorTeamValue = code;
             IsPlaying = true;      
             switch (ColorTeamValue)
             {
                 case Constants.RED_COIN_CODE:
-                    AtSlot = 37;
+                    AtSlot = Constants.INITIAL_RED_COIN_SLOT;
                     ColorTeamText = "Red";
                     break;
                 case Constants.BLUE_COIN_CODE:
-                    AtSlot = 20;
+                    AtSlot = Constants.INITIAL_BLUE_COIN_SLOT;
                     ColorTeamText = "Blue";
                     break;
                 case Constants.GREEN_COIN_CODE:
-                    AtSlot = 54;
+                    AtSlot = Constants.INITIAL_GREEN_COIN_SLOT;
                     ColorTeamText = "Green";
                     break;
                 case Constants.YELLOW_COIN_CODE:
-                    AtSlot = 3;
+                    AtSlot = Constants.INITIAL_YELLOW_COIN_SLOT;
                     ColorTeamText = "Yellow";
                     break;
             }  

@@ -42,6 +42,10 @@ namespace Parlis.Client.Views
             }
         }
 
+        public void ExpelPlayerProfileFromMatch(string username)
+        {
+        }
+
         public void ReceivePlayerProfiles(string[] playerProfiles)
         {
             string username = playerProfile.Username;
@@ -73,40 +77,8 @@ namespace Parlis.Client.Views
             createMatchWindow.Show();
         }
 
-        private void JoinMatchButtonClick(object sender, RoutedEventArgs e)
+        public void StartMatch()
         {
-            Utilities.PlayButtonClickSound();
-            var joinMatchWindow = new JoinMatchWindow();
-            joinMatchWindow.ConfigureWindow(playerProfile);
-            Close();
-            joinMatchWindow.Show();
-        }
-
-        private void SettingsMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            var gameConfigurationWindow = new GameConfigurationWindow();
-            gameConfigurationWindow.ConfigureWindow(playerProfile);
-            Close();
-            gameConfigurationWindow.Show();
-        }
-
-        private void PlayerProfileMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            bool isGuest = string.IsNullOrEmpty(playerProfile.Password);
-            if (!isGuest)
-            {
-                GoToEditPlayerProfile();
-            }
-        }
-
-        private void GoToEditPlayerProfile()
-        {
-            var editPlayerProfileWindow = new EditPlayerProfileWindow();
-            editPlayerProfileWindow.ConfigureWindow(playerProfile);
-            Close();
-            editPlayerProfileWindow.Show();
         }
 
         private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -147,13 +119,40 @@ namespace Parlis.Client.Views
             loginWindow.Show();
         }
 
-        public void StartMatch()
+        private void JoinMatchButtonClick(object sender, RoutedEventArgs e)
         {
+            Utilities.PlayButtonClickSound();
+            var joinMatchWindow = new JoinMatchWindow();
+            joinMatchWindow.ConfigureWindow(playerProfile);
+            Close();
+            joinMatchWindow.Show();
         }
 
-        public void ExpelPlayerFromMatch(string ExpeledPlayerUSername)
+        private void PlayerProfileMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            throw new System.NotImplementedException();
+            Utilities.PlayButtonClickSound();
+            bool isGuest = string.IsNullOrEmpty(playerProfile.Password);
+            if (!isGuest)
+            {
+                GoToEditPlayerProfile();
+            }
+        }
+
+        private void GoToEditPlayerProfile()
+        {
+            var editPlayerProfileWindow = new EditPlayerProfileWindow();
+            editPlayerProfileWindow.ConfigureWindow(playerProfile);
+            Close();
+            editPlayerProfileWindow.Show();
+        }
+
+        private void SettingsMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            var gameConfigurationWindow = new GameConfigurationWindow();
+            gameConfigurationWindow.ConfigureWindow(playerProfile);
+            Close();
+            gameConfigurationWindow.Show();
         }
     }
 }

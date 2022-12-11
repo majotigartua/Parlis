@@ -12,9 +12,16 @@ namespace Parlis.Client.Views
         public LoginWindow()
         {
             InitializeComponent();
-            UsernameTextBox.Focus();
             Utilities.PlayMusic();
+            UsernameTextBox.Focus();
             playerProfileManagementClient = new PlayerProfileManagementClient();
+        }
+        private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            var enterAsGuestWindow = new EnterAsGuestWindow();
+            enterAsGuestWindow.ConfigureView(this);
+            enterAsGuestWindow.ShowDialog();
         }
 
         private void ForgottenPasswordLabelMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -78,14 +85,6 @@ namespace Parlis.Client.Views
             mainMenuWindow.ConfigureWindow(playerProfile);
             Close();
             mainMenuWindow.Show();
-        }
-
-        private void EnterAsGuestButtonClick(object sender, RoutedEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            var enterAsGuestWindow = new EnterAsGuestWindow();
-            enterAsGuestWindow.ConfigureView(this);
-            enterAsGuestWindow.ShowDialog();
         }
 
         private void RegisterPlayerProfileButtonClick(object sender, RoutedEventArgs e)

@@ -1,69 +1,97 @@
 ﻿using Parlis.Client.Resources;
 using Parlis.Client.Services;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography;
 using System.ServiceModel;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using static System.Net.Mime.MediaTypeNames;
 using Image = System.Windows.Controls.Image;
 
 namespace Parlis.Client.Views
 {
     public partial class GameWindow : Window, IGameManagementCallback
     {
-        private readonly TextBlock[] usernames;
-        private readonly string[] Dices;
-        private readonly string[] PlacesResult;
-        private readonly Image[] Medals;
-        private readonly Image[] coinsImages;
         private readonly Image[] profilePictures;
-        private readonly GameManagementClient gameManagementClient;
-        private CreateMatchWindow createMatchWindow;
-        private PlayerProfile playerProfile;
+        private readonly TextBlock[] usernames;
+        private readonly Image[] coins;
+        private readonly Image[] medals;
+        private readonly string[] dices;
+        private readonly string[] places;
         private List<Coin> coinsPlaying;
-        private int code;
-        private int numberOfCoins;
         private int turnCoin;
         private int diceValue;
         private bool reRoll;
         private bool eatCoin;
         private bool finishGame;
+        private readonly GameManagementClient gameManagementClient;
+        private CreateMatchWindow createMatchWindow;
+        private PlayerProfile playerProfile;
+        private int code;
+        private int numberOfCoins;
 
         public GameWindow()
         {
             InitializeComponent();
             Utilities.PlayMusic();
-            usernames = new TextBlock[] { RedUsernameTextBox, BlueUsernameTextBox, GreenUsernameTextBox, YellowUsernameTextBox };
-            profilePictures = new Image[] { RedProfilePicture, BlueProfilePicture, GreenProfilePicture, YellowProfilePicture };
-            Dices = new string[] { "/Resources/Images/Dice1.png", "/Resources/Images/Dice2.png", "/Resources/Images/Dice3.png", "/Resources/Images/Dice4.png", "/Resources/Images/Dice5.png", "/Resources/Images/Dice6.png", "/Resources/Images/EatingCoin.png", "/Resources/Images/FinishDice.png" };
-
-            var instanceContext = new InstanceContext(this);
-            gameManagementClient = new GameManagementClient(instanceContext);
+            profilePictures = new Image[] { 
+                RedProfilePicture,
+                BlueProfilePicture,
+                GreenProfilePicture,
+                YellowProfilePicture
+            };
+            usernames = new TextBlock[] { 
+                RedUsernameTextBox, 
+                BlueUsernameTextBox,
+                GreenUsernameTextBox,
+                YellowUsernameTextBox 
+            };
+            coins = new Image[] {
+                RedCoin, 
+                BlueCoin, 
+                GreenCoin, 
+                YellowCoin 
+            };
+            medals = new Image[] {
+                RedPlace,
+                BluePlace,
+                GreenPlace,
+                YellowPlace
+            };
+            dices = new string[] {
+                "/Resources/Images/Dice1.png",
+                "/Resources/Images/Dice2.png",
+                "/Resources/Images/Dice3.png",
+                "/Resources/Images/Dice4.png",
+                "/Resources/Images/Dice5.png",
+                "/Resources/Images/Dice6.png",
+                "/Resources/Images/EatingCoin.png",
+                "/Resources/Images/FinishDice.png"
+            };
+            places = new string[] {
+                "/Resources/Images/1stPlace.png",
+                "/Resources/Images/2ndPlace.png",
+                "/Resources/Images/3rdPlace.png",
+                "/Resources/Images/4thPlace.png"
+            };
             coinsPlaying = new List<Coin> { };
-            coinsImages = new Image[] { RedCoin, BlueCoin, GreenCoin, YellowCoin };
-            PlacesResult = new string[] { "/Resources/Images/1stPlace.png", "/Resources/Images/2ndPlace.png", "/Resources/Images/3rdPlace.png", "/Resources/Images/4thPlace.png"};
-            Medals = new Image[] {RedPlace, BluePlace, GreenPlace, YellowPlace};
-            turnCoin = 0;
-            diceValue = 0;
+            turnCoin = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
+            diceValue = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
             reRoll = false;
             eatCoin = false;
             finishGame = false;
+            var instanceContext = new InstanceContext(this);
+            gameManagementClient = new GameManagementClient(instanceContext);
         }
 
         public void ConfigureWindow(CreateMatchWindow createMatchWindow, PlayerProfile playerProfile, int code)
         {
             this.createMatchWindow = createMatchWindow;
-            this.code = code;
             this.playerProfile = playerProfile;
+            this.code = code;
             ConfigureData();
             try
             {
@@ -74,20 +102,51 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
-
         }
+
         private void ConfigureData()
         {
-            for (int coinPlace = 0; coinPlace < 4; coinPlace++)
+            for (int playerProfile = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH; playerProfile < Constants.NUMBER_OF_PLAYER_PROFILES_PER_MATCH; playerProfile++)
             {
-                usernames[coinPlace].Text = "";
-                profilePictures[coinPlace].Source = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
+                usernames[playerProfile].Text = "";
+                profilePictures[playerProfile].Source = new BitmapImage(new Uri("/Resources/Images/DefaultProfilePicture.png", UriKind.Relative));
             }
-            this.FirstDice.Source = new BitmapImage(new Uri("/Resources/Images/Dice.png", UriKind.Relative)); ;
+            FirstDice.Source = new BitmapImage(new Uri("/Resources/Images/Dice.png", UriKind.Relative)); ;
         }
+
+        public void MoveInNormalPath(int turnPlayer)
+        {
+            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
+            Canvas.SetTop(coins[colorTeamValue], Constants.BoardSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
+            Canvas.SetLeft(coins[colorTeamValue], Constants.BoardSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
+        }
+
+        public void ReceiveCoinsForBoard(Coin[] coins)
+        {
+            coinsPlaying = coins.ToList();
+            numberOfCoins = coinsPlaying.Count;
+            string username = playerProfile.Username;
+            if (coinsPlaying.Contains(coinsPlaying.Find(coin => coin.PlayerProfileUsername.Equals(username))))
+            {
+                ConfigureData();
+                ConfigurePlayerProfiles(coinsPlaying);
+                if (coinsPlaying.First().PlayerProfileUsername.Equals(playerProfile.Username))
+                {
+                    FocusedDice.Source = new BitmapImage(new Uri("/Resources/Images/FocusedDice.png", UriKind.Relative));
+                    FirstDice.IsEnabled = true;
+                    gameManagementClient.SetNextTurn();
+                }
+                else
+                {
+                    FocusedDice.Source = null;
+                    FirstDice.IsEnabled = false;
+                }
+            }
+        }
+
         private void ConfigurePlayerProfiles(List<Coin> coins)
         {
-            for (int coin = 0; coin < numberOfCoins; coin++)
+            for (int coin = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH; coin < numberOfCoins; coin++)
             {
                 string username = coins.ElementAt(coin).PlayerProfileUsername;
                 usernames[coins.ElementAt(coin).ColorTeamValue].Text = username;
@@ -102,84 +161,60 @@ namespace Parlis.Client.Views
                 }
             }
         }
-        public void ReceiveCoinsForBoard(Coin[] coins)
-        {
-            this.coinsPlaying = coins.ToList();
-            numberOfCoins = coinsPlaying.Count;
-            string username = playerProfile.Username;
-            
-            if (coinsPlaying.Contains(coinsPlaying.Find(x => x.PlayerProfileUsername == username)))
-            {
-                ConfigureData();
-                ConfigurePlayerProfiles(this.coinsPlaying);
-                if (this.playerProfile.Username == coinsPlaying.First().PlayerProfileUsername)
-                {
-                    this.FirstDice.IsEnabled = true;
-                    this.FocusedDice.Source = new BitmapImage(new Uri("/Resources/Images/FocusedDice.png", UriKind.Relative));
-                    gameManagementClient.SetNextTurn();
-                }
-                else
-                {
-                    this.FirstDice.IsEnabled = false;
-                    this.FocusedDice.Source = null;
 
-                }
-            }
-
-        }
         public void ShowDiceResult(int diceResult)
         {
-            this.diceValue = diceResult;
-            this.FirstDice.Source = new BitmapImage(new Uri(Dices[diceValue - 1], UriKind.Relative));
+            diceValue = diceResult;
+            FirstDice.Source = new BitmapImage(new Uri(dices[diceValue - 1], UriKind.Relative));
             HowMuchAndWhereToMove(turnCoin);
             if (!reRoll)
             {
-                coinsPlaying.ElementAt(turnCoin).NumRolls = 0;
-                this.reRoll = false;
-                this.turnCoin++;
-                if (this.turnCoin >= 4)
+                coinsPlaying.ElementAt(turnCoin).NumRolls = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
+                turnCoin++;
+                if (turnCoin >= Constants.NUMBER_OF_PLAYER_PROFILES_PER_MATCH)
                 {
-                    this.turnCoin = 0;
+                    turnCoin = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
                 }
+                reRoll = false;
                 gameManagementClient.SetNextTurn();
             }
         }
+
         public void HowMuchAndWhereToMove(int turnPlayer)
         {
             int colorValueTeam = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
-            this.reRoll = false;
             coinsPlaying.ElementAt(turnPlayer).NumRolls++;
+            reRoll = false;
             if (eatCoin)
             {
-                diceValue = 20;
-                eatCoin = false;
                 coinsPlaying.ElementAt(turnPlayer).NumRolls--;
+                diceValue = Constants.NUMBER_OF_SLOTS_PER_EATED_COIN;
+                eatCoin = false;
             }
-
-            if (coinsPlaying.ElementAt(turnPlayer).NumRolls == 3)
+            if (coinsPlaying.ElementAt(turnPlayer).NumRolls.Equals(Constants.MAXIUM_REROLLS_PER_PLAYER_PROFILE))
             {
                 GoToHomeSlot(turnPlayer);
             }
             else
             {
-                if (diceValue == 6)
+                if (diceValue.Equals(Constants.NUMBER_OF_DICE_RESULT_TO_REROLL))
                 {
-                    this.reRoll = true;
+                    reRoll = true;
                 }
                 coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot + diceValue;
                 if (coinsPlaying.ElementAt(turnPlayer).AtFinalRow)
                 {
-                    MoveInFInalColorPath(turnPlayer);
+                    MoveInFinalColorPath(turnPlayer);
                 }
-                else if (coinsPlaying.ElementAt(turnPlayer).AtSlot > 67)
+                else if (coinsPlaying.ElementAt(turnPlayer).AtSlot > Constants.MAXIUM_SLOTS_PER_LEAP)
                 {
-                    coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot - 68;
+                    coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot - (Constants.MAXIUM_SLOTS_PER_LEAP + 1);
                     coinsPlaying.ElementAt(turnPlayer).FirstLeap = true;
-                    if (colorValueTeam == 3)
+                    if (colorValueTeam.Equals(Constants.MAXIUM_REROLLS_PER_PLAYER_PROFILE))
                     {
                         coinsPlaying.ElementAt(turnPlayer).AtFinalRow = true;
-                        coinsPlaying.ElementAt(turnPlayer).Points = 64;
-                        MoveInFInalColorPath(turnPlayer);
+                        coinsPlaying.ElementAt(turnPlayer).Points = Constants.NUMBER_OF_POINTS_AT_FINAL_ROW;
+                        MoveInFinalColorPath(turnPlayer);
                     }
                     else {
                         coinsPlaying.ElementAt(turnPlayer).Points = coinsPlaying.ElementAt(turnPlayer).Points + diceValue;
@@ -188,7 +223,7 @@ namespace Parlis.Client.Views
                 }
                 else if (AbleToStartFinalColorPath(turnPlayer))
                 {
-                    MoveInFInalColorPath(turnPlayer);
+                    MoveInFinalColorPath(turnPlayer);
                 }
                 else 
                 {
@@ -196,165 +231,37 @@ namespace Parlis.Client.Views
                     CheckForCoinsAtSameSlot(turnPlayer);
                 }
             }
+        }
 
-        }
-        public bool AbleToStartFinalColorPath(int turnPlayer)
-        {
-            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
-            bool ableToStart = false;
-            if (coinsPlaying.ElementAt(turnPlayer).FirstLeap && ((coinsPlaying.ElementAt(turnPlayer).AtSlot > Constants.InitialColorPathSlot[colorTeamValue]) && (coinsPlaying.ElementAt(turnPlayer).AtSlot < (Constants.InitialColorPathSlot[colorTeamValue] + 21))))
-            {
-                coinsPlaying.ElementAt(turnPlayer).AtFinalRow = true;
-                coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot - (Constants.InitialColorPathSlot[colorTeamValue] + 1);
-                coinsPlaying.ElementAt(turnPlayer).Points = 64;
-                ableToStart = true;
-            }
-            return ableToStart;
-        }
-        public void ShowNextTurn()
-        {
-            int colorTeamValue = coinsPlaying.ElementAt(turnCoin).ColorTeamValue;
-            if (!finishGame)
-            {
-                Utilities.PlayGameSound(Constants.NEXT_TURN_CODE);
-                while (!coinsPlaying.ElementAt(turnCoin).IsPlaying)
-                {
-                    turnCoin++;
-                    Console.WriteLine("1.2- IsPlaying-turnCoin=" + turnCoin);
-                    if (this.turnCoin >= 4)
-                    {
-                        this.turnCoin = 0;
-                        Console.WriteLine("1.3- IsPlaying-turnCoin=" + turnCoin + " colorTeamValue=" + colorTeamValue);
-                    }
-                }
-                if (this.playerProfile.Username == coinsPlaying.ElementAt(turnCoin).PlayerProfileUsername)
-                {
-                    this.FirstDice.IsEnabled = true;
-                    this.FocusedDice.Source = new BitmapImage(new Uri("/Resources/Images/FocusedDice.png", UriKind.Relative)); ;
-                }
-                else
-                {
-                    this.FirstDice.IsEnabled = false;
-                    this.FocusedDice.Source = null;
-                }
-                switch (colorTeamValue)
-                {
-                    case 0:
-                        Canvas.SetTop(RingTurn, 3);
-                        Canvas.SetLeft(RingTurn, 8);
-                        break;
-                    case 1:
-                        Canvas.SetTop(RingTurn, 3);
-                        Canvas.SetLeft(RingTurn, 148);
-                        break;
-                    case 2:
-                        Canvas.SetTop(RingTurn, 68);
-                        Canvas.SetLeft(RingTurn, 8);
-                        break;
-                    case 3:
-                        Canvas.SetTop(RingTurn, 68);
-                        Canvas.SetLeft(RingTurn, 148);
-                        break;
-                }
-            }
-        }
-        public void MoveInNormalPath(int turnPlayer)
-        {
-            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
-            Canvas.SetTop(coinsImages[colorTeamValue], Constants.BoardSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
-            Canvas.SetLeft(coinsImages[colorTeamValue], Constants.BoardSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
-        }
-        public void GoToHomeSlot(int turnPlayer)
-        {
-            Utilities.PlayGameSound(Constants.GO_TO_HOME_SLOT_CODE);
-            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
-            coinsPlaying.ElementAt(turnPlayer).AtFinalRow = false;
-            coinsPlaying.ElementAt(turnPlayer).FirstLeap = false;
-            coinsPlaying.ElementAt(turnPlayer).AtSlot = Constants.InitialSlots.ElementAt(colorTeamValue);
-            Canvas.SetTop(coinsImages[colorTeamValue], Constants.HomeSlotCordinates[colorTeamValue].X);
-            Canvas.SetLeft(coinsImages[colorTeamValue], Constants.HomeSlotCordinates[colorTeamValue].Y);
-            coinsPlaying.ElementAt(turnPlayer).NumRolls = 0;
-            coinsPlaying.ElementAt(turnPlayer).Points = 0;
-            this.reRoll = false;
-
-        }
-        public void MoveInFInalColorPath(int turnPlayer)
-        {
-            Utilities.PlayGameSound(Constants.COLOR_PATH_CODE);
-            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
-            if (coinsPlaying.ElementAt(turnPlayer).AtSlot != 7)
-            {
-                if (coinsPlaying.ElementAt(turnPlayer).AtSlot > 7)
-                {
-                    do
-                    {
-                        coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot - (Constants.RedPathSlots.Length);
-                    } while (coinsPlaying.ElementAt(turnPlayer).AtSlot > 7);
-                }
-                switch (colorTeamValue)
-                {
-                    case 0:
-                        Canvas.SetTop(coinsImages[colorTeamValue], Constants.RedPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
-                        Canvas.SetLeft(coinsImages[colorTeamValue], Constants.RedPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
-                        break;
-                    case 1:
-                        Canvas.SetTop(coinsImages[colorTeamValue], Constants.BluePathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
-                        Canvas.SetLeft(coinsImages[colorTeamValue], Constants.BluePathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
-                        break;
-                    case 2:
-                        Canvas.SetTop(coinsImages[colorTeamValue], Constants.GreenPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
-                        Canvas.SetLeft(coinsImages[colorTeamValue], Constants.GreenPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
-                        break;
-                    case 3:
-                        Canvas.SetTop(coinsImages[colorTeamValue], Constants.YellowPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
-                        Canvas.SetLeft(coinsImages[colorTeamValue], Constants.YellowPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
-                        break;
-                }
-            }
-            else if (coinsPlaying.ElementAt(turnPlayer).AtSlot == 7)
-            {
-                Utilities.PlayGameSound(Constants.WINNER_CODE);
-                coinsPlaying.ElementAt(turnPlayer).IsWinner = true;
-                WinnerPlayer();
-                GoToHomeSlot(turnPlayer);
-            }
-        }
         public void CheckForCoinsAtSameSlot(int turnPlayer)
         {
-            bool ableToInvade = false;
             List<Coin> coinsToInvade = new List<Coin>(coinsPlaying);
-            //INVADER DATA
             int turnInvaderPlayer = turnPlayer;
+            int turnInvadedPlayer = Constants.NUMBER_OF_TURN_PER_INVADED_PLAYER;
             int invaderPlayerSlotPosition = coinsToInvade.ElementAt(turnInvaderPlayer).AtSlot;
+            int invadedPlayerSlotPosition = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
             double invaderXValue = Constants.BoardSlots[invaderPlayerSlotPosition].X;
             double invaderYValue = Constants.BoardSlots[invaderPlayerSlotPosition].Y;
-
-            //INVADED DATA
-            int turnInvadedPlayer = -1;
-            int invadedPlayerSlotPosition = 0;
-            double invadedXValue;
-            double invadedYValue;
             coinsToInvade.RemoveAt(turnInvaderPlayer);
             coinsToInvade.RemoveAll(x => x.AtFinalRow == true);
-
-            for (int coin = 0; coin < coinsToInvade.Count; coin++)
+            bool ableToInvade = false;
+            for (int coin = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH; coin < coinsToInvade.Count; coin++)
             {
                 invadedPlayerSlotPosition = coinsToInvade.ElementAt(coin).AtSlot;
-                invadedXValue = Constants.BoardSlots[invadedPlayerSlotPosition].X;
-                invadedYValue = Constants.BoardSlots[invadedPlayerSlotPosition].Y;
-                if ((invaderXValue == invadedXValue) && (invaderYValue == invadedYValue))
+                double invadedXValue = Constants.BoardSlots[invadedPlayerSlotPosition].X;
+                double invadedYValue = Constants.BoardSlots[invadedPlayerSlotPosition].Y;
+                if (invaderXValue.Equals(invadedXValue) && invaderYValue.Equals(invadedYValue))
                 {
-                    turnInvadedPlayer = coinsPlaying.FindIndex(x => x.ColorTeamValue == coinsToInvade[coin].ColorTeamValue);
+                    turnInvadedPlayer = coinsPlaying.FindIndex(coinPlaying => coinPlaying.ColorTeamValue.Equals(coinsToInvade[coin].ColorTeamValue));
                     ableToInvade = true;
                     break;
                 }
             }
-
             if (!coinsPlaying.ElementAt(turnInvaderPlayer).AtFinalRow)
             {
                 if (ableToInvade)
                 {
-                    if (AtSafeSlot(invadedPlayerSlotPosition) == true)
+                    if (AtSafeSlot(invadedPlayerSlotPosition))
                     {
                         ShareSlot(turnInvaderPlayer, turnInvadedPlayer);
                     }
@@ -369,10 +276,11 @@ namespace Parlis.Client.Views
                 }
             }
         }
+
         public bool AtSafeSlot(int invadedPlayerSlotPosition)
         {
             bool isSafeSlot = false;
-            for (int slot = 0; slot < Constants.SafeSlots.Length; slot++)
+            for (int slot = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH; slot < Constants.SafeSlots.Length; slot++)
             {
                 if (invadedPlayerSlotPosition == Constants.SafeSlots[slot])
                 {
@@ -383,14 +291,7 @@ namespace Parlis.Client.Views
             }
             return isSafeSlot;
         }
-        public void EatCoin(int turnInvaderPlayer, int turnInvadedPlayer)
-        {
-            Utilities.PlayGameSound(Constants.EAT_COIN_CODE);
-            GoToHomeSlot(turnInvadedPlayer);
-            this.eatCoin = true;
-            this.FirstDice.Source = new BitmapImage(new Uri(Dices[6], UriKind.Relative));
-            HowMuchAndWhereToMove(turnInvaderPlayer);
-        }
+
         public void ShareSlot(int turnInvaderPlayer, int turnInvadedPlayer)
         {
             Utilities.PlayGameSound(Constants.SHARE_SLOT_CODE);
@@ -401,106 +302,247 @@ namespace Parlis.Client.Views
             {
                 case 4:
                 case 28:
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].Y - 4));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].X));
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].Y + 4));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X));
+                    Canvas.SetLeft(coins[colorTeamValueInvader], Constants.BoardSlots[sharedSlot].Y - 4);
+                    Canvas.SetTop(coins[colorTeamValueInvader], Constants.BoardSlots[sharedSlot].X);
+                    Canvas.SetLeft(coins[colorTeamValueInvaded], Constants.BoardSlots[sharedSlot].Y + 4);
+                    Canvas.SetTop(coins[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X));
                     break;
                 case 11:
                 case 55:
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].Y));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].X + 3));
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].Y));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X - 1));
+                    Canvas.SetLeft(coins[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].Y));
+                    Canvas.SetTop(coins[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].X + 3));
+                    Canvas.SetLeft(coins[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].Y));
+                    Canvas.SetTop(coins[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X - 1));
                     break;
                 case 16:
                 case 50:
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].Y));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].X + 3));
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].Y));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X - 3));
+                    Canvas.SetLeft(coins[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].Y));
+                    Canvas.SetTop(coins[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].X + 3));
+                    Canvas.SetLeft(coins[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].Y));
+                    Canvas.SetTop(coins[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X - 3));
                     break;
                 case 21:
                 case 45:
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].Y));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].X + 3));
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].Y));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X - 1));
+                    Canvas.SetLeft(coins[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].Y));
+                    Canvas.SetTop(coins[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].X + 3));
+                    Canvas.SetLeft(coins[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].Y));
+                    Canvas.SetTop(coins[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X - 1));
                     break;
                 case 33:
                 case 67:
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].Y - 5));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].X));
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].Y + 5));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X));
+                    Canvas.SetLeft(coins[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].Y - 5));
+                    Canvas.SetTop(coins[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].X));
+                    Canvas.SetLeft(coins[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].Y + 5));
+                    Canvas.SetTop(coins[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X));
 
                     break;
                 case 38:
                 case 62:
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].Y - 7));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].X));
-                    Canvas.SetLeft(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].Y + 1));
-                    Canvas.SetTop(coinsImages[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X));
+                    Canvas.SetLeft(coins[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].Y - 7));
+                    Canvas.SetTop(coins[colorTeamValueInvader], (Constants.BoardSlots[sharedSlot].X));
+                    Canvas.SetLeft(coins[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].Y + 1));
+                    Canvas.SetTop(coins[colorTeamValueInvaded], (Constants.BoardSlots[sharedSlot].X));
                     break;
             }
         }
-        public void ShowDisconnectedPlayer(string disconectedPlayerUsername)
+
+        public void EatCoin(int turnInvaderPlayer, int turnInvadedPlayer)
         {
-            int coinAt = coinsPlaying.FindIndex(x => x.PlayerProfileUsername == disconectedPlayerUsername);
-            int colorTeamValue = coinsPlaying.ElementAt(coinAt).ColorTeamValue;
-            GoToHomeSlot(coinAt);
-            coinsPlaying.ElementAt(coinAt).IsPlaying = false;
-            profilePictures[colorTeamValue].Source = new BitmapImage(new Uri("/Resources/Images/DisconectedPlayer.png", UriKind.Relative));
-            usernames[colorTeamValue].Text = "";
-            if (turnCoin == coinAt) {
-                turnCoin++;
-                gameManagementClient.SetNextTurn();
+            Utilities.PlayGameSound(Constants.EAT_COIN_CODE);
+            GoToHomeSlot(turnInvadedPlayer);
+            FirstDice.Source = new BitmapImage(new Uri(dices[Constants.NUMBER_OF_DICE_RESULT_TO_REROLL], UriKind.Relative));
+            eatCoin = true;
+            HowMuchAndWhereToMove(turnInvaderPlayer);
+        }
+
+        public void MoveInFinalColorPath(int turnPlayer)
+        {
+            Utilities.PlayGameSound(Constants.COLOR_PATH_CODE);
+            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
+            if (!coinsPlaying.ElementAt(turnPlayer).AtSlot.Equals(Constants.MAXIUM_SLOTS_AT_FINAL_ROW))
+            {
+                if (coinsPlaying.ElementAt(turnPlayer).AtSlot > Constants.MAXIUM_SLOTS_AT_FINAL_ROW)
+                {
+                    do
+                    {
+                        coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot - Constants.RedPathSlots.Length;
+                    }
+                    while (coinsPlaying.ElementAt(turnPlayer).AtSlot > Constants.MAXIUM_SLOTS_AT_FINAL_ROW);
+                }
+                switch (colorTeamValue)
+                {
+                    case Constants.RED_COIN_CODE:
+                        Canvas.SetTop(coins[colorTeamValue], Constants.RedPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
+                        Canvas.SetLeft(coins[colorTeamValue], Constants.RedPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
+                        break;
+                    case Constants.BLUE_COIN_CODE:
+                        Canvas.SetTop(coins[colorTeamValue], Constants.BluePathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
+                        Canvas.SetLeft(coins[colorTeamValue], Constants.BluePathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
+                        break;
+                    case Constants.GREEN_COIN_CODE:
+                        Canvas.SetTop(coins[colorTeamValue], Constants.GreenPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
+                        Canvas.SetLeft(coins[colorTeamValue], Constants.GreenPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
+                        break;
+                    case Constants.YELLOW_COIN_CODE:
+                        Canvas.SetTop(coins[colorTeamValue], Constants.YellowPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
+                        Canvas.SetLeft(coins[colorTeamValue], Constants.YellowPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
+                        break;
+                }
+            }
+            else if (coinsPlaying.ElementAt(turnPlayer).AtSlot.Equals(Constants.MAXIUM_SLOTS_AT_FINAL_ROW))
+            {
+                Utilities.PlayGameSound(Constants.WINNER_CODE);
+                coinsPlaying.ElementAt(turnPlayer).IsWinner = true;
+                SetWinnerPlayer();
+                GoToHomeSlot(turnPlayer);
             }
         }
 
-        public void WinnerPlayer()
+        public void SetWinnerPlayer()
         {
-            List<Coin> finalResultCoin = new List<Coin>(coinsPlaying);
-            string winnerPlayerUsername = finalResultCoin.Find(x => x.IsWinner == true).PlayerProfileUsername;
-            int winnerColorTeamValue = finalResultCoin.Find(x => x.IsWinner == true).ColorTeamValue;
-            finalResultCoin.RemoveAll(x => x.IsWinner == true);
-            int placement = 0;
             List<Coin> coinsAtNormalPath = new List<Coin>();
-            Medals[winnerColorTeamValue].Source = new BitmapImage(new Uri(PlacesResult[placement], UriKind.Relative));
-            placement++;
-            finalResultCoin.RemoveAll(x => x.IsPlaying == false);
-            coinsAtNormalPath.AddRange(finalResultCoin.FindAll(x => x.AtFinalRow == false));
-            if (coinsAtNormalPath.Count > 0) 
+            List<Coin> finalResultCoins = new List<Coin>(coinsPlaying);
+            string winner = finalResultCoins.Find(coin => coin.IsWinner).PlayerProfileUsername;
+            int winnerColorTeamValue = finalResultCoins.Find(coin => coin.IsWinner).ColorTeamValue;
+            int placement = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
+            medals[winnerColorTeamValue].Source = new BitmapImage(new Uri(places[placement], UriKind.Relative));
+            coinsAtNormalPath.AddRange(finalResultCoins.FindAll(coin => !coin.AtFinalRow));
+            finalResultCoins.RemoveAll(x => x.IsWinner);
+            finalResultCoins.RemoveAll(x => !x.IsPlaying);
+            if (coinsAtNormalPath.Count > Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH)
             {
-                coinsAtNormalPath.OrderBy(x => x.Points);
-                finalResultCoin.RemoveAll(x => x.AtFinalRow == false);
+                coinsAtNormalPath.OrderBy(coin => coin.Points);
+                finalResultCoins.RemoveAll(coin => !coin.AtFinalRow);
             }
-
-            if (finalResultCoin.Count > 0)
+            if (finalResultCoins.Count > Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH)
             {
-                finalResultCoin.OrderBy(x => x.AtSlot);
+                finalResultCoins.OrderBy(coin => coin.AtSlot);
             }
-            finalResultCoin.AddRange(coinsAtNormalPath);
-
-            foreach (var coin in finalResultCoin)
+            finalResultCoins.AddRange(coinsAtNormalPath);
+            foreach (var coin in finalResultCoins)
             {
-                Medals[coin.ColorTeamValue].Source = new BitmapImage(new Uri(PlacesResult[placement], UriKind.Relative));
                 placement++;
+                medals[coin.ColorTeamValue].Source = new BitmapImage(new Uri(places[placement], UriKind.Relative));
             }
-            this.FirstDice.Source = new BitmapImage(new Uri(Dices[7], UriKind.Relative));
-            this.FirstDice.IsEnabled = false;
-            this.FocusedDice.Source = new BitmapImage(new Uri("/Resources/Images/FocusedDice.png", UriKind.Relative)); ;
-            this.RingTurn.Source = null;
-            finishGame = true;        }
+            FirstDice.Source = new BitmapImage(new Uri(dices[Constants.FINAL_DICE_VALUE], UriKind.Relative));
+            FocusedDice.Source = new BitmapImage(new Uri("/Resources/Images/FocusedDice.png", UriKind.Relative));
+            FirstDice.IsEnabled = false;
+            RingTurn.Source = null;
+            finishGame = true;
+        }
 
-        public void RegisterMatch(PlayerProfile playerProfile)
+        public void GoToHomeSlot(int turnPlayer)
         {
-            int winnerTurn = coinsPlaying.FindIndex(x => x.IsWinner == true);
-            if (winnerTurn >= 0)
+            Utilities.PlayGameSound(Constants.GO_TO_HOME_SLOT_CODE);
+            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
+            coinsPlaying.ElementAt(turnPlayer).AtFinalRow = false;
+            coinsPlaying.ElementAt(turnPlayer).FirstLeap = false;
+            coinsPlaying.ElementAt(turnPlayer).AtSlot = Constants.InitialSlots.ElementAt(colorTeamValue);
+            coinsPlaying.ElementAt(turnPlayer).NumRolls = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
+            coinsPlaying.ElementAt(turnPlayer).Points = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
+            Canvas.SetTop(coins[colorTeamValue], Constants.HomeSlotCordinates[colorTeamValue].X);
+            Canvas.SetLeft(coins[colorTeamValue], Constants.HomeSlotCordinates[colorTeamValue].Y);
+            reRoll = false;
+        }
+
+        public bool AbleToStartFinalColorPath(int turnPlayer)
+        {
+            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
+            bool ableToStart = false;
+            if (coinsPlaying.ElementAt(turnPlayer).FirstLeap && coinsPlaying.ElementAt(turnPlayer).AtSlot > Constants.InitialColorPathSlot[colorTeamValue] && coinsPlaying.ElementAt(turnPlayer).AtSlot < (Constants.InitialColorPathSlot[colorTeamValue] + 21))
             {
-                string username = playerProfile.Username;
-                string winnerPlayer = coinsPlaying.ElementAt(winnerTurn).PlayerProfileUsername;
-                if (username == winnerPlayer)
+                coinsPlaying.ElementAt(turnPlayer).AtFinalRow = true;
+                coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot - (Constants.InitialColorPathSlot[colorTeamValue] + 1);
+                coinsPlaying.ElementAt(turnPlayer).Points = Constants.NUMBER_OF_POINTS_AT_FINAL_ROW;
+                ableToStart = true;
+            }
+            return ableToStart;
+        }
+        public void ShowDisconnectedPlayerProfile(string username)
+        {
+            int coinAt = coinsPlaying.FindIndex(coin => coin.PlayerProfileUsername.Equals(username));
+            int colorTeamValue = coinsPlaying.ElementAt(coinAt).ColorTeamValue;
+            profilePictures[colorTeamValue].Source = new BitmapImage(new Uri("/Resources/Images/DisconectedPlayer.png", UriKind.Relative));
+            usernames[colorTeamValue].Text = "";
+            if (turnCoin.Equals(coinAt))
+            {
+                turnCoin++;
+                gameManagementClient.SetNextTurn();
+            }
+            coinsPlaying.ElementAt(coinAt).IsPlaying = false;
+            GoToHomeSlot(coinAt);
+        }
+
+        public void ShowNextTurn()
+        {
+            int colorTeamValue = coinsPlaying.ElementAt(turnCoin).ColorTeamValue;
+            if (!finishGame)
+            {
+                Utilities.PlayGameSound(Constants.NEXT_TURN_CODE);
+                while (!coinsPlaying.ElementAt(turnCoin).IsPlaying)
+                {
+                    turnCoin++;
+                    if (turnCoin >= Constants.NUMBER_OF_PLAYER_PROFILES_PER_MATCH)
+                    {
+                        turnCoin = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
+                    }
+                }
+                if (playerProfile.Username.Equals(coinsPlaying.ElementAt(turnCoin).PlayerProfileUsername))
+                {
+                    FocusedDice.Source = new BitmapImage(new Uri("/Resources/Images/FocusedDice.png", UriKind.Relative));
+                    FirstDice.IsEnabled = true;
+                }
+                else
+                {
+                    FocusedDice.Source = null;
+                    FirstDice.IsEnabled = false;
+                }
+                switch (colorTeamValue)
+                {
+                    case Constants.RED_COIN_CODE:
+                        Canvas.SetTop(RingTurn, 3);
+                        Canvas.SetLeft(RingTurn, 8);
+                        break;
+                    case Constants.BLUE_COIN_CODE:
+                        Canvas.SetTop(RingTurn, 3);
+                        Canvas.SetLeft(RingTurn, 148);
+                        break;
+                    case Constants.GREEN_COIN_CODE:
+                        Canvas.SetTop(RingTurn, 68);
+                        Canvas.SetLeft(RingTurn, 8);
+                        break;
+                    case Constants.YELLOW_COIN_CODE:
+                        Canvas.SetTop(RingTurn, 68);
+                        Canvas.SetLeft(RingTurn, 148);
+                        break;
+                }
+            }
+        }
+
+        private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Utilities.PlayGameSound(Constants.BUMMER_CODE);
+            string username = playerProfile.Username;
+            try
+            {
+                RegisterMatch(username);
+                gameManagementClient.DisconnectFromBoard(username);
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
+            GoToMainMenu();
+        }
+
+        public void RegisterMatch(string username)
+        {
+            int winnerTurn = coinsPlaying.FindIndex(coin => coin.IsWinner);
+            if (winnerTurn >= Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH)
+            {
+                string winner = coinsPlaying.ElementAt(winnerTurn).PlayerProfileUsername;
+                if (username.Equals(winner))
                 {
                     var match = new Match()
                     {
@@ -522,31 +564,8 @@ namespace Parlis.Client.Views
             createMatchWindow.matchManagementClient.Close();
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.ConfigureWindow(playerProfile);
-            this.Close();
+            Close();
             mainMenuWindow.Show();
-
-        }
-
-
-
-        //Extras
-
-        private void ExitMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Utilities.PlayGameSound(Constants.BUMMER_CODE);
-            string username = playerProfile.Username;
-            RegisterMatch(playerProfile);
-            try
-            {
-                gameManagementClient.DisconnectFromBoard(username);
-            }
-            catch (EndpointNotFoundException)
-            {
-                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
-            }
-            GoToMainMenu();
-
         }
 
         private void MessageBalloonMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

@@ -1,7 +1,6 @@
 ﻿using Parlis.Server.Service.Data;
 using System.Collections.Generic;
 using System.ServiceModel;
-///SEMA******************************************
 
 namespace Parlis.Server.Service.Services
 {
@@ -46,7 +45,7 @@ namespace Parlis.Server.Service.Services
         void ShowDiceResult(int diceResult);
 
         [OperationContract]
-        void ShowDisconnectedPlayer(string username);
+        void ShowDisconnectedPlayerProfile(string username);
 
         [OperationContract]
         void ShowNextTurn();

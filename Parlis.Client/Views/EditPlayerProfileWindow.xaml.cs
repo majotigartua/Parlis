@@ -19,8 +19,8 @@ namespace Parlis.Client.Views
         public EditPlayerProfileWindow()
         {
             InitializeComponent();
-            NameTextBox.Focus();
             Utilities.PlayMusic();
+            NameTextBox.Focus();
             playerProfileManagementClient = new PlayerProfileManagementClient();
         }
 
@@ -147,6 +147,30 @@ namespace Parlis.Client.Views
             mainMenuWindow.Show();
         }
 
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            playerProfileManagementClient.Close();
+            GoToMainMenu();
+        }
+
+        private void ConfirmPlayerProfileButtonClick(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            var confirmPlayerProfileWindow = new ConfirmPlayerProfileWindow();
+            try
+            {
+                confirmPlayerProfileWindow.ConfigureWindow(playerProfile);
+                confirmPlayerProfileWindow.ShowDialog();
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
+            }
+            ConfirmPlayerProfileButton.IsEnabled = false;
+        }
+
         private void DeletePlayerProfileClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
@@ -177,30 +201,6 @@ namespace Parlis.Client.Views
             var loginWindow = new LoginWindow();
             Close();
             loginWindow.Show();
-        }
-
-        private void ConfirmPlayerProfileButtonClick(object sender, RoutedEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            var confirmPlayerProfileWindow = new ConfirmPlayerProfileWindow();
-            try
-            {
-                confirmPlayerProfileWindow.ConfigureWindow(playerProfile);
-                confirmPlayerProfileWindow.ShowDialog();
-            }
-            catch (TimeoutException)
-            {
-                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                    Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
-            }
-            ConfirmPlayerProfileButton.IsEnabled = false;
-        }
-
-        private void CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            playerProfileManagementClient.Close();
-            GoToMainMenu();
         }
     }
 }

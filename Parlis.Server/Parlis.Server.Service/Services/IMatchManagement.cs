@@ -19,21 +19,23 @@ namespace Parlis.Server.Service.Services
         void DisconnectFromMatch(string username, int code);
 
         [OperationContract(IsOneWay = true)]
+        void ExpelPlayerProfile(string username);
+
+        [OperationContract(IsOneWay = true)]
         void GetPlayerProfiles(string username, int code);
 
         [OperationContract(IsOneWay = true)]
         void SetBoards();
-        [OperationContract(IsOneWay = true)]
-        void SelectPlayerToExpel(string ExpeledPlayerUSername);
     }
 
     [ServiceContract]
     public interface IMatchManagementCallback
     {
         [OperationContract]
-        void ReceivePlayerProfiles(List<string> playerProfiles);
+        void ExpelPlayerProfileFromMatch(string username);
+
         [OperationContract]
-        void ExpelPlayerFromMatch(string ExpeledPlayerUSername);
+        void ReceivePlayerProfiles(List<string> playerProfiles);
 
         [OperationContract]
         void StartMatch();

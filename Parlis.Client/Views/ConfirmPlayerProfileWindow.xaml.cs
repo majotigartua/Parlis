@@ -45,12 +45,6 @@ namespace Parlis.Client.Views
             }
         }
 
-        private void CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            Utilities.PlayButtonClickSound();
-            playerProfileManagementClient.Close();
-            Close();
-        }
 
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
@@ -105,6 +99,13 @@ namespace Parlis.Client.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
             }
+            Close();
+        }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            Utilities.PlayButtonClickSound();
+            playerProfileManagementClient.Close();
             Close();
         }
     }
