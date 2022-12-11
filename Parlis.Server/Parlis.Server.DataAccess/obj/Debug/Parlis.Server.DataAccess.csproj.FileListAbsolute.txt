@@ -22,3 +22,5 @@ C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Debug\P
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Debug\Parlis.Server.DataAccess.csproj.CopyComplete
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Debug\Parlis.Server.DataAccess.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Debug\Parlis.Server.DataAccess.pdb
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Debug\Parlis.Server.DataAccess.dll
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.DataAccess\obj\Debug\Parlis.Server.DataAccess.pdb

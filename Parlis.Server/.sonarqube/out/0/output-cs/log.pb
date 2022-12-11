@@ -1,0 +1,1 @@
+Roslyn version: 4.3.0.0Language version: CSharp7_3!Concurrent execution: enabled²­File 'C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.Service\obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs' was recognized as generated
