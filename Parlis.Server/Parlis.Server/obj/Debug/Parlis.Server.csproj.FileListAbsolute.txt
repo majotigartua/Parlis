@@ -82,7 +82,6 @@ C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server\bin\Debug\EntityFramew
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server\bin\Debug\Parlis.Server.Service.pdb
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server\bin\Debug\Parlis.Server.DataAccess.pdb
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server\bin\Debug\Parlis.Server.DataAccess.dll.config
-C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server\bin\Debug\Microsoft.Bcl.HashCode.xml
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server\obj\Debug\Parlis.Server.csproj.AssemblyReference.cache
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server\obj\Debug\Parlis.Server.csproj.SuggestedBindingRedirects.cache
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server\obj\Debug\Parlis.Server.csproj.CoreCompileInputs.cache

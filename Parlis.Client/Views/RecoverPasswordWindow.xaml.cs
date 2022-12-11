@@ -37,7 +37,7 @@ namespace Parlis.Client.Views
                         Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
                 }
             }
-            catch (EndpointNotFoundException)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.NO_SERVER_CONNECTION_WINDOW_TITLE);
