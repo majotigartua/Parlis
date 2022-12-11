@@ -114,11 +114,11 @@ namespace Parlis.Client.Views
             FirstDice.Source = new BitmapImage(new Uri("/Resources/Images/Dice.png", UriKind.Relative)); ;
         }
 
-        public void MoveInNormalPath(int turnPlayer)
+        public void MoveInNormalPath(int playerProfileTurn)
         {
-            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
-            Canvas.SetTop(coins[colorTeamValue], Constants.BoardSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
-            Canvas.SetLeft(coins[colorTeamValue], Constants.BoardSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
+            int colorTeamValue = coinsPlaying.ElementAt(playerProfileTurn).ColorTeamValue;
+            Canvas.SetTop(coins[colorTeamValue], Constants.BoardSlots[coinsPlaying.ElementAt(playerProfileTurn).AtSlot].X);
+            Canvas.SetLeft(coins[colorTeamValue], Constants.BoardSlots[coinsPlaying.ElementAt(playerProfileTurn).AtSlot].Y);
         }
 
         public void ReceiveCoinsForBoard(Coin[] coins)
@@ -180,20 +180,20 @@ namespace Parlis.Client.Views
             }
         }
 
-        public void HowMuchAndWhereToMove(int turnPlayer)
+        public void HowMuchAndWhereToMove(int playerProfileTurn)
         {
-            int colorValueTeam = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
-            coinsPlaying.ElementAt(turnPlayer).NumRolls++;
+            int colorValueTeam = coinsPlaying.ElementAt(playerProfileTurn).ColorTeamValue;
+            coinsPlaying.ElementAt(playerProfileTurn).NumRolls++;
             reRoll = false;
             if (eatCoin)
             {
-                coinsPlaying.ElementAt(turnPlayer).NumRolls--;
+                coinsPlaying.ElementAt(playerProfileTurn).NumRolls--;
                 diceValue = Constants.NUMBER_OF_SLOTS_PER_EATED_COIN;
                 eatCoin = false;
             }
-            if (coinsPlaying.ElementAt(turnPlayer).NumRolls.Equals(Constants.MAXIUM_REROLLS_PER_PLAYER_PROFILE))
+            if (coinsPlaying.ElementAt(playerProfileTurn).NumRolls.Equals(Constants.MAXIUM_REROLLS_PER_PLAYER_PROFILE))
             {
-                GoToHomeSlot(turnPlayer);
+                GoToHomeSlot(playerProfileTurn);
             }
             else
             {
@@ -201,42 +201,42 @@ namespace Parlis.Client.Views
                 {
                     reRoll = true;
                 }
-                coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot + diceValue;
-                if (coinsPlaying.ElementAt(turnPlayer).AtFinalRow)
+                coinsPlaying.ElementAt(playerProfileTurn).AtSlot = coinsPlaying.ElementAt(playerProfileTurn).AtSlot + diceValue;
+                if (coinsPlaying.ElementAt(playerProfileTurn).AtFinalRow)
                 {
-                    MoveInFinalColorPath(turnPlayer);
+                    MoveInFinalColorPath(playerProfileTurn);
                 }
-                else if (coinsPlaying.ElementAt(turnPlayer).AtSlot > Constants.MAXIUM_SLOTS_PER_LEAP)
+                else if (coinsPlaying.ElementAt(playerProfileTurn).AtSlot > Constants.MAXIUM_SLOTS_PER_LEAP)
                 {
-                    coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot - (Constants.MAXIUM_SLOTS_PER_LEAP + 1);
-                    coinsPlaying.ElementAt(turnPlayer).FirstLeap = true;
+                    coinsPlaying.ElementAt(playerProfileTurn).AtSlot = coinsPlaying.ElementAt(playerProfileTurn).AtSlot - (Constants.MAXIUM_SLOTS_PER_LEAP + 1);
+                    coinsPlaying.ElementAt(playerProfileTurn).FirstLeap = true;
                     if (colorValueTeam.Equals(Constants.MAXIUM_REROLLS_PER_PLAYER_PROFILE))
                     {
-                        coinsPlaying.ElementAt(turnPlayer).AtFinalRow = true;
-                        coinsPlaying.ElementAt(turnPlayer).Points = Constants.NUMBER_OF_POINTS_AT_FINAL_ROW;
-                        MoveInFinalColorPath(turnPlayer);
+                        coinsPlaying.ElementAt(playerProfileTurn).AtFinalRow = true;
+                        coinsPlaying.ElementAt(playerProfileTurn).Points = Constants.NUMBER_OF_POINTS_AT_FINAL_ROW;
+                        MoveInFinalColorPath(playerProfileTurn);
                     }
                     else {
-                        coinsPlaying.ElementAt(turnPlayer).Points = coinsPlaying.ElementAt(turnPlayer).Points + diceValue;
-                        CheckForCoinsAtSameSlot(turnPlayer);
+                        coinsPlaying.ElementAt(playerProfileTurn).Points = coinsPlaying.ElementAt(playerProfileTurn).Points + diceValue;
+                        CheckForCoinsAtSameSlot(playerProfileTurn);
                     }
                 }
-                else if (AbleToStartFinalColorPath(turnPlayer))
+                else if (AbleToStartFinalColorPath(playerProfileTurn))
                 {
-                    MoveInFinalColorPath(turnPlayer);
+                    MoveInFinalColorPath(playerProfileTurn);
                 }
                 else 
                 {
-                    coinsPlaying.ElementAt(turnPlayer).Points = coinsPlaying.ElementAt(turnPlayer).Points + diceValue;
-                    CheckForCoinsAtSameSlot(turnPlayer);
+                    coinsPlaying.ElementAt(playerProfileTurn).Points = coinsPlaying.ElementAt(playerProfileTurn).Points + diceValue;
+                    CheckForCoinsAtSameSlot(playerProfileTurn);
                 }
             }
         }
 
-        public void CheckForCoinsAtSameSlot(int turnPlayer)
+        public void CheckForCoinsAtSameSlot(int playerProfileTurn)
         {
             List<Coin> coinsToInvade = new List<Coin>(coinsPlaying);
-            int turnInvaderPlayer = turnPlayer;
+            int turnInvaderPlayer = playerProfileTurn;
             int turnInvadedPlayer = Constants.NUMBER_OF_TURN_PER_INVADED_PLAYER;
             int invaderPlayerSlotPosition = coinsToInvade.ElementAt(turnInvaderPlayer).AtSlot;
             int invadedPlayerSlotPosition = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
@@ -272,7 +272,7 @@ namespace Parlis.Client.Views
                 }
                 else
                 {
-                    gameManagementClient.SetCoinToMove(turnPlayer);
+                    gameManagementClient.SetCoinToMove(playerProfileTurn);
                 }
             }
         }
@@ -355,46 +355,46 @@ namespace Parlis.Client.Views
             HowMuchAndWhereToMove(turnInvaderPlayer);
         }
 
-        public void MoveInFinalColorPath(int turnPlayer)
+        public void MoveInFinalColorPath(int playerProfileTurn)
         {
             Utilities.PlayGameSound(Constants.COLOR_PATH_CODE);
-            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
-            if (!coinsPlaying.ElementAt(turnPlayer).AtSlot.Equals(Constants.MAXIUM_SLOTS_AT_FINAL_ROW))
+            int colorTeamValue = coinsPlaying.ElementAt(playerProfileTurn).ColorTeamValue;
+            if (!coinsPlaying.ElementAt(playerProfileTurn).AtSlot.Equals(Constants.MAXIUM_SLOTS_AT_FINAL_ROW))
             {
-                if (coinsPlaying.ElementAt(turnPlayer).AtSlot > Constants.MAXIUM_SLOTS_AT_FINAL_ROW)
+                if (coinsPlaying.ElementAt(playerProfileTurn).AtSlot > Constants.MAXIUM_SLOTS_AT_FINAL_ROW)
                 {
                     do
                     {
-                        coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot - Constants.RedPathSlots.Length;
+                        coinsPlaying.ElementAt(playerProfileTurn).AtSlot = coinsPlaying.ElementAt(playerProfileTurn).AtSlot - Constants.RedPathSlots.Length;
                     }
-                    while (coinsPlaying.ElementAt(turnPlayer).AtSlot > Constants.MAXIUM_SLOTS_AT_FINAL_ROW);
+                    while (coinsPlaying.ElementAt(playerProfileTurn).AtSlot > Constants.MAXIUM_SLOTS_AT_FINAL_ROW);
                 }
                 switch (colorTeamValue)
                 {
                     case Constants.RED_COIN_CODE:
-                        Canvas.SetTop(coins[colorTeamValue], Constants.RedPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
-                        Canvas.SetLeft(coins[colorTeamValue], Constants.RedPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
+                        Canvas.SetTop(coins[colorTeamValue], Constants.RedPathSlots[coinsPlaying.ElementAt(playerProfileTurn).AtSlot].X);
+                        Canvas.SetLeft(coins[colorTeamValue], Constants.RedPathSlots[coinsPlaying.ElementAt(playerProfileTurn).AtSlot].Y);
                         break;
                     case Constants.BLUE_COIN_CODE:
-                        Canvas.SetTop(coins[colorTeamValue], Constants.BluePathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
-                        Canvas.SetLeft(coins[colorTeamValue], Constants.BluePathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
+                        Canvas.SetTop(coins[colorTeamValue], Constants.BluePathSlots[coinsPlaying.ElementAt(playerProfileTurn).AtSlot].X);
+                        Canvas.SetLeft(coins[colorTeamValue], Constants.BluePathSlots[coinsPlaying.ElementAt(playerProfileTurn).AtSlot].Y);
                         break;
                     case Constants.GREEN_COIN_CODE:
-                        Canvas.SetTop(coins[colorTeamValue], Constants.GreenPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
-                        Canvas.SetLeft(coins[colorTeamValue], Constants.GreenPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
+                        Canvas.SetTop(coins[colorTeamValue], Constants.GreenPathSlots[coinsPlaying.ElementAt(playerProfileTurn).AtSlot].X);
+                        Canvas.SetLeft(coins[colorTeamValue], Constants.GreenPathSlots[coinsPlaying.ElementAt(playerProfileTurn).AtSlot].Y);
                         break;
                     case Constants.YELLOW_COIN_CODE:
-                        Canvas.SetTop(coins[colorTeamValue], Constants.YellowPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].X);
-                        Canvas.SetLeft(coins[colorTeamValue], Constants.YellowPathSlots[coinsPlaying.ElementAt(turnPlayer).AtSlot].Y);
+                        Canvas.SetTop(coins[colorTeamValue], Constants.YellowPathSlots[coinsPlaying.ElementAt(playerProfileTurn).AtSlot].X);
+                        Canvas.SetLeft(coins[colorTeamValue], Constants.YellowPathSlots[coinsPlaying.ElementAt(playerProfileTurn).AtSlot].Y);
                         break;
                 }
             }
-            else if (coinsPlaying.ElementAt(turnPlayer).AtSlot.Equals(Constants.MAXIUM_SLOTS_AT_FINAL_ROW))
+            else if (coinsPlaying.ElementAt(playerProfileTurn).AtSlot.Equals(Constants.MAXIUM_SLOTS_AT_FINAL_ROW))
             {
                 Utilities.PlayGameSound(Constants.WINNER_CODE);
-                coinsPlaying.ElementAt(turnPlayer).IsWinner = true;
+                coinsPlaying.ElementAt(playerProfileTurn).IsWinner = true;
                 SetWinnerPlayer();
-                GoToHomeSlot(turnPlayer);
+                GoToHomeSlot(playerProfileTurn);
             }
         }
 
@@ -431,29 +431,29 @@ namespace Parlis.Client.Views
             finishGame = true;
         }
 
-        public void GoToHomeSlot(int turnPlayer)
+        public void GoToHomeSlot(int playerProfileTurn)
         {
             Utilities.PlayGameSound(Constants.GO_TO_HOME_SLOT_CODE);
-            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
-            coinsPlaying.ElementAt(turnPlayer).AtFinalRow = false;
-            coinsPlaying.ElementAt(turnPlayer).FirstLeap = false;
-            coinsPlaying.ElementAt(turnPlayer).AtSlot = Constants.InitialSlots.ElementAt(colorTeamValue);
-            coinsPlaying.ElementAt(turnPlayer).NumRolls = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
-            coinsPlaying.ElementAt(turnPlayer).Points = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
+            int colorTeamValue = coinsPlaying.ElementAt(playerProfileTurn).ColorTeamValue;
+            coinsPlaying.ElementAt(playerProfileTurn).AtFinalRow = false;
+            coinsPlaying.ElementAt(playerProfileTurn).FirstLeap = false;
+            coinsPlaying.ElementAt(playerProfileTurn).AtSlot = Constants.InitialSlots.ElementAt(colorTeamValue);
+            coinsPlaying.ElementAt(playerProfileTurn).NumRolls = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
+            coinsPlaying.ElementAt(playerProfileTurn).Points = Constants.NUMBER_OF_PLAYER_PROFILES_PER_EMPTY_MATCH;
             Canvas.SetTop(coins[colorTeamValue], Constants.HomeSlotCordinates[colorTeamValue].X);
             Canvas.SetLeft(coins[colorTeamValue], Constants.HomeSlotCordinates[colorTeamValue].Y);
             reRoll = false;
         }
 
-        public bool AbleToStartFinalColorPath(int turnPlayer)
+        public bool AbleToStartFinalColorPath(int playerProfileTurn)
         {
-            int colorTeamValue = coinsPlaying.ElementAt(turnPlayer).ColorTeamValue;
+            int colorTeamValue = coinsPlaying.ElementAt(playerProfileTurn).ColorTeamValue;
             bool ableToStart = false;
-            if (coinsPlaying.ElementAt(turnPlayer).FirstLeap && coinsPlaying.ElementAt(turnPlayer).AtSlot > Constants.InitialColorPathSlot[colorTeamValue] && coinsPlaying.ElementAt(turnPlayer).AtSlot < (Constants.InitialColorPathSlot[colorTeamValue] + 21))
+            if (coinsPlaying.ElementAt(playerProfileTurn).FirstLeap && coinsPlaying.ElementAt(playerProfileTurn).AtSlot > Constants.InitialColorPathSlot[colorTeamValue] && coinsPlaying.ElementAt(playerProfileTurn).AtSlot < (Constants.InitialColorPathSlot[colorTeamValue] + 21))
             {
-                coinsPlaying.ElementAt(turnPlayer).AtFinalRow = true;
-                coinsPlaying.ElementAt(turnPlayer).AtSlot = coinsPlaying.ElementAt(turnPlayer).AtSlot - (Constants.InitialColorPathSlot[colorTeamValue] + 1);
-                coinsPlaying.ElementAt(turnPlayer).Points = Constants.NUMBER_OF_POINTS_AT_FINAL_ROW;
+                coinsPlaying.ElementAt(playerProfileTurn).AtFinalRow = true;
+                coinsPlaying.ElementAt(playerProfileTurn).AtSlot = coinsPlaying.ElementAt(playerProfileTurn).AtSlot - (Constants.InitialColorPathSlot[colorTeamValue] + 1);
+                coinsPlaying.ElementAt(playerProfileTurn).Points = Constants.NUMBER_OF_POINTS_AT_FINAL_ROW;
                 ableToStart = true;
             }
             return ableToStart;
@@ -568,6 +568,21 @@ namespace Parlis.Client.Views
             mainMenuWindow.Show();
         }
 
+        private void FirstDiceMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (!finishGame)
+            {
+                Utilities.PlayGameSound(Constants.THROW_DICE_CODE);
+                Utilities.PlayGameSound(Constants.MOVE_COIN_CODE);
+                Utilities.PlayGameSound(Constants.NEXT_TURN_CODE);
+                gameManagementClient.ThrowDice();
+            }
+            else
+            {
+                Utilities.PlayGameSound(Constants.WINNER_CODE);
+            }
+        }
+
         private void MessageBalloonMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Utilities.PlayButtonClickSound();
@@ -575,21 +590,6 @@ namespace Parlis.Client.Views
             string username = playerProfile.Username;
             sendRealTimeMessageWindow.ConfigureWindow(username, code);
             sendRealTimeMessageWindow.ShowDialog();
-        }
-
-        private void FirstDiceMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (!finishGame)
-            {
-                Utilities.PlayGameSound(Constants.THROW_DICE_CODE);
-                gameManagementClient.ThrowDice();
-                Utilities.PlayGameSound(Constants.MOVE_COIN_CODE);
-                Utilities.PlayGameSound(Constants.NEXT_TURN_CODE);
-            }
-            else
-            {
-                Utilities.PlayGameSound(Constants.WINNER_CODE);
-            }
         }
     }
 }

@@ -292,11 +292,11 @@ namespace Parlis.Server.BusinessLogic
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     public partial class Service : IChatManagement, IGameManagement, IMatchManagement
     {
+        private static readonly List<Coin> coins = new List<Coin>();
         private static readonly List<int> matches = new List<int>();
         private static readonly Dictionary<string, int> playerProfilesByMatch = new Dictionary<string, int>();
         private static readonly Dictionary<int, List<Message>> messagesByMatch = new Dictionary<int, List<Message>>();
         private static readonly Dictionary<string, int> playerProfilesByBoard = new Dictionary<string, int>();
-        private static readonly List<Coin> coins = new List<Coin>();
         private static readonly Dictionary<string, IMatchManagementCallback> playerProfiles = new Dictionary<string, IMatchManagementCallback>();
         private static readonly Dictionary<string, IChatManagementCallback> chats = new Dictionary<string, IChatManagementCallback>();
         private static readonly Dictionary<string, IGameManagementCallback> boards = new Dictionary<string, IGameManagementCallback>();
@@ -336,72 +336,6 @@ namespace Parlis.Server.BusinessLogic
                 if (chats.ContainsKey(username))
                 {
                     chats[username].ReceiveMessages(GetMessages(code));
-                }
-            }
-        }
-
-        public bool CheckMatchExistence(int code)
-        {
-            return matches.Contains(code);
-        }
-
-        public void ConnectToMatch(string username, int code)
-        {
-            playerProfilesByMatch.Add(username, code);
-            playerProfiles.Add(username, OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>());
-            SetPlayerProfiles(code);
-        }
-
-        public void CreateMatch(int code)
-        {
-            matches.Add(code);
-        }
-
-        public void DisconnectFromMatch(string username, int code)
-        {
-            playerProfilesByBoard.Remove(username);
-            playerProfilesByMatch.Remove(username);
-            playerProfiles.Remove(username);
-            SetPlayerProfiles(code);
-        }
-
-        void IMatchManagement.GetPlayerProfiles(string username, int code)
-        {
-            if (playerProfiles.ContainsKey(username))
-            {
-                OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().ReceivePlayerProfiles(new List<string>(playerProfiles.Keys));
-            }
-            else
-            {
-                OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().ReceivePlayerProfiles(GetPlayerProfiles(code));
-            }
-        }
-
-        public List<string> GetPlayerProfiles(int code)
-        {
-            return playerProfilesByMatch.Where(playerProfile => playerProfile.Value == code)
-                .Select(playerProfile => playerProfile.Key)
-                .ToList();
-        }
-
-        public void ExpelPlayerProfile(string username)
-        {
-            if (playerProfiles.ContainsKey(username))
-            {
-                playerProfiles[username].ExpelPlayerProfileFromMatch(username);
-                int code = playerProfilesByMatch[username];
-                DisconnectFromMatch(username, code);
-            }
-        }
-
-        public void SetPlayerProfiles(int code)
-        {
-            foreach (var playerProfile in playerProfilesByMatch)
-            {
-                if (playerProfile.Value.Equals(code))
-                {
-                    string username = playerProfile.Key;
-                    playerProfiles[username].ReceivePlayerProfiles(GetPlayerProfiles(code));
                 }
             }
         }
@@ -475,7 +409,6 @@ namespace Parlis.Server.BusinessLogic
                 if (playerProfile.Value.Equals(code))
                 {
                     string username = playerProfile.Key;
-
                     boards[username].ReceiveCoinsForBoard(GetCoinsByBoard(code));
                 }
             }
@@ -572,6 +505,72 @@ namespace Parlis.Server.BusinessLogic
                 if (playerProfiles.ContainsKey(username))
                 {
                     boards[username].ShowDiceResult(diceResult);
+                }
+            }
+        }
+
+        public bool CheckMatchExistence(int code)
+        {
+            return matches.Contains(code);
+        }
+
+        public void ConnectToMatch(string username, int code)
+        {
+            playerProfilesByMatch.Add(username, code);
+            playerProfiles.Add(username, OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>());
+            SetPlayerProfiles(code);
+        }
+
+        public void CreateMatch(int code)
+        {
+            matches.Add(code);
+        }
+
+        public void DisconnectFromMatch(string username, int code)
+        {
+            playerProfilesByBoard.Remove(username);
+            playerProfilesByMatch.Remove(username);
+            playerProfiles.Remove(username);
+            SetPlayerProfiles(code);
+        }
+
+        void IMatchManagement.GetPlayerProfiles(string username, int code)
+        {
+            if (playerProfiles.ContainsKey(username))
+            {
+                OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().ReceivePlayerProfiles(new List<string>(playerProfiles.Keys));
+            }
+            else
+            {
+                OperationContext.Current.GetCallbackChannel<IMatchManagementCallback>().ReceivePlayerProfiles(GetPlayerProfiles(code));
+            }
+        }
+
+        public List<string> GetPlayerProfiles(int code)
+        {
+            return playerProfilesByMatch.Where(playerProfile => playerProfile.Value == code)
+                .Select(playerProfile => playerProfile.Key)
+                .ToList();
+        }
+
+        public void ExpelPlayerProfile(string username)
+        {
+            if (playerProfiles.ContainsKey(username))
+            {
+                playerProfiles[username].ExpelPlayerProfileFromMatch(username);
+                int code = playerProfilesByMatch[username];
+                DisconnectFromMatch(username, code);
+            }
+        }
+
+        public void SetPlayerProfiles(int code)
+        {
+            foreach (var playerProfile in playerProfilesByMatch)
+            {
+                if (playerProfile.Value.Equals(code))
+                {
+                    string username = playerProfile.Key;
+                    playerProfiles[username].ReceivePlayerProfiles(GetPlayerProfiles(code));
                 }
             }
         }
