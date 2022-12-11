@@ -64,3 +64,5 @@ C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Pa
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.csproj.CopyComplete
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.dll
 C:\Users\majot\Desktop\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.pdb
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.dll
+C:\Users\sebtr\OneDrive\Escritorio\Parlis\Parlis.Server\Parlis.Server.UnitTests\obj\Debug\Parlis.Server.UnitTests.pdb

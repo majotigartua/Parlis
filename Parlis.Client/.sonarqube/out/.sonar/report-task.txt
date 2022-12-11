@@ -1,0 +1,6 @@
+projectKey=Parlis.Client
+serverUrl=http://localhost:9000
+serverVersion=9.7.1.62043
+dashboardUrl=http://localhost:9000/dashboard?id=Parlis.Client
+ceTaskId=AYUC1efOILOfHq9rn1XX
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYUC1efOILOfHq9rn1XX
