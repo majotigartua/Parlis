@@ -64,7 +64,7 @@ namespace Parlis.Client.Views
                 var password = PasswordBox.Password.ToString();
                 try
                 {
-                    if (string.IsNullOrEmpty(password))
+                    if (string.IsNullOrWhiteSpace(password))
                     {
                         UpdatePlayer();
                     }
@@ -98,9 +98,9 @@ namespace Parlis.Client.Views
 
         private bool ValidateEmptyFields()
         {
-            return string.IsNullOrEmpty(NameTextBox.Text) ||
-                string.IsNullOrEmpty(PaternalSurnameTextBox.Text) ||
-                string.IsNullOrEmpty(MaternalSurnameTextBox.Text);
+            return string.IsNullOrWhiteSpace(NameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(PaternalSurnameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(MaternalSurnameTextBox.Text);
         }
 
         private bool ValidateTextLengthOverflowed()

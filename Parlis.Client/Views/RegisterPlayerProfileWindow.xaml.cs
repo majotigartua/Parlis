@@ -55,12 +55,12 @@ namespace Parlis.Client.Views
 
         private bool ValidateEmptyFields()
         {
-            return string.IsNullOrEmpty(NameTextBox.Text) ||
-                string.IsNullOrEmpty(PaternalSurnameTextBox.Text) ||
-                string.IsNullOrEmpty(MaternalSurnameTextBox.Text) ||
-                string.IsNullOrEmpty(UsernameTextBox.Text) ||
-                string.IsNullOrEmpty(EmailAddressTextBox.Text) ||
-                string.IsNullOrEmpty(PasswordBox.Password.ToString());
+            return string.IsNullOrWhiteSpace(NameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(PaternalSurnameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(MaternalSurnameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(UsernameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(EmailAddressTextBox.Text) ||
+                string.IsNullOrWhiteSpace(PasswordBox.Password.ToString());
         }
 
         private bool ValidateTextLengthOverflowed()
@@ -149,7 +149,7 @@ namespace Parlis.Client.Views
         {
             Utilities.PlayButtonClickSound();
             string playerProfilePath = Utilities.SelectProfilePicture();
-            if (!string.IsNullOrEmpty(playerProfilePath))
+            if (!string.IsNullOrWhiteSpace(playerProfilePath))
             {
                 var bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();

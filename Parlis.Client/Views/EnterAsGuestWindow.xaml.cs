@@ -26,7 +26,7 @@ namespace Parlis.Client.Views
         {
             Utilities.PlayButtonClickSound();
             var username = UsernameTextBox.Text;
-            if (!string.IsNullOrEmpty(username))
+            if (!string.IsNullOrWhiteSpace(username))
             {
                 if (!Utilities.ValidateTextLengthOverflowed(username, Constants.MAXIUM_USERNAME_LENGTH))
                 {

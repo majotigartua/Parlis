@@ -49,7 +49,7 @@ namespace Parlis.Client.Views
         private void AcceptButtonClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
-            if (!string.IsNullOrEmpty(CodeTextBox.Text))
+            if (!string.IsNullOrWhiteSpace(CodeTextBox.Text))
             {
                 try
                 {

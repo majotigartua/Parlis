@@ -45,7 +45,7 @@ namespace Parlis.Client.Views
         private void SendButtonClick(object sender, RoutedEventArgs e)
         {
             Utilities.PlayButtonClickSound();
-            if (!string.IsNullOrEmpty(MessageTextBox.Text))
+            if (!string.IsNullOrWhiteSpace(MessageTextBox.Text))
             {
                 var message = new Message
                 {

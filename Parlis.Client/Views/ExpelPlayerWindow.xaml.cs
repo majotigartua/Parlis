@@ -61,7 +61,7 @@ namespace Parlis.Client.Views
         {
             Utilities.PlayButtonClickSound();
             var username = UsernameComboBox.SelectedItem as string;
-            if (!string.IsNullOrEmpty(username))
+            if (!string.IsNullOrWhiteSpace(username))
             {
                 createMatchWindow.expeledPlayerProfile = username;
                 Close();
