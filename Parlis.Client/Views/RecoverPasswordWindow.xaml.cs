@@ -48,7 +48,7 @@ namespace Parlis.Client.Views
         {
             Utilities.PlayButtonClickSound();
             var password = PasswordBox.Password.ToString();
-            if (!string.IsNullOrEmpty(CodeTextBox.Text) && !string.IsNullOrEmpty(password))
+            if (!string.IsNullOrWhiteSpace(CodeTextBox.Text) && !string.IsNullOrWhiteSpace(password))
             {
                 try
                 {

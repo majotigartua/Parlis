@@ -20,7 +20,7 @@ namespace Parlis.Client.Views
         {
             Utilities.PlayButtonClickSound();
             var emailAddress = EmailAddressTextBox.Text;
-            if (!string.IsNullOrEmpty(emailAddress))
+            if (!string.IsNullOrWhiteSpace(emailAddress))
             {
                 try
                 {

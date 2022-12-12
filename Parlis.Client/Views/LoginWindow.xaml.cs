@@ -36,7 +36,7 @@ namespace Parlis.Client.Views
             Utilities.PlayButtonClickSound();
             var username = UsernameTextBox.Text;
             var password = PasswordBox.Password.ToString();
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
                     Properties.Resources.EMPTY_FIELDS_WINDOW_TITLE);

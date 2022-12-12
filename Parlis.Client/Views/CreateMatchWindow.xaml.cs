@@ -144,7 +144,7 @@ namespace Parlis.Client.Views
             var expelPlayerWindow = new ExpelPlayerWindow();
             expelPlayerWindow.ConfigureWindow(this, playerProfile, code);
             expelPlayerWindow.ShowDialog();
-            if (!string.IsNullOrEmpty(expeledPlayerProfile))
+            if (!string.IsNullOrWhiteSpace(expeledPlayerProfile))
             {
                 try
                 {
@@ -172,7 +172,7 @@ namespace Parlis.Client.Views
         {
             Utilities.PlayButtonClickSound();
             var username = UsernameTextBox.Text;
-            if (!string.IsNullOrEmpty(username))
+            if (!string.IsNullOrWhiteSpace(username))
             {
                 try
                 {
